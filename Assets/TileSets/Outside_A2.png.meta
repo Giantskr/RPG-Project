@@ -3,7 +3,7 @@ guid: 329b3941b0a2d494aa9b76fa5a7a9d99
 TextureImporter:
   fileIDToRecycleName:
     21300000: Outside_A2_0
-    21300002: Outside_A2_1
+    21300002: Outside_A2_205
     21300004: Outside_A2_2
     21300006: Outside_A2_3
     21300008: Outside_A2_4
@@ -202,6 +202,11 @@ TextureImporter:
     21300394: Outside_A2_197
     21300396: Outside_A2_198
     21300398: Outside_A2_199
+    21300400: Outside_A2_200
+    21300402: Outside_A2_201
+    21300404: Outside_A2_202
+    21300406: Outside_A2_203
+    21300408: Outside_A2_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -231,7 +236,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -321,26 +326,6 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 6d48d6c544c4c48489259421a1d5c37e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Outside_A2_1
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 528
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7bb7cceb02a3daa4588d89242f6cb852
       vertices: []
       indices: 
       edges: []
@@ -1369,7 +1354,7 @@ TextureImporter:
       name: Outside_A2_53
       rect:
         serializedVersion: 2
-        x: 240
+        x: 238
         y: 384
         width: 48
         height: 48
@@ -4274,7 +4259,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -4294,13 +4279,53 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 2bd6d1a8dc649b544993f0dada0821c8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Outside_A2_200
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 288
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9f0c7a876b017c4b90bca2ac58bcc25
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Outside_A2_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 528
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89ce73cd207b0d54fb8ebe02353f4097
       vertices: []
       indices: 
       edges: []
