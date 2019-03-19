@@ -4,23 +4,22 @@ using UnityEngine;
 
 public abstract class Select : MonoBehaviour
 {
-    private int states = 1;
+    public List<GameObject> Selections = new List<GameObject>();
+    protected  int states = 1;
     public int OptionNum;
     public AudioSource audioSource;
-    abstract public void Function1();
-    abstract public void Function2();
-    abstract public void Function3();
-    abstract public void Function4();
-    abstract public void Function5();
     // Start is called before the first frame update
     void Start()
     {
-        this.gameObject.transform.localPosition = new Vector3(0, -77.5f, 0);
+        gameObject.transform.position = Selections[0].gameObject.transform.position;
+
     }
 
     // Update is called once per frame
    
    protected void selection()
+        {
+        if (Input.GetButton("Vertical"))
         {
             if (Input.GetKeyDown("s") && states < OptionNum)
             {
@@ -30,15 +29,9 @@ public abstract class Select : MonoBehaviour
             {
                 states -= 1; audioSource.Play();
             }
-            switch (states)
-            {
-                case 1: this.gameObject.transform.localPosition = new Vector3(0, -77.5f, 0);Function1(); break;
-                case 2: this.gameObject.transform.localPosition = new Vector3(0, -116.3f, 0);Function2();  break;
-                case 3: this.gameObject.transform.localPosition = new Vector3(0, -155, 0);Function3(); break;
-                case 4: this.gameObject.transform.localPosition = new Vector3(0, -155, 0); Function3(); break;
-                case 5: this.gameObject.transform.localPosition = new Vector3(0, -155, 0); Function3(); break;
-
         }
+        gameObject.transform.localPosition = Selections[states-1].gameObject.transform.localPosition;
+        //把绿条移动到选项文字上方   
     }
     
 }
