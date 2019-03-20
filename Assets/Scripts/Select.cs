@@ -8,24 +8,23 @@ public abstract class Select : MonoBehaviour
     protected  int states = 1;
     public int OptionNum;
     public AudioSource audioSource;
-    // Start is called before the first frame update
+
     void Start()
     {
         gameObject.transform.position = Selections[0].gameObject.transform.position;
 
     }
-
-    // Update is called once per frame
    
-   protected void selection()
+    protected void selection()
         {
-        if (Input.GetButton("Vertical"))
+        if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))   //要用GetButtonDown而非GetButton，防止按键持续生效
         {
-            if (Input.GetKeyDown("s") && states < OptionNum)
+            //GetAxis与GetKey(Down)对照：横坐标大于0为d，小于0为a；纵坐标大于0为w，小于0为s
+            if ((Input.GetAxis("Vertical") < 0 || Input.GetAxis("Horizontal") > 0) && states < OptionNum)
             {
                 states += 1; audioSource.Play();
             }
-            if (Input.GetKeyDown("w") && states > 1)
+            if ((Input.GetAxis("Vertical") > 0 || Input.GetAxis("Horizontal") < 0) && states > 1) 
             {
                 states -= 1; audioSource.Play();
             }

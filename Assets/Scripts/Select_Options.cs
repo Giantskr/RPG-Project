@@ -22,7 +22,7 @@ public class Select_Options : Select
             case 1:break;
             case 2:break;
             case 3:
-                if (Input.GetKeyDown("space"))
+                if (Input.GetButtonDown("Submit"))
                 {
                     Menu.SetActive(true);
                     Options.SetActive(false);

@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Select_Esc :Select
 {
+    public GameObject UI_Objects;
+    public GameObject UI_Skills;
+    public GameObject UI_Weapons;
+    public GameObject UI_States;
+    public GameObject UI_Settings;
+    public GameObject UI_Save;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +22,13 @@ public class Select_Esc :Select
         selection();
         switch (states)
         {
-            case 1:break;
+            case 1:
+                if (Input.GetButtonDown("Submit"))
+                {
+                    UI_Objects.SetActive(true);
+                    gameObject.SetActive(false);
+                }
+                     break;
             case 2: break;
             case 3: break;
             case 4: break;

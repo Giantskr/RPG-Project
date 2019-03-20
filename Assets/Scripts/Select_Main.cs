@@ -20,14 +20,14 @@ public class Select_Main : Select
         switch (states)
         {
             case 1:
-                if (Input.GetKeyDown("space"))
+                if (Input.GetButtonDown("Submit"))
                 {
                     SceneManager.LoadScene("Town");
                 }
                 break;
             case 2: break;
             case 3:
-                if (Input.GetKeyDown("space"))
+                if (Input.GetButtonDown("Submit"))
                 {
                     Options.SetActive(true);
                     Menu.SetActive(false);
