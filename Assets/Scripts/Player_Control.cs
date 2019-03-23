@@ -9,7 +9,8 @@ public class Player_Control : MonoBehaviour
 	public Sprite[] playerSprite;
 	[Space(10)]
 	Vector2 faceOrientation = Vector2.down;
-	bool faceObstacle=false;
+	Vector2 target;
+	bool moving = false;
 	
 	Rigidbody2D rb;
 	Animator an;
@@ -18,49 +19,63 @@ public class Player_Control : MonoBehaviour
     {
 		rb = GetComponent<Rigidbody2D>();
 		an = GetComponent<Animator>();
+		target = transform.position;
     }
 
     void Update()
     {
-		RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position + faceOrientation * 0.5f, faceOrientation, 0.1f);
-		if (hit.collider != null && hit.collider.tag == "Accessible") faceObstacle = true;
-		else faceObstacle = false;
-		if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+		MovePlayer();
+		
+	}
+
+	void MovePlayer()
+	{
+		if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && !moving) 
 		{
 			an.enabled = true;
-			if (Input.GetButton("Run"))
+			if (Input.GetButton("Horizontal") && !Input.GetButton("Vertical"))
 			{
-				an.speed = 1.5f;
-				rb.velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * 6;
+				if (Input.GetAxis("Horizontal") > 0) { faceOrientation = Vector2.right; an.Play("Right"); }
+				else { faceOrientation = Vector2.left; an.Play("Left"); }
 			}
-			else
+			else if (Input.GetButton("Vertical") && !Input.GetButton("Horizontal"))
 			{
-				an.speed = 1f;
-				rb.velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * 4;
+				if (Input.GetAxis("Vertical") > 0) { faceOrientation = Vector2.up; an.Play("Up"); }
+				else { faceOrientation = Vector2.down; an.Play("Down"); }
 			}
-			if (Input.GetButton("Horizontal") && !Input.GetButton("Vertical")) 
+			if (Input.GetButton("Run")) an.speed = 2f;
+			else an.speed = 1f;
+			if (!FaceObstacle())
 			{
-				if (Input.GetAxis("Horizontal") > 0) { an.Play("Right"); faceOrientation = Vector2.right; }
-				else { an.Play("Left"); faceOrientation = Vector2.left; }
-			}
-			else if(Input.GetButton("Vertical") && !Input.GetButton("Horizontal"))
-			{
-				if (Input.GetAxis("Vertical") > 0) { an.Play("Up"); faceOrientation = Vector2.up; }
-				else { an.Play("Down"); faceOrientation = Vector2.down; }
+				moving = true;
+				target = (Vector2)transform.position + faceOrientation;
 			}
 		}
-		else
+		else if (moving) rb.position = Vector2.MoveTowards(transform.position, target, Time.deltaTime * 4 * an.speed);
+		if (rb.position == target)
 		{
+			moving = false;
 			an.enabled = false;
-			rb.velocity = Vector2.zero;
-			int y=0;
+			int y = 0;
 			if (faceOrientation.y != 0) y = (int)faceOrientation.y + 1;
 			GetComponent<SpriteRenderer>().sprite = playerSprite[(int)faceOrientation.x + y + 1];
 		}
-    }
+	}
+
+	bool FaceObstacle()
+	{
+		RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position + faceOrientation * 0.5f, faceOrientation, 0.5f);
+		if (hit.collider != null && hit.collider.gameObject.layer == 8) return true;
+		else return false;
+	}
 
 	public void SetFaceOrientation(Vector2 vector)
 	{
+		faceOrientation = vector;
+	}
+	public void SetFaceOrientation(Vector2 pos, Vector2 vector)
+	{
+		transform.position = pos;
 		faceOrientation = vector;
 	}
 }
