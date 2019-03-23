@@ -24,7 +24,11 @@ public class Player_Control : MonoBehaviour
 
     void Update()
     {
-		MovePlayer();
+		if (GameManager.inScene)
+		{
+			MovePlayer();
+		}
+		
 		
 	}
 

@@ -6,13 +6,12 @@ public class Select_Weapons : Select
 {
     public GameObject UI_Selections;
     public GameObject UI_Weapons;
-    // Start is called before the first frame update
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         selection();
@@ -21,9 +20,12 @@ public class Select_Weapons : Select
             UI_Selections.SetActive(true);
             UI_Weapons.SetActive(false);
         }
-        switch (states)
-        {
-            case 1: break;
-        }
-    }
+		else if (Input.GetButtonDown("Submit"))
+		{
+			switch (states)
+			{
+				case 1: break;
+			}
+		}
+	}
 }

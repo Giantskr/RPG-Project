@@ -17,6 +17,7 @@ public class Player_Stats : MonoBehaviour
 	public static Player_Stats instance = null;
 	void Awake()
 	{
+		DontDestroyOnLoad(gameObject);
 		if (instance == null)
 			instance = this;
 		else if (instance != this)
@@ -31,7 +32,6 @@ public class Player_Stats : MonoBehaviour
     {
         
     }
-
 
     void Update()
     {

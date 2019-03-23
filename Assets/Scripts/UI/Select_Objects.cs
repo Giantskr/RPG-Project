@@ -6,7 +6,7 @@ public class Select_Objects : Select
 {
     public GameObject UI_Selections;
     public GameObject UI_Objects;
-    // Start is called before the first frame update
+
     void Start()
     {
         
@@ -21,9 +21,12 @@ public class Select_Objects : Select
             UI_Selections.SetActive(true);
             UI_Objects.SetActive(false);
         }
-        switch (states)
-        {
-            case 1:break;
-        }
-    }
+		else if (Input.GetButtonDown("Submit"))
+		{
+			switch (states)
+			{
+				case 1: break;
+			}
+		}
+	}
 }
