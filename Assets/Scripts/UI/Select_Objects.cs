@@ -12,7 +12,6 @@ public class Select_Objects : Select
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         selection();

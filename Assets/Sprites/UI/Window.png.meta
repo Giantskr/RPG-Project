@@ -45,7 +45,10 @@ TextureImporter:
     21300080: Window_40
     21300082: Window_41
     21300084: Window_42
-    21300086: Window_43
+    21300086: NextArrow1
+    21300088: NextArrow3
+    21300090: NextArrow4
+    21300092: NextArrow2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -999,13 +1002,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Window_43
+      name: NextArrow1
       rect:
         serializedVersion: 2
-        x: 146
-        y: 75
-        width: 20
-        height: 13
+        x: 145
+        y: 73
+        width: 22
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

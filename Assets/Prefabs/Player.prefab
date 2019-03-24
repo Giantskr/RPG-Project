@@ -95,12 +95,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d105421bfc90340a2922ab8e45dc8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  playerSprite:
-  - {fileID: 21300026, guid: 916a8135e0e48a14d917b09d4f0bff4f, type: 3}
+  UI_Conversation: {fileID: 4672413970696540344, guid: 7301ac952f04d9a4cb05671276099eab,
+    type: 3}
+  player: {fileID: 602400736561843215, guid: 464605cc0f4ef364c826dcee91937db5, type: 3}
+  idleSprites:
   - {fileID: 21300002, guid: 916a8135e0e48a14d917b09d4f0bff4f, type: 3}
-  - {fileID: 21300050, guid: 916a8135e0e48a14d917b09d4f0bff4f, type: 3}
+  - {fileID: 21300026, guid: 916a8135e0e48a14d917b09d4f0bff4f, type: 3}
   - {fileID: 21300074, guid: 916a8135e0e48a14d917b09d4f0bff4f, type: 3}
+  - {fileID: 21300050, guid: 916a8135e0e48a14d917b09d4f0bff4f, type: 3}
+  cam: {fileID: 2047177440511758906, guid: 2f398e3fcabfb37408902f22e23e6da9, type: 3}
 --- !u!95 &602400736561843209
 Animator:
   serializedVersion: 3
