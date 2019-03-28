@@ -1,29 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using RPGTALK.Helper;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Events : MonoBehaviour
 {
 	public Camera cam;
-	public GameObject UI_Conversation;
-	public GameObject player;
+	[SerializeField]
+	private GameObject player;
+	[SerializeField]
+	private RPGTalk rpgTalkHolder = null;
+	[SerializeField]
+	private RPGTalkCharacter temporaryNPC = null;
 	[Tooltip("若交互物可旋转，则0下1左2上3右")]
 	public Sprite[] idleSprites;
 	[Space]
 	public Sprite[] eventSprites;
 	public AudioClip[] eventSounds;
 
-	[Tooltip("角色朝向，任何情况下只能为Vector.down等四个方向的值")]
+	[Tooltip("角色朝向，仅供查看，任何情况下只能为Vector.down等四个方向的值")]
 	public Vector2 faceOrientation = Vector2.down;
 	protected Vector2 target;
 	protected bool moving = false;
-
-	Thread EventThread;
-	string dialogText;
 
 	protected Rigidbody2D rb;
 	protected Animator an;
@@ -33,21 +34,26 @@ public class Events : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();
 		an = GetComponent<Animator>();
 		target = rb.position;
+		if (rpgTalkHolder != null)
+		{
+			rpgTalkHolder.OnNewTalk += OnNewTalk;
+			rpgTalkHolder.OnEndTalk += OnEndTalk;
+		}
 	}
 
-	public void OnCall(GameObject called, GameObject calling)
+	public void OnCall(GameObject calling)
 	{
 		Events callingEvent = calling.GetComponent<Events>();
-		switch (called.name)
+		switch (gameObject.name)
 		{
 			case "Passerby":
-				GameManager.inScene = false;
 				SetFaceOrientation(-callingEvent.faceOrientation);
-				dialogText = "<color=orange>路人</color>\n我只是一个普通的路人。";
-				Conversation(eventSprites[1], dialogText);
-				EndEvent();
+				CreateTemporaryNPC(temporaryNPC, "路人", eventSprites[0]);
+				rpgTalkHolder.NewTalk("1", "2");
 				break;
-
+			case "TestBox":
+				rpgTalkHolder.NewTalk("1", "1");
+				break;
 			default: break;
 		}
 	}
@@ -57,7 +63,20 @@ public class Events : MonoBehaviour
         
     }
 
-	
+	void CreateTemporaryNPC(RPGTalkCharacter rpgTalkCharacter, string name, Sprite photo)
+	{
+		rpgTalkCharacter.dialoger = name;
+		rpgTalkCharacter.photo = photo;
+	}
+	void OnNewTalk()
+	{
+		GameManager.inScene = false;
+	}
+	void OnEndTalk()
+	{
+		Input.ResetInputAxes();
+		GameManager.inScene = true;
+	}
 	public void SetFaceOrientation(Vector2 vector)
 	{
 		faceOrientation = vector;
@@ -85,50 +104,23 @@ public class Events : MonoBehaviour
 	}
 	protected bool FaceObstacle()
 	{
-		RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position + faceOrientation * 0.5f, faceOrientation, 0.9f);
-		if (hit.collider != null && hit.collider.gameObject.layer == 8) return true;
+		LayerMask mask = LayerMask.GetMask("Obstacle");
+		if (Physics2D.Raycast(transform.position, faceOrientation, 1.1f, mask)) return true;
 		else return false;
 	}
 	public void CallObject()
 	{
-		RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position + faceOrientation * 0.5f, faceOrientation, 0.5f);
+		LayerMask mask = LayerMask.GetMask("Obstacle");
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, faceOrientation, 1.1f, mask);
 		if (hit.collider != null && hit.collider.tag == "Accessible")
 		{
-			Events calledEvent = hit.collider.GetComponent<Events>();
-			calledEvent.OnCall(hit.collider.gameObject, gameObject);
-			
+			Input.ResetInputAxes();
+			hit.collider.GetComponent<Events>().OnCall(gameObject);
 		}
-
-	}
-
-	public void Conversation(string text)
-	{
-		UI_Conversation.SetActive(true);
-		for (int i = 1; i <= 2; i++) UI_Conversation.transform.GetChild(i).gameObject.SetActive(true);
-		for (int i = 3; i <= 4; i++) UI_Conversation.transform.GetChild(i).gameObject.SetActive(false);
-		GameObject voiceOver = UI_Conversation.transform.GetChild(2).gameObject;
-		voiceOver.GetComponent<Text>().text = text;
-	}
-	public void Conversation(Sprite avatarSprite, string text)
-	{
-		UI_Conversation.SetActive(true);
-		UI_Conversation.transform.GetChild(1).gameObject.SetActive(true);
-		UI_Conversation.transform.GetChild(2).gameObject.SetActive(false);
-		for (int i = 3; i <= 4; i++) UI_Conversation.transform.GetChild(i).gameObject.SetActive(true);
-		GameObject avatar = UI_Conversation.transform.GetChild(3).gameObject;
-		GameObject dialog = UI_Conversation.transform.GetChild(4).gameObject;
-		avatar.GetComponent<Image>().sprite = avatarSprite;
-		dialog.GetComponent<Text>().text = text;
-	}
-	public int MakeDecision()
-	{
-		int decision=0;
-
-		return decision;
 	}
 	public void EndEvent()
 	{
-		UI_Conversation.SetActive(false);
+		Input.ResetInputAxes();
 		GameManager.inScene = true;
 	}
 }

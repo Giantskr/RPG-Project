@@ -12,6 +12,6 @@ public class Select_Battle : Select
 
     void Update()
     {
-        selection();
+        Selection();
     }
 }

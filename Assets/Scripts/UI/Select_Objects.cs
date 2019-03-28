@@ -15,7 +15,7 @@ public class Select_Objects : Select
 
     void Update()
     {
-        selection();
+        Selection();
         if (Input.GetButtonDown("Cancel"))
         {
             UI_Selections.SetActive(true);

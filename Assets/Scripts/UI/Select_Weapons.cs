@@ -14,7 +14,7 @@ public class Select_Weapons : Select
 
     void Update()
     {
-        selection();
+        Selection();
         if (Input.GetButtonDown("Cancel"))
         {
             UI_Selections.SetActive(true);
