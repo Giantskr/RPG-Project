@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -22,7 +21,6 @@ public class Events : MonoBehaviour
 	protected Vector2 target;
 	protected bool moving = false;
 
-	Thread EventThread;
 	string dialogText;
 
 	protected Rigidbody2D rb;
@@ -35,21 +33,28 @@ public class Events : MonoBehaviour
 		target = rb.position;
 	}
 
-	public void OnCall(GameObject called, GameObject calling)
+	public IEnumerator OnCall(GameObject calling)
 	{
+		Debug.Log("abbba");
 		Events callingEvent = calling.GetComponent<Events>();
-		switch (called.name)
+		switch (gameObject.name)
 		{
 			case "Passerby":
 				GameManager.inScene = false;
 				SetFaceOrientation(-callingEvent.faceOrientation);
 				dialogText = "<color=orange>路人</color>\n我只是一个普通的路人。";
 				Conversation(eventSprites[1], dialogText);
-				EndEvent();
+				if (Input.GetButtonDown("Submit"))
+				{
+					Debug.Log("aaa");
+					EndEvent();
+					yield return new WaitForEndOfFrame();
+				}
 				break;
-
+			
 			default: break;
 		}
+		
 	}
 
     void Update()
@@ -94,11 +99,9 @@ public class Events : MonoBehaviour
 		RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position + faceOrientation * 0.5f, faceOrientation, 0.5f);
 		if (hit.collider != null && hit.collider.tag == "Accessible")
 		{
-			Events calledEvent = hit.collider.GetComponent<Events>();
-			calledEvent.OnCall(hit.collider.gameObject, gameObject);
-			
+			Input.ResetInputAxes();
+			hit.collider.GetComponent<Events>().StartCoroutine("OnCall", gameObject);
 		}
-
 	}
 
 	public void Conversation(string text)

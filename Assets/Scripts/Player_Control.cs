@@ -46,10 +46,11 @@ public class Player_Control : Events
 				SetWalkAnimation(faceOrientation);
 			}
 		}
-		else if (moving) rb.position = Vector2.MoveTowards(transform.position, target, Time.deltaTime * 5 * an.speed);
-		if (rb.position == target)
+		if (moving) rb.position = Vector2.MoveTowards(transform.position, target, Time.deltaTime * 5 * an.speed);
+		if (Vector2.Distance(rb.position,target)<=0.01f)
 		{
 			moving = false;
+			rb.position = target;
 			an.enabled = false;
 			SetSprite();
 		}
