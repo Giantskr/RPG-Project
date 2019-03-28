@@ -6,6 +6,7 @@ public class Select_Objects : Select
 {
     public GameObject UI_Selections;
     public GameObject UI_Objects;
+    public List<GameObject> Sorts;
 
     void Start()
     {
@@ -22,10 +23,7 @@ public class Select_Objects : Select
         }
 		else if (Input.GetButtonDown("Submit"))
 		{
-			switch (states)
-			{
-				case 1: break;
-			}
+            Sorts[states-1].SetActive(true);
 		}
 	}
 }

@@ -85,7 +85,7 @@ public class Events : MonoBehaviour
 	}
 	protected bool FaceObstacle()
 	{
-		RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position + faceOrientation * 0.5f, faceOrientation, 0.5f);
+		RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position + faceOrientation * 0.5f, faceOrientation, 0.9f);
 		if (hit.collider != null && hit.collider.gameObject.layer == 8) return true;
 		else return false;
 	}

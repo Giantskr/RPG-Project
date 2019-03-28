@@ -1,55 +1,41 @@
 fileFormatVersion: 2
-guid: b047e65cfff032f4e9c0849354f81a25
+guid: 3812b18e51d9fe24fae87e8bb156cd08
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Damage4_0
-    21300002: Damage4_1
-    21300004: Damage4_2
-    21300006: Damage4_3
-    21300008: Damage4_4
-    21300010: Damage4_5
-    21300012: Damage4_6
-    21300014: Damage4_7
-    21300016: Damage4_8
-    21300018: Damage4_9
-    21300020: Damage4_10
-    21300022: Damage4_11
-    21300024: Damage4_12
-    21300026: Damage4_13
-    21300028: Damage4_14
-    21300030: Damage4_15
-    21300032: Damage4_16
-    21300034: Damage4_17
-    21300036: Damage4_18
-    21300038: Damage4_19
-    21300040: Damage4_20
-    21300042: Damage4_21
-    21300044: Damage4_22
-    21300046: Damage4_23
-    21300048: Damage4_24
-    21300050: Damage4_25
-    21300052: Damage4_26
-    21300054: Damage4_27
-    21300056: Damage4_28
-    21300058: Damage4_29
-    21300060: Damage4_30
-    21300062: Damage4_31
-    21300064: Damage4_32
-    21300066: Damage4_33
-    21300068: Damage4_34
-    21300070: Damage4_35
-    21300072: Damage4_36
-    21300074: Damage4_37
-    21300076: Damage4_38
-    21300078: Damage4_39
-    21300080: Damage4_40
-    21300082: Damage4_41
-    21300084: Damage4_42
-    21300086: Damage4_43
-    21300088: Damage4_44
-    21300090: Damage4_45
-    21300092: Damage4_46
-    21300094: Damage4_47
+    21300000: Weapons1_0
+    21300002: Weapons1_1
+    21300004: Weapons1_2
+    21300006: Weapons1_3
+    21300008: Weapons1_4
+    21300010: Weapons1_5
+    21300012: Weapons1_6
+    21300014: Weapons1_7
+    21300016: Weapons1_8
+    21300018: Weapons1_9
+    21300020: Weapons1_10
+    21300022: Weapons1_11
+    21300024: Weapons1_12
+    21300026: Weapons1_13
+    21300028: Weapons1_14
+    21300030: Weapons1_15
+    21300032: Weapons1_16
+    21300034: Weapons1_17
+    21300036: Weapons1_18
+    21300038: Weapons1_19
+    21300040: Weapons1_20
+    21300042: Weapons1_21
+    21300044: Weapons1_22
+    21300046: Weapons1_23
+    21300048: Weapons1_24
+    21300050: Weapons1_25
+    21300052: Weapons1_26
+    21300054: Weapons1_27
+    21300056: Weapons1_28
+    21300058: Weapons1_29
+    21300060: Weapons1_30
+    21300062: Weapons1_31
+    21300064: Weapons1_32
+    21300066: Weapons1_33
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -139,27 +125,156 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Damage4_0
+      name: Weapons1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 336
-        width: 48
+        x: 52
+        y: 334
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7053dda99bfb40408340582d9a1a5ab
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons1_1
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 326
+        width: 28
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07ae5db7407e0bc4e99e0d93910e4a92
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons1_2
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 326
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 612ede8ca93ca9d46a1949b257fa51c1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons1_3
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 321
+        width: 43
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c87be36f9b6ac045ad765170b4e8258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons1_4
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 321
+        width: 18
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c1d0d6ec22ca994bbc993d261e64a2e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons1_5
+      rect:
+        serializedVersion: 2
+        x: 522
+        y: 321
+        width: 18
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b7279ba09a34c9489bd2d3584a9028c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons1_6
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 261
+        width: 37
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 725e9109a433491428f92ab4b45ba1fa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Weapons1_7
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 262
+        width: 37
         height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -168,19 +283,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebcbcbb67ab09ff458822d9d197d7072
+      spriteID: 55a0ebf9fe3c1154f942e475cef3d66c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_1
+      name: Weapons1_8
       rect:
         serializedVersion: 2
-        x: 48
-        y: 336
-        width: 48
-        height: 48
+        x: 206
+        y: 262
+        width: 37
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,19 +303,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6db50e1e2de83d44a33d4a9edf8e380
+      spriteID: 5c9787bcea1336146897c7417229adb5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_2
+      name: Weapons1_9
       rect:
         serializedVersion: 2
-        x: 96
-        y: 336
-        width: 48
-        height: 48
+        x: 306
+        y: 270
+        width: 49
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,19 +323,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac56787a0ec43f349913737775925ddb
+      spriteID: b3b9b5852d7c2f9448039025d94e339d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_3
+      name: Weapons1_10
       rect:
         serializedVersion: 2
-        x: 144
-        y: 336
-        width: 48
-        height: 48
+        x: 415
+        y: 270
+        width: 37
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,19 +343,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab9290ad61312904a935781f4c273839
+      spriteID: 44ec14bf898003a41be59e8113b93a19
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_4
+      name: Weapons1_11
       rect:
         serializedVersion: 2
-        x: 192
-        y: 336
-        width: 48
-        height: 48
+        x: 511
+        y: 270
+        width: 37
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -248,279 +363,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54e9b987d6b03e045ba626b71fa51454
+      spriteID: 8f2e3cd53bf20214ba750af1e89bca52
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_5
+      name: Weapons1_12
       rect:
         serializedVersion: 2
-        x: 240
-        y: 336
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 029136c1a76990d469d062b896c7f9da
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 288
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 774894eed3258504f8049a04c46082ea
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_7
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 288
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5fc0b34c551d86a40a729cf3815bd2d8
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_8
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 288
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 97e19feddc8f2e74fb9f64da8aa91977
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_9
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 288
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 978460c075b011c4b9e9e808bb396001
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_10
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 288
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f311ca9c08aa2784e9588ba9a33dce3e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_11
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 288
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 58b5c3019dc92954b9c1b45faabd1cfa
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_12
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 240
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8e64d9a26ccc0c34e816d6040b19ac25
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_13
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 240
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 87702f4ed7ffd634494c258f5b5b8ace
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_14
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 240
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5b06a790253b89041b281bcbec78cd42
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_15
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 240
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d2b224553fa39e14a91cbf58ede85d2b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_16
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 240
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 57b2603b33313fe42a765ff3d533c31a
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_17
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 240
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4a2c3c99e52662645aa39b7f7a5e3d2a
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_18
-      rect:
-        serializedVersion: 2
-        x: 0
+        x: 52
         y: 192
-        width: 48
-        height: 48
+        width: 43
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -528,19 +383,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb02f55e7e4a198499bd39f4ae791ce4
+      spriteID: 3faffecd662422741b562b6c90aae219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_19
+      name: Weapons1_13
       rect:
         serializedVersion: 2
-        x: 48
-        y: 192
-        width: 48
-        height: 48
+        x: 98
+        y: 195
+        width: 49
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -548,19 +403,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 094635859dadb434dbd20762bf0fd84c
+      spriteID: 6d0e9f027227577418aa810745551803
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_20
+      name: Weapons1_14
       rect:
         serializedVersion: 2
-        x: 96
-        y: 192
-        width: 48
-        height: 48
+        x: 194
+        y: 195
+        width: 49
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -568,19 +423,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 228e8e010f7a96d4b9fb8729fd42f856
+      spriteID: 104b22d220d9aaa4889d204f8a50053c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_21
+      name: Weapons1_15
       rect:
         serializedVersion: 2
-        x: 144
-        y: 192
-        width: 48
-        height: 48
+        x: 307
+        y: 208
+        width: 36
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -588,19 +443,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff398a6b66c680f4cbc5c669f3ba5936
+      spriteID: 6e780139435ec314a9c3547baff96d16
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_22
+      name: Weapons1_16
       rect:
         serializedVersion: 2
-        x: 192
-        y: 192
+        x: 392
+        y: 208
         width: 48
-        height: 48
+        height: 21
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -608,19 +463,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c21735e9d81f664e9825e508777bc45
+      spriteID: 639fd5f960ca55e4289ba6b31e488f48
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_23
+      name: Weapons1_17
       rect:
         serializedVersion: 2
-        x: 240
-        y: 192
-        width: 48
-        height: 48
+        x: 500
+        y: 208
+        width: 36
+        height: 21
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -628,19 +483,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12fd9d7d5dbefc64298568681d0326d2
+      spriteID: 893b9ba33f5f1fb41a7b0ba9ec40178b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_24
+      name: Weapons1_18
       rect:
         serializedVersion: 2
-        x: 0
-        y: 144
-        width: 48
-        height: 48
+        x: 52
+        y: 133
+        width: 44
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -648,19 +503,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e338ac2c2a1c49418a379c3ae53e9b1
+      spriteID: 19987cc8b816e054a8d4617047ca2c40
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_25
+      name: Weapons1_19
       rect:
         serializedVersion: 2
-        x: 48
-        y: 144
-        width: 48
-        height: 48
+        x: 103
+        y: 134
+        width: 44
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -668,19 +523,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1f3adaff6b30d04985f81a6bba43550
+      spriteID: f47fc366abcd7a94b9a4d3946c0a9a66
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_26
+      name: Weapons1_20
       rect:
         serializedVersion: 2
-        x: 96
-        y: 144
-        width: 48
-        height: 48
+        x: 199
+        y: 134
+        width: 44
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -688,19 +543,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17fb18b8eb1551f4284225f1eceb8273
+      spriteID: 4fa281dcdc814f34488932513bc13133
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_27
+      name: Weapons1_21
       rect:
         serializedVersion: 2
-        x: 144
-        y: 144
-        width: 48
-        height: 48
+        x: 406
+        y: 142
+        width: 23
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -708,19 +563,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4145a5e95055fa3418fdf3c7fdbdeed7
+      spriteID: a3888db2f6af1a540b89df51dd576660
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_28
+      name: Weapons1_22
       rect:
         serializedVersion: 2
-        x: 192
-        y: 144
-        width: 48
-        height: 48
+        x: 502
+        y: 142
+        width: 23
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -728,19 +583,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fc8b3ed63e21964eb490403dc950779
+      spriteID: 7c8a1376ab7473344bc8c56d3c47557c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_29
+      name: Weapons1_23
       rect:
         serializedVersion: 2
-        x: 240
-        y: 144
-        width: 48
-        height: 48
+        x: 52
+        y: 67
+        width: 33
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -748,19 +603,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bc9654ac0dbdb648967bf8bfa6c4d05
+      spriteID: 62629a032d90d604dbfac8905d1b8d20
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_30
+      name: Weapons1_24
       rect:
         serializedVersion: 2
-        x: 0
-        y: 96
-        width: 48
-        height: 48
+        x: 98
+        y: 70
+        width: 49
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -768,19 +623,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4cb71ab1f2e60bc4fa36d463b5ff3a3f
+      spriteID: c0c94f4590b0dde4891b92d9d76253ca
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_31
+      name: Weapons1_25
       rect:
         serializedVersion: 2
-        x: 48
-        y: 96
-        width: 48
-        height: 48
+        x: 194
+        y: 70
+        width: 49
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -788,19 +643,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9db6b0ca2814a574c800fe9b098a8c9f
+      spriteID: 37a8f1db4729192438b0e60eec25270b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_32
+      name: Weapons1_26
       rect:
         serializedVersion: 2
-        x: 96
-        y: 96
-        width: 48
-        height: 48
+        x: 401
+        y: 77
+        width: 30
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -808,19 +663,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b37806915fba0344a9c239fe17b29b8
+      spriteID: d8a048f14818ddc4f9e9bf56950c76a1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_33
+      name: Weapons1_27
       rect:
         serializedVersion: 2
-        x: 144
-        y: 96
-        width: 48
-        height: 48
+        x: 497
+        y: 77
+        width: 30
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -828,19 +683,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3d35c168d9414f4db793252c9f15bba
+      spriteID: 5ead6aa3b3fa7314da4420e201d187db
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_34
+      name: Weapons1_28
       rect:
         serializedVersion: 2
-        x: 192
-        y: 96
-        width: 48
-        height: 48
+        x: 49
+        y: 8
+        width: 37
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -848,19 +703,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b137d9006d5341545b82ff1c11aa9951
+      spriteID: 4847f92cc4f584849b200b653515301b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_35
+      name: Weapons1_29
       rect:
         serializedVersion: 2
-        x: 240
-        y: 96
-        width: 48
-        height: 48
+        x: 113
+        y: 3
+        width: 37
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -868,19 +723,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 105fd0394a57a0c439c484200216ead8
+      spriteID: ae00744ea41797149905759573f0d707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_36
+      name: Weapons1_30
       rect:
         serializedVersion: 2
-        x: 0
-        y: 48
-        width: 48
-        height: 48
+        x: 209
+        y: 3
+        width: 37
+        height: 37
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -888,19 +743,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 189199b7eab55b742823f4a19310b5ee
+      spriteID: 45e21d139f687a04c8a6acf73b78c096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_37
+      name: Weapons1_31
       rect:
         serializedVersion: 2
-        x: 48
-        y: 48
-        width: 48
-        height: 48
+        x: 317
+        y: 14
+        width: 67
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -908,19 +763,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7bd439ae802c4094ca16062d40b71fef
+      spriteID: 6c3e233dadbf49849a13a0ac219ab59e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_38
+      name: Weapons1_32
       rect:
         serializedVersion: 2
-        x: 96
-        y: 48
-        width: 48
-        height: 48
+        x: 385
+        y: 14
+        width: 67
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -928,19 +783,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 396a6647881ce9d419d70ebf166c39a2
+      spriteID: 6bfa5fdaafda9754ea09ac372713200c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Damage4_39
+      name: Weapons1_33
       rect:
         serializedVersion: 2
-        x: 144
-        y: 48
-        width: 48
-        height: 48
+        x: 481
+        y: 14
+        width: 67
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -948,167 +803,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5cb09d2e3de06743b0a17b44b40f831
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_40
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 48
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4f29be0f39db1d2408fac06389e36a16
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_41
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 48
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dbb7678e9db755f4e9c6ae46925d0210
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_42
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3569fe02988e5dd4692b01fa9a4a654b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_43
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 117385d3766dc9b4bbe72c22b4a6fd71
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_44
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9bf81ce0d17495245be67e4ef7e1e485
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_45
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cbe2c801f1ae05843a29821d61896553
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_46
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5725c69c659037b4f8a552dbaa70ce13
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Damage4_47
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 36ab7fd27359f6e43b4467d1b940076a
+      spriteID: 0af967704918d1f428be34a8ee0887b1
       vertices: []
       indices: 
       edges: []
@@ -1116,7 +811,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 59dcadb476028274bbfb890cfa51df70
+    spriteID: 531589804e0227b4c958687d7ae8e3b3
     vertices: []
     indices: 
     edges: []
