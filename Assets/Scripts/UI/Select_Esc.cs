@@ -22,7 +22,7 @@ public class Select_Esc :Select
 
     void Update()
     {
-        selection();
+        Selection();
 		if (Input.GetButtonDown("Submit"))
 		{
 			switch (states)

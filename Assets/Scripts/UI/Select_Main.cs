@@ -15,7 +15,7 @@ public class Select_Main : Select
 
     void Update()
     {
-        selection();
+        Selection();
 		if (Input.GetButtonDown("Submit"))
 		{
 			switch (states)

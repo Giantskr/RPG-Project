@@ -15,7 +15,7 @@ public class Select_BattleOrRun : Select
 
     void Update()
     {
-        selection();
+        Selection();
 		if (Input.GetButtonDown("Submit"))
 		{
 			switch (states)
