@@ -1,11 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+	
+	
+	
+
 	public GameObject UI_Esc;
-	public static bool inScene;
+	public GameObject fadingScreen;
+	public static bool inScene;	
+
 
 	public static GameManager instance = null;
 	void Awake()
@@ -34,4 +41,6 @@ public class GameManager : MonoBehaviour
 			UI_Esc.SetActive(true);
 		}
     }
+
+	
 }

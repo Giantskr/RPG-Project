@@ -90,9 +90,12 @@ public class Events : MonoBehaviour
 	}
 	public void SetSprite()
 	{
-		int x = 0;
-		if (faceOrientation.x != 0) x = (int)faceOrientation.x + 1;
-		GetComponent<SpriteRenderer>().sprite = idleSprites[x + (int)faceOrientation.y + 1];
+		if (!moving)
+		{
+			int x = 0;
+			if (faceOrientation.x != 0) x = (int)faceOrientation.x + 1;
+			GetComponent<SpriteRenderer>().sprite = idleSprites[x + (int)faceOrientation.y + 1];
+		}
 	}
 	public void SetWalkAnimation(Vector2 vector)
 	{
@@ -105,7 +108,9 @@ public class Events : MonoBehaviour
 	protected bool FaceObstacle()
 	{
 		LayerMask mask = LayerMask.GetMask("Obstacle");
+		LayerMask maskEdge = LayerMask.GetMask("Edge");
 		if (Physics2D.Raycast(transform.position, faceOrientation, 1.1f, mask)) return true;
+		else if (Physics2D.Raycast(transform.position, faceOrientation, 1.1f, maskEdge)) return true;
 		else return false;
 	}
 	public void CallObject()
