@@ -27,11 +27,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2872459357553870486}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2872459358303244137}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 2047177440511758906, guid: 2f398e3fcabfb37408902f22e23e6da9, type: 3}
   player: {fileID: 0}
-  rpgTalkHolder: {fileID: 2872459358303244142}
+  rpgTalkHolder: {fileID: 0}
   temporaryNPC: {fileID: 11400000, guid: acd48a892b6e50c41ae162b678dc998f, type: 2}
   idleSprites:
   - {fileID: 21300008, guid: 916a8135e0e48a14d917b09d4f0bff4f, type: 3}
@@ -139,7 +138,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -155,116 +154,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 0.9}
   m_EdgeRadius: 0
---- !u!1 &2872459358303244143
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2872459358303244137}
-  - component: {fileID: 2872459358303244142}
-  m_Layer: 0
-  m_Name: RPGTalk Holder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2872459358303244137
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2872459358303244143}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2872459357553870481}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2872459358303244142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2872459358303244143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 565fd263440bd45fa9ba0925c60f54f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startOnAwake: 0
-  showWithDialog:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  textUIObj: {fileID: 0}
-  dialoger: 1
-  dialogerObj: {fileID: 0}
-  shouldFollow: 0
-  following: {fileID: 0}
-  followingOffset: {x: 0, y: 0, z: 0}
-  billboard: 1
-  mainCamera: 1
-  otherCamera: {fileID: 0}
-  txtToParse: {fileID: 4900000, guid: 75d4e399960bc3349a0487d7cc6dcc81, type: 3}
-  enableQuickSkip: 1
-  callback:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  animatorWhenTalking: {fileID: 0}
-  actualAnimator: {fileID: 0}
-  animatorBooleanName: 
-  animatorIntName: 
-  cutscenePosition: 0
-  textSpeed: 600
-  currentChar: 0
-  variables: []
-  shouldUsePhotos: 1
-  characters:
-  - character: {fileID: 11400000, guid: b90f3fd440dee314f9f5b57cfbb1e0a7, type: 2}
-    follow: {fileID: 0}
-    followOffset: {x: 0, y: 0, z: 0}
-    animatorOverwrite: {fileID: 0}
-  - character: {fileID: 11400000, guid: acd48a892b6e50c41ae162b678dc998f, type: 2}
-    follow: {fileID: 0}
-    followOffset: {x: 0, y: 0, z: 0}
-    animatorOverwrite: {fileID: 0}
-  UIPhoto: {fileID: 0}
-  shouldStayOnScreen: 0
-  textAudio: {fileID: 0}
-  passAudio: {fileID: 0}
-  passWithMouse: 0
-  passWithInputButton: Submit
-  passWithKey: 0
-  enablePass: 1
-  autoPass: 0
-  secondsAutoPass: 3
-  lineToStart: 1
-  lineToBreak: -1
-  wordWrap: 1
-  maxCharInWidth: 50
-  maxCharInHeight: 3
-  sprites: []
-  spritesUsed: []
-  tmpSpriteAtlas: Default Sprite Asset
-  actualTextSpeed: 0
-  isPlaying: 0
-  isAnimating: 0
-  choicePrefab: {fileID: 0}
-  choicesParent: {fileID: 0}
-  expressing:
-    name: 
-    photo: {fileID: 0}
-    boolInAnimator: 
-    audio: {fileID: 0}
-  saveInstance: {fileID: 0}
-  goBackToOriginalStartAndBreak: 1
