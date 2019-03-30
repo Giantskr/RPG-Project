@@ -39,6 +39,13 @@ public class Object_WeaponBag : ItemModel
     // Update is called once per frame
     void Update()
     {
-        
+        //sprites = new Sprite[size];
+        for (int i = 0; i < size; i++)
+        {
+            weapon[i].transform.GetChild(0).GetComponent<Image>().sprite = Weapons[i].img;
+            weapon[i].transform.GetChild(1).GetComponent<Text>().text = Weapons[i].name;
+            Debug.Log("233");
+            //FindChild(weapon[0].transform, "icon").GetComponent<image>()
+        }
     }
 }

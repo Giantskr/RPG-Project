@@ -12,7 +12,11 @@ public class GetSword : ItemModel
         if (Input.GetButtonDown("Submit"))
         {
             Object_WeaponBag.size += 1;
-            Object_WeaponBag.Weapons.Add(new ItemModel.Item("初等剑", Resources.Load("01", typeof(Sprite)) as Sprite));
+            if (Object_WeaponBag.Weapons != null)
+            {
+                Debug.Log(Object_WeaponBag.Weapons.Count);
+            }
+            Object_WeaponBag.Weapons.Add(new ItemModel.Item("初等剑", Resources.Load<Sprite>("01")));
             Debug.Log("emmm");
         }
     }
