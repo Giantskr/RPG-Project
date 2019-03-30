@@ -12,7 +12,7 @@ public class Object_WeaponBag : ItemModel
     //public static Sprite[] sprites;
     // Start is called before the first frame update
 
-    void Awake() // 数据初始化
+    void  update() // 数据初始化
     {
         Weapons = new List<Item>(); // 初始化List<Item>
         //sprites = new Sprite[size];
