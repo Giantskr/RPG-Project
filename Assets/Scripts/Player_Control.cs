@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Player_Control : Events
 {
-	
     void FixedUpdate()
     {
 		if (GameManager.inScene)
 		{
-			MovePlayer();
+			if (!GameManager.fading) MovePlayer();
 			MoveCameraWithPlayer();
-			if (!moving && Input.GetButtonDown("Submit")) CallObject();
+			if (!moving) CallObject();
 		}
 	}
-
+	/// <summary>
+	/// 玩家移动
+	/// </summary>
 	void MovePlayer()
 	{
 		if (Input.GetButton("Run")) an.speed = 2f;
@@ -36,7 +37,7 @@ public class Player_Control : Events
 				an.enabled = true;
 				moving = true;
 				target = rb.position + faceOrientation;
-				SetWalkAnimation(faceOrientation);
+				SetWalkAnimation();
 			}
 		}
 		if (moving) rb.position = Vector2.MoveTowards(transform.position, target, Time.deltaTime * 5 * an.speed);
@@ -51,16 +52,27 @@ public class Player_Control : Events
 			}
 		}
 	}
+	/// <summary>
+	/// 使相机根据玩家位置移动
+	/// </summary>
 	void MoveCameraWithPlayer()
 	{
 		Vector2 camPos = rb.position;
 		LayerMask mask = LayerMask.GetMask("Edge");
-		RaycastHit2D[] hit = Physics2D.BoxCastAll(rb.position, new Vector2(16, 12), 0, Vector2.zero, 0, mask);
-		for (int i = 0; i < hit.Length; i++)
+		RaycastHit2D hitRight = Physics2D.Raycast(camPos, Vector2.right, 8, mask);
+		RaycastHit2D hitUp = Physics2D.Raycast(camPos, Vector2.up, 6, mask);
+		if (hitRight) camPos.x = hitRight.point.x - 8;
+		else
 		{
-			if (hit[i].transform.name.StartsWith("H")) camPos.x = cam.GetComponent<Rigidbody2D>().position.x;
-			else if (hit[i].transform.name.StartsWith("V")) camPos.y = cam.GetComponent<Rigidbody2D>().position.y;
+			RaycastHit2D hitLeft = Physics2D.Raycast(camPos, Vector2.left, 8, mask);
+			if (hitLeft) camPos.x = hitLeft.point.x + 8;
 		}
+		if (hitUp) camPos.y = hitUp.point.y - 6;
+		else
+		{
+			RaycastHit2D hitDown = Physics2D.Raycast(camPos, Vector2.down, 6, mask);
+			if (hitDown) camPos.y = hitDown.point.y + 6;
+		} 
 		cam.GetComponent<Rigidbody2D>().position = camPos;
 	}
 }

@@ -29,5 +29,10 @@ public class Select_Options : Select
 					break;
 			}
 		}
-    }
+		else if (Input.GetButtonDown("Cancel"))
+		{
+			Menu.SetActive(true);
+			Options.SetActive(false);
+		}
+	}
 }

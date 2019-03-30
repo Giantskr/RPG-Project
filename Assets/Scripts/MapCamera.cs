@@ -9,15 +9,4 @@ public class MapCamera : MonoBehaviour
 		GamePlay, Title
 	}
 	public SceneType sceneType;
-	
-	void Start()
-    {
-		
-	}
-
-    void Update()
-    {
-		
-	}
-	
 }

@@ -9,20 +9,27 @@ using RPGTALK.Helper;
 public class Events : MonoBehaviour
 {
 	public Camera cam;
-	[SerializeField]
-	private GameObject player;
-	[SerializeField]
-	private RPGTalk rpgTalkHolder = null;
-	[SerializeField]
-	private RPGTalkCharacter temporaryNPC = null;
-	[Tooltip("若交互物可旋转，则0下1左2上3右")]
+	[Space]
+	public GameObject player;
+	public RPGTalk rpgTalkHolder;
+	public RPGTalkCharacter temporaryNPC;
+	/// <summary>
+	/// 交互物可旋转时用于交互物空闲时的图片，0下1左2上3右
+	/// </summary>
+	[Tooltip("交互物可旋转时用于交互物空闲时的图片，0下1左2上3右")]
 	public Sprite[] idleSprites;
 	[Space]
 	public Sprite[] eventSprites;
 	public AudioClip[] eventSounds;
 
+	/// <summary>
+	/// 角色朝向，仅供查看，任何情况下只能为Vector.down等四个方向的值
+	/// </summary>
 	[Tooltip("角色朝向，仅供查看，任何情况下只能为Vector.down等四个方向的值")]
 	public Vector2 faceOrientation = Vector2.down;
+	/// <summary>
+	/// 角色每次移动的目标
+	/// </summary>
 	protected Vector2 target;
 	protected bool moving = false;
 
@@ -40,9 +47,13 @@ public class Events : MonoBehaviour
 			rpgTalkHolder.OnEndTalk += OnEndTalk;
 		}
 	}
-
+	/// <summary>
+	/// 交互时被动方使用的方法
+	/// </summary>
+	/// <param name="calling">调用事件时的主动方</param>
 	public void OnCall(GameObject calling)
 	{
+		Input.ResetInputAxes();
 		Events callingEvent = calling.GetComponent<Events>();
 		switch (gameObject.name)
 		{
@@ -54,6 +65,13 @@ public class Events : MonoBehaviour
 			case "TestBox":
 				rpgTalkHolder.NewTalk("1", "1");
 				break;
+			case "TestArea":
+				if (!Player_Stats.switchListBool[0])
+				{
+					rpgTalkHolder.NewTalk("2", "2");
+					Player_Stats.switchListBool[0] = true;
+				}
+				break;
 			default: break;
 		}
 	}
@@ -62,32 +80,63 @@ public class Events : MonoBehaviour
     {
         
     }
-
+	/// <summary>
+	/// 创建临时NPC(一般在该角色仅出现一次时使用)
+	/// </summary>
+	/// <param name="rpgTalkCharacter">RPG Talker组件</param>
+	/// <param name="name">角色名</param>
+	/// <param name="photo">角色图片</param>
 	void CreateTemporaryNPC(RPGTalkCharacter rpgTalkCharacter, string name, Sprite photo)
 	{
 		rpgTalkCharacter.dialoger = name;
 		rpgTalkCharacter.photo = photo;
 	}
+	/// <summary>
+	/// 每次对话开始时自动调用
+	/// </summary>
 	void OnNewTalk()
 	{
 		GameManager.inScene = false;
 	}
+	/// <summary>
+	/// 每次对话结束时自动调用
+	/// </summary>
 	void OnEndTalk()
 	{
+		//if (GetComponent<Collider2D>().isTrigger) gameObject.SetActive(false);
+		switch (gameObject.name)
+		{
+			case "TestArea":
+				gameObject.SetActive(false);
+				break;
+			default: break;
+		}
 		Input.ResetInputAxes();
 		GameManager.inScene = true;
 	}
+	/// <summary>
+	/// 设定角色朝向
+	/// </summary>
+	/// <param name="vector">角色朝向</param>
 	public void SetFaceOrientation(Vector2 vector)
 	{
 		faceOrientation = vector;
 		SetSprite();
 	}
-	public void SetFaceOrientation(Vector2 pos, Vector2 vector)
+	/// <summary>
+	/// 设定角色朝向与位置
+	/// </summary>
+	/// <param name="vector">角色朝向</param>
+	/// <param name="pos">角色位置</param>
+	public void SetFaceOrientation(Vector2 vector, Vector2 pos)
 	{
 		transform.position = pos;
 		faceOrientation = vector;
 		SetSprite();
 	}
+	/// <summary>
+	/// 根据角色朝向改变角色图片
+	/// </summary>
 	public void SetSprite()
 	{
 		if (!moving)
@@ -97,30 +146,55 @@ public class Events : MonoBehaviour
 			GetComponent<SpriteRenderer>().sprite = idleSprites[x + (int)faceOrientation.y + 1];
 		}
 	}
-	public void SetWalkAnimation(Vector2 vector)
+	/// <summary>
+	/// 根据角色朝向改变角色行走动画
+	/// </summary>
+	public void SetWalkAnimation()
 	{
 		//这里用不了switch，理由为Vector.right等不是常量
-		if (vector == Vector2.right) an.Play("Right");
-		else if (vector == Vector2.left) an.Play("Left");
-		else if (vector == Vector2.up) an.Play("Up");
+		if (faceOrientation == Vector2.right) an.Play("Right");
+		else if (faceOrientation == Vector2.left) an.Play("Left");
+		else if (faceOrientation == Vector2.up) an.Play("Up");
 		else an.Play("Down");
 	}
+	/// <summary>
+	/// 检测角色面前是否存在障碍物
+	/// </summary>
+	/// <returns>角色面前是否存在障碍物</returns>
 	protected bool FaceObstacle()
 	{
 		LayerMask mask = LayerMask.GetMask("Obstacle");
-		LayerMask maskEdge = LayerMask.GetMask("Edge");
-		if (Physics2D.Raycast(transform.position, faceOrientation, 1.1f, mask)) return true;
-		else if (Physics2D.Raycast(transform.position, faceOrientation, 1.1f, maskEdge)) return true;
-		else return false;
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, faceOrientation, 1.1f, mask);
+		if (hit && !hit.collider.isTrigger) return true;
+		else
+		{
+			LayerMask maskEdge = LayerMask.GetMask("Edge");
+			RaycastHit2D hitEdge = Physics2D.Raycast(transform.position, faceOrientation, 1.1f, maskEdge);
+			if (hitEdge && !hitEdge.collider.isTrigger) return true;
+			else return false;
+		}
 	}
+	/// <summary>
+	/// 交互某个物体
+	/// </summary>
 	public void CallObject()
 	{
 		LayerMask mask = LayerMask.GetMask("Obstacle");
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, faceOrientation, 1.1f, mask);
-		if (hit.collider != null && hit.collider.tag == "Accessible")
+		if (Input.GetButtonDown("Submit"))
 		{
-			Input.ResetInputAxes();
-			hit.collider.GetComponent<Events>().OnCall(gameObject);
+			RaycastHit2D hit = Physics2D.Raycast(transform.position, faceOrientation, 1.1f, mask);
+			if (hit && hit.collider.tag == "Accessible" && !hit.collider.isTrigger)
+				hit.collider.GetComponent<Events>().OnCall(gameObject);
+		}
+		else
+		{
+			RaycastHit2D hit = Physics2D.Raycast(transform.position, faceOrientation, 0f, mask);
+			if (hit && hit.collider.tag == "Accessible" && hit.collider.isTrigger)
+			{
+				an.enabled = false;
+				SetSprite();
+				hit.collider.GetComponent<Events>().OnCall(gameObject);
+			}
 		}
 	}
 	public void EndEvent()
