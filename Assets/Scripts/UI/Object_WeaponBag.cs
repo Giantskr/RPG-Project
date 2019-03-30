@@ -11,17 +11,21 @@ public class Object_WeaponBag : ItemModel
     public static  int size = 0;
     //public static Sprite[] sprites;
     // Start is called before the first frame update
-
-    void  update() // 数据初始化
+    private void Awake()
     {
         Weapons = new List<Item>(); // 初始化List<Item>
         //sprites = new Sprite[size];
         for (int i = 0; i < size; i++)
-        { 
-            weapon[i].transform.GetChild(0).GetComponent<Image>().sprite =Weapons[i].img;
+        {
+            weapon[i].transform.GetChild(0).GetComponent<Image>().sprite = Weapons[i].img;
             weapon[i].transform.GetChild(1).GetComponent<Text>().text = Weapons[i].name;
+            Debug.Log("233");
             //FindChild(weapon[0].transform, "icon").GetComponent<image>()
         }
+    }
+    void  update() // 数据初始化
+    {
+       
         
     }
 
