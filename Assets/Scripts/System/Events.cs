@@ -179,7 +179,7 @@ public class Events : MonoBehaviour
 	protected bool FaceObstacle()
 	{
 		LayerMask mask = LayerMask.GetMask("Obstacle");
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, faceOrientation, 1.1f, mask);
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, faceOrientation, 1.4f, mask);
 		if (hit && !hit.collider.isTrigger) return true;
 		else
 		{
