@@ -3,30 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Object_WeaponBag : ItemModel
+public class Object_WeaponBag : MonoBehaviour
 {
     //public GameObject WeaponLaid;
-    public List<GameObject> weapon;
-    public static List<Item> Weapons;
-    public static  int size = 0;
+    public List<GameObject> weapon,prop;
+    public static List<Item> Weapons,Props;
+    public static  int weaponsize,propsize = 0;
     //public static Sprite[] sprites;
     // Start is called before the first frame update
     private void Awake()
     {
         Weapons = new List<Item>(); // 初始化List<Item>
-        //sprites = new Sprite[size];
-        for (int i = 0; i < size; i++)
+        Props = new List<Item>();
+
+        for (int i = 0; i < weaponsize; i++)
         {
             weapon[i].transform.GetChild(0).GetComponent<Image>().sprite = Weapons[i].img;
             weapon[i].transform.GetChild(1).GetComponent<Text>().text = Weapons[i].name;
-            Debug.Log("233");
-            //FindChild(weapon[0].transform, "icon").GetComponent<image>()
         }
-    }
-    void  update() // 数据初始化
-    {
-       
-        
+        for (int i = 0; i < propsize; i++)
+        {
+            prop[i].transform.GetChild(0).GetComponent<Image>().sprite = Props[i].img;
+            prop[i].transform.GetChild(1).GetComponent<Text>().text = Props[i].name;
+        }
     }
 
     //public static Transform FindChild(Transform trans, string goName)
@@ -40,12 +39,17 @@ public class Object_WeaponBag : ItemModel
     void Update()
     {
         //sprites = new Sprite[size];
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < weaponsize; i++)
         {
             weapon[i].transform.GetChild(0).GetComponent<Image>().sprite = Weapons[i].img;
             weapon[i].transform.GetChild(1).GetComponent<Text>().text = Weapons[i].name;
-            Debug.Log("233");
+            //.Log("233");
             //FindChild(weapon[0].transform, "icon").GetComponent<image>()
+        }
+        for (int i = 0; i < propsize; i++)
+        {
+            prop[i].transform.GetChild(0).GetComponent<Image>().sprite = Props[i].img;
+            prop[i].transform.GetChild(1).GetComponent<Text>().text = Props[i].name;
         }
     }
 }

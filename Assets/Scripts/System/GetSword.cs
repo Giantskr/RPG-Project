@@ -2,22 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GetSword : ItemModel
+public class GetSword : MonoBehaviour
 {
-   
+    public bool isGet=false;
+    private int num=0;
     // Update is called once per frame
     void Update()
     {
 
-        if (Input.GetButtonDown("Submit"))
+        if (Input.GetKeyDown("u") )
         {
-            Object_WeaponBag.size += 1;
-            if (Object_WeaponBag.Weapons != null)
+            num += 1;
+            if (isGet == false)
             {
-                Debug.Log(Object_WeaponBag.Weapons.Count);
+                Object_WeaponBag.weaponsize += 1;
+                Object_WeaponBag.Weapons.Add(new Item("最好的剑X" + num, Resources.Load<Sprite>("01"), 0));
             }
-            Object_WeaponBag.Weapons.Add(new ItemModel.Item("初等剑", Resources.Load<Sprite>("01")));
-            Debug.Log("emmm");
+
+            //if (Object_WeaponBag.Weapons != null)
+            //{
+            //    Debug.Log(Object_WeaponBag.Weapons.Count);
+            //}
+            //if (isGet == false)
+            isGet = true;
+            Object_WeaponBag.Weapons[0].num+=1;
+            Object_WeaponBag.Weapons[0].name = "最好的剑X" + num;
+            //Object_WeaponBag.Weapons.Add(Item.Item1);
+            // Debug.Log("emmm");
+
         }
     }
 }

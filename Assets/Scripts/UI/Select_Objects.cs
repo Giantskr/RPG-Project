@@ -21,9 +21,17 @@ public class Select_Objects : Select
             UI_Selections.SetActive(true);
             UI_Objects.SetActive(false);
         }
-		else if (Input.GetButtonDown("Submit"))
+		else if (true)
 		{
+            
             Sorts[states-1].SetActive(true);
-		}
+            switch (states)
+            {
+                case 1:Sorts[1].SetActive(false); Sorts[2].SetActive(false); Sorts[3].SetActive(false);break;
+                case 2: Sorts[0].SetActive(false); Sorts[2].SetActive(false); Sorts[3].SetActive(false); break;
+                case 3: Sorts[0].SetActive(false); Sorts[1].SetActive(false); Sorts[3].SetActive(false); break;
+                case 4: Sorts[0].SetActive(false); Sorts[1].SetActive(false); Sorts[2].SetActive(false); break;
+            }
+        }
 	}
 }
