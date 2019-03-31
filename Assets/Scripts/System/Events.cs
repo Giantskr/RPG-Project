@@ -10,9 +10,11 @@ public class Events : MonoBehaviour
 {
 	public Camera cam;
 	[Space]
+	public GameManager gameManager;
 	public GameObject player;
 	public RPGTalk rpgTalkHolder;
 	public RPGTalkCharacter temporaryNPC;
+	public AudioClip sceneChangeSound;
 	/// <summary>
 	/// 交互物可旋转时用于交互物空闲时的图片，0下1左2上3右
 	/// </summary>
@@ -26,7 +28,7 @@ public class Events : MonoBehaviour
 	/// 角色朝向，仅供查看，任何情况下只能为Vector.down等四个方向的值
 	/// </summary>
 	[Tooltip("角色朝向，仅供查看，任何情况下只能为Vector.down等四个方向的值")]
-	public Vector2 faceOrientation = Vector2.down;
+	public Vector2 faceOrientation;
 	/// <summary>
 	/// 角色每次移动的目标
 	/// </summary>
@@ -34,11 +36,13 @@ public class Events : MonoBehaviour
 	protected bool moving = false;
 
 	protected Rigidbody2D rb;
+	protected AudioSource au;
 	protected Animator an;
 
 	void OnEnable()
 	{
 		rb = GetComponent<Rigidbody2D>();
+		au = GetComponent<AudioSource>();
 		an = GetComponent<Animator>();
 		target = rb.position;
 		if (rpgTalkHolder != null)
@@ -53,7 +57,6 @@ public class Events : MonoBehaviour
 	/// <param name="calling">调用事件时的主动方</param>
 	public void OnCall(GameObject calling)
 	{
-		Input.ResetInputAxes();
 		Events callingEvent = calling.GetComponent<Events>();
 		switch (gameObject.name)
 		{
@@ -66,20 +69,31 @@ public class Events : MonoBehaviour
 				rpgTalkHolder.NewTalk("1", "1");
 				break;
 			case "TestArea":
-				if (!Player_Stats.switchListBool[0])
+				rpgTalkHolder.NewTalk("2", "2");
+				break;
+			case "SceneMove01":
+				au.PlayOneShot(sceneChangeSound);
+				switch (SceneManager.GetActiveScene().name)
 				{
-					rpgTalkHolder.NewTalk("2", "2");
-					Player_Stats.switchListBool[0] = true;
+					case "GrassLand":
+						gameManager.StartCoroutine("ChangeScene", "Store");
+						break;
+					case "Store":
+						gameManager.StartCoroutine("ChangeScene", "GrassLand");
+						break;
 				}
 				break;
-			default: break;
 		}
 	}
 
-    void Update()
+    void OnDisable()
     {
-        
-    }
+		if (rpgTalkHolder != null)
+		{
+			rpgTalkHolder.OnNewTalk -= OnNewTalk;
+			rpgTalkHolder.OnEndTalk -= OnEndTalk;
+		}
+	}
 	/// <summary>
 	/// 创建临时NPC(一般在该角色仅出现一次时使用)
 	/// </summary>
@@ -96,6 +110,7 @@ public class Events : MonoBehaviour
 	/// </summary>
 	void OnNewTalk()
 	{
+		Input.ResetInputAxes();
 		GameManager.inScene = false;
 	}
 	/// <summary>
@@ -103,11 +118,14 @@ public class Events : MonoBehaviour
 	/// </summary>
 	void OnEndTalk()
 	{
-		//if (GetComponent<Collider2D>().isTrigger) gameObject.SetActive(false);
 		switch (gameObject.name)
 		{
 			case "TestArea":
-				gameObject.SetActive(false);
+				if (!Player_Stats.switchListBool[0])
+				{
+					Player_Stats.switchListBool[0] = true;
+					gameObject.SetActive(false);
+				}
 				break;
 			default: break;
 		}
@@ -139,12 +157,9 @@ public class Events : MonoBehaviour
 	/// </summary>
 	public void SetSprite()
 	{
-		if (!moving)
-		{
-			int x = 0;
-			if (faceOrientation.x != 0) x = (int)faceOrientation.x + 1;
-			GetComponent<SpriteRenderer>().sprite = idleSprites[x + (int)faceOrientation.y + 1];
-		}
+		int x = 0;
+		if (faceOrientation.x != 0) x = (int)faceOrientation.x + 1;
+		GetComponent<SpriteRenderer>().sprite = idleSprites[x + (int)faceOrientation.y + 1];
 	}
 	/// <summary>
 	/// 根据角色朝向改变角色行走动画
@@ -172,29 +187,6 @@ public class Events : MonoBehaviour
 			RaycastHit2D hitEdge = Physics2D.Raycast(transform.position, faceOrientation, 1.1f, maskEdge);
 			if (hitEdge && !hitEdge.collider.isTrigger) return true;
 			else return false;
-		}
-	}
-	/// <summary>
-	/// 交互某个物体
-	/// </summary>
-	public void CallObject()
-	{
-		LayerMask mask = LayerMask.GetMask("Obstacle");
-		if (Input.GetButtonDown("Submit"))
-		{
-			RaycastHit2D hit = Physics2D.Raycast(transform.position, faceOrientation, 1.1f, mask);
-			if (hit && hit.collider.tag == "Accessible" && !hit.collider.isTrigger)
-				hit.collider.GetComponent<Events>().OnCall(gameObject);
-		}
-		else
-		{
-			RaycastHit2D hit = Physics2D.Raycast(transform.position, faceOrientation, 0f, mask);
-			if (hit && hit.collider.tag == "Accessible" && hit.collider.isTrigger)
-			{
-				an.enabled = false;
-				SetSprite();
-				hit.collider.GetComponent<Events>().OnCall(gameObject);
-			}
 		}
 	}
 	public void EndEvent()

@@ -96,9 +96,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
+  gameManager: {fileID: 0}
   player: {fileID: 0}
   rpgTalkHolder: {fileID: 0}
   temporaryNPC: {fileID: 0}
+  sceneChangeSound: {fileID: 0}
   idleSprites:
   - {fileID: 21300002, guid: 916a8135e0e48a14d917b09d4f0bff4f, type: 3}
   - {fileID: 21300026, guid: 916a8135e0e48a14d917b09d4f0bff4f, type: 3}
@@ -115,7 +117,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602400736561843215}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7676d29aa47f8914db7b1662917ec175, type: 2}
   m_CullingMode: 0
