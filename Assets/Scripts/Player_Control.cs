@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RPGTALK.Helper;
 
 public class Player_Control : Events
 {
+	Vector2 areaLastPos = Vector2.positiveInfinity;
+
     void FixedUpdate()
     {
 		if (GameManager.inScene)
@@ -74,5 +77,30 @@ public class Player_Control : Events
 			if (hitDown) camPos.y = hitDown.point.y + 6;
 		} 
 		cam.GetComponent<Rigidbody2D>().position = camPos;
+	}
+	/// <summary>
+	/// 交互某个物体
+	/// </summary>
+	public void CallObject()
+	{
+		LayerMask mask = LayerMask.GetMask("Obstacle");
+		if (Input.GetButtonDown("Submit"))
+		{
+			RaycastHit2D hit = Physics2D.Raycast(transform.position, faceOrientation, 1.1f, mask);
+			if (hit && hit.collider.tag == "Accessible" && !hit.collider.isTrigger)
+				hit.collider.GetComponent<Events>().OnCall(gameObject);
+		}
+		else
+		{
+			RaycastHit2D hit = Physics2D.Raycast(transform.position, faceOrientation, 0, mask);
+			if (hit && hit.collider.tag == "Accessible" && hit.collider.isTrigger && (Vector2)hit.transform.position != areaLastPos)
+			{
+				areaLastPos = hit.transform.position;
+				an.enabled = false;
+				SetSprite();
+				hit.collider.GetComponent<Events>().OnCall(gameObject);
+			}
+			else if (!hit) areaLastPos = Vector2.positiveInfinity;
+		}
 	}
 }
