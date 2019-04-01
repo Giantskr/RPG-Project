@@ -27,48 +27,76 @@ public class Select_Equip : Select
         }
         if (Input.GetButtonDown("Submit"))
         {
-            switch (states)
-            {
-                case 1:if(weapon[0].transform.GetChild(1).GetComponent<Text>().text == "空")
-                    {
-                        Debug.Log("233");
-                        ChangeWeapon.change = 3;
-                    }
-                    else
-                    {
-                        Debug.Log("996");
-                        ChangeWeapon.change = 1;
-                    }
-                    UI_Weapons.SetActive(true);
-                    Weapons.SetActive(false);
-                break;
-                case 2:
-                    if(weapon[1].transform.GetChild(1).GetComponent<Text>().text =="空"  ) 
-                    {
-                        Debug.Log("233");
-                        ChangeWeapon.change = 3;
-                    }
-                    else
-                    {
-                        Debug.Log("996");
-                        ChangeWeapon.change = 1;
-                    }
+            ButtonEvent(states - 1);
+            //switch (states)
+            //{
+            //    case 1:if(weapon[0].transform.GetChild(1).GetComponent<Text>().text == "空")
+            //        {
+            //            Debug.Log("233");
+            //            ChangeWeapon.change = 3;
+            //        }
+            //        else
+            //        {
+            //            if (ChangeWeapon.change ==2)
+            //            {
+            //                ChangeWeapon.change = 4;
+            //            }
+            //            Debug.Log("996");
+            //            ChangeWeapon.change = 1;
+            //        }
+            //        UI_Weapons.SetActive(true);
+            //        Weapons.SetActive(false);
+            //    break;
+            //    case 2:
+            //        if(weapon[1].transform.GetChild(1).GetComponent<Text>().text =="空"  ) 
+            //        {
+            //            Debug.Log("233");
+            //            ChangeWeapon.change = 3;
+            //        }
+            //        else
+            //        {
+            //            Debug.Log("996");
+            //            ChangeWeapon.change = 1;
+            //        }
                     
-                    UI_Weapons.SetActive(true);
-                    Weapons.SetActive(false);
-                    break;
-                case 3:
-                    ChangeWeapon.change = 1;
-                    UI_Weapons.SetActive(true);
-                    Weapons.SetActive(false);
-                    break;
-                case 4:
-                    ChangeWeapon.change = 1;
-                    UI_Weapons.SetActive(true);
-                    Weapons.SetActive(false);
-                    break;
-            }
+            //        UI_Weapons.SetActive(true);
+            //        Weapons.SetActive(false);
+            //        break;
+            //    case 3:
+            //        ChangeWeapon.change = 1;
+            //        UI_Weapons.SetActive(true);
+            //        Weapons.SetActive(false);
+            //        break;
+            //    case 4:
+            //        ChangeWeapon.change = 1;
+            //        UI_Weapons.SetActive(true);
+            //        Weapons.SetActive(false);
+            //        break;
+            //}
         }
        
+    }
+    public void ButtonEvent(int i)
+    {
+        if (weapon[i].transform.GetChild(1).GetComponent<Text>().text == "空")
+        {
+            Debug.Log("233");
+            ChangeWeapon.change = 3;
+        }
+        else
+        {
+            if (ChangeWeapon.change == 2)
+            {
+                ChangeWeapon.change = 4;
+            }
+            else
+            {
+                Debug.Log("996");
+                ChangeWeapon.change = 1;
+            }
+            
+        }
+        UI_Weapons.SetActive(true);
+        Weapons.SetActive(false);
     }
 }
