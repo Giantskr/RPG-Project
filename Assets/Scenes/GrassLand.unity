@@ -12006,6 +12006,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 736921870}
   m_CullTransparentMesh: 0
+--- !u!114 &737032015 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1046509846104078466, guid: 2a5bc3e67e9996246a272c343d25fe53,
+    type: 3}
+  m_PrefabInstance: {fileID: 1046509846991771789}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1c50a7b15a5104e91f014abb3cab26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &740446404
 GameObject:
   m_ObjectHideFlags: 0
@@ -25539,6 +25551,7 @@ MonoBehaviour:
   UI_Sounds: []
   UI_Selections: {fileID: 0}
   UI_Weapons: {fileID: 362998829}
+  Sorts: []
 --- !u!212 &1143054973
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -31854,6 +31867,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f7d65b93fb61e5742817afff623d81cf, type: 3}
   UI_Selections: {fileID: 2068711225}
   UI_Weapons: {fileID: 126855613}
+  Sorts: []
 --- !u!212 &1560126121
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -55133,6 +55147,11 @@ PrefabInstance:
       propertyPath: rpgTalkHolder
       value: 
       objectReference: {fileID: 268337128}
+    - target: {fileID: 2523496650101792265, guid: 86060acf1c7c847428b7cd92d463cd67,
+        type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 737032015}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86060acf1c7c847428b7cd92d463cd67, type: 3}
 --- !u!1001 &2872459357623604829
@@ -55217,6 +55236,11 @@ PrefabInstance:
       propertyPath: rpgTalkHolder
       value: 
       objectReference: {fileID: 1648934258}
+    - target: {fileID: 2872459357553870480, guid: c495e0bbd0615c34bb0e434d117b3378,
+        type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 737032015}
     - target: {fileID: 2872459358303244143, guid: c495e0bbd0615c34bb0e434d117b3378,
         type: 3}
       propertyPath: m_IsActive
@@ -55341,6 +55365,11 @@ PrefabInstance:
       propertyPath: rpgTalkHolder
       value: 
       objectReference: {fileID: 268337128}
+    - target: {fileID: 3149690493255800379, guid: b26b053af568dd444a5a45cccc8d96a2,
+        type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 737032015}
     - target: {fileID: 3149690493475843030, guid: b26b053af568dd444a5a45cccc8d96a2,
         type: 3}
       propertyPath: m_IsActive

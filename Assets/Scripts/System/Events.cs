@@ -12,6 +12,7 @@ public class Events : MonoBehaviour
 	[Space]
 	public GameManager gameManager;
 	public GameObject player;
+	public Player_Stats stats;
 	public RPGTalk rpgTalkHolder;
 	public RPGTalkCharacter temporaryNPC;
 	public AudioClip sceneChangeSound;
@@ -71,7 +72,13 @@ public class Events : MonoBehaviour
 			case "TestArea":
 				rpgTalkHolder.NewTalk("2", "2");
 				break;
-			case "SceneMove01":
+            case "BestArmor":
+                rpgTalkHolder.NewTalk("1", "1");
+                break;
+            case "BestSword":
+                rpgTalkHolder.NewTalk("2", "2");
+                break;
+            case "SceneMove01":
 				au.PlayOneShot(sceneChangeSound);
 				switch (SceneManager.GetActiveScene().name)
 				{
@@ -120,15 +127,39 @@ public class Events : MonoBehaviour
 	{
 		switch (gameObject.name)
 		{
-			case "TestArea":
-				if (!Player_Stats.switchListBool[0])
+            case "TestBox":
+                gameObject.SetActive(false);
+                break;
+            case "TestArea":
+				if (!stats.GetSwitchBool(0))
 				{
-					Player_Stats.switchListBool[0] = true;
+                    stats.SetSwitchBool(0, true);
 					gameObject.SetActive(false);
 				}
 				break;
-			default: break;
-		}
+            case "BestArmor":
+                //此处为获取武器的方法           
+                Object_WeaponBag.aromrsize += 1;
+                Object_WeaponBag.Aromrs.Add(new Item("最好的甲X1", Resources.Load<Sprite>("06"), 1));
+                Debug.Log("已经获取防具");
+                if (!stats.GetSwitchBool(1))
+                {
+                    stats.SetSwitchBool(1, true);
+                    gameObject.SetActive(false);
+                }
+                break;
+            case "BestSword":
+                //此处为获取武器的方法           
+                Object_WeaponBag.weaponsize += 1;
+                Object_WeaponBag.Weapons.Add(new Item("最好的剑X1", Resources.Load<Sprite>("01"), 1));
+                Debug.Log("已经获取武器");
+                if (!stats.GetSwitchBool(2))
+                {
+                    stats.SetSwitchBool(2, true);
+                    gameObject.SetActive(false);
+                }
+                break;
+        }
 		Input.ResetInputAxes();
 		GameManager.inScene = true;
 	}

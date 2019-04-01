@@ -22,12 +22,16 @@ public class Player_Stats : MonoBehaviour
 
 	public static string lastScene;
 
-	public static bool[] switchListBool = { false };
-	public static int[] switchListInt = { 0 };
+	bool[] switchListBool = { false };
+	int[] switchListInt = { 0 };
 
 	public static Player_Stats instance = null;
 	void Awake()
 	{
+        switchListBool = new bool[20];
+        
+        switchListInt = new int[20];
+
 		DontDestroyOnLoad(gameObject);
 		if (instance == null)
 			instance = this;
@@ -48,4 +52,13 @@ public class Player_Stats : MonoBehaviour
     {
 
 	}
+
+    public void SetSwitchBool(int index, bool set)
+    {
+        switchListBool[index] = set;
+    }
+    public bool GetSwitchBool(int index)
+    {
+        return switchListBool[index];
+    }
 }

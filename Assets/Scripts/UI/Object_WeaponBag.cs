@@ -6,16 +6,15 @@ using UnityEngine.UI;
 public class Object_WeaponBag : MonoBehaviour
 {
     //public GameObject WeaponLaid;
-    public List<GameObject> weapon,prop;
-    public static List<Item> Weapons,Props;
-    public static  int weaponsize,propsize = 0;
-    //public static Sprite[] sprites;
-    // Start is called before the first frame update
+    public List<GameObject> weapon,prop,aromr;
+    public static List<Item> Weapons,Props,Aromrs;
+    public static  int weaponsize,propsize,aromrsize = 0;
+
     private void Awake()
     {
         Weapons = new List<Item>(); // 初始化List<Item>
         Props = new List<Item>();
-
+        Aromrs = new List<Item>();
         for (int i = 0; i < weaponsize; i++)
         {
             weapon[i].transform.GetChild(0).GetComponent<Image>().sprite = Weapons[i].img;
@@ -25,6 +24,11 @@ public class Object_WeaponBag : MonoBehaviour
         {
             prop[i].transform.GetChild(0).GetComponent<Image>().sprite = Props[i].img;
             prop[i].transform.GetChild(1).GetComponent<Text>().text = Props[i].name;
+        }
+        for (int i = 0; i < aromrsize; i++)
+        {
+            aromr[i].transform.GetChild(0).GetComponent<Image>().sprite = Aromrs[i].img;
+            aromr[i].transform.GetChild(1).GetComponent<Text>().text = Aromrs[i].name;
         }
     }
 
@@ -50,6 +54,11 @@ public class Object_WeaponBag : MonoBehaviour
         {
             prop[i].transform.GetChild(0).GetComponent<Image>().sprite = Props[i].img;
             prop[i].transform.GetChild(1).GetComponent<Text>().text = Props[i].name;
+        }
+        for (int i = 0; i < aromrsize; i++)
+        {
+            aromr[i].transform.GetChild(0).GetComponent<Image>().sprite = Aromrs[i].img;
+            aromr[i].transform.GetChild(1).GetComponent<Text>().text = Aromrs[i].name;
         }
     }
 }

@@ -88,8 +88,9 @@ public class Player_Control : Events
 		{
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, faceOrientation, 1.1f, mask);
 			if (hit && hit.collider.tag == "Accessible" && !hit.collider.isTrigger)
-				hit.collider.GetComponent<Events>().OnCall(gameObject);
-		}
+                hit.collider.GetComponent<Events>().OnCall(gameObject);
+
+        }
 		else
 		{
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, faceOrientation, 0, mask);
