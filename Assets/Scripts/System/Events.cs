@@ -35,6 +35,7 @@ public class Events : MonoBehaviour
 	/// </summary>
 	protected Vector2 target;
 	protected bool moving = false;
+	bool inEvent = false;
 
 	protected Rigidbody2D rb;
 	protected AudioSource au;
@@ -58,6 +59,7 @@ public class Events : MonoBehaviour
 	/// <param name="calling">调用事件时的主动方</param>
 	public void OnCall(GameObject calling)
 	{
+		inEvent = true;
 		Events callingEvent = calling.GetComponent<Events>();
 		switch (gameObject.name)
 		{
@@ -125,43 +127,45 @@ public class Events : MonoBehaviour
 	/// </summary>
 	void OnEndTalk()
 	{
-		switch (gameObject.name)
+		if (inEvent)
 		{
-            case "TestBox":
-                gameObject.SetActive(false);
-                break;
-            case "TestArea":
-				if (!stats.GetSwitchBool(0))
-				{
-                    stats.SetSwitchBool(0, true);
+			switch (gameObject.name)
+			{
+				case "TestBox":
 					gameObject.SetActive(false);
-				}
-				break;
-            case "BestArmor":
-                //此处为获取武器的方法           
-                Object_WeaponBag.aromrsize += 1;
-                Object_WeaponBag.Aromrs.Add(new Item("最好的甲X1", Resources.Load<Sprite>("06"), 1));
-                Debug.Log("已经获取防具");
-                if (!stats.GetSwitchBool(1))
-                {
-                    stats.SetSwitchBool(1, true);
-                    gameObject.SetActive(false);
-                }
-                break;
-            case "BestSword":
-                //此处为获取武器的方法           
-                Object_WeaponBag.weaponsize += 1;
-                Object_WeaponBag.Weapons.Add(new Item("最好的剑X1", Resources.Load<Sprite>("01"), 1));
-                Debug.Log("已经获取武器");
-                if (!stats.GetSwitchBool(2))
-                {
-                    stats.SetSwitchBool(2, true);
-                    gameObject.SetActive(false);
-                }
-                break;
-        }
-		Input.ResetInputAxes();
-		GameManager.inScene = true;
+					break;
+				case "TestArea":
+					if (!stats.GetSwitchBool(0))
+					{
+						stats.SetSwitchBool(0, true);
+						gameObject.SetActive(false);
+					}
+					break;
+				case "BestArmor":
+					Object_WeaponBag.aromrsize += 1;
+					Object_WeaponBag.Aromrs.Add(new Item("最好的甲X1", Resources.Load<Sprite>("06"), 1));
+					Debug.Log("已经获取防具");
+					if (!stats.GetSwitchBool(1))
+					{
+						stats.SetSwitchBool(1, true);
+						gameObject.SetActive(false);
+					}
+					break;
+				case "BestSword":
+					Object_WeaponBag.weaponsize += 1;
+					Object_WeaponBag.Weapons.Add(new Item("最好的剑X1", Resources.Load<Sprite>("01"), 1));
+					Debug.Log("已经获取武器");
+					if (!stats.GetSwitchBool(2))
+					{
+						stats.SetSwitchBool(2, true);
+						gameObject.SetActive(false);
+					}
+					break;
+			}
+			Input.ResetInputAxes();
+			GameManager.inScene = true;
+		}
+		inEvent = false;
 	}
 	/// <summary>
 	/// 设定角色朝向
