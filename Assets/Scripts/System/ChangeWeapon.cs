@@ -9,8 +9,15 @@ public class ChangeWeapon : MonoBehaviour
     public GameObject Laidweapon;
     public GameObject Laidhead;
     public GameObject Laidbody;
-    public static int change = 0;//0 for not equip;1 for equipping;2 for had equipped;3 for reset;
+    public static int change = 0;
+    //0 for not equip;
+    //1 for equipping;
+    //2 for had equipped;
+    //3 for reset;
+    //4 for Change;
+    //requests are received from Select_Equip.cs
     public static int changeWhich;
+    
 
     // Start is called before the first frame update
     void Awake()
@@ -30,35 +37,60 @@ public class ChangeWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (change == 0)
+        switch(change)
         {
-            for (int i = 0; i < Object_WeaponBag.weaponsize; i++)
-            {
-                weapon[i].transform.GetChild(0).GetComponent<Image>().sprite = Object_WeaponBag.Weapons[i].img;
-                weapon[i].transform.GetChild(1).GetComponent<Text>().text = Object_WeaponBag.Weapons[i].name;
-            }
+            case 0:
+                //未装备武器时，确保武器按 添加进背包的时间先后顺序 排列
+                for (int i = 0; i < Object_WeaponBag.weaponsize; i++)
+                {
+                    weapon[i].transform.GetChild(0).GetComponent<Image>().sprite = Object_WeaponBag.Weapons[i].img;
+                    weapon[i].transform.GetChild(1).GetComponent<Text>().text = Object_WeaponBag.Weapons[i].name;
+                }
+            break;
+
+            case 1://收到放入武器位的指令
+                ChangeWeapons(changeWhich);
+                if(Laidweapon.transform.GetChild(1).GetComponent<Text>().text == "最好的剑X1")
+                {
+                    Player_Stats.ATK = 20;
+                }
+                change = 2;
+            break;
+
+            case 3://收到武器放回的指令
+
+                Laidweapon.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
+                Laidweapon.transform.GetChild(1).GetComponent<Text>().text = null;
+                for (int i = 0; i < Object_WeaponBag.weaponsize; i++)
+                {
+                    weapon[i].transform.GetChild(0).GetComponent<Image>().sprite = Object_WeaponBag.Weapons[i].img;
+                    weapon[i].transform.GetChild(1).GetComponent<Text>().text = Object_WeaponBag.Weapons[i].name;
+                }
+                change = 0;
+            break;
+
+            case 4://收到交换武器指令
+                Sprite tempImage;
+                string tempText;
+                tempImage = Laidweapon.transform.GetChild(0).GetComponent<Image>().sprite;
+                tempText = Laidweapon.transform.GetChild(1).GetComponent<Text>().text;
+                Laidweapon.transform.GetChild(0).GetComponent<Image>().sprite = weapon[changeWhich].transform.GetChild(0).GetComponent<Image>().sprite;
+                Laidweapon.transform.GetChild(1).GetComponent<Text>().text = weapon[changeWhich].transform.GetChild(1).GetComponent<Text>().text;
+                weapon[changeWhich].transform.GetChild(0).GetComponent<Image>().sprite = tempImage;
+                weapon[changeWhich].transform.GetChild(1).GetComponent<Text>().text = tempText;
+                tempImage = null;
+                tempText = null;
+                change = 2;
+            break;
         }
-        if (change == 1)
-        {
-            ChangeWeapons(changeWhich);
-            change = 2;
-        }
-        if (change == 3)
-        {
-            Laidweapon.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
-            Laidweapon.transform.GetChild(1).GetComponent<Text>().text = null;
-            for (int i = 0; i < Object_WeaponBag.weaponsize; i++)
-            {
-                weapon[i].transform.GetChild(0).GetComponent<Image>().sprite = Object_WeaponBag.Weapons[i].img;
-                weapon[i].transform.GetChild(1).GetComponent<Text>().text = Object_WeaponBag.Weapons[i].name;
-            }
-            change = 0;
-        }
+       
     }
     protected void ChangeWeapons(int changeWhich)
     {
+        //图片，名字传入装备栏
         Laidweapon.transform.GetChild(0).GetComponent<Image>().sprite = Object_WeaponBag.Weapons[changeWhich].img;
         Laidweapon.transform.GetChild(1).GetComponent<Text>().text = Object_WeaponBag.Weapons[changeWhich].name;
+        //整理将武器装备后 背包内剩余武器的排列
         for (int i = changeWhich; i < Object_WeaponBag.weaponsize; i++)
         {
             
@@ -73,7 +105,9 @@ public class ChangeWeapon : MonoBehaviour
                 weapon[i].transform.GetChild(1).GetComponent<Text>().text = Object_WeaponBag.Weapons[i + 1].name;
             }
         }
-
+        //   之前的过于冗长的 还有bug 的代码
+        //
+        //
         //    if (weapon[changeWhich + 1].transform.GetChild(1).GetComponent<Text>().text != "空")
         //    {
         //        remove(changeWhich);
