@@ -53,7 +53,14 @@ public class Object_WeaponBag : MonoBehaviour
         for (int i = 0; i < propsize; i++)
         {
             prop[i].transform.GetChild(0).GetComponent<Image>().sprite = Props[i].img;
-            prop[i].transform.GetChild(1).GetComponent<Text>().text = Props[i].name;
+            //if (Props[i].num != 0)
+            //{
+                prop[i].transform.GetChild(1).GetComponent<Text>().text = Props[i].name + "X" + Props[i].num;
+            //}
+            //else
+            //{
+            //    prop[i].transform.GetChild(1).GetComponent<Text>().text = null;
+            //}
         }
         for (int i = 0; i < aromrsize; i++)
         {

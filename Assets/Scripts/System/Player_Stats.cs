@@ -18,7 +18,7 @@ public class Player_Stats : MonoBehaviour
 	public static int level = 1;
 	public static int EXP = 0;
 	public static int EXPToNextLevel = 50;
-	public static int Money = 0;
+	public static int Money = 1000;
 
 	public static string lastScene;
 
