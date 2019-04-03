@@ -139,8 +139,8 @@ public class Events : MonoBehaviour
 				break;
             case "BestArmor":
                 //此处为获取武器的方法           
-                Object_WeaponBag.aromrsize += 1;
-                Object_WeaponBag.Aromrs.Add(new Item("最好的甲X1", Resources.Load<Sprite>("06"), 1));
+                Object_WeaponBag.armorsize += 1;
+                Object_WeaponBag.Armors.Add(new Item("最好的甲X1", Resources.Load<Sprite>("06"), 1));
                 Debug.Log("已经获取防具");
                 if (!stats.GetSwitchBool(1))
                 {

@@ -6,15 +6,16 @@ using UnityEngine.UI;
 public class Object_WeaponBag : MonoBehaviour
 {
     //public GameObject WeaponLaid;
-    public List<GameObject> weapon,prop,aromr;
-    public static List<Item> Weapons,Props,Aromrs;
-    public static  int weaponsize,propsize,aromrsize = 0;
+    public List<GameObject> weapon,prop,helmet,armor;
+    public static List<Item> Weapons,Props,Helmets,Armors;
+    public static  int weaponsize,propsize,helmetsize,armorsize = 0;
 
     private void Awake()
     {
         Weapons = new List<Item>(); // 初始化List<Item>
         Props = new List<Item>();
-        Aromrs = new List<Item>();
+        Helmets = new List<Item>();
+        Armors = new List<Item>();
         for (int i = 0; i < weaponsize; i++)
         {
             weapon[i].transform.GetChild(0).GetComponent<Image>().sprite = Weapons[i].img;
@@ -25,10 +26,10 @@ public class Object_WeaponBag : MonoBehaviour
             prop[i].transform.GetChild(0).GetComponent<Image>().sprite = Props[i].img;
             prop[i].transform.GetChild(1).GetComponent<Text>().text = Props[i].name;
         }
-        for (int i = 0; i < aromrsize; i++)
+        for (int i = 0; i <armorsize; i++)
         {
-            aromr[i].transform.GetChild(0).GetComponent<Image>().sprite = Aromrs[i].img;
-            aromr[i].transform.GetChild(1).GetComponent<Text>().text = Aromrs[i].name;
+            armor[i].transform.GetChild(0).GetComponent<Image>().sprite = Armors[i].img;
+            armor[i].transform.GetChild(1).GetComponent<Text>().text = Armors[i].name;
         }
     }
 
@@ -62,10 +63,10 @@ public class Object_WeaponBag : MonoBehaviour
             //    prop[i].transform.GetChild(1).GetComponent<Text>().text = null;
             //}
         }
-        for (int i = 0; i < aromrsize; i++)
+        for (int i = 0; i <armorsize; i++)
         {
-            aromr[i].transform.GetChild(0).GetComponent<Image>().sprite = Aromrs[i].img;
-            aromr[i].transform.GetChild(1).GetComponent<Text>().text = Aromrs[i].name;
+            armor[i].transform.GetChild(0).GetComponent<Image>().sprite = Armors[i].img;
+            armor[i].transform.GetChild(1).GetComponent<Text>().text = Armors[i].name;
         }
     }
 }
