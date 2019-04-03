@@ -63,10 +63,22 @@ public class Object_WeaponBag : MonoBehaviour
             //    prop[i].transform.GetChild(1).GetComponent<Text>().text = null;
             //}
         }
-        for (int i = 0; i <armorsize; i++)
+        for (int i = 0; i <=armorsize; i++)
         {
-            armor[i].transform.GetChild(0).GetComponent<Image>().sprite = Armors[i].img;
-            armor[i].transform.GetChild(1).GetComponent<Text>().text = Armors[i].name;
+           
+            if (i == armorsize)
+            {
+                for (int j =armorsize; j < helmetsize; j++)
+                {
+                    armor[j].transform.GetChild(0).GetComponent<Image>().sprite = Helmets[i].img;
+                    armor[j].transform.GetChild(1).GetComponent<Text>().text = Helmets[i].name;
+                }
+            }
+            else
+            {
+                armor[i].transform.GetChild(0).GetComponent<Image>().sprite = Armors[i].img;
+                armor[i].transform.GetChild(1).GetComponent<Text>().text = Armors[i].name;
+            }
         }
     }
 }

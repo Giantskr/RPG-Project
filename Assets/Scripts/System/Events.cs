@@ -80,6 +80,9 @@ public class Events : MonoBehaviour
             case "BestSword":
                 rpgTalkHolder.NewTalk("2", "2");
                 break;
+            case "BestHelmet":
+                rpgTalkHolder.NewTalk("2", "2");
+                break;
             case "SceneMove01":
 				au.PlayOneShot(sceneChangeSound);
 				switch (SceneManager.GetActiveScene().name)
@@ -161,7 +164,17 @@ public class Events : MonoBehaviour
 						gameObject.SetActive(false);
 					}
 					break;
-			}
+                case "BestHelmet":
+                    Object_WeaponBag.helmetsize += 1;
+                    Object_WeaponBag.Helmets.Add(new Item("最好的头X1", Resources.Load<Sprite>("04"), 1));
+                    Debug.Log("已经获取武器");
+                    if (!stats.GetSwitchBool(3))
+                    {
+                        stats.SetSwitchBool(3, true);
+                        gameObject.SetActive(false);
+                    }
+                    break;
+            }
 			Input.ResetInputAxes();
 			GameManager.inScene = true;
 		}
