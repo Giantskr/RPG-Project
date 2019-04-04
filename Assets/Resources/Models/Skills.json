@@ -9,7 +9,7 @@
 			"methodName": "None",
 			"mpCost": 0,
 			"accuracy": 0.95,
-			"formula": "a.atk*4-b.def*2,20"
+			"formula": "a.atk * 4 - b.def * 2 , 20"
 		},
 		{
 			"id": 2,
@@ -29,7 +29,7 @@
 			"methodName": "None",
 			"mpCost": 15,
 			"accuracy": 1,
-			"formula": "a.atk*5-b.def*2,20"
+			"formula": "a.atk * 5 - b.def * 2 , 20"
 		},
 		{
 			"id": 4,
@@ -39,7 +39,7 @@
 			"methodName": "None",
 			"mpCost": 20,
 			"accuracy": 0,
-			"formula": "250+a.mat,20"
+			"formula": "250 + a.mat , 20"
 		}
 	]
 

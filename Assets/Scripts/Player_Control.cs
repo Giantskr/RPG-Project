@@ -86,10 +86,18 @@ public class Player_Control : Events
 		LayerMask mask = LayerMask.GetMask("Obstacle");
 		if (Input.GetButtonDown("Submit"))
 		{
-			RaycastHit2D hit = Physics2D.Raycast(transform.position, faceOrientation, 1.1f, mask);
-			if (hit && hit.collider.tag == "Accessible" && !hit.collider.isTrigger)
-                hit.collider.GetComponent<Events>().OnCall(gameObject);
-
+			//RaycastHit2D hit = Physics2D.Raycast(transform.position, faceOrientation, 1.1f, mask);
+			//if (hit && hit.collider.tag == "Accessible" && !hit.collider.isTrigger)
+   //             hit.collider.GetComponent<Events>().OnCall(gameObject);
+			RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, faceOrientation, 1.1f, mask);
+			if (hit!=null)
+			{
+				for (int i = 0; i < hit.Length; i++)
+				{
+					if (hit[i] && hit[i].collider.tag == "Accessible" && !hit[i].collider.isTrigger)
+						hit[i].collider.GetComponent<Events>().OnCall(gameObject);
+				}
+			}
         }
 		else
 		{

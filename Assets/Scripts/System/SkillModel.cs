@@ -1,19 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class SkillModel : MonoBehaviour
 {
 
-    void Start()
-    {
-        
-    }
+    public void ReadFormula(string formula)
+	{
 
-    void Update()
-    {
-        
-    }
+	}
 }
 
 [System.Serializable]
