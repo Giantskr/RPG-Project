@@ -83,6 +83,17 @@ public class Events : MonoBehaviour
             case "BestHelmet":
                 rpgTalkHolder.NewTalk("2", "2");
                 break;
+            case "Notice":
+                rpgTalkHolder.NewTalk("3", "3");
+                break;
+            case "Guard":
+                rpgTalkHolder.NewTalk("5", "9");
+                CreateTemporaryNPC(temporaryNPC, "守卫", eventSprites[0]);
+                break;
+            case "King":
+                rpgTalkHolder.NewTalk("10", "14");
+                CreateTemporaryNPC(temporaryNPC, "国王", eventSprites[0]);
+                break;
             case "SceneMove01":
 				au.PlayOneShot(sceneChangeSound);
 				switch (SceneManager.GetActiveScene().name)

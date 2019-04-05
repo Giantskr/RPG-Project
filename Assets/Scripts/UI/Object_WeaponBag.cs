@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Object_WeaponBag : MonoBehaviour
 {
+       //用于在物品栏显示各种物品，不限于武器
     //public GameObject WeaponLaid;
     public List<GameObject> weapon,prop,helmet,armor;
     public static List<Item> Weapons,Props,Helmets,Armors;
