@@ -31,16 +31,19 @@ public class Player_Stats : MonoBehaviour
 
 	void Awake()
 	{
-		if (switchListBool == null) switchListBool = new bool[50];
-		if (switchListInt == null) switchListInt = new int[20];
-
-		if (Skill == null) Skill = LoadJson<SkillData>.LoadJsonFromFile("Skills");
-
 		DontDestroyOnLoad(gameObject);
 		if (instance == null)
 			instance = this;
 		else if (instance != this)
 			Destroy(gameObject);
+
+
+
+
+		if (switchListBool == null) switchListBool = new bool[50];
+		if (switchListInt == null) switchListInt = new int[20];
+
+		if (Skill == null) Skill = LoadJson<SkillData>.LoadJsonFromFile("Skills");
 	}
 	public static Player_Stats GetInstance()
 	{

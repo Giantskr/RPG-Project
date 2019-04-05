@@ -1,0 +1,38 @@
+{
+	"Monsters":
+	[
+		{
+			"id": 1,
+			"monsterName": "Ê·À³Ä·",
+			//"spritePath": "Monsters/Monster1",
+			"maxHP": 100,
+			"HP": 100,
+			"maxMP": 10,
+			"Mp": 10,
+			"ATK": 12,
+			"DEF": 4,
+			"MAT": 8,
+			"MDF": 8,
+			"AGI": 10,
+			"getExp": 3,
+			"getMoney": 5
+			
+		},
+		{
+			"id": 2,
+			"monsterName": "òùòð",
+			//"spritePath": "Monsters/Monster2",
+			"maxHP": 140,
+			"HP": 140,
+			"maxMP": 10,
+			"Mp": 10,
+			"ATK": 14,
+			"DEF": 6,
+			"MAT": 9,
+			"MDF": 9,
+			"AGI": 12,
+			"getExp": 5,
+			"getMoney": 10
+		}
+	]
+}

@@ -19,7 +19,6 @@ public class SkillData
 		public string skillName;
 		public string spritePath;
 		public string introduce;
-		public string methodName;
 		public int mpCost;
 		public float accuracy;
 		public string formula;

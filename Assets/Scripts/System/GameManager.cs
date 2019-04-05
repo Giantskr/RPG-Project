@@ -39,7 +39,9 @@ public class GameManager : MonoBehaviour
 		inBattle = false;
 		SceneManager.sceneLoaded += OnSceneChange;
 		au = GetComponent<AudioSource>();
-    }
+
+		//StartBattle();
+	}
 
     void Update()
     {
