@@ -47,6 +47,16 @@ public class Events : MonoBehaviour
 		au = GetComponent<AudioSource>();
 		an = GetComponent<Animator>();
 		target = rb.position;
+		
+	}
+	void Start()
+	{
+		switch (gameObject.name)
+		{
+			case "TestArea":
+				if (stats.GetSwitchBool(0)) Destroy(gameObject);
+				break;
+		}
 		if (rpgTalkHolder != null)
 		{
 			rpgTalkHolder.OnNewTalk += OnNewTalk;
@@ -72,7 +82,13 @@ public class Events : MonoBehaviour
 				rpgTalkHolder.NewTalk("1", "1");
 				break;
 			case "TestArea":
-				rpgTalkHolder.NewTalk("2", "2");
+				if (!stats.GetSwitchBool(0))
+				{
+					gameManager.StartBattle();
+					stats.SetSwitchBool(0, true);
+					Destroy(gameObject);
+				}
+				//rpgTalkHolder.NewTalk("2", "2");
 				break;
             case "BestArmor":
                 rpgTalkHolder.NewTalk("1", "1");
@@ -134,14 +150,11 @@ public class Events : MonoBehaviour
 		{
 			switch (gameObject.name)
 			{
-				case "TestBox":
-					gameObject.SetActive(false);
-					break;
 				case "TestArea":
 					if (!stats.GetSwitchBool(0))
 					{
 						stats.SetSwitchBool(0, true);
-						gameObject.SetActive(false);
+						Destroy(gameObject);
 					}
 					break;
 				case "BestArmor":
@@ -167,7 +180,7 @@ public class Events : MonoBehaviour
                 case "BestHelmet":
                     Object_WeaponBag.helmetsize += 1;
                     Object_WeaponBag.Helmets.Add(new Item("最好的头X1", Resources.Load<Sprite>("04"), 1));
-                    Debug.Log("已经获取武器");
+                    Debug.Log("已经获取头盔");
                     if (!stats.GetSwitchBool(3))
                     {
                         stats.SetSwitchBool(3, true);

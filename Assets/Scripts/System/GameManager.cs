@@ -7,10 +7,12 @@ public class GameManager : MonoBehaviour
 {
 	public GameObject cam;
 	public GameObject UI_Esc;
+	public GameObject UI_Battle;
 	public GameObject fadingScreen;
 	public GameObject player;
 
-	public static bool inScene;	
+	public static bool inScene;
+	public static bool inBattle;	
 	public static bool fading;
 	AsyncOperation loading;
 
@@ -34,17 +36,19 @@ public class GameManager : MonoBehaviour
     {
 		fading = true;
 		inScene = true;
+		inBattle = false;
 		SceneManager.sceneLoaded += OnSceneChange;
 		au = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-		if (Input.GetButtonDown("Cancel") && inScene && !fading) 
+		if (Input.GetButtonDown("Cancel") && inScene && !fading)
 		{
 			inScene = false;
 			UI_Esc.SetActive(true);
 		}
+		//else if (inBattle && !UI_Battle.activeInHierarchy) UI_Battle.SetActive(true);
     }
 	void OnDisable()
 	{
@@ -57,7 +61,6 @@ public class GameManager : MonoBehaviour
 		yield return new WaitForSeconds(0.8f);
 		loading = SceneManager.LoadSceneAsync(scene);
 	}
-
 	void OnSceneChange(Scene next, LoadSceneMode mode)
 	{
 		if (Player_Stats.lastScene != null)
@@ -90,5 +93,12 @@ public class GameManager : MonoBehaviour
 		player.transform.position = pos;
 		playerEvent.faceOrientation = vector;
 		playerEvent.SetSprite();
+	}
+
+	public void StartBattle()
+	{
+		inScene = false;
+		inBattle = true;
+		UI_Battle.SetActive(true);
 	}
 }

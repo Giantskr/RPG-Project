@@ -6,10 +6,7 @@ using UnityEngine;
 public class SkillModel : MonoBehaviour
 {
 
-    public void ReadFormula(string formula)
-	{
-
-	}
+	
 }
 
 [System.Serializable]

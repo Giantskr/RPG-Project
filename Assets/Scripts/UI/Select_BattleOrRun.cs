@@ -26,6 +26,8 @@ public class Select_BattleOrRun : Select
 					break;
 				case 2:
 					Battle.SetActive(false);
+					GameManager.inBattle = false;
+					GameManager.inScene = true;
 					break;
 			}
 		}	
