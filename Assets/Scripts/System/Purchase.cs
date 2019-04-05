@@ -11,7 +11,7 @@ public class Purchase : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-       Goods = new List<Item>();
+        Goods = new List<Item>();
         goodsize += 3;
         Goods.Add(new Item("小药瓶" , Resources.Load<Sprite>("07"), 1));
         Goods.Add(new Item("中药瓶", Resources.Load<Sprite>("08"), 1));

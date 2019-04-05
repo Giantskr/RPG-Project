@@ -4,7 +4,7 @@
 		{
 			"id": 1,
 			"skillName": "攻击",
-			"spritePath": "Assets/Sprites/Skills/Icon_skill1",
+			"spritePath": "Skills/Icon_skill1",
 			"introduce": "对单体敌人造成伤害。",
 			"methodName": "None",
 			"mpCost": 0,
@@ -14,7 +14,7 @@
 		{
 			"id": 2,
 			"skillName": "防御",
-			"spritePath": "Assets/Sprites/Skills/Icon_skill2",
+			"spritePath": "Skills/Icon_skill2",
 			"introduce": "在本回合中减少受到的伤害。",
 			"methodName": "None",
 			"mpCost": 0,
@@ -24,7 +24,7 @@
 		{
 			"id": 3,
 			"skillName": "强击",
-			"spritePath": "Assets/Sprites/Skills/Icon_skill3",
+			"spritePath": "Skills/Icon_skill3",
 			"introduce": "对单体敌人造成大量伤害。",
 			"methodName": "None",
 			"mpCost": 15,
@@ -34,7 +34,7 @@
 		{
 			"id": 4,
 			"skillName": "愈合",
-			"spritePath": "Assets/Sprites/Skills/Icon_skill4",
+			"spritePath": "Skills/Icon_skill4",
 			"introduce": "使用者恢复一定量的HP。",
 			"methodName": "None",
 			"mpCost": 20,

@@ -22,15 +22,19 @@ public class Player_Stats : MonoBehaviour
 
 	public static string lastScene;
 
-	bool[] switchListBool = { false };
-	int[] switchListInt = { 0 };
+	public static bool[] switchListBool;
+	public static int[] switchListInt = { 0 };
 
 	public static Player_Stats instance = null;
+
+	SkillData Skill;
+
 	void Awake()
 	{
-        switchListBool = new bool[20];
-        
-        switchListInt = new int[20];
+		if (switchListBool == null) switchListBool = new bool[50];
+		if (switchListInt == null) switchListInt = new int[20];
+
+		if (Skill == null) Skill = LoadJson<SkillData>.LoadJsonFromFile("Skills");
 
 		DontDestroyOnLoad(gameObject);
 		if (instance == null)
@@ -46,7 +50,7 @@ public class Player_Stats : MonoBehaviour
 	void OnEnable()
     {
 		
-    }
+	}
 
     void Update()
     {

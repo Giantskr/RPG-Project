@@ -8,7 +8,7 @@ public class LoadJson<T> : MonoBehaviour
 	/// <summary>
 	/// 从Json文件中读取数据
 	/// </summary>
-	/// <param name="_FileName">文件名（文件必须是.json文件）</param>
+	/// <param name="FileName">文件名（文件必须是.json文件）</param>
 	/// <returns></returns>
 	public static T LoadJsonFromFile(string FileName)
 	{
