@@ -74,10 +74,11 @@ public class Events : MonoBehaviour
 		switch (gameObject.name)
 		{
 			case "Passerby":
-				SetFaceOrientation(-callingEvent.faceOrientation);
-				CreateTemporaryNPC(temporaryNPC, "路人", eventSprites[0]);
-				rpgTalkHolder.NewTalk("1", "2");
-				break;
+                    SetFaceOrientation(-callingEvent.faceOrientation);
+                    CreateTemporaryNPC(temporaryNPC, "路人", eventSprites[0]);
+                    rpgTalkHolder.NewTalk("1", "2");
+
+                break;
 			case "TestBox":
 				rpgTalkHolder.NewTalk("1", "1");
 				break;
@@ -91,24 +92,42 @@ public class Events : MonoBehaviour
 				//rpgTalkHolder.NewTalk("2", "2");
 				break;
             case "BestArmor":
-                rpgTalkHolder.NewTalk("1", "1");
+                rpgTalkHolder.NewTalk("5", "5");
                 break;
             case "BestSword":
-                rpgTalkHolder.NewTalk("2", "2");
+                rpgTalkHolder.NewTalk("4", "4");
                 break;
             case "BestHelmet":
-                rpgTalkHolder.NewTalk("2", "2");
+                rpgTalkHolder.NewTalk("6", "6");
+                break;
+            case "TreasureBox":
+                rpgTalkHolder.NewTalk("7", "7");
                 break;
             case "Notice":
                 rpgTalkHolder.NewTalk("3", "3");
                 break;
             case "Guard":
-                rpgTalkHolder.NewTalk("5", "9");
-                CreateTemporaryNPC(temporaryNPC, "守卫", eventSprites[0]);
+                if (!Player_Stats.switchListBool[0])
+                {
+                    SetFaceOrientation(-callingEvent.faceOrientation);
+                    rpgTalkHolder.NewTalk("5", "9");
+                    CreateTemporaryNPC(temporaryNPC, "守卫", eventSprites[0]);
+                    Player_Stats.switchListBool[0] = true;
+                }
                 break;
             case "King":
-                rpgTalkHolder.NewTalk("10", "14");
-                CreateTemporaryNPC(temporaryNPC, "国王", eventSprites[0]);
+                if (!Player_Stats.switchListBool[1])
+                {
+                    rpgTalkHolder.NewTalk("10", "19");
+                    CreateTemporaryNPC(temporaryNPC, "国王", eventSprites[0]);
+                    Player_Stats.switchListBool[1] = true;
+                }
+                break;
+            case "Gate":
+                an.Play("GateOpen");
+                break;
+            case "StoreSign":
+                gameManager.OpenStore();
                 break;
             case "SceneMove01":
 				au.PlayOneShot(sceneChangeSound);
@@ -197,6 +216,17 @@ public class Events : MonoBehaviour
                         stats.SetSwitchBool(3, true);
                         gameObject.SetActive(false);
                     }
+                    break;
+                case "King":
+                    GameObject.Find("Accessible").transform.Find("Weapons").gameObject.SetActive(true);
+                    break;
+                case "TreasureBox":
+                    Object_WeaponBag.weaponsize += 1;
+                    Object_WeaponBag.Weapons.Add(new Item("更好的剑X1", Resources.Load<Sprite>("02"), 1));
+                    Object_WeaponBag.armorsize += 1;
+                    Object_WeaponBag.Armors.Add(new Item("更好的甲X1", Resources.Load<Sprite>("15"), 1));
+                    Object_WeaponBag.helmetsize += 1;
+                    Object_WeaponBag.Helmets.Add(new Item("更好的头X1", Resources.Load<Sprite>("05"), 1));
                     break;
             }
 			Input.ResetInputAxes();

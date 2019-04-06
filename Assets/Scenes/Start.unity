@@ -1485,7 +1485,11 @@ MonoBehaviour:
   - {fileID: 1228164689}
   - {fileID: 2013809509}
   OptionNum: 3
-  UI_Sounds: []
+  UI_Sounds:
+  - {fileID: 8300000, guid: 7ced1f4fb94c370439a28e920ae7560a, type: 3}
+  - {fileID: 8300000, guid: 3c04ccfb80ed53d4daaa7770f5343693, type: 3}
+  - {fileID: 8300000, guid: 5eadee6ab416b5b4c94f7c0638b0e5d6, type: 3}
+  - {fileID: 8300000, guid: f7d65b93fb61e5742817afff623d81cf, type: 3}
   Options: {fileID: 1608339896}
   Menu: {fileID: 1493674810}
 --- !u!1 &872559974

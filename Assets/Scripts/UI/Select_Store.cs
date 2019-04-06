@@ -20,6 +20,7 @@ public class Select_Store : Select
         if (Input.GetButtonDown("Cancel"))
         {
             Store.SetActive(false);
+            GameManager.inScene = true;
         }
         if (Input.GetButtonDown("Submit"))
         {
@@ -27,7 +28,7 @@ public class Select_Store : Select
             {
                 case 1: Goods.SetActive(true);gameObject.SetActive(false); break;
                 case 2: Sell.SetActive(true); gameObject.SetActive(false); break;
-                case 3: Store.SetActive(false);break;
+                case 3: Store.SetActive(false); GameManager.inScene = true; break;
             }
         }
     }

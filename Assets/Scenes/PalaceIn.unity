@@ -5299,7 +5299,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1285792447}
+    m_TransformParent: {fileID: 1451459924}
     m_Modifications:
     - target: {fileID: 3149690493255800383, guid: b26b053af568dd444a5a45cccc8d96a2,
         type: 3}
@@ -8204,9 +8204,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1866527507}
-  - {fileID: 633623075}
-  - {fileID: 1740389916}
+  - {fileID: 1451459924}
   - {fileID: 9117625101700009057}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -8334,6 +8332,39 @@ Transform:
   - {fileID: 647085896}
   m_Father: {fileID: 0}
   m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1451459923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1451459924}
+  m_Layer: 0
+  m_Name: Weapons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1451459924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451459923}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1866527507}
+  - {fileID: 633623075}
+  - {fileID: 1740389916}
+  m_Father: {fileID: 1285792447}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1467639199
 GameObject:
@@ -8893,6 +8924,8 @@ MonoBehaviour:
   - {fileID: 1777923861}
   OptionNum: 4
   UI_Sounds: []
+  BattleCommands: {fileID: 0}
+  BattleOrRun: {fileID: 0}
 --- !u!212 &1689197307
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9857,7 +9890,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1285792447}
+    m_TransformParent: {fileID: 1451459924}
     m_Modifications:
     - target: {fileID: 3704133809756984297, guid: 4fe718db91aae144aa42313076f7c785,
         type: 3}
@@ -9868,6 +9901,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3704133809756984297, guid: 4fe718db91aae144aa42313076f7c785,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3704133809756984299, guid: 4fe718db91aae144aa42313076f7c785,
         type: 3}
@@ -9961,7 +9999,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1285792447}
+    m_TransformParent: {fileID: 1451459924}
     m_Modifications:
     - target: {fileID: 3761177931692381964, guid: c5d9be20a3783a84f9b0c25561e198bf,
         type: 3}
@@ -9977,6 +10015,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3761177931692381964, guid: c5d9be20a3783a84f9b0c25561e198bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3761177931692381962, guid: c5d9be20a3783a84f9b0c25561e198bf,
         type: 3}
@@ -10121,7 +10164,7 @@ PrefabInstance:
     - target: {fileID: 9117625101700009057, guid: 53533797018620e498a2d34de7cdc093,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9117625101700009057, guid: 53533797018620e498a2d34de7cdc093,
         type: 3}
@@ -10184,11 +10227,6 @@ PrefabInstance:
       value: UI_Esc
       objectReference: {fileID: 0}
     - target: {fileID: 5971466183620310975, guid: 7fe931b35c6d7354a925875dbd009818,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2807091690108005150, guid: 7fe931b35c6d7354a925875dbd009818,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -10298,52 +10336,22 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6765213822439792054, guid: 7fe931b35c6d7354a925875dbd009818,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5971466183838370873, guid: 7fe931b35c6d7354a925875dbd009818,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5009267963191581953, guid: 7fe931b35c6d7354a925875dbd009818,
-        type: 3}
-      propertyPath: weapon.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5009267963191581953, guid: 7fe931b35c6d7354a925875dbd009818,
-        type: 3}
-      propertyPath: Weapons
-      value: 
-      objectReference: {fileID: 306802176}
-    - target: {fileID: 5009267963191581953, guid: 7fe931b35c6d7354a925875dbd009818,
-        type: 3}
-      propertyPath: weapon.Array.data[0]
-      value: 
-      objectReference: {fileID: 1473965654}
-    - target: {fileID: 5009267963191581953, guid: 7fe931b35c6d7354a925875dbd009818,
-        type: 3}
-      propertyPath: weapon.Array.data[1]
-      value: 
-      objectReference: {fileID: 936485879}
-    - target: {fileID: 5009267963191581953, guid: 7fe931b35c6d7354a925875dbd009818,
-        type: 3}
-      propertyPath: weapon.Array.data[2]
-      value: 
-      objectReference: {fileID: 67298627}
-    - target: {fileID: 5009267963191581953, guid: 7fe931b35c6d7354a925875dbd009818,
-        type: 3}
-      propertyPath: weapon.Array.data[3]
-      value: 
-      objectReference: {fileID: 1262221177}
     - target: {fileID: 5971466184962551203, guid: 7fe931b35c6d7354a925875dbd009818,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8893511158047724165, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6765213822439792054, guid: 7fe931b35c6d7354a925875dbd009818,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -10408,31 +10416,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 6888707992325013241, guid: 7fe931b35c6d7354a925875dbd009818,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 36.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 6888707992325013241, guid: 7fe931b35c6d7354a925875dbd009818,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 376.36935
-      objectReference: {fileID: 0}
-    - target: {fileID: 3976002058239213870, guid: 7fe931b35c6d7354a925875dbd009818,
-        type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7754156989241645784, guid: 7fe931b35c6d7354a925875dbd009818,
-        type: 3}
-      propertyPath: m_Text
-      value: "\u7A7A"
-      objectReference: {fileID: 0}
-    - target: {fileID: 7409878196097424814, guid: 7fe931b35c6d7354a925875dbd009818,
-        type: 3}
-      propertyPath: m_Text
-      value: "\u7A7A"
-      objectReference: {fileID: 0}
     - target: {fileID: 9040181003180374855, guid: 7fe931b35c6d7354a925875dbd009818,
         type: 3}
       propertyPath: body.Array.size
@@ -10458,7 +10441,67 @@ PrefabInstance:
       propertyPath: body.Array.data[3]
       value: 
       objectReference: {fileID: 1013584169}
+    - target: {fileID: 2807091690108005150, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6888707992325013241, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 36.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6888707992325013241, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 376.36935
+      objectReference: {fileID: 0}
+    - target: {fileID: 3976002058239213870, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5009267963191581953, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: weapon.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5009267963191581953, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: Weapons
+      value: 
+      objectReference: {fileID: 306802176}
+    - target: {fileID: 5009267963191581953, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: weapon.Array.data[0]
+      value: 
+      objectReference: {fileID: 1473965654}
+    - target: {fileID: 5009267963191581953, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: weapon.Array.data[1]
+      value: 
+      objectReference: {fileID: 936485879}
+    - target: {fileID: 5009267963191581953, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: weapon.Array.data[2]
+      value: 
+      objectReference: {fileID: 67298627}
+    - target: {fileID: 5009267963191581953, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: weapon.Array.data[3]
+      value: 
+      objectReference: {fileID: 1262221177}
+    - target: {fileID: 7754156989241645784, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u7A7A"
+      objectReference: {fileID: 0}
     - target: {fileID: 4227266032157391054, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u7A7A"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7409878196097424814, guid: 7fe931b35c6d7354a925875dbd009818,
         type: 3}
       propertyPath: m_Text
       value: "\u7A7A"

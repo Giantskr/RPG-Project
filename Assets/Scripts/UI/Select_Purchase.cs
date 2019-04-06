@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Select_Purchase : Select
 {
     public GameObject Select_Store;
     public GameObject goods;
+    public Text Describe;
     public static  bool isBought1 = false;
     public static  bool isBought2 = false;
     public static  bool isBought3 = false;
+    public static bool isBought4 = false;
+    public static bool isBought5 = false;
+    public static bool isBought6 = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +24,31 @@ public class Select_Purchase : Select
     void Update()
     {
         Selection();
+        switch (states)
+        {
+            case 1:
+                Describe.text = "小瓶生命药剂 恢复30点生命值 价格 30G";
+                break;
+            case 2:
+                Describe.text = "中瓶生命药剂 恢复50点生命值 价格 50G";
+                break;
+            case 3:
+                Describe.text = "大瓶生命药剂 恢复70点生命值 价格 70G";
+                break;
+            case 4:
+                Describe.text = "小瓶魔力药剂 恢复30点魔法值 价格 40G";
+                break;
+            case 5:
+                Describe.text = "中瓶魔力药剂 恢复30点魔法值 价格 60G";
+                break;
+            case 6:
+                Describe.text = "大瓶魔力药剂 恢复30点魔法值 价格 80G";
+                break;
+        }
         if (Input.GetButtonDown("Cancel"))
         {
-            Select_Store.SetActive(true);
+            Describe.text = null;
+           Select_Store.SetActive(true);
             goods.SetActive(false);
         }
         if (Input.GetButtonDown("Submit"))
@@ -30,14 +57,23 @@ public class Select_Purchase : Select
             {
                 case 1:
 
-                    isBought1 = PayMoney(0, 30, "小药瓶", "07", isBought1);                   
+                    isBought1 = PayMoney(0, 30, "小瓶生命药剂", "07", isBought1);                   
                     break;
                 case 2:
 
-                    isBought2=PayMoney(1, 50, "中药瓶", "08", isBought2);
+                    isBought2=PayMoney(1, 50, "中瓶生命药剂", "08", isBought2);
                     break;
                 case 3:
-                    isBought3=PayMoney(2, 70, "大药瓶", "09", isBought3);
+                    isBought3=PayMoney(2, 70, "大瓶生命药剂", "09", isBought3);
+                    break;
+                case 4:
+                    isBought4 = PayMoney(3, 40, "小瓶魔力药剂", "12", isBought4);
+                    break;
+                case 5:
+                    isBought5 = PayMoney(4, 60, "中瓶魔力药剂", "13", isBought5);
+                    break;
+                case 6:
+                    isBought6 = PayMoney(5, 80, "大瓶魔力药剂", "14", isBought6);
                     break;
             }
            
