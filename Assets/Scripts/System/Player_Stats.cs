@@ -22,7 +22,6 @@ public class Player_Stats : BattleActions
 
 	public static string lastScene;
 
-	public static bool[] switchListBool;
 	public static int[] switchListInt = { 0 };
 	public static Player_Stats instance = null;
 
@@ -36,8 +35,8 @@ public class Player_Stats : BattleActions
 			instance = this;
 		else if (instance != this)
 			Destroy(gameObject);
-		if (switchListBool == null) switchListBool = new bool[50];
-		if (switchListInt == null) switchListInt = new int[20];
+
+		if (switchListInt == null) switchListInt = new int[50];
 
 		if (Skill == null) Skill = LoadJson<SkillData>.LoadJsonFromFile("Skills");
 	}
@@ -90,12 +89,5 @@ public class Player_Stats : BattleActions
 
 	}
 
-    public void SetSwitchBool(int index, bool set)
-    {
-        switchListBool[index] = set;
-    }
-    public bool GetSwitchBool(int index)
-    {
-        return switchListBool[index];
-    }
+    
 }

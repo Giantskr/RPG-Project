@@ -54,7 +54,7 @@ public class Events : MonoBehaviour
 		switch (gameObject.name)
 		{
 			case "TestArea":
-				if (stats.GetSwitchBool(0)) Destroy(gameObject);
+				if (Player_Stats.switchListInt[40] == 0) Destroy(gameObject);
 				break;
 		}
 		if (rpgTalkHolder != null)
@@ -83,10 +83,10 @@ public class Events : MonoBehaviour
 				rpgTalkHolder.NewTalk("1", "1");
 				break;
 			case "TestArea":
-				if (!stats.GetSwitchBool(0))
+				if (Player_Stats.switchListInt[40] == 0) 
 				{
 					gameManager.StartBattle();
-					stats.SetSwitchBool(0, true);
+					Player_Stats.switchListInt[40] = 1;
 					Destroy(gameObject);
 				}
 				//rpgTalkHolder.NewTalk("2", "2");
@@ -107,21 +107,23 @@ public class Events : MonoBehaviour
                 rpgTalkHolder.NewTalk("3", "3");
                 break;
             case "Guard":
-                if (!Player_Stats.switchListBool[0])
+                if (Player_Stats.switchListInt[0] == 0)
                 {
                     SetFaceOrientation(-callingEvent.faceOrientation);
                     rpgTalkHolder.NewTalk("5", "9");
                     CreateTemporaryNPC(temporaryNPC, "守卫", eventSprites[0]);
-                    Player_Stats.switchListBool[0] = true;
-                }
+					Player_Stats.switchListInt[0] = 1;
+
+				}
                 break;
             case "King":
-                if (!Player_Stats.switchListBool[1])
+                if (Player_Stats.switchListInt[1] == 0)
                 {
                     rpgTalkHolder.NewTalk("10", "19");
                     CreateTemporaryNPC(temporaryNPC, "国王", eventSprites[0]);
-                    Player_Stats.switchListBool[1] = true;
-                }
+					Player_Stats.switchListInt[1] = 1;
+
+				}
                 break;
             case "Gate":
                 an.Play("GateOpen");
@@ -181,9 +183,9 @@ public class Events : MonoBehaviour
 			switch (gameObject.name)
 			{
 				case "TestArea":
-					if (!stats.GetSwitchBool(0))
+					if (Player_Stats.switchListInt[0] == 0)
 					{
-						stats.SetSwitchBool(0, true);
+						Player_Stats.switchListInt[0] = 1;
 						Destroy(gameObject);
 					}
 					break;
@@ -191,10 +193,9 @@ public class Events : MonoBehaviour
 					Object_WeaponBag.armorsize += 1;
 					Object_WeaponBag.Armors.Add(new Item("最好的甲", Resources.Load<Sprite>("06"), 1));
 					Debug.Log("已经获取防具");
-					if (!stats.GetSwitchBool(2))
+					if (Player_Stats.switchListInt[2] == 0)
 					{
-                       // Debug.Log("这里有bug");
-						stats.SetSwitchBool(2, true);
+						Player_Stats.switchListInt[2] = 1;
 						gameObject.SetActive(false);
 					}
 					break;
@@ -202,9 +203,9 @@ public class Events : MonoBehaviour
 					Object_WeaponBag.weaponsize += 1;
 					Object_WeaponBag.Weapons.Add(new Item("最好的剑", Resources.Load<Sprite>("01"), 1));
 					Debug.Log("已经获取武器");
-					if (!stats.GetSwitchBool(3))
+					if (Player_Stats.switchListInt[3] == 0)
 					{
-						stats.SetSwitchBool(3, true);
+						Player_Stats.switchListInt[3] = 1;
 						gameObject.SetActive(false);
 					}
 					break;
@@ -212,17 +213,18 @@ public class Events : MonoBehaviour
                     Object_WeaponBag.helmetsize += 1;
                     Object_WeaponBag.Helmets.Add(new Item("最好的头", Resources.Load<Sprite>("04"), 1));
                     Debug.Log("已经获取头盔");
-                    if (!stats.GetSwitchBool(4))
+                    if (Player_Stats.switchListInt[4] == 0)
                     {
-                        stats.SetSwitchBool(4, true);
-                        gameObject.SetActive(false);
+						Player_Stats.switchListInt[4] = 1;
+
+						gameObject.SetActive(false);
                     }
                     break;
                 case "King":
                     GameObject.Find("Accessible").transform.Find("Weapons").gameObject.SetActive(true);
                     break;
                 case "TreasureBox":
-                    if (!stats.GetSwitchBool(5))
+                    if (Player_Stats.switchListInt[5] == 0)
                     {
                         Object_WeaponBag.weaponsize += 1;
                         Object_WeaponBag.Weapons.Add(new Item("更好的剑", Resources.Load<Sprite>("02"), 1));
@@ -230,8 +232,9 @@ public class Events : MonoBehaviour
                         Object_WeaponBag.Armors.Add(new Item("更好的甲", Resources.Load<Sprite>("15"), 1));
                         Object_WeaponBag.helmetsize += 1;
                         Object_WeaponBag.Helmets.Add(new Item("更好的头", Resources.Load<Sprite>("05"), 1));
-                        stats.SetSwitchBool(5, true);
-                    }
+						Player_Stats.switchListInt[5] = 1;
+
+					}
                     break;
             }
 			Input.ResetInputAxes();
