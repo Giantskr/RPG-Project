@@ -141,7 +141,13 @@ public class Events : MonoBehaviour
 					case "Store":
 						gameManager.StartCoroutine("ChangeScene", "GrassLand");
 						break;
-				}
+                    case "Town":
+                        gameManager.StartCoroutine("ChangeScene", "PalaceOut");
+                        break;
+                    case "PalaceOut":
+                        gameManager.StartCoroutine("ChangeScene", "Town");
+                        break;
+                }
 				break;
 		}
 	}

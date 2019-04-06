@@ -21,7 +21,7 @@ public class Select_Main : Select
 			switch (states)
 			{
 				case 1:
-					SceneManager.LoadScene("Town");
+					SceneManager.LoadScene("PalaceOut");
 					break;
 				case 2: break;
 				case 3:

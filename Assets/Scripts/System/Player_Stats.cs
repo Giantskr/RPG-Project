@@ -56,7 +56,11 @@ public class Player_Stats : BattleActions
         PlayerPrefs.SetInt("EXP", EXP);
         PlayerPrefs.SetInt("Money", Money);
         PlayerPrefs.SetInt("Guard", 1);
-        
+        for(int i = 0; i< 30; i++)
+        {
+
+            PlayerPrefs.SetInt("switchListInt" + i, switchListInt[i]);
+        }
     }
     public void read()
     {
@@ -73,6 +77,11 @@ public class Player_Stats : BattleActions
         level= PlayerPrefs.GetInt("level" );
         EXP= PlayerPrefs.GetInt("EXP" );
         Money= PlayerPrefs.GetInt("Money");
+        for (int i = 0; i < 30; i++)
+        {
+
+            switchListInt[i]= PlayerPrefs.GetInt("switchListInt"+i);
+        }
     }
     public static Player_Stats GetInstance()
 	{
