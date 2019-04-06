@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleActions : MonoBehaviour
 {
 	public static GameObject player;
+	public GameObject[] allmonsters;
+	[Space]
+	public Text text1;
+	public Text text2;
+	
 
 	GameObject[] monsterInBattlle;
 
@@ -20,10 +26,12 @@ public class BattleActions : MonoBehaviour
 		player = GameObject.Find("Player_Stats");
 
 		monsterInBattlle = new GameObject[10];
-		Transform monsterParentObject = transform.GetChild(0);
-		for (int i = 0; i < monsterParentObject.childCount; i++) 
-			monsterInBattlle[i] = monsterParentObject.GetChild(i).gameObject; 
-
+		if (gameObject.name == "Battle")
+		{
+			Transform monsterParentObject = transform.GetChild(0);
+			for (int i = 0; i < monsterParentObject.childCount; i++)
+				monsterInBattlle[i] = monsterParentObject.GetChild(i).gameObject;
+		}
 		skills = LoadJson<SkillData>.LoadJsonFromFile("Skills");
 	}
 
@@ -52,11 +60,11 @@ public class BattleActions : MonoBehaviour
 		foreach (var data in skills.Skills)
 			if (data.id == id)
 			{
-				float rand = Random.Range(0, 100);
+				float rand = Random.Range(0, 1);
 				if (data.accuracy != 0)
 				{
 					float dodgeRate = 1;
-					if (bNegative != player) dodgeRate = bNegative.GetComponent<Monster>().info.dodgeRate / 100;
+					if (bNegative != player) dodgeRate = bNegative.GetComponent<Monster>().info.dodgeRate;
 					if (rand > data.accuracy * dodgeRate) miss = true;
 				}
 				if (miss)
@@ -80,6 +88,7 @@ public class BattleActions : MonoBehaviour
 	{
 		if (gameObject == player) Player_Stats.HP -= dmg;
 		else GetComponent<Monster>().HP -= dmg;
+		Debug.Log(gameObject + "受到了" + dmg + "点伤害");
 	}
 	/// <summary>
 	/// 读取技能伤害公式
