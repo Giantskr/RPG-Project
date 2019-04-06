@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 	public GameObject cam;
 	public GameObject UI_Esc;
 	public GameObject UI_Battle;
+	public GameObject UI_Store;
 	public GameObject fadingScreen;
 	public GameObject player;
 
@@ -110,5 +111,10 @@ public class GameManager : MonoBehaviour
 		inScene = false;
 		inBattle = true;
 		UI_Battle.SetActive(true);
+	}
+    public void OpenStore()
+	{
+		inScene = false;
+		UI_Store.SetActive(true);
 	}
 }

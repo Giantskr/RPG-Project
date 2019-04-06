@@ -82,4 +82,87 @@ public class Object_WeaponBag : MonoBehaviour
             }
         }
     }
+    public void saveObjectInformation()
+    {
+        for (int i = 0; i < weaponsize; i++)
+        {
+            PlayerPrefs.SetString("Weapon" + i, Weapons[i].name); PlayerPrefs.SetInt("weaponsize", weaponsize);
+        }
+        for (int i = 0; i < propsize; i++)
+        {
+            PlayerPrefs.SetString("Prop" + i, Props[i].name); PlayerPrefs.SetInt("PropNum" + i, Props[i].num); PlayerPrefs.SetInt("propsize", propsize);
+        }
+        for (int i = 0; i < helmetsize; i++)
+        {
+            PlayerPrefs.SetString("Helmet" + i, Helmets[i].name); PlayerPrefs.SetInt("helmetsize", helmetsize);
+        }
+        for (int i = 0; i < armorsize; i++)
+        {
+            PlayerPrefs.SetString("Armor" + i, Armors[i].name); PlayerPrefs.SetInt("armorsize",armorsize);
+        }
+    }
+    public void readObjectInformation()
+    {
+        weaponsize = PlayerPrefs.GetInt("weaponsize");
+        propsize = PlayerPrefs.GetInt("propsize");
+        helmetsize = PlayerPrefs.GetInt("helmetsize");
+        armorsize = PlayerPrefs.GetInt("armorsize");
+        for (int i = 0; i < weaponsize; i++)
+        {
+            Weapons[i].name = PlayerPrefs.GetString("Weapon" + i);witchWeapon(i,Weapons [i].name);
+        }
+        for (int i = 0; i < armorsize; i++)
+        {
+            Armors[i].name = PlayerPrefs.GetString("Armor" + i); witchArmor(i, Armors[i].name);
+        }
+        for (int i = 0; i < weaponsize; i++)
+        {
+            Helmets[i].name = PlayerPrefs.GetString("Helmet" + i); witchHelmet(i, Helmets[i].name);
+        }
+        for (int i = 0; i < propsize; i++)
+        {
+            Props[i].name = PlayerPrefs.GetString("Prop" + i);Props[i].num = PlayerPrefs.GetInt("PropNum" + i);
+        }
+    }
+    public void witchWeapon(int i,string WeaponName)
+    {
+        Weapons[i].num = 1;
+        switch (WeaponName)
+        {
+            case "最好的剑": Weapons[i].img = Resources.Load<Sprite>("01");break;           
+            
+            case "更好的剑": Weapons[i].img = Resources.Load<Sprite>("02"); break;            
+           
+        }
+    }
+    public void witchArmor(int i,string ArmorName)
+    {
+        Armors[i].num = 1;
+        switch (ArmorName)
+        {
+            case "最好的甲": Weapons[i].img = Resources.Load<Sprite>("06"); break;
+            case "更好的甲": Weapons[i].img = Resources.Load<Sprite>("15"); break;
+        }
+    }
+    public void witchHelmet(int i, string HelmetName)
+    {
+        Armors[i].num = 1;
+        switch (HelmetName)
+        {
+            case "最好的头":Helmets[i].img = Resources.Load<Sprite>("04"); break;
+            case "更好的头":Helmets[i].img = Resources.Load<Sprite>("05"); break;
+        }
+    }
+    public void witchProp(int i,string PropName)
+    {
+        switch (PropName)
+        {
+            case "小瓶生命药剂": Props[i].img= Resources.Load<Sprite>("07");break;
+            case "中瓶生命药剂": Props[i].img = Resources.Load<Sprite>("08");break;
+            case  "大瓶生命药剂": Props[i].img = Resources.Load<Sprite>("09"); break;
+            case "小瓶魔力药剂": Props[i].img = Resources.Load<Sprite>("12"); break;
+            case "中瓶魔力药剂": Props[i].img = Resources.Load<Sprite>("13"); break;
+            case "大瓶魔力药剂": Props[i].img = Resources.Load<Sprite>("14"); break;
+        }
+    }
 }

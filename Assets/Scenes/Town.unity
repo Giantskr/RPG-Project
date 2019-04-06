@@ -7438,6 +7438,8 @@ MonoBehaviour:
   - {fileID: 557636295}
   OptionNum: 4
   UI_Sounds: []
+  BattleCommands: {fileID: 0}
+  BattleOrRun: {fileID: 0}
 --- !u!212 &1744356971
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8888,5 +8890,10 @@ PrefabInstance:
       propertyPath: rpgTalkHolder
       value: 
       objectReference: {fileID: 148814752}
+    - target: {fileID: 2540439604774973761, guid: 1dc38689265667b449af14ccb2e06ac8,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1dc38689265667b449af14ccb2e06ac8, type: 3}
