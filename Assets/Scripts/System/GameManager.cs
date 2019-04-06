@@ -21,46 +21,46 @@ public class GameManager : MonoBehaviour
 
 	GameObject[] allMonsters;
 	public static List<GameObject> monstersJoining;
-	//public static GameManager instance = null;
-	//void Awake()
-	//{
-	//	DontDestroyOnLoad(gameObject);
-	//	if (instance == null)
-	//		instance = this;
-	//	else if (instance != this)
-	//		Destroy(gameObject);
-	//}
-	//public static GameManager GetInstance()
-	//{
-	//	return instance;
-	//}
-
-	void OnEnable()
+    public static GameManager instance = null;
+    void Awake()
     {
-		if (cam.GetComponent<MapCamera>().sceneType == MapCamera.SceneType.GamePlay)
-		{
-			allMonsters = UI_Battle.GetComponent<BattleActions>().allmonsters;
-			monstersJoining = new List<GameObject>();
-			fading = true;
-			inScene = true;
-		}
-		else
-		{
-			fading = false;
-			inScene = false;
-		}
-		inBattle = false;
-		SceneManager.sceneLoaded += OnSceneChange;
-		au = GetComponent<AudioSource>();
+        DontDestroyOnLoad(gameObject);
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+    }
+    public static GameManager GetInstance()
+    {
+        return instance;
+    }
+
+    void OnEnable()
+    {
+        if (cam.GetComponent<MapCamera>().sceneType == MapCamera.SceneType.GamePlay)
+        {
+            //allMonsters = UI_Battle.GetComponent<BattleActions>().allmonsters;
+            //monstersJoining = new List<GameObject>();
+            fading = true;
+            inScene = true;
+        }
+        else
+        {
+            fading = false;
+            inScene = false;
+        }
+        inBattle = false;
+        SceneManager.sceneLoaded += OnSceneChange;
+        au = GetComponent<AudioSource>();
 
 
-		if (monstersJoining != null) monstersJoining.Clear();
-		Debug.Log(allMonsters[0]);
-		monstersJoining.Add(allMonsters[0]);
-		StartBattle(monstersJoining);
-	}
+        //	if (monstersJoining != null) monstersJoining.Clear();
+        //	Debug.Log(allMonsters[0]);
+        //	monstersJoining.Add(allMonsters[0]);
+        //	StartBattle(monstersJoining);
+        }
 
-    void Update()
+        void Update()
     {
 		if (Input.GetButtonDown("Cancel") && inScene && !fading)
 		{

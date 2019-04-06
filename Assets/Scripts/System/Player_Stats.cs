@@ -19,6 +19,7 @@ public class Player_Stats : BattleActions
 	public static int EXP = 0;
 	public static int EXPToNextLevel = 50;
 	public static int Money = 1000;
+    public static float volumn=0.5f;
 
 	public static string lastScene;
 
@@ -29,7 +30,7 @@ public class Player_Stats : BattleActions
 
 	void Awake()
 	{
-
+       // AudioListener.volume = volumn;
 		DontDestroyOnLoad(gameObject);
 		if (instance == null)
 			instance = this;

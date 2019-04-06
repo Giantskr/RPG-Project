@@ -8,8 +8,8 @@ public class Object_WeaponBag : MonoBehaviour
        //用于在物品栏显示各种物品，不限于武器
     //public GameObject WeaponLaid;
     public List<GameObject> weapon,prop,armor;
-    public static List<Item> Weapons,Props,Helmets,Armors;
-    public static  int weaponsize,propsize,helmetsize,armorsize = 0;
+    public static List<Item> Weapons,Props,Helmets,Armors,Skills;
+    public static  int weaponsize,propsize,helmetsize,armorsize,skillsize = 0;
 
     private void Awake()
     {
@@ -17,6 +17,9 @@ public class Object_WeaponBag : MonoBehaviour
         Props = new List<Item>();
         Helmets = new List<Item>();
         Armors = new List<Item>();
+        Skills = new List<Item>();
+        skillsize += 1;
+        Skills.Add(new Item("强击", Resources.Load<Sprite>("10"), 1));
         //for (int i = 0; i < weaponsize; i++)
         //{
         //    weapon[i].transform.GetChild(0).GetComponent<Image>().sprite = Weapons[i].img;

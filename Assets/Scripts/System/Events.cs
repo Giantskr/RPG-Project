@@ -75,9 +75,8 @@ public class Events : MonoBehaviour
 		{
 			case "Passerby":
                     SetFaceOrientation(-callingEvent.faceOrientation);
-                    CreateTemporaryNPC(temporaryNPC, "路人", eventSprites[0]);
-                    rpgTalkHolder.NewTalk("1", "2");
-
+                    CreateTemporaryNPC(temporaryNPC, "神秘的小姐姐", eventSprites[0]);
+                    rpgTalkHolder.NewTalk("26", "38");
                 break;
 			case "TestBox":
 				rpgTalkHolder.NewTalk("1", "1");

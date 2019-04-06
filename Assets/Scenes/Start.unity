@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 262165606}
   - component: {fileID: 262165605}
   m_Layer: 5
-  m_Name: bt_SE
+  m_Name: emmm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -784,7 +784,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "SE\u97F3\u91CF"
+  m_Text: "\u4E00\u4E2A\u6CA1\u7528\u7684\u6309\u94AE"
 --- !u!222 &513987335
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1028,7 +1028,7 @@ GameObject:
   - component: {fileID: 736629856}
   - component: {fileID: 736629855}
   m_Layer: 5
-  m_Name: bt_BGM
+  m_Name: Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2470,13 +2470,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "BGM\u97F3\u91CF"
+  m_Text: "\u97F3\u91CF"
 --- !u!222 &1104629618
 CanvasRenderer:
   m_ObjectHideFlags: 0
