@@ -6,6 +6,9 @@ public class Select_Battle : Select
 {
 	public GameObject BattleCommands;
 	public GameObject BattleOrRun;
+	public GameObject Characters;
+	public GameObject monsterSelection;
+	List<GameObject> aliveMonsters;
 
 	void Start()
     {
@@ -20,7 +23,10 @@ public class Select_Battle : Select
 			switch (states)
 			{
 				case 1:
-					
+					gameObject.SetActive(false);
+					Characters.SetActive(false);
+					monsterSelection.SetActive(true);
+					//Player_Stats.
 					break;
 				case 2:
 					
@@ -37,6 +43,7 @@ public class Select_Battle : Select
 		{
 			BattleOrRun.SetActive(true);
 			BattleCommands.SetActive(false);
+			Characters.SetActive(false);
 		}
 	}
 }

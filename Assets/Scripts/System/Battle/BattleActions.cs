@@ -14,31 +14,29 @@ public class BattleActions : MonoBehaviour
 	public Text text2;
 	
 
-	GameObject[] monsterInBattlle;
+	public static List<GameObject> monsterInBattle;
 
 	int round = 0;
 	bool ifGuard = false;
-	//MonsterData monsters;
+
 	SkillData skills;
 
-	private void Awake()
+	private void Start()
 	{
 		player = GameObject.Find("Player_Stats");
 
-		monsterInBattlle = new GameObject[10];
+		if (monsterInBattle == null) monsterInBattle = new List<GameObject>();
 		if (gameObject.name == "Battle")
 		{
 			Transform monsterParentObject = transform.GetChild(0);
 			for (int i = 0; i < monsterParentObject.childCount; i++)
-				monsterInBattlle[i] = monsterParentObject.GetChild(i).gameObject;
+				monsterInBattle.Add(monsterParentObject.GetChild(i).gameObject);
+			text1.text = "";
+			text2.text = "";
 		}
-		skills = LoadJson<SkillData>.LoadJsonFromFile("Skills");
+		skills = LoadJson<SkillData>.LoadJsonFromFile("Skills");	
 	}
 
-	void Start()
-	{
-		
-	}
 
 	void Update()
 	{
@@ -86,6 +84,7 @@ public class BattleActions : MonoBehaviour
 	/// </summary>
 	void TakeDamage(int dmg)
 	{
+		if (ifGuard) dmg /= 2;
 		if (gameObject == player) Player_Stats.HP -= dmg;
 		else GetComponent<Monster>().HP -= dmg;
 		Debug.Log(gameObject + "受到了" + dmg + "点伤害");

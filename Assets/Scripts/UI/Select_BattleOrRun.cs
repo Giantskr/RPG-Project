@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Select_BattleOrRun : Select
 {
     public GameObject Battle;
     public GameObject BattleOrRun;
     public GameObject L;
+    public GameObject Characters;
+	public Text text1;
+	public Text text2;
 
     void OnEnable()
     {
@@ -22,14 +26,22 @@ public class Select_BattleOrRun : Select
 			{
 				case 1:
 					L.SetActive(true);
+					Characters.SetActive(true);
 					BattleOrRun.SetActive(false);
 					break;
 				case 2:
-					Battle.SetActive(false);
-					GameManager.inBattle = false;
-					GameManager.inScene = true;
+					StartCoroutine("Run");
 					break;
 			}
 		}	
     }
+	IEnumerator Run()
+	{
+		text1.text = "成功撤退！";
+		text2.text = "";
+		yield return new WaitForSeconds(1);
+		Battle.SetActive(false);
+		GameManager.inBattle = false;
+		GameManager.inScene = true;
+	}
 }

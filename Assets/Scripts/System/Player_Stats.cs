@@ -97,6 +97,9 @@ public class Player_Stats : BattleActions
     {
 
 	}
+	public void PlayerUseSkill(byte id)
+	{
 
+	}
     
 }
