@@ -85,7 +85,7 @@ public class Events : MonoBehaviour
 			case "TestArea":
 				if (Player_Stats.switchListInt[40] == 0) 
 				{
-					gameManager.StartBattle();
+					//gameManager.StartBattle();
 					Player_Stats.switchListInt[40] = 1;
 					Destroy(gameObject);
 				}

@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
 	AudioSource au;
 
+	GameObject[] allMonsters;
+	public static List<GameObject> monstersJoining;
 	//public static GameManager instance = null;
 	//void Awake()
 	//{
@@ -37,6 +39,8 @@ public class GameManager : MonoBehaviour
     {
 		if (cam.GetComponent<MapCamera>().sceneType == MapCamera.SceneType.GamePlay)
 		{
+			allMonsters = UI_Battle.GetComponent<BattleActions>().allmonsters;
+			monstersJoining = new List<GameObject>();
 			fading = true;
 			inScene = true;
 		}
@@ -49,7 +53,11 @@ public class GameManager : MonoBehaviour
 		SceneManager.sceneLoaded += OnSceneChange;
 		au = GetComponent<AudioSource>();
 
-		//StartBattle();
+
+		if (monstersJoining != null) monstersJoining.Clear();
+		Debug.Log(allMonsters[0]);
+		monstersJoining.Add(allMonsters[0]);
+		StartBattle(monstersJoining);
 	}
 
     void Update()
@@ -59,6 +67,7 @@ public class GameManager : MonoBehaviour
 			inScene = false;
 			UI_Esc.SetActive(true);
 		}
+		if (!inBattle && monstersJoining != null) monstersJoining = null;
 		//else if (inBattle && !UI_Battle.activeInHierarchy) UI_Battle.SetActive(true);
     }
 	void OnDisable()
@@ -106,10 +115,16 @@ public class GameManager : MonoBehaviour
 		playerEvent.SetSprite();
 	}
 
-	public void StartBattle()
+	public void StartBattle(List<GameObject> monsters)
 	{
 		inScene = false;
 		inBattle = true;
+		Vector2 startPos = Vector2.left * 100 * (monsters.Count - 1);
+		foreach(GameObject monster in monsters)
+		{
+			Instantiate(monster, startPos, Quaternion.identity, UI_Battle.transform.GetChild(0));
+			startPos += Vector2.right * 200;
+		}
 		UI_Battle.SetActive(true);
 	}
     public void OpenStore()
