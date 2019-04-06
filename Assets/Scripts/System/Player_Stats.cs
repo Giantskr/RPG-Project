@@ -24,28 +24,58 @@ public class Player_Stats : BattleActions
 
 	public static bool[] switchListBool;
 	public static int[] switchListInt = { 0 };
-
 	public static Player_Stats instance = null;
 
 	SkillData Skill;
 
 	void Awake()
 	{
+
 		DontDestroyOnLoad(gameObject);
 		if (instance == null)
 			instance = this;
 		else if (instance != this)
 			Destroy(gameObject);
-
-
-
-
 		if (switchListBool == null) switchListBool = new bool[50];
 		if (switchListInt == null) switchListInt = new int[20];
 
 		if (Skill == null) Skill = LoadJson<SkillData>.LoadJsonFromFile("Skills");
 	}
-	public static Player_Stats GetInstance()
+    public void save()
+    {
+        PlayerPrefs.SetInt("maxHP", maxHP);
+        PlayerPrefs.SetInt("maxMP", maxMP);
+        PlayerPrefs.SetInt("HP", HP);
+        PlayerPrefs.SetInt("MP", MP);
+        PlayerPrefs.SetInt("ATK", ATK);
+        PlayerPrefs.SetInt("DEF", DEF);
+        PlayerPrefs.SetInt("MAT", MAT);
+        PlayerPrefs.SetInt("MDF", MDF);
+        PlayerPrefs.SetInt("AGI", AGI);
+        PlayerPrefs.SetInt("LUC", LUC);
+        PlayerPrefs.SetInt("level", level);
+        PlayerPrefs.SetInt("EXP", EXP);
+        PlayerPrefs.SetInt("Money", Money);
+        PlayerPrefs.SetInt("Guard", 1);
+        
+    }
+    public void read()
+    {
+        maxHP = PlayerPrefs.GetInt("maxHP");
+        maxMP= PlayerPrefs.GetInt("maxMP");
+        HP= PlayerPrefs.GetInt("HP" );
+        MP =PlayerPrefs.GetInt("MP" );
+        ATK =PlayerPrefs.GetInt("ATK" );
+        DEF= PlayerPrefs.GetInt("DEF");
+        MAT= PlayerPrefs.GetInt("MAT" );
+        MDF =PlayerPrefs.GetInt("MDF" );
+        AGI= PlayerPrefs.GetInt("AGI");
+        LUC= PlayerPrefs.GetInt("LUC" );
+        level= PlayerPrefs.GetInt("level" );
+        EXP= PlayerPrefs.GetInt("EXP" );
+        Money= PlayerPrefs.GetInt("Money");
+    }
+    public static Player_Stats GetInstance()
 	{
 		return instance;
 	}

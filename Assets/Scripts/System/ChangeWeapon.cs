@@ -20,11 +20,13 @@ public class ChangeWeapon : MonoBehaviour
     //requests are received from Select_Equip.cs
     public static int weaponchangeWhich;
     public static int armorchangeWhich;
+    public static int helmetchangeWhich;
 
     void Update()
     {
-        weaponchange=Equip(weaponchange, weaponchangeWhich,Object_WeaponBag.weaponsize, weapon, Object_WeaponBag.Weapons, "最好的剑X1", 30,  Laidweapon);
+        weaponchange=Equip(weaponchange, weaponchangeWhich,Object_WeaponBag.weaponsize, weapon, Object_WeaponBag.Weapons, "最好的剑", 30,  Laidweapon);
         armorchange = Equip(armorchange, armorchangeWhich, Object_WeaponBag.armorsize, body, Object_WeaponBag.Armors, "", 0,  Laidbody);
+        helmetchange = Equip(helmetchange, helmetchangeWhich, Object_WeaponBag.helmetsize, head, Object_WeaponBag.Helmets, "", 0, Laidhead);
     }
     protected int Equip(int change,int changeWhich,int size,List<GameObject> sorts ,List<Item> item,string name,int stastic,GameObject laid)
     {

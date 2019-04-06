@@ -101,7 +101,7 @@ public class Events : MonoBehaviour
                 rpgTalkHolder.NewTalk("6", "6");
                 break;
             case "TreasureBox":
-                rpgTalkHolder.NewTalk("7", "7");
+                rpgTalkHolder.NewTalk("7", "8");
                 break;
             case "Notice":
                 rpgTalkHolder.NewTalk("3", "3");
@@ -189,31 +189,32 @@ public class Events : MonoBehaviour
 					break;
 				case "BestArmor":
 					Object_WeaponBag.armorsize += 1;
-					Object_WeaponBag.Armors.Add(new Item("最好的甲X1", Resources.Load<Sprite>("06"), 1));
+					Object_WeaponBag.Armors.Add(new Item("最好的甲", Resources.Load<Sprite>("06"), 1));
 					Debug.Log("已经获取防具");
-					if (!stats.GetSwitchBool(1))
+					if (!stats.GetSwitchBool(2))
 					{
-						stats.SetSwitchBool(1, true);
+                       // Debug.Log("这里有bug");
+						stats.SetSwitchBool(2, true);
 						gameObject.SetActive(false);
 					}
 					break;
 				case "BestSword":
 					Object_WeaponBag.weaponsize += 1;
-					Object_WeaponBag.Weapons.Add(new Item("最好的剑X1", Resources.Load<Sprite>("01"), 1));
+					Object_WeaponBag.Weapons.Add(new Item("最好的剑", Resources.Load<Sprite>("01"), 1));
 					Debug.Log("已经获取武器");
-					if (!stats.GetSwitchBool(2))
+					if (!stats.GetSwitchBool(3))
 					{
-						stats.SetSwitchBool(2, true);
+						stats.SetSwitchBool(3, true);
 						gameObject.SetActive(false);
 					}
 					break;
                 case "BestHelmet":
                     Object_WeaponBag.helmetsize += 1;
-                    Object_WeaponBag.Helmets.Add(new Item("最好的头X1", Resources.Load<Sprite>("04"), 1));
+                    Object_WeaponBag.Helmets.Add(new Item("最好的头", Resources.Load<Sprite>("04"), 1));
                     Debug.Log("已经获取头盔");
-                    if (!stats.GetSwitchBool(3))
+                    if (!stats.GetSwitchBool(4))
                     {
-                        stats.SetSwitchBool(3, true);
+                        stats.SetSwitchBool(4, true);
                         gameObject.SetActive(false);
                     }
                     break;
@@ -221,12 +222,16 @@ public class Events : MonoBehaviour
                     GameObject.Find("Accessible").transform.Find("Weapons").gameObject.SetActive(true);
                     break;
                 case "TreasureBox":
-                    Object_WeaponBag.weaponsize += 1;
-                    Object_WeaponBag.Weapons.Add(new Item("更好的剑X1", Resources.Load<Sprite>("02"), 1));
-                    Object_WeaponBag.armorsize += 1;
-                    Object_WeaponBag.Armors.Add(new Item("更好的甲X1", Resources.Load<Sprite>("15"), 1));
-                    Object_WeaponBag.helmetsize += 1;
-                    Object_WeaponBag.Helmets.Add(new Item("更好的头X1", Resources.Load<Sprite>("05"), 1));
+                    if (!stats.GetSwitchBool(5))
+                    {
+                        Object_WeaponBag.weaponsize += 1;
+                        Object_WeaponBag.Weapons.Add(new Item("更好的剑", Resources.Load<Sprite>("02"), 1));
+                        Object_WeaponBag.armorsize += 1;
+                        Object_WeaponBag.Armors.Add(new Item("更好的甲", Resources.Load<Sprite>("15"), 1));
+                        Object_WeaponBag.helmetsize += 1;
+                        Object_WeaponBag.Helmets.Add(new Item("更好的头", Resources.Load<Sprite>("05"), 1));
+                        stats.SetSwitchBool(5, true);
+                    }
                     break;
             }
 			Input.ResetInputAxes();

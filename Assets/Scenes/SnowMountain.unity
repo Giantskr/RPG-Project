@@ -1439,6 +1439,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 351059641}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &160532914 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5971466183620310975, guid: 7fe931b35c6d7354a925875dbd009818,
+    type: 3}
+  m_PrefabInstance: {fileID: 351059641}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &160532915 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5971466183620310968, guid: 7fe931b35c6d7354a925875dbd009818,
@@ -10414,7 +10420,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 707192967}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -11257,6 +11263,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 351059641}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1402988822 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5140743053892649331, guid: 8bc90fdcad06a7c428b641306202de8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 243569506}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 565fd263440bd45fa9ba0925c60f54f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1420115760 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2277292774965421232, guid: 7301ac952f04d9a4cb05671276099eab,
@@ -11659,6 +11677,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4494901824249771423, guid: 092d70234f4e2844b8ee46dbdbbf646b,
+        type: 3}
+      propertyPath: UI_Esc
+      value: 
+      objectReference: {fileID: 160532914}
+    - target: {fileID: 4494901824249771423, guid: 092d70234f4e2844b8ee46dbdbbf646b,
+        type: 3}
+      propertyPath: UI_Battle
+      value: 
+      objectReference: {fileID: 1066372019}
     - target: {fileID: 4494901824249771416, guid: 092d70234f4e2844b8ee46dbdbbf646b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18146,6 +18174,6 @@ PrefabInstance:
         type: 3}
       propertyPath: rpgTalkHolder
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1402988822}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8359573e349a784cb6f9220208592e1, type: 3}
