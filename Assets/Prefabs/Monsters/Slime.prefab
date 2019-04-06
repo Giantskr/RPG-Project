@@ -102,5 +102,8 @@ MonoBehaviour:
     MAT: 8
     MDF: 8
     AGI: 10
-    getExp: 0
-    getMoney: 0
+    dodgeRate: 95
+    getExp: 10
+    getMoney: 20
+  HP: 0
+  MP: 0

@@ -10,15 +10,34 @@ public class BattleActions : MonoBehaviour
 
 	GameObject[] monsterInBattlle;
 
+	int round = 0;
+	bool ifGuard = false;
 	//MonsterData monsters;
 	SkillData skills;
 
 	private void Awake()
 	{
 		player = GameObject.Find("Player_Stats");
-		//monsters = LoadJson<MonsterData>.LoadJsonFromFile("Monsters");
+
+		monsterInBattlle = new GameObject[10];
+		Transform monsterParentObject = transform.GetChild(0);
+		for (int i = 0; i < monsterParentObject.childCount; i++) 
+			monsterInBattlle[i] = monsterParentObject.GetChild(i).gameObject; 
+
 		skills = LoadJson<SkillData>.LoadJsonFromFile("Skills");
 	}
+
+	void Start()
+	{
+		
+	}
+
+	void Update()
+	{
+		
+	}
+
+
 	/// <summary>
 	/// 使用技能
 	/// </summary>
@@ -29,19 +48,30 @@ public class BattleActions : MonoBehaviour
 	{
 		BattleActions aAction = aPositive.GetComponent<BattleActions>();
 		BattleActions bAction = bNegative.GetComponent<BattleActions>();
+		bool miss = false;
 		foreach (var data in skills.Skills)
 			if (data.id == id)
 			{
-				switch (data.id)
+				float rand = Random.Range(0, 100);
+				if (data.accuracy != 0)
 				{
-					case 1:
-						bAction.TakeDamage(ReadFormula(data, aPositive, bNegative));
-						break;
+					float dodgeRate = 1;
+					if (bNegative != player) dodgeRate = bNegative.GetComponent<Monster>().info.dodgeRate / 100;
+					if (rand > data.accuracy * dodgeRate) miss = true;
 				}
+				if (miss)
+				{
+					Debug.Log("Miss!");
+				}
+				else
+					switch (data.id)
+					{
+						case 1:
+							bAction.TakeDamage(ReadFormula(data, aPositive, bNegative));
+							break;
+					}
 				break;
-			}
-	
-		
+			}	
 	}
 	/// <summary>
 	/// 受到伤害
