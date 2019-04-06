@@ -54,7 +54,7 @@ public class Events : MonoBehaviour
 		switch (gameObject.name)
 		{
 			case "TestArea":
-				if (Player_Stats.switchListInt[40] == 0) Destroy(gameObject);
+				if (Player_Stats.switchListInt[40] != 0) Destroy(gameObject);
 				break;
 		}
 		if (rpgTalkHolder != null)

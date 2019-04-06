@@ -12,7 +12,6 @@ public class Monster : BattleActions
 	{
 		HP = info.maxHP;
 		MP = info.maxMP;
-		UseSkill(1, gameObject, player);
 	}
 }
 //[System.Serializable]
@@ -50,7 +49,7 @@ public class MonsterInfo
 	public int MAT;
 	public int MDF;
 	public int AGI;
-	public int dodgeRate;
+	public float dodgeRate;
 	public int getExp;
 	public int getMoney;
 }

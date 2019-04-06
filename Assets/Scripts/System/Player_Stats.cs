@@ -22,7 +22,7 @@ public class Player_Stats : BattleActions
 
 	public static string lastScene;
 
-	public static int[] switchListInt = { 0 };
+	public static int[] switchListInt;
 	public static Player_Stats instance = null;
 
 	SkillData Skill;
