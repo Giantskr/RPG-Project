@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player_Stats : MonoBehaviour
+public class Player_Stats : BattleActions
 {
 	public static int maxHP = 450;
 	public static int maxMP = 90;
@@ -31,16 +31,19 @@ public class Player_Stats : MonoBehaviour
 
 	void Awake()
 	{
-		if (switchListBool == null) switchListBool = new bool[50];
-		if (switchListInt == null) switchListInt = new int[20];
-
-		if (Skill == null) Skill = LoadJson<SkillData>.LoadJsonFromFile("Skills");
-
 		DontDestroyOnLoad(gameObject);
 		if (instance == null)
 			instance = this;
 		else if (instance != this)
 			Destroy(gameObject);
+
+
+
+
+		if (switchListBool == null) switchListBool = new bool[50];
+		if (switchListInt == null) switchListInt = new int[20];
+
+		if (Skill == null) Skill = LoadJson<SkillData>.LoadJsonFromFile("Skills");
 	}
 	public static Player_Stats GetInstance()
 	{

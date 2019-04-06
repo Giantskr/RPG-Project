@@ -35,12 +35,22 @@ public class GameManager : MonoBehaviour
 
 	void OnEnable()
     {
-		fading = true;
-		inScene = true;
+		if (cam.GetComponent<MapCamera>().sceneType == MapCamera.SceneType.GamePlay)
+		{
+			fading = true;
+			inScene = true;
+		}
+		else
+		{
+			fading = false;
+			inScene = false;
+		}
 		inBattle = false;
 		SceneManager.sceneLoaded += OnSceneChange;
 		au = GetComponent<AudioSource>();
-    }
+
+		//StartBattle();
+	}
 
     void Update()
     {

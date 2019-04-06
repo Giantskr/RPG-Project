@@ -8,9 +8,9 @@ public class Select_BattleOrRun : Select
     public GameObject BattleOrRun;
     public GameObject L;
 
-    void Start()
+    void OnEnable()
     {
-        
+		states = 1;
     }
 
     void Update()

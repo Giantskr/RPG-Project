@@ -6,7 +6,6 @@
 			"skillName": "攻击",
 			"spritePath": "Skills/Icon_skill1",
 			"introduce": "对单体敌人造成伤害。",
-			"methodName": "None",
 			"mpCost": 0,
 			"accuracy": 0.95,
 			"formula": "a.atk * 4 - b.def * 2 , 20"
@@ -16,7 +15,6 @@
 			"skillName": "防御",
 			"spritePath": "Skills/Icon_skill2",
 			"introduce": "在本回合中减少受到的伤害。",
-			"methodName": "None",
 			"mpCost": 0,
 			"accuracy": 0,
 			"formula": "None"
@@ -26,7 +24,6 @@
 			"skillName": "强击",
 			"spritePath": "Skills/Icon_skill3",
 			"introduce": "对单体敌人造成大量伤害。",
-			"methodName": "None",
 			"mpCost": 15,
 			"accuracy": 1,
 			"formula": "a.atk * 5 - b.def * 2 , 20"
@@ -36,7 +33,6 @@
 			"skillName": "愈合",
 			"spritePath": "Skills/Icon_skill4",
 			"introduce": "使用者恢复一定量的HP。",
-			"methodName": "None",
 			"mpCost": 20,
 			"accuracy": 0,
 			"formula": "250 + a.mat , 20"

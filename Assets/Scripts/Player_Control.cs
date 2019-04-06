@@ -6,14 +6,21 @@ using RPGTALK.Helper;
 public class Player_Control : Events
 {
 	Vector2 areaLastPos = Vector2.positiveInfinity;
+	float animationSpeed;
 
     void FixedUpdate()
     {
 		if (GameManager.inScene)
 		{
+			if (an.speed == 0) an.speed = animationSpeed;
 			if (!GameManager.fading) MovePlayer();
 			MoveCameraWithPlayer();
 			if (!moving) CallObject();
+		}
+		else if (an.speed != 0) 
+		{
+			animationSpeed = an.speed;
+			an.speed = 0;
 		}
 	}
 	/// <summary>
