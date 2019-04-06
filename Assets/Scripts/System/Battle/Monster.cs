@@ -50,6 +50,7 @@ public class MonsterInfo
 	public int MAT;
 	public int MDF;
 	public int AGI;
+	public int dodgeRate;
 	public int getExp;
 	public int getMoney;
 }
