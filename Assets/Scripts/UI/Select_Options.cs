@@ -25,7 +25,7 @@ public class Select_Options : Select
 				case 3:
 					Menu.SetActive(true);
 					Options.SetActive(false);
-					audioSource.Play();
+					//audioSource.Play();
 					break;
 			}
 		}

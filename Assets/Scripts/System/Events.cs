@@ -119,7 +119,7 @@ public class Events : MonoBehaviour
             case "King":
                 if (Player_Stats.switchListInt[1] == 0)
                 {
-                    rpgTalkHolder.NewTalk("10", "19");
+                    rpgTalkHolder.NewTalk("10", "20");
                     CreateTemporaryNPC(temporaryNPC, "国王", eventSprites[0]);
 					Player_Stats.switchListInt[1] = 1;
 
@@ -127,6 +127,7 @@ public class Events : MonoBehaviour
                 break;
             case "Gate":
                 an.Play("GateOpen");
+                gameManager.StartCoroutine("ChangeScene", "PalaceIn");
                 break;
             case "StoreSign":
                 gameManager.OpenStore();
@@ -147,9 +148,22 @@ public class Events : MonoBehaviour
                     case "PalaceOut":
                         gameManager.StartCoroutine("ChangeScene", "Town");
                         break;
+                    case "SnowMountain":
+                        gameManager.StartCoroutine("ChangeScene", "Store");
+                        break;
                 }
 				break;
-		}
+            case "SceneMove02":
+                au.PlayOneShot(sceneChangeSound);
+                switch (SceneManager.GetActiveScene().name)
+                {
+                    case "Store":
+                        gameManager.StartCoroutine("ChangeScene", "Cave");
+                        break;
+
+                }
+                break;
+        }
 	}
 
     void OnDisable()
@@ -228,6 +242,7 @@ public class Events : MonoBehaviour
                     break;
                 case "King":
                     GameObject.Find("Accessible").transform.Find("Weapons").gameObject.SetActive(true);
+                    Invoke("LoadGrassLand", 15f);
                     break;
                 case "TreasureBox":
                     if (Player_Stats.switchListInt[5] == 0)
@@ -310,4 +325,8 @@ public class Events : MonoBehaviour
 		Input.ResetInputAxes();
 		GameManager.inScene = true;
 	}
+    public void LoadGrassLand()
+    {
+        gameManager.StartCoroutine("ChangeScene", "GrassLand");
+    }
 }

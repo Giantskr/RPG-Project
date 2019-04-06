@@ -7,7 +7,7 @@ public class Object_WeaponBag : MonoBehaviour
 {
        //用于在物品栏显示各种物品，不限于武器
     //public GameObject WeaponLaid;
-    public List<GameObject> weapon,prop,helmet,armor;
+    public List<GameObject> weapon,prop,armor;
     public static List<Item> Weapons,Props,Helmets,Armors;
     public static  int weaponsize,propsize,helmetsize,armorsize = 0;
 
@@ -17,21 +17,21 @@ public class Object_WeaponBag : MonoBehaviour
         Props = new List<Item>();
         Helmets = new List<Item>();
         Armors = new List<Item>();
-        for (int i = 0; i < weaponsize; i++)
-        {
-            weapon[i].transform.GetChild(0).GetComponent<Image>().sprite = Weapons[i].img;
-            weapon[i].transform.GetChild(1).GetComponent<Text>().text = Weapons[i].name;
-        }
-        for (int i = 0; i < propsize; i++)
-        {
-            prop[i].transform.GetChild(0).GetComponent<Image>().sprite = Props[i].img;
-            prop[i].transform.GetChild(1).GetComponent<Text>().text = Props[i].name;
-        }
-        for (int i = 0; i <armorsize; i++)
-        {
-            armor[i].transform.GetChild(0).GetComponent<Image>().sprite = Armors[i].img;
-            armor[i].transform.GetChild(1).GetComponent<Text>().text = Armors[i].name;
-        }
+        //for (int i = 0; i < weaponsize; i++)
+        //{
+        //    weapon[i].transform.GetChild(0).GetComponent<Image>().sprite = Weapons[i].img;
+        //    weapon[i].transform.GetChild(1).GetComponent<Text>().text = Weapons[i].name;
+        //}
+        //for (int i = 0; i < propsize; i++)
+        //{
+        //    prop[i].transform.GetChild(0).GetComponent<Image>().sprite = Props[i].img;
+        //    prop[i].transform.GetChild(1).GetComponent<Text>().text = Props[i].name;
+        //}
+        //for (int i = 0; i <armorsize; i++)
+        //{
+        //    armor[i].transform.GetChild(0).GetComponent<Image>().sprite = Armors[i].img;
+        //    armor[i].transform.GetChild(1).GetComponent<Text>().text = Armors[i].name;
+        //}
     }
 
     //public static Transform FindChild(Transform trans, string goName)
@@ -64,15 +64,15 @@ public class Object_WeaponBag : MonoBehaviour
             //    prop[i].transform.GetChild(1).GetComponent<Text>().text = null;
             //}
         }
-        for (int i = 0; i <=armorsize; i++)
+        for (int i = 0; i <armorsize+1; i++)
         {
-           
+            //Debug.Log(i);
             if (i == armorsize)
-            {
-                for (int j =armorsize; j < helmetsize; j++)
+            { 
+                for (int j =0; j < helmetsize; j++)
                 {
-                    armor[j].transform.GetChild(0).GetComponent<Image>().sprite = Helmets[i].img;
-                    armor[j].transform.GetChild(1).GetComponent<Text>().text = Helmets[i].name;
+                    armor[j+i].transform.GetChild(0).GetComponent<Image>().sprite = Helmets[j].img;
+                    armor[j+i].transform.GetChild(1).GetComponent<Text>().text = Helmets[j].name;
                 }
             }
             else
