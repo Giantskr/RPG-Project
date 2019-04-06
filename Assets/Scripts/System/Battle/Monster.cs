@@ -5,6 +5,15 @@ using UnityEngine;
 public class Monster : BattleActions
 {
 	public MonsterInfo info;
+
+	public int HP, MP;
+
+	private void OnEnable()
+	{
+		HP = info.maxHP;
+		MP = info.maxMP;
+		UseSkill(1, gameObject, player);
+	}
 }
 //[System.Serializable]
 //public class MonsterData

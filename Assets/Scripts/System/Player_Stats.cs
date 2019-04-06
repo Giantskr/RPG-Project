@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player_Stats : MonoBehaviour
+public class Player_Stats : BattleActions
 {
 	public static int maxHP = 450;
 	public static int maxMP = 90;
