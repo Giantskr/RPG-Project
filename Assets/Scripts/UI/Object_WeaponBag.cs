@@ -10,16 +10,27 @@ public class Object_WeaponBag : MonoBehaviour
     public List<GameObject> weapon,prop,armor;
     public static List<Item> Weapons,Props,Helmets,Armors,Skills;
     public static  int weaponsize,propsize,helmetsize,armorsize,skillsize = 0;
+    public static bool save = false;
 
     private void Awake()
     {
-        Weapons = new List<Item>(); // 初始化List<Item>
-        Props = new List<Item>();
-        Helmets = new List<Item>();
-        Armors = new List<Item>();
-        Skills = new List<Item>();
-        skillsize += 1;
-        Skills.Add(new Item("强击", Resources.Load<Sprite>("10"), 1));
+        if (Weapons == null)
+        {
+            Weapons = new List<Item>(); // 初始化List<Item>
+            Props = new List<Item>();
+            Helmets = new List<Item>();
+            Armors = new List<Item>();
+            Skills = new List<Item>();
+            skillsize += 1;
+            Skills.Add(new Item("强击", Resources.Load<Sprite>("10"), 1));
+            
+        }
+        else
+        {
+            readObjectInformation();
+        }
+        
+        
         //for (int i = 0; i < weaponsize; i++)
         //{
         //    weapon[i].transform.GetChild(0).GetComponent<Image>().sprite = Weapons[i].img;
@@ -47,6 +58,13 @@ public class Object_WeaponBag : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        // Debug.Log(weaponsize);
+        if (save)
+        {
+            saveObjectInformation();
+            save = false;
+        }
         //sprites = new Sprite[size];
         for (int i = 0; i < weaponsize; i++)
         {
@@ -89,19 +107,19 @@ public class Object_WeaponBag : MonoBehaviour
     {
         for (int i = 0; i < weaponsize; i++)
         {
-            PlayerPrefs.SetString("Weapon" + i, Weapons[i].name); PlayerPrefs.SetInt("weaponsize", weaponsize);
+            PlayerPrefs.SetString("Weapon" + i.ToString(), Weapons[i].name); PlayerPrefs.SetInt("weaponsize", weaponsize);
         }
         for (int i = 0; i < propsize; i++)
         {
-            PlayerPrefs.SetString("Prop" + i, Props[i].name); PlayerPrefs.SetInt("PropNum" + i, Props[i].num); PlayerPrefs.SetInt("propsize", propsize);
+            PlayerPrefs.SetString("Prop" + i.ToString(), Props[i].name); PlayerPrefs.SetInt("PropNum" + i, Props[i].num); PlayerPrefs.SetInt("propsize", propsize);
         }
         for (int i = 0; i < helmetsize; i++)
         {
-            PlayerPrefs.SetString("Helmet" + i, Helmets[i].name); PlayerPrefs.SetInt("helmetsize", helmetsize);
+            PlayerPrefs.SetString("Helmet" + i.ToString(), Helmets[i].name); PlayerPrefs.SetInt("helmetsize", helmetsize);
         }
         for (int i = 0; i < armorsize; i++)
         {
-            PlayerPrefs.SetString("Armor" + i, Armors[i].name); PlayerPrefs.SetInt("armorsize",armorsize);
+            PlayerPrefs.SetString("Armor" + i.ToString(), Armors[i].name); PlayerPrefs.SetInt("armorsize",armorsize);
         }
     }
     public void readObjectInformation()
@@ -112,19 +130,19 @@ public class Object_WeaponBag : MonoBehaviour
         armorsize = PlayerPrefs.GetInt("armorsize");
         for (int i = 0; i < weaponsize; i++)
         {
-            Weapons[i].name = PlayerPrefs.GetString("Weapon" + i);witchWeapon(i,Weapons [i].name);
+            Weapons[i].name = PlayerPrefs.GetString("Weapon" + i.ToString());witchWeapon(i,Weapons[i].name);
         }
         for (int i = 0; i < armorsize; i++)
         {
-            Armors[i].name = PlayerPrefs.GetString("Armor" + i); witchArmor(i, Armors[i].name);
+            Armors[i].name = PlayerPrefs.GetString("Armor" + i.ToString()); witchArmor(i, Armors[i].name);
         }
         for (int i = 0; i < weaponsize; i++)
         {
-            Helmets[i].name = PlayerPrefs.GetString("Helmet" + i); witchHelmet(i, Helmets[i].name);
+            Helmets[i].name = PlayerPrefs.GetString("Helmet" + i.ToString()); witchHelmet(i, Helmets[i].name);
         }
         for (int i = 0; i < propsize; i++)
         {
-            Props[i].name = PlayerPrefs.GetString("Prop" + i);Props[i].num = PlayerPrefs.GetInt("PropNum" + i);
+            Props[i].name = PlayerPrefs.GetString("Prop" + i.ToString());Props[i].num = PlayerPrefs.GetInt("PropNum" + i);
         }
     }
     public void witchWeapon(int i,string WeaponName)
@@ -143,13 +161,13 @@ public class Object_WeaponBag : MonoBehaviour
         Armors[i].num = 1;
         switch (ArmorName)
         {
-            case "最好的甲": Weapons[i].img = Resources.Load<Sprite>("06"); break;
-            case "更好的甲": Weapons[i].img = Resources.Load<Sprite>("15"); break;
+            case "最好的甲": Armors[i].img = Resources.Load<Sprite>("06"); break;
+            case "更好的甲": Armors[i].img = Resources.Load<Sprite>("15"); break;
         }
     }
     public void witchHelmet(int i, string HelmetName)
     {
-        Armors[i].num = 1;
+        Helmets[i].num = 1;
         switch (HelmetName)
         {
             case "最好的头":Helmets[i].img = Resources.Load<Sprite>("04"); break;

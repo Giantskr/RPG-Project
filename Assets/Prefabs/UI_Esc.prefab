@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6669871232235905247
 RectTransform:
   m_ObjectHideFlags: 0
@@ -322,7 +322,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "\u7A7A"
 --- !u!114 &8620791904115815565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -501,7 +501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7923734860305372685
 RectTransform:
   m_ObjectHideFlags: 0
@@ -802,7 +802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5400908151452893204
 RectTransform:
   m_ObjectHideFlags: 0
@@ -817,7 +817,7 @@ RectTransform:
   - {fileID: 4596168410786116892}
   - {fileID: 9221560289936007750}
   m_Father: {fileID: 6456782221745386834}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1893,7 +1893,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6879144370283152674
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1954,7 +1954,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "\u7A7A"
 --- !u!114 &1845637745471365605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2074,7 +2074,7 @@ RectTransform:
   - {fileID: 3353413763552789978}
   - {fileID: 1158474452888212581}
   m_Father: {fileID: 6456782221745386834}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2429,7 +2429,7 @@ RectTransform:
   - {fileID: 6080264288353423336}
   - {fileID: 7734980266385635718}
   m_Father: {fileID: 6456782221745386834}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2562,7 +2562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4064189231310650271
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2950,10 +2950,10 @@ RectTransform:
   m_LocalScale: {x: 1.3210804, y: 1.3210804, z: 1.0006976}
   m_Children:
   - {fileID: 6888707992325013241}
+  - {fileID: 3131375381957184264}
   - {fileID: 7816114916857427632}
   - {fileID: 716905982418166658}
   - {fileID: 5400908151452893204}
-  - {fileID: 3131375381957184264}
   m_Father: {fileID: 5971466183690420111}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3041,7 +3041,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "\u7A7A"
 --- !u!114 &3015200294338535170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3072,7 +3072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4318565861555161089
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4200,7 +4200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2662226507434601295
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4374,17 +4374,12 @@ MonoBehaviour:
   Selections:
   - {fileID: 2241852887030792180}
   - {fileID: 2008430233339573135}
-  - {fileID: 5747634065170217728}
-  - {fileID: 700956326409535844}
-  OptionNum: 4
-  UI_Sounds:
-  - {fileID: 8300000, guid: 7ced1f4fb94c370439a28e920ae7560a, type: 3}
-  - {fileID: 8300000, guid: 5eadee6ab416b5b4c94f7c0638b0e5d6, type: 3}
-  - {fileID: 8300000, guid: 3c04ccfb80ed53d4daaa7770f5343693, type: 3}
-  - {fileID: 8300000, guid: f7d65b93fb61e5742817afff623d81cf, type: 3}
+  OptionNum: 2
   UI_Weapons: {fileID: 5971466184561700369}
-  Weapons: {fileID: 0}
-  weapon: []
+  Weapons: {fileID: 2807091690108005150}
+  weapon:
+  - {fileID: 2241852887030792180}
+  - {fileID: 2008430233339573135}
 --- !u!95 &3124906565052816903
 Animator:
   serializedVersion: 3
@@ -4822,7 +4817,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "\u7A7A"
 --- !u!114 &3373184347644257136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4856,7 +4851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9221560289936007750
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4917,7 +4912,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "\u7A7A"
 --- !u!114 &1531785795001144223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5408,7 +5403,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "\u7A7A"
 --- !u!114 &9210564052576068281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5767,7 +5762,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "\u7A7A"
 --- !u!114 &4970787231435503996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6643,7 +6638,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &716905982418166658
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6658,7 +6653,7 @@ RectTransform:
   - {fileID: 4889008474893876100}
   - {fileID: 154609886095526152}
   m_Father: {fileID: 6456782221745386834}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6981,7 +6976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3247953345760382829
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9624,11 +9619,6 @@ MonoBehaviour:
   - {fileID: 5971466185298240534}
   - {fileID: 5971466184638363022}
   OptionNum: 4
-  UI_Sounds:
-  - {fileID: 8300000, guid: 7ced1f4fb94c370439a28e920ae7560a, type: 3}
-  - {fileID: 8300000, guid: 3c04ccfb80ed53d4daaa7770f5343693, type: 3}
-  - {fileID: 8300000, guid: 5eadee6ab416b5b4c94f7c0638b0e5d6, type: 3}
-  - {fileID: 8300000, guid: f7d65b93fb61e5742817afff623d81cf, type: 3}
   UI_Selections: {fileID: 5971466184303568810}
   UI_Objects: {fileID: 5971466184962551203}
   Sorts:
@@ -11986,11 +11976,6 @@ MonoBehaviour:
   - {fileID: 5971466183539820039}
   - {fileID: 5971466184001044601}
   OptionNum: 3
-  UI_Sounds:
-  - {fileID: 8300000, guid: 7ced1f4fb94c370439a28e920ae7560a, type: 3}
-  - {fileID: 8300000, guid: 5eadee6ab416b5b4c94f7c0638b0e5d6, type: 3}
-  - {fileID: 8300000, guid: 3c04ccfb80ed53d4daaa7770f5343693, type: 3}
-  - {fileID: 8300000, guid: f7d65b93fb61e5742817afff623d81cf, type: 3}
   Options: {fileID: 5971466184253029054}
   Menu: {fileID: 5971466184303568810}
 --- !u!82 &5971466184050239481
@@ -13507,12 +13492,6 @@ MonoBehaviour:
   - {fileID: 5971466184280793709}
   - {fileID: 5971466184462487921}
   OptionNum: 7
-  UI_Sounds:
-  - {fileID: 8300000, guid: 7ced1f4fb94c370439a28e920ae7560a, type: 3}
-  - {fileID: 8300000, guid: 5eadee6ab416b5b4c94f7c0638b0e5d6, type: 3}
-  - {fileID: 8300000, guid: 3c04ccfb80ed53d4daaa7770f5343693, type: 3}
-  - {fileID: 8300000, guid: f7d65b93fb61e5742817afff623d81cf, type: 3}
-  - {fileID: 8300000, guid: 43cc2efe7a406414fb235c98f3655b13, type: 3}
   UI_Esc: {fileID: 5971466183620310975}
   UI_Objects: {fileID: 5971466184962551203}
   UI_Skills: {fileID: 5971466183831030967}
@@ -15040,11 +15019,6 @@ MonoBehaviour:
   - {fileID: 5971466184511663209}
   - {fileID: 5971466184157831300}
   OptionNum: 3
-  UI_Sounds:
-  - {fileID: 8300000, guid: 7ced1f4fb94c370439a28e920ae7560a, type: 3}
-  - {fileID: 8300000, guid: 5eadee6ab416b5b4c94f7c0638b0e5d6, type: 3}
-  - {fileID: 8300000, guid: 3c04ccfb80ed53d4daaa7770f5343693, type: 3}
-  - {fileID: 8300000, guid: f7d65b93fb61e5742817afff623d81cf, type: 3}
   UI_Selections: {fileID: 5971466184303568810}
   UI_Weapons: {fileID: 5971466183838370873}
   Sorts:
@@ -18107,12 +18081,12 @@ MonoBehaviour:
   weapon:
   - {fileID: 2241852887030792180}
   - {fileID: 2008430233339573135}
-  - {fileID: 5747634065170217728}
-  - {fileID: 700956326409535844}
   head:
   - {fileID: 5719342180919938836}
   - {fileID: 7956045786071496775}
-  body: []
+  body:
+  - {fileID: 7461019098080450492}
+  - {fileID: 4990360399303512667}
   Laidweapon: {fileID: 8532863831606385111}
   Laidhead: {fileID: 2036533567277848397}
   Laidbody: {fileID: 5355742644638753883}
@@ -18907,11 +18881,6 @@ MonoBehaviour:
   - {fileID: 8161456473933412497}
   - {fileID: 5717552141950008852}
   OptionNum: 3
-  UI_Sounds:
-  - {fileID: 8300000, guid: 7ced1f4fb94c370439a28e920ae7560a, type: 3}
-  - {fileID: 8300000, guid: 5eadee6ab416b5b4c94f7c0638b0e5d6, type: 3}
-  - {fileID: 8300000, guid: 3c04ccfb80ed53d4daaa7770f5343693, type: 3}
-  - {fileID: 8300000, guid: f7d65b93fb61e5742817afff623d81cf, type: 3}
   UI_Selections: {fileID: 5971466184303568810}
   UI_Skills: {fileID: 5971466183831030967}
   Describe: {fileID: 1396671677247748691}
@@ -20343,11 +20312,6 @@ MonoBehaviour:
   - {fileID: 5719342180919938836}
   - {fileID: 7956045786071496775}
   OptionNum: 2
-  UI_Sounds:
-  - {fileID: 8300000, guid: 7ced1f4fb94c370439a28e920ae7560a, type: 3}
-  - {fileID: 8300000, guid: 3c04ccfb80ed53d4daaa7770f5343693, type: 3}
-  - {fileID: 8300000, guid: 5eadee6ab416b5b4c94f7c0638b0e5d6, type: 3}
-  - {fileID: 8300000, guid: f7d65b93fb61e5742817afff623d81cf, type: 3}
   UI_Weapons: {fileID: 5971466184561700369}
   Helmet: {fileID: 8893511158047724165}
   helmet:
@@ -21270,21 +21234,12 @@ MonoBehaviour:
   Selections:
   - {fileID: 7461019098080450492}
   - {fileID: 4990360399303512667}
-  - {fileID: 5905443370379498279}
-  - {fileID: 216407953521276828}
-  OptionNum: 4
-  UI_Sounds:
-  - {fileID: 8300000, guid: 7ced1f4fb94c370439a28e920ae7560a, type: 3}
-  - {fileID: 8300000, guid: 3c04ccfb80ed53d4daaa7770f5343693, type: 3}
-  - {fileID: 8300000, guid: 5eadee6ab416b5b4c94f7c0638b0e5d6, type: 3}
-  - {fileID: 8300000, guid: f7d65b93fb61e5742817afff623d81cf, type: 3}
+  OptionNum: 2
   UI_Weapons: {fileID: 5971466184561700369}
   Bodyshield: {fileID: 6765213822439792054}
   bodyshield:
   - {fileID: 7461019098080450492}
   - {fileID: 4990360399303512667}
-  - {fileID: 5905443370379498279}
-  - {fileID: 216407953521276828}
 --- !u!212 &4969525128850475252
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21539,7 +21494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4596168410786116892
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21749,7 +21704,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: "\u7A7A"
 --- !u!114 &6698479910629026286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22403,7 +22358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &712228865555334039
 RectTransform:
   m_ObjectHideFlags: 0

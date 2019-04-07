@@ -15,6 +15,12 @@ public class Select_Esc :Select
     public GameObject UI_Settings;
     public GameObject UI_Save;
 
+
+    void Awake()
+    {
+       
+    }
+    
     void Start()
     {
         
@@ -47,7 +53,10 @@ public class Select_Esc :Select
 					UI_Settings.SetActive(true);
 					gameObject.SetActive(false);
 					break;
-				case 6: break;
+				case 6:
+                    Object_WeaponBag.save = true;
+                    PlayerPrefs.Save();
+                    break;
 				case 7:
 					SceneManager.LoadScene("Start");
 					break;

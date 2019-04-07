@@ -25,18 +25,20 @@ public class GameManager : MonoBehaviour
 
 	GameObject[] allMonsters;
 	public static List<GameObject> monstersJoining;
-    //public static GameManager instance = null;
-    //void Awake()
-    //{
-    //    DontDestroyOnLoad(gameObject);
-    //    if (instance == null)
-    //        instance = this;
-    //    else if (instance != this)
-    //        Destroy(gameObject);
-    //}
-    //public static GameManager GetInstance()
+
+    //public static Select_Esc instance = null;
+    //public static Select_Esc GetInstance()
     //{
     //    return instance;
+    //}
+
+    //private void Awake()
+    //{
+    //    DontDestroyOnLoad(UI_Esc);
+    //    if (instance == null)
+    //        instance = UI_Esc.GetComponent<Select_Esc>();
+    //    else if (instance != UI_Esc.GetComponent<Select_Esc>())
+    //        Destroy(UI_Esc);
     //}
 
     void OnEnable()
@@ -118,15 +120,21 @@ public class GameManager : MonoBehaviour
                     break;
                 case "Town":
                     if (Player_Stats.lastScene == "PalaceOut")
-                        vector = Vector2.right ; pos = new Vector2(-7f, 1.5f);
+                    {
+                        vector = Vector2.right; pos = new Vector2(-6.5f, 1.5f);
+                    }
                     break;
                 case "PalaceOut":
                     if (Player_Stats.lastScene == "Town")
-                        vector = Vector2.up ; pos = new Vector2(0.5f, -7f);
+                    {
+                        vector = Vector2.up; pos = new Vector2(0.5f, -7f);
+                    }
                     break;
                 case "PalaceIn":
                     if (Player_Stats.lastScene == "PalaceOut")
+                    {
                         vector = Vector2.up; pos = new Vector2(0, -18.5f);
+                    }
                     break;
                 case "SnowMountain":
                     if (Player_Stats.lastScene == "Store")

@@ -127,6 +127,7 @@ public class Events : MonoBehaviour
             case "Gate":
                 an.Play("GateOpen");
                 gameManager.StartCoroutine("ChangeScene", "PalaceIn");
+                Object_WeaponBag.save = true;
                 break;
             case "StoreSign":
                 gameManager.OpenStore();
@@ -151,13 +152,15 @@ public class Events : MonoBehaviour
                         gameManager.StartCoroutine("ChangeScene", "Store");
                         break;
                 }
-				break;
+                Object_WeaponBag.save = true;
+                break;
             case "SceneMove02":
                 au.PlayOneShot(sceneChangeSound);
                 switch (SceneManager.GetActiveScene().name)
                 {
                     case "Store":
                         gameManager.StartCoroutine("ChangeScene", "SnowMountain");
+                        Object_WeaponBag.save = true;
                         break;
 
                 }
@@ -327,5 +330,7 @@ public class Events : MonoBehaviour
     public void LoadGrassLand()
     {
         gameManager.StartCoroutine("ChangeScene", "GrassLand");
+        Object_WeaponBag.save = true;
+        //ChangeWeapon.save = true;
     }
 }

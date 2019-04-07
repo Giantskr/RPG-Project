@@ -21,12 +21,39 @@ public class ChangeWeapon : MonoBehaviour
     public static int weaponchangeWhich;
     public static int armorchangeWhich;
     public static int helmetchangeWhich;
+    public static bool save = false;
+   
+    private void Awake()
+    {
+         weaponchange = 0;
+         helmetchange = 0;
+         armorchange = 0;
+         weaponchangeWhich=0;
+        armorchangeWhich=0;
+        helmetchangeWhich=0;
+}
 
     void Update()
     {
-        weaponchange=Equip(weaponchange, weaponchangeWhich,Object_WeaponBag.weaponsize, weapon, Object_WeaponBag.Weapons, Object_WeaponBag.Weapons[weaponchangeWhich].name , 30,  Laidweapon);
-        armorchange = Equip(armorchange, armorchangeWhich, Object_WeaponBag.armorsize, body, Object_WeaponBag.Armors, Object_WeaponBag.Armors[armorchangeWhich].name, 0,  Laidbody);
-        helmetchange = Equip(helmetchange, helmetchangeWhich, Object_WeaponBag.helmetsize, head, Object_WeaponBag.Helmets, Object_WeaponBag.Helmets[helmetchangeWhich].name, 0, Laidhead);
+      
+           
+        
+        //    if (save)
+        //    {
+        //        SavePlacedObjs();
+        //        weaponchange = 2;
+        //        helmetchange = 2;
+        //        armorchange = 2;
+        ////0 for not equip;
+        //save = false;
+        //    }
+       
+        
+            weaponchange = Equip(weaponchange, weaponchangeWhich, Object_WeaponBag.weaponsize, weapon, Object_WeaponBag.Weapons, Object_WeaponBag.Weapons[weaponchangeWhich].name, 30, Laidweapon);
+        Debug.Log(Object_WeaponBag.weaponsize);  armorchange = Equip(armorchange, armorchangeWhich, Object_WeaponBag.armorsize, body, Object_WeaponBag.Armors, Object_WeaponBag.Armors[armorchangeWhich].name, 0, Laidbody);
+            helmetchange = Equip(helmetchange, helmetchangeWhich, Object_WeaponBag.helmetsize, head, Object_WeaponBag.Helmets, Object_WeaponBag.Helmets[helmetchangeWhich].name, 0, Laidhead);
+        
+        //Debug.Log(timeToLoad);
     }
     protected int Equip(int change,int changeWhich,int size,List<GameObject> sorts ,List<Item> item,string name,int stastic,GameObject laid)
     {
@@ -36,26 +63,27 @@ public class ChangeWeapon : MonoBehaviour
                 //未装备武器时，确保武器按 添加进背包的时间先后顺序 排列
                 for (int i = 0; i < size; i++)
                 {
-                    sorts [i].transform.GetChild(0).GetComponent<Image>().sprite = item[i].img;
+                    sorts[i].transform.GetChild(0).GetComponent<Image>().sprite = item[i].img;
                     sorts[i].transform.GetChild(1).GetComponent<Text>().text = item[i].name;
+                    //Debug.Log(sorts[i].name);
                 }
                 break;
 
             case 1://收到放入武器位的指令
-               ChangeWeapons(laid,sorts,size,changeWhich,item);
+                ChangeWeapons(laid,sorts,size,changeWhich,item);
                 //if (laid.transform.GetChild(1).GetComponent<Text>().text == name)
                 //{
                 //    Player_Stats.ATK = stastic ;
                 //}
-                switch (name)
-                {
-                    case "最好的剑": Player_Stats.ATK =20 ; break;
-                    case "更好的剑": Player_Stats.ATK = 20; break;
-                    case "最好的甲": Player_Stats.ATK = 20; break;
-                    case "更好的甲": Player_Stats.ATK = 20; break;
-                    case "最好的头": Player_Stats.ATK = 20; break;
-                    case "更好的头": Player_Stats.ATK = 20; break;
-                }
+                //switch (name)
+                //{
+                //    case "最好的剑": Player_Stats.ATK = 20 ; break;
+                //    case "更好的剑": Player_Stats.ATK = 20; break;
+                //    case "最好的甲": Player_Stats.ATK = 20; break;
+                //    case "更好的甲": Player_Stats.ATK = 20; break;
+                //    case "最好的头": Player_Stats.ATK = 20; break;
+                //    case "更好的头": Player_Stats.ATK = 20; break;
+                //}
                 change = 2;
                 break;
 
@@ -109,7 +137,39 @@ public class ChangeWeapon : MonoBehaviour
         }
 
     }
-
+    //public void SavePlacedObjs()
+    //{
+    //    PlayerPrefs.SetString("PlacedWeapon", Laidweapon.transform.GetChild(1).GetComponent<Text>().text);
+    //    PlayerPrefs.SetString("PlacedArmor", Laidbody.transform.GetChild(1).GetComponent<Text>().text);
+    //    PlayerPrefs.SetString("PlacedHelmet", Laidhead.transform.GetChild(1).GetComponent<Text>().text);
+    //}
+    //public void ReadPlacedObjs()
+    //{
+    //    Laidweapon.transform.GetChild(1).GetComponent<Text>().text = PlayerPrefs.GetString("PlacedWeapon");
+    //    Laidbody.transform.GetChild(1).GetComponent<Text>().text = PlayerPrefs.GetString("PlacedArmor");
+    //    Laidhead.transform.GetChild(1).GetComponent<Text>().text = PlayerPrefs.GetString("PlacedHelmet");
+    //    switch (Laidweapon.transform.GetChild(1).GetComponent<Text>().text)
+    //    {
+    //        case "最好的剑":
+    //            Laidweapon.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("01"); break;
+    //        case "更好的剑":
+    //            Laidweapon.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("02"); break;
+    //    }
+    //    switch (Laidbody.transform.GetChild(1).GetComponent<Text>().text)
+    //    {
+    //        case "最好的剑":
+    //            Laidbody.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("01"); break;
+    //        case "更好的剑":
+    //            Laidbody.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("02"); break;
+    //    }
+    //    switch (Laidhead.transform.GetChild(1).GetComponent<Text>().text)
+    //    {
+    //        case "最好的剑":
+    //            Laidhead.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("04"); break;
+    //        case "更好的剑":
+    //            Laidhead.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("05"); break;
+    //    }
+    //}
 }
 
 

@@ -620,10 +620,12 @@ MonoBehaviour:
   - {fileID: 922501215}
   - {fileID: 296680998}
   OptionNum: 2
-  UI_Sounds: []
   Battle: {fileID: 119365953}
   BattleOrRun: {fileID: 114923837}
   L: {fileID: 1869276140}
+  Characters: {fileID: 0}
+  text1: {fileID: 0}
+  text2: {fileID: 0}
 --- !u!212 &305601497
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -870,78 +872,63 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5442128049988345546, guid: 2a5bc3e67e9996246a272c343d25fe53,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: prop.Array.size
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 5442128049988345546, guid: 2a5bc3e67e9996246a272c343d25fe53,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: weapon.Array.data[0]
       value: 
       objectReference: {fileID: 619403612}
-    - target: {fileID: 5442128049988345546, guid: 2a5bc3e67e9996246a272c343d25fe53,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: weapon.Array.data[1]
       value: 
       objectReference: {fileID: 1446357871}
-    - target: {fileID: 5442128049988345546, guid: 2a5bc3e67e9996246a272c343d25fe53,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: weapon.Array.data[2]
       value: 
       objectReference: {fileID: 1020644546}
-    - target: {fileID: 5442128049988345546, guid: 2a5bc3e67e9996246a272c343d25fe53,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: weapon.Array.data[3]
       value: 
       objectReference: {fileID: 265697942}
-    - target: {fileID: 5442128049988345546, guid: 2a5bc3e67e9996246a272c343d25fe53,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: armor.Array.data[0]
       value: 
       objectReference: {fileID: 1515735851}
-    - target: {fileID: 5442128049988345546, guid: 2a5bc3e67e9996246a272c343d25fe53,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: armor.Array.data[1]
       value: 
       objectReference: {fileID: 19034920}
-    - target: {fileID: 5442128049988345546, guid: 2a5bc3e67e9996246a272c343d25fe53,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: armor.Array.data[2]
       value: 
       objectReference: {fileID: 1536725185}
-    - target: {fileID: 5442128049988345546, guid: 2a5bc3e67e9996246a272c343d25fe53,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: armor.Array.data[3]
       value: 
       objectReference: {fileID: 812561183}
-    - target: {fileID: 5442128049988345546, guid: 2a5bc3e67e9996246a272c343d25fe53,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: prop.Array.data[0]
       value: 
       objectReference: {fileID: 1421139970}
-    - target: {fileID: 5442128049988345546, guid: 2a5bc3e67e9996246a272c343d25fe53,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: prop.Array.data[1]
       value: 
       objectReference: {fileID: 60239625}
-    - target: {fileID: 5442128049988345546, guid: 2a5bc3e67e9996246a272c343d25fe53,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: prop.Array.data[2]
       value: 
       objectReference: {fileID: 1984161878}
-    - target: {fileID: 5442128049988345546, guid: 2a5bc3e67e9996246a272c343d25fe53,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: prop.Array.data[3]
       value: 
       objectReference: {fileID: 264977733}
-    - target: {fileID: 5442128049988345546, guid: 2a5bc3e67e9996246a272c343d25fe53,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: prop.Array.data[4]
       value: 
       objectReference: {fileID: 1231396849}
-    - target: {fileID: 5442128049988345546, guid: 2a5bc3e67e9996246a272c343d25fe53,
-        type: 3}
+    - target: {fileID: 0}
       propertyPath: prop.Array.data[5]
       value: 
       objectReference: {fileID: 1231396848}
@@ -1118,9 +1105,10 @@ MonoBehaviour:
   - {fileID: 1781160869}
   - {fileID: 2084116624}
   OptionNum: 4
-  UI_Sounds: []
   BattleCommands: {fileID: 0}
   BattleOrRun: {fileID: 0}
+  Characters: {fileID: 0}
+  monsterSelection: {fileID: 0}
 --- !u!212 &415708128
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2291,11 +2279,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 3160233111993677588, guid: 7fe931b35c6d7354a925875dbd009818,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3961860535697707467, guid: 7fe931b35c6d7354a925875dbd009818,
         type: 3}
       propertyPath: m_RootOrder
@@ -2375,6 +2358,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: "\u7A7A"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3160233111993677588, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fe931b35c6d7354a925875dbd009818, type: 3}
@@ -6305,6 +6293,7 @@ GameObject:
   - component: {fileID: 1480812520}
   - component: {fileID: 1480812519}
   - component: {fileID: 1480812518}
+  - component: {fileID: 1480812522}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -6408,6 +6397,35 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 6
   m_TargetDisplay: 0
+--- !u!114 &1480812522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480812516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab745fc279d99d244b88d5010514c6bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon:
+  - {fileID: 619403612}
+  - {fileID: 1446357871}
+  - {fileID: 1020644546}
+  - {fileID: 265697942}
+  prop:
+  - {fileID: 1421139970}
+  - {fileID: 60239625}
+  - {fileID: 1984161878}
+  - {fileID: 264977733}
+  - {fileID: 1231396849}
+  - {fileID: 1231396848}
+  armor:
+  - {fileID: 1515735851}
+  - {fileID: 19034920}
+  - {fileID: 1536725185}
+  - {fileID: 812561183}
 --- !u!1 &1482221493
 GameObject:
   m_ObjectHideFlags: 0

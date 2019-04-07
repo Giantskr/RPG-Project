@@ -21,7 +21,7 @@ public class Select_Equip : Select
     {
         
         Selection();
-        ChangeWeapon.weaponchangeWhich = states - 1;
+       
         if (Input.GetButtonDown("Cancel"))
         {
             UI_Weapons.SetActive(true);
@@ -29,6 +29,7 @@ public class Select_Equip : Select
         }
         if (Input.GetButtonDown("Submit"))
         {
+            ChangeWeapon.weaponchangeWhich = states - 1;
             ButtonEvent(states - 1);
            
         }
@@ -38,7 +39,7 @@ public class Select_Equip : Select
     {
         if (weapon[i].transform.GetChild(1).GetComponent<Text>().text == "空")
         {
-            Debug.Log("233");
+       
             ChangeWeapon.weaponchange = 3;
         }
         else
@@ -49,7 +50,7 @@ public class Select_Equip : Select
             }
             else
             {
-                Debug.Log("996");
+                
                 ChangeWeapon.weaponchange = 1;
             }
             

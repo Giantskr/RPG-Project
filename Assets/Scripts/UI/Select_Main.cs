@@ -21,7 +21,7 @@ public class Select_Main : Select
 			switch (states)
 			{
 				case 1:
-                    gameManager.StartCoroutine("ChangeScene", "PalaceOut");
+                    gameManager.StartCoroutine("ChangeScene", "OpenAni");
                     break;
 				case 2: gameManager.StartCoroutine("ChangeScene", PlayerPrefs .GetString("LastScene")); break;
 				case 3:

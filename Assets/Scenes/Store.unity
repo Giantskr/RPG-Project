@@ -162,7 +162,7 @@ PrefabInstance:
     - target: {fileID: 4672413970696540345, guid: 7301ac952f04d9a4cb05671276099eab,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4672413970696540345, guid: 7301ac952f04d9a4cb05671276099eab,
         type: 3}
@@ -799,7 +799,7 @@ PrefabInstance:
     - target: {fileID: 5307574481910302080, guid: 707163c7579e8594f93ba1cd8587febc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5307574481910302080, guid: 707163c7579e8594f93ba1cd8587febc,
         type: 3}
@@ -1291,6 +1291,7 @@ GameObject:
   - component: {fileID: 293553016}
   - component: {fileID: 293553015}
   - component: {fileID: 293553020}
+  - component: {fileID: 293553019}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1382,6 +1383,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &293553019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293553014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab745fc279d99d244b88d5010514c6bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon:
+  - {fileID: 1590462431}
+  - {fileID: 1527794672}
+  - {fileID: 1014730451}
+  - {fileID: 595562185}
+  prop:
+  - {fileID: 1187351042}
+  - {fileID: 383759789}
+  - {fileID: 655072823}
+  - {fileID: 1344699417}
+  - {fileID: 644392417}
+  - {fileID: 1624507182}
+  - {fileID: 1623417384}
+  armor:
+  - {fileID: 450468021}
+  - {fileID: 450468020}
+  - {fileID: 450468019}
+  - {fileID: 450468018}
 --- !u!114 &293553020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2149,7 +2180,7 @@ PrefabInstance:
     - target: {fileID: 5971466183620310968, guid: 7fe931b35c6d7354a925875dbd009818,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5971466183620310968, guid: 7fe931b35c6d7354a925875dbd009818,
         type: 3}
@@ -2231,6 +2262,30 @@ PrefabInstance:
 --- !u!224 &450468017 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5971466183620310968, guid: 7fe931b35c6d7354a925875dbd009818,
+    type: 3}
+  m_PrefabInstance: {fileID: 450468016}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &450468018 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7961331276721437314, guid: 7fe931b35c6d7354a925875dbd009818,
+    type: 3}
+  m_PrefabInstance: {fileID: 450468016}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &450468019 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6931564726828949095, guid: 7fe931b35c6d7354a925875dbd009818,
+    type: 3}
+  m_PrefabInstance: {fileID: 450468016}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &450468020 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5348658720111666762, guid: 7fe931b35c6d7354a925875dbd009818,
+    type: 3}
+  m_PrefabInstance: {fileID: 450468016}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &450468021 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1731009801818725744, guid: 7fe931b35c6d7354a925875dbd009818,
     type: 3}
   m_PrefabInstance: {fileID: 450468016}
   m_PrefabAsset: {fileID: 0}
@@ -5251,12 +5306,6 @@ MonoBehaviour:
   - {fileID: 289160486}
   - {fileID: 351371254}
   OptionNum: 2
-  UI_Sounds:
-  - {fileID: 8300000, guid: 7ced1f4fb94c370439a28e920ae7560a, type: 3}
-  - {fileID: 8300000, guid: 5eadee6ab416b5b4c94f7c0638b0e5d6, type: 3}
-  - {fileID: 8300000, guid: 3c04ccfb80ed53d4daaa7770f5343693, type: 3}
-  - {fileID: 8300000, guid: f7d65b93fb61e5742817afff623d81cf, type: 3}
-  - {fileID: 8300000, guid: 672e64bf94f14d744a251705a025a6de, type: 3}
   Battle: {fileID: 295873519}
   BattleOrRun: {fileID: 1794960471}
   L: {fileID: 548258286}
@@ -6842,11 +6891,6 @@ MonoBehaviour:
   - {fileID: 1736381671}
   - {fileID: 1084087701}
   OptionNum: 7
-  UI_Sounds:
-  - {fileID: 8300000, guid: 7ced1f4fb94c370439a28e920ae7560a, type: 3}
-  - {fileID: 8300000, guid: 3c04ccfb80ed53d4daaa7770f5343693, type: 3}
-  - {fileID: 8300000, guid: 5eadee6ab416b5b4c94f7c0638b0e5d6, type: 3}
-  - {fileID: 8300000, guid: f7d65b93fb61e5742817afff623d81cf, type: 3}
   Select_Store: {fileID: 2025601782}
   goods: {fileID: 2015137542}
   Describe: {fileID: 1963270840}
@@ -9813,7 +9857,6 @@ MonoBehaviour:
   - {fileID: 1562195237}
   - {fileID: 760435773}
   OptionNum: 4
-  UI_Sounds: []
   BattleCommands: {fileID: 0}
   BattleOrRun: {fileID: 0}
   Characters: {fileID: 0}
@@ -11283,11 +11326,6 @@ MonoBehaviour:
   - {fileID: 407074702}
   - {fileID: 1039454535}
   OptionNum: 3
-  UI_Sounds:
-  - {fileID: 8300000, guid: 7ced1f4fb94c370439a28e920ae7560a, type: 3}
-  - {fileID: 8300000, guid: 5eadee6ab416b5b4c94f7c0638b0e5d6, type: 3}
-  - {fileID: 8300000, guid: 3c04ccfb80ed53d4daaa7770f5343693, type: 3}
-  - {fileID: 8300000, guid: f7d65b93fb61e5742817afff623d81cf, type: 3}
   Store: {fileID: 205335722}
   Goods: {fileID: 2015137542}
   Sell: {fileID: 268403485}
@@ -11623,11 +11661,6 @@ MonoBehaviour:
   - {fileID: 482120823}
   - {fileID: 1087432094}
   OptionNum: 6
-  UI_Sounds:
-  - {fileID: 8300000, guid: 7ced1f4fb94c370439a28e920ae7560a, type: 3}
-  - {fileID: 8300000, guid: 3c04ccfb80ed53d4daaa7770f5343693, type: 3}
-  - {fileID: 8300000, guid: 5eadee6ab416b5b4c94f7c0638b0e5d6, type: 3}
-  - {fileID: 8300000, guid: f7d65b93fb61e5742817afff623d81cf, type: 3}
   Select_Store: {fileID: 2025601782}
   objects: {fileID: 268403485}
   Describe: {fileID: 1963270840}

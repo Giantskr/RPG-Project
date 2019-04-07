@@ -31,14 +31,15 @@ public class Player_Stats : BattleActions
 
 	void Awake()
 	{
-        AudioListener.volume = volumn;
 		DontDestroyOnLoad(gameObject);
 		if (instance == null)
 			instance = this;
 		else if (instance != this)
 			Destroy(gameObject);
 
-		if (switchListInt == null) switchListInt = new int[50];
+        AudioListener.volume = volumn;
+
+        if (switchListInt == null) switchListInt = new int[50];
 
 		if (Skill == null) Skill = LoadJson<SkillData>.LoadJsonFromFile("Skills");
 	}

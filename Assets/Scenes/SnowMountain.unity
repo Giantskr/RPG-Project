@@ -2611,7 +2611,6 @@ MonoBehaviour:
   - {fileID: 782461768}
   - {fileID: 627073743}
   OptionNum: 4
-  UI_Sounds: []
   BattleCommands: {fileID: 0}
   BattleOrRun: {fileID: 0}
   Characters: {fileID: 0}
@@ -11793,7 +11792,6 @@ MonoBehaviour:
   - {fileID: 2006727380}
   - {fileID: 1967146371}
   OptionNum: 2
-  UI_Sounds: []
   Battle: {fileID: 1147261594}
   BattleOrRun: {fileID: 1698104020}
   L: {fileID: 1206966430}
@@ -12628,6 +12626,7 @@ GameObject:
   - component: {fileID: 2001081717}
   - component: {fileID: 2001081716}
   - component: {fileID: 2001081715}
+  - component: {fileID: 2001081720}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -12731,6 +12730,35 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2001081720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001081714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab745fc279d99d244b88d5010514c6bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon:
+  - {fileID: 1484144870}
+  - {fileID: 699439991}
+  - {fileID: 1384235967}
+  - {fileID: 1578627054}
+  prop:
+  - {fileID: 1186619708}
+  - {fileID: 474724142}
+  - {fileID: 1104035439}
+  - {fileID: 47432557}
+  - {fileID: 1748483280}
+  - {fileID: 1592945662}
+  armor:
+  - {fileID: 1271447009}
+  - {fileID: 328060767}
+  - {fileID: 1148071893}
+  - {fileID: 233709130}
 --- !u!1 &2006727380
 GameObject:
   m_ObjectHideFlags: 0
