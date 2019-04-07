@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public AudioClip[] UI_Sounds;
 
     public static bool inScene;
-	public static bool inBattle;	
+	public static bool inBattle;
 	public static bool fading;
 	AsyncOperation loading;
 
@@ -25,27 +25,15 @@ public class GameManager : MonoBehaviour
 
 	GameObject[] allMonsters;
 	public static List<GameObject> monstersJoining;
-    //public static GameManager instance = null;
-    //void Awake()
-    //{
-    //    DontDestroyOnLoad(gameObject);
-    //    if (instance == null)
-    //        instance = this;
-    //    else if (instance != this)
-    //        Destroy(gameObject);
-    //}
-    //public static GameManager GetInstance()
-    //{
-    //    return instance;
-    //}
+
 
     void OnEnable()
     {
         if (cam.GetComponent<MapCamera>().sceneType == MapCamera.SceneType.GamePlay)
         {
-            //allMonsters = UI_Battle.GetComponent<BattleActions>().allmonsters;
-            //monstersJoining = new List<GameObject>();
-            fading = true;
+			allMonsters = UI_Battle.GetComponent<BattleActions>().allmonsters;
+			monstersJoining = new List<GameObject>();
+			fading = true;
             inScene = true;
         }
         else
@@ -58,13 +46,12 @@ public class GameManager : MonoBehaviour
         au = GetComponent<AudioSource>();
 
 
-        //	if (monstersJoining != null) monstersJoining.Clear();
-        //	Debug.Log(allMonsters[0]);
-        //	monstersJoining.Add(allMonsters[0]);
-        //	StartBattle(monstersJoining);
-        }
+		if (monstersJoining != null) monstersJoining.Clear();
+		monstersJoining.Add(allMonsters[0]);
+		StartBattle(monstersJoining);
+	}
 
-        void Update()
+    void Update()
     {
         whichSound = SoundPlay(whichSound);
 		if (Input.GetButtonDown("Cancel") && inScene && !fading)
@@ -73,7 +60,16 @@ public class GameManager : MonoBehaviour
 			UI_Esc.SetActive(true);
 		}
 		if (!inBattle && monstersJoining != null) monstersJoining = null;
-		//else if (inBattle && !UI_Battle.activeInHierarchy) UI_Battle.SetActive(true);
+		if (inBattle&&BattleActions.battleState!=BattleActions.BattleState.battling)
+		{
+			if (BattleActions.battleState == BattleActions.BattleState.lose)
+				fadingScreen.GetComponent<Animator>().Play("FadeToBlack");
+			else if (BattleActions.battleState == BattleActions.BattleState.win)
+			{
+				inBattle = false;inScene = true;
+				UI_Battle.SetActive(false);
+			}
+		}
     }
 	void OnDisable()
 	{

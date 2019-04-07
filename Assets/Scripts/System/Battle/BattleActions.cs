@@ -17,9 +17,14 @@ public class BattleActions : MonoBehaviour
 	public GameObject Message;
 	public GameObject BattleOrRun;
 
-	
+	public enum BattleState
+	{
+		battling,win,lose
+	}
+	public static BattleState battleState;
 
 	public static List<GameObject> monsterInBattle;
+	public static List<GameObject> Turn;
 
 	int round = 0;
 	bool ifGuard = false;
@@ -29,6 +34,7 @@ public class BattleActions : MonoBehaviour
 	private void Start()
 	{
 		player = GameObject.Find("Player_Stats");
+		battleState = BattleState.battling;
 
 		if (monsterInBattle == null) monsterInBattle = new List<GameObject>();
 		if (gameObject.name == "Battle")
@@ -85,22 +91,31 @@ public class BattleActions : MonoBehaviour
 					switch (data.id)
 					{
 						case 1:
-							bAction.TakeDamage(ReadFormula(data, aPositive, bNegative));
+							//bAction.TakeDamage(ReadFormula(data, aPositive, bNegative));
+							bAction.StartCoroutine("TakeDamage", ReadFormula(data, aPositive, bNegative));
 							break;
 					}
 				break;
-			}	
+			}
+		//if (aPositive == player && bNegative != null) bNegative.GetComponent<BattleActions>().UseSkill(1, gameObject, player);
+		if (aPositive == player && bNegative != null) bNegative.GetComponent<BattleActions>().Invoke("MonsterUsingSkill", 2f);
+		//if (aPositive == player && bNegative != null) bNegative.GetComponent<BattleActions>().StartCoroutine("MonsterUsingSkill");
+		else
+		{
+			battleAction.BattleOrRun.SetActive(true);
+		}
 	}
+	
 	IEnumerator DisplayMessage2(string message)
 	{
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.75f);
 		battleAction.text2.text = message;
-		//yield
+		yield return new WaitForSeconds(1f);
 	}
 	/// <summary>
 	/// 受到伤害
 	/// </summary>
-	void TakeDamage(int dmg)
+	IEnumerator TakeDamage(int dmg)
 	{
 		if (ifGuard) dmg /= 2;
 		string message;
@@ -114,26 +129,44 @@ public class BattleActions : MonoBehaviour
 			GetComponent<Monster>().HP -= dmg;
 			message = GetComponent<Monster>().info.monsterName;
 		}
-		message += gameObject.name + "受到了" + dmg + "点伤害！";
+		message += "受到了" + dmg + "点伤害！";
 		StartCoroutine("DisplayMessage2", message);
-		checkHP();
+		yield return new WaitForSeconds(1f);
+		StartCoroutine("CheckHP");
 	}
-	void checkHP()
+	IEnumerator CheckHP()
 	{
 		if (gameObject == player)
 		{
 			if (Player_Stats.HP <= 0)
 			{
-
+				battleAction.text1.text = "达拉崩吧倒下了！";
+				battleAction.text2.text = "";
+				battleState = BattleState.lose;
 			}
 		}
 		else
 		{
-			if(GetComponent<Monster>().HP<=0)
+			if (GetComponent<Monster>().HP <= 0) 
 			{
-
+				battleAction.text1.text = GetComponent<Monster>().info.monsterName + "倒下了！";
+				battleAction.text2.text = "";
+				monsterInBattle.Remove(gameObject);
+				GetComponent<Animator>().enabled = true;
+				gameObject.transform.GetChild(0).gameObject.SetActive(true);
+				gameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().Play("Death");
+				if (monsterInBattle.Count == 0)
+				{
+					yield return new WaitForSeconds(1);
+					battleAction.text1.text =  "战斗胜利！";
+					yield return new WaitForSeconds(2);
+					battleState = BattleState.win;
+				}
+				yield return new WaitForSeconds(1);
+				Destroy(gameObject);
 			}
 		}
+		yield return null;
 	}
 	/// <summary>
 	/// 读取技能伤害公式

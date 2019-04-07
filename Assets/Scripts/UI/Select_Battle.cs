@@ -8,7 +8,6 @@ public class Select_Battle : Select
 	public GameObject BattleOrRun;
 	public GameObject Characters;
 	public GameObject monsterSelection;
-	List<GameObject> aliveMonsters;
 
 	void Start()
     {
@@ -32,8 +31,7 @@ public class Select_Battle : Select
 					
 					break;
 				case 3:
-
-					Player_Stats.skillIdToUse = 2;
+					BattleActions.player.GetComponent<BattleActions>().UseSkill(2, BattleActions.player, null);
 					break;
 				case 4:
 					
