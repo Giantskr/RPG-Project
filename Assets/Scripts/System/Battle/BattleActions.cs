@@ -13,15 +13,24 @@ public class BattleActions : MonoBehaviour
 	[Space]
 	public Text text1;
 	public Text text2;
+	public Text HPText;
+	public Text MPText;
 	public static BattleActions battleAction;
 	public GameObject Message;
 	public GameObject BattleOrRun;
 
-	
+	int getExp = 0, getMoney = 0;
+
+	public enum BattleState
+	{
+		battling,win,lose
+	}
+	public static BattleState battleState;
 
 	public static List<GameObject> monsterInBattle;
+	public static List<GameObject> Turn;
 
-	int round = 0;
+	public static int round = 0;
 	bool ifGuard = false;
 
 	SkillData skills;
@@ -29,6 +38,7 @@ public class BattleActions : MonoBehaviour
 	private void Start()
 	{
 		player = GameObject.Find("Player_Stats");
+		battleState = BattleState.battling;
 
 		if (monsterInBattle == null) monsterInBattle = new List<GameObject>();
 		if (gameObject.name == "Battle")
@@ -47,6 +57,7 @@ public class BattleActions : MonoBehaviour
 	void Update()
 	{
 		
+		battleAction.MPText.text = Player_Stats.MP.ToString() + "/" + Player_Stats.maxMP.ToString();
 	}
 
 
@@ -65,6 +76,7 @@ public class BattleActions : MonoBehaviour
 		foreach (var data in skills.Skills)
 			if (data.id == id)
 			{
+				ifGuard = false;
 				string aName;
 				if (aPositive == player) aName = "达拉崩吧";
 				else aName = aPositive.GetComponent<Monster>().info.monsterName;
@@ -85,22 +97,35 @@ public class BattleActions : MonoBehaviour
 					switch (data.id)
 					{
 						case 1:
-							bAction.TakeDamage(ReadFormula(data, aPositive, bNegative));
+							//bAction.TakeDamage(ReadFormula(data, aPositive, bNegative));
+							bAction.StartCoroutine("TakeDamage", ReadFormula(data, aPositive, bNegative));
+							break;
+						case 2:
+							StartCoroutine("DisplayMessage2", "本回合受到的伤害减少了！");
+							ifGuard = true;
 							break;
 					}
 				break;
-			}	
+			}
+		if (aPositive == player && bNegative != null) bNegative.GetComponent<BattleActions>().Invoke("MonsterUsingSkill", 2f);
+		//if (aPositive == player && bNegative != null) bNegative.GetComponent<BattleActions>().StartCoroutine("MonsterUsingSkill");
+		else
+		{
+			battleAction.BattleOrRun.SetActive(true);
+		}
 	}
+	
 	IEnumerator DisplayMessage2(string message)
 	{
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.75f);
 		battleAction.text2.text = message;
-		//yield
+		battleAction.HPText.text = Player_Stats.HP.ToString() + "/" + Player_Stats.maxHP.ToString();
+		yield return new WaitForSeconds(1f);
 	}
 	/// <summary>
 	/// 受到伤害
 	/// </summary>
-	void TakeDamage(int dmg)
+	IEnumerator TakeDamage(int dmg)
 	{
 		if (ifGuard) dmg /= 2;
 		string message;
@@ -114,26 +139,51 @@ public class BattleActions : MonoBehaviour
 			GetComponent<Monster>().HP -= dmg;
 			message = GetComponent<Monster>().info.monsterName;
 		}
-		message += gameObject.name + "受到了" + dmg + "点伤害！";
+		message += "受到了" + dmg + "点伤害！";
 		StartCoroutine("DisplayMessage2", message);
-		checkHP();
+		yield return new WaitForSeconds(1f);
+		StartCoroutine("CheckHP");
 	}
-	void checkHP()
+	IEnumerator CheckHP()
 	{
 		if (gameObject == player)
 		{
 			if (Player_Stats.HP <= 0)
 			{
-
+				battleAction.text1.text = "达拉崩吧倒下了！";
+				battleAction.text2.text = "";
+				battleState = BattleState.lose;
 			}
 		}
 		else
 		{
-			if(GetComponent<Monster>().HP<=0)
+			if (GetComponent<Monster>().HP <= 0) 
 			{
+				battleAction.text1.text = GetComponent<Monster>().info.monsterName + "倒下了！";
+				battleAction.text2.text = "";
+				getExp += gameObject.GetComponent<Monster>().info.getExp;
+				getMoney += gameObject.GetComponent<Monster>().info.getMoney;
+				monsterInBattle.Remove(gameObject);
+				GetComponent<Animator>().enabled = true;
+				gameObject.transform.GetChild(0).gameObject.SetActive(true);
+				gameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().Play("Death");
+				if (monsterInBattle.Count == 0)
+				{
+					yield return new WaitForSeconds(1);
+					battleAction.text1.text =  "战斗胜利！";
+					yield return new WaitForSeconds(0.75f);
+					Player_Stats.EXP += getExp;
+					Player_Stats.Money += getMoney;
+					battleAction.text2.text = "获得了" + getExp.ToString() + "经验值与" + getMoney.ToString() + "金钱！";
+					yield return new WaitForSeconds(2);
 
+					battleState = BattleState.win;
+				}
+				yield return new WaitForSeconds(1);
+				Destroy(gameObject);
 			}
 		}
+		yield return null;
 	}
 	/// <summary>
 	/// 读取技能伤害公式

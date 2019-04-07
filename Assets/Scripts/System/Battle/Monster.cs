@@ -13,6 +13,11 @@ public class Monster : BattleActions
 		HP = info.maxHP;
 		MP = info.maxMP;
 	}
+
+	public void MonsterUsingSkill()
+	{
+		if (HP > 0) UseSkill(1, gameObject, player);
+	} 
 }
 //[System.Serializable]
 //public class MonsterData

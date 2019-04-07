@@ -26,7 +26,7 @@ public class Select_Monster : Select
 		Selection();
 		foreach (GameObject monster in BattleActions.monsterInBattle)
 		{
-			if (BattleActions.monsterInBattle.IndexOf(monster) == indexes[states])
+			if (BattleActions.monsterInBattle.IndexOf(monster) == indexes[states-1])
 				monster.transform.GetChild(0).gameObject.SetActive(true);
 			else monster.transform.GetChild(0).gameObject.SetActive(false);
 		}
@@ -36,9 +36,10 @@ public class Select_Monster : Select
 			foreach (GameObject monster in BattleActions.monsterInBattle)
 			{
 				BattleCommands.SetActive(false);
-				if (BattleActions.monsterInBattle.IndexOf(monster) == indexes[states])
+				if (BattleActions.monsterInBattle.IndexOf(monster) == indexes[states-1])
 				{
 					monster.transform.GetChild(0).gameObject.SetActive(false);
+					ActionSelection.SetActive(true);
 					BattleActions.player.GetComponent<BattleActions>().UseSkill(Player_Stats.skillIdToUse, BattleActions.player, monster);
 					Characters.SetActive(true);
 					monsterSelection.SetActive(false);
@@ -56,7 +57,7 @@ public class Select_Monster : Select
 	void DisplayMonsterList()
 	{
 		OptionNum = BattleActions.monsterInBattle.Count;
-		if (states <= OptionNum) states = 1;
+		if (states < OptionNum) states = 1;
 		int i = 0;
 		for (i = 8; i > 0; i--) indexes[i - 1] = -1;
 		foreach (GameObject monster in BattleActions.monsterInBattle)

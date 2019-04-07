@@ -103,9 +103,9 @@ public class Player_Stats : BattleActions
     {
         AudioListener.volume = volumn;
     }
-	public void PlayerUseSkill(byte id)
+	public void PlayerUseSkill(GameObject monster)
 	{
-
+		GetComponent<BattleActions>().UseSkill(skillIdToUse, player, monster);
 	}
     
 }
