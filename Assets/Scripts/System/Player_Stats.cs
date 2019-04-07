@@ -30,7 +30,7 @@ public class Player_Stats : BattleActions
 
 	void Awake()
 	{
-       // AudioListener.volume = volumn;
+        AudioListener.volume = volumn;
 		DontDestroyOnLoad(gameObject);
 		if (instance == null)
 			instance = this;
@@ -56,12 +56,14 @@ public class Player_Stats : BattleActions
         PlayerPrefs.SetInt("level", level);
         PlayerPrefs.SetInt("EXP", EXP);
         PlayerPrefs.SetInt("Money", Money);
-        PlayerPrefs.SetInt("Guard", 1);
+        PlayerPrefs.SetString("LastScene", lastScene);
+     //   PlayerPrefs.SetInt("Guard", 1);
         for(int i = 0; i< 30; i++)
         {
 
             PlayerPrefs.SetInt("switchListInt" + i, switchListInt[i]);
         }
+        PlayerPrefs.SetFloat("volumn", volumn);
     }
     public void read()
     {
@@ -83,6 +85,7 @@ public class Player_Stats : BattleActions
 
             switchListInt[i]= PlayerPrefs.GetInt("switchListInt"+i);
         }
+        volumn = PlayerPrefs.GetFloat("Volunm");
     }
     public static Player_Stats GetInstance()
 	{
@@ -96,8 +99,8 @@ public class Player_Stats : BattleActions
 
     void Update()
     {
-
-	}
+        AudioListener.volume = volumn;
+    }
 	public void PlayerUseSkill(byte id)
 	{
 

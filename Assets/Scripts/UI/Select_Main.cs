@@ -23,7 +23,7 @@ public class Select_Main : Select
 				case 1:
                     gameManager.StartCoroutine("ChangeScene", "PalaceOut");
                     break;
-				case 2: break;
+				case 2: gameManager.StartCoroutine("ChangeScene", PlayerPrefs .GetString("LastScene")); break;
 				case 3:
 					if (Input.GetButtonDown("Submit"))
 					Options.SetActive(true);

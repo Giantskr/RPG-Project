@@ -3346,6 +3346,11 @@ PrefabInstance:
       propertyPath: fadingScreen
       value: 
       objectReference: {fileID: 1197502729}
+    - target: {fileID: 4494901824249771423, guid: 092d70234f4e2844b8ee46dbdbbf646b,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 882532975}
     - target: {fileID: 4494901824249771416, guid: 092d70234f4e2844b8ee46dbdbbf646b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7869,6 +7874,8 @@ MonoBehaviour:
   UI_Sounds: []
   BattleCommands: {fileID: 0}
   BattleOrRun: {fileID: 0}
+  Characters: {fileID: 0}
+  monsterSelection: {fileID: 0}
 --- !u!212 &1744356971
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9078,6 +9085,9 @@ MonoBehaviour:
   Battle: {fileID: 1265442638}
   BattleOrRun: {fileID: 1151211261}
   L: {fileID: 388295239}
+  Characters: {fileID: 0}
+  text1: {fileID: 0}
+  text2: {fileID: 0}
 --- !u!212 &1975463279
 SpriteRenderer:
   m_ObjectHideFlags: 0

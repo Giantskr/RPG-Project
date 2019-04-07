@@ -12,7 +12,11 @@ public class GameManager : MonoBehaviour
 	public GameObject fadingScreen;
 	public GameObject player;
 
-	public static bool inScene;
+    public static int whichSound=5;
+    //protected AudioSource audioSource;
+    public AudioClip[] UI_Sounds;
+
+    public static bool inScene;
 	public static bool inBattle;	
 	public static bool fading;
 	AsyncOperation loading;
@@ -21,19 +25,19 @@ public class GameManager : MonoBehaviour
 
 	GameObject[] allMonsters;
 	public static List<GameObject> monstersJoining;
-    public static GameManager instance = null;
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-        if (instance == null)
-            instance = this;
-        else if (instance != this)
-            Destroy(gameObject);
-    }
-    public static GameManager GetInstance()
-    {
-        return instance;
-    }
+    //public static GameManager instance = null;
+    //void Awake()
+    //{
+    //    DontDestroyOnLoad(gameObject);
+    //    if (instance == null)
+    //        instance = this;
+    //    else if (instance != this)
+    //        Destroy(gameObject);
+    //}
+    //public static GameManager GetInstance()
+    //{
+    //    return instance;
+    //}
 
     void OnEnable()
     {
@@ -62,6 +66,7 @@ public class GameManager : MonoBehaviour
 
         void Update()
     {
+        whichSound = SoundPlay(whichSound);
 		if (Input.GetButtonDown("Cancel") && inScene && !fading)
 		{
 			inScene = false;
@@ -90,13 +95,54 @@ public class GameManager : MonoBehaviour
 			{
 				case "Store":
 					if (Player_Stats.lastScene == "GrassLand")
-						vector = Vector2.right; pos = new Vector2(-11.5f, -1.5f);
-					break;
+                    {
+                        vector = Vector2.right; pos = new Vector2(-10.5f, -1.5f);
+                    }
+						
+                    if (Player_Stats.lastScene == "SnowMountain")
+                    {
+                        vector = Vector2.left; pos = new Vector2(11.5f, -0.5f);
+                    }
+                       
+                    break;
 				case "GrassLand":
 					if (Player_Stats.lastScene == "Store")
-						vector = Vector2.left; pos = new Vector2(10.5f, 1.5f);
-					break;
-			}
+                    {
+                        vector = Vector2.left; pos = new Vector2(10.5f, 1.5f);
+                    }
+                    if (Player_Stats.lastScene == "PalaceIn")
+                    {
+                        vector = Vector2.down; pos = new Vector2(-22f,25.5f);
+                    }
+                       
+                    break;
+                case "Town":
+                    if (Player_Stats.lastScene == "PalaceOut")
+                        vector = Vector2.right ; pos = new Vector2(-7f, 1.5f);
+                    break;
+                case "PalaceOut":
+                    if (Player_Stats.lastScene == "Town")
+                        vector = Vector2.up ; pos = new Vector2(0.5f, -7f);
+                    break;
+                case "PalaceIn":
+                    if (Player_Stats.lastScene == "PalaceOut")
+                        vector = Vector2.up; pos = new Vector2(0, -18.5f);
+                    break;
+                case "SnowMountain":
+                    if (Player_Stats.lastScene == "Store")
+                    {
+                        vector = Vector2.right; pos = new Vector2(-16f, -2f);
+                    }
+                    if (Player_Stats.lastScene == "Cave")
+                    {
+                        vector = Vector2.left; pos = new Vector2(16f, -7f);
+                    }
+                    break;
+                case "Cave":
+                    if (Player_Stats.lastScene == "SnowMountain")
+                        vector = Vector2.right; pos = new Vector2(-42f, 1f);
+                    break;
+            }
 			SetPlayerOrientationAndPos(vector, pos);
 			Resources.UnloadUnusedAssets();
 		}
@@ -132,4 +178,20 @@ public class GameManager : MonoBehaviour
 		inScene = false;
 		UI_Store.SetActive(true);
 	}
+    public int SoundPlay(int whichSound)
+    {
+        switch (whichSound)
+        {
+            case 5: break;
+            case 0:
+                au.PlayOneShot(UI_Sounds[0]);whichSound = 5;break;
+            case 1:
+                au.PlayOneShot(UI_Sounds[1]); whichSound = 5; break;
+            case 2:
+                au.PlayOneShot(UI_Sounds[2]); whichSound = 5; break;
+            case 3:
+                au.PlayOneShot(UI_Sounds[3]); whichSound = 5; break;
+        }
+        return whichSound;
+    }
 }

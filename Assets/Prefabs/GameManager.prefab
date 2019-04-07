@@ -46,9 +46,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 2047177440511758904, guid: 2f398e3fcabfb37408902f22e23e6da9, type: 3}
   UI_Esc: {fileID: 0}
+  UI_Battle: {fileID: 0}
+  UI_Store: {fileID: 0}
   fadingScreen: {fileID: 5307574481910302083, guid: 707163c7579e8594f93ba1cd8587febc,
     type: 3}
   player: {fileID: 602400736561843215, guid: 464605cc0f4ef364c826dcee91937db5, type: 3}
+  UI_Sounds:
+  - {fileID: 8300000, guid: 7ced1f4fb94c370439a28e920ae7560a, type: 3}
+  - {fileID: 8300000, guid: 5eadee6ab416b5b4c94f7c0638b0e5d6, type: 3}
+  - {fileID: 8300000, guid: 3c04ccfb80ed53d4daaa7770f5343693, type: 3}
+  - {fileID: 8300000, guid: f7d65b93fb61e5742817afff623d81cf, type: 3}
 --- !u!82 &8202872134174556715
 AudioSource:
   m_ObjectHideFlags: 0

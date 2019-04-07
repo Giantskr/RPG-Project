@@ -157,7 +157,7 @@ public class Events : MonoBehaviour
                 switch (SceneManager.GetActiveScene().name)
                 {
                     case "Store":
-                        gameManager.StartCoroutine("ChangeScene", "Cave");
+                        gameManager.StartCoroutine("ChangeScene", "SnowMountain");
                         break;
 
                 }

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class DragonAppear : MonoBehaviour
 {
     int time = 0;
+    public GameManager gameManager;
     public GameObject dragon;
     public GameObject Player;
     public Sprite lay;
@@ -41,7 +42,8 @@ public class DragonAppear : MonoBehaviour
         }
         if (time > 500)
         {
-            SceneManager.LoadScene("Town");
+            Player_Stats.lastScene = "Town";
+            gameManager.StartCoroutine("ChangeScene", "Town");
         }
     }
 }

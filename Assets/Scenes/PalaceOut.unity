@@ -5750,6 +5750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5272a7c36f14f7c48b3700dbaceec449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 1411478867}
   dragon: {fileID: 253949842}
   Player: {fileID: 1928938083}
   lay: {fileID: 21300174, guid: 4e419536d0892b040a11df342204a1a3, type: 3}
@@ -8089,6 +8090,9 @@ MonoBehaviour:
   Battle: {fileID: 1263966204}
   BattleOrRun: {fileID: 1254404426}
   L: {fileID: 93586261}
+  Characters: {fileID: 0}
+  text1: {fileID: 0}
+  text2: {fileID: 0}
 --- !u!212 &1835279310
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8604,6 +8608,8 @@ MonoBehaviour:
   UI_Sounds: []
   BattleCommands: {fileID: 0}
   BattleOrRun: {fileID: 0}
+  Characters: {fileID: 0}
+  monsterSelection: {fileID: 0}
 --- !u!212 &1955890611
 SpriteRenderer:
   m_ObjectHideFlags: 0

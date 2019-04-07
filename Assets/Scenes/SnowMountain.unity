@@ -1513,6 +1513,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1272355647}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &175456169 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5140743053892649331, guid: 8bc90fdcad06a7c428b641306202de8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 175568391}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 565fd263440bd45fa9ba0925c60f54f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &175568391
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1781,7 +1793,7 @@ PrefabInstance:
     - target: {fileID: 2523496650101792268, guid: 86060acf1c7c847428b7cd92d463cd67,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.99
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 2523496650101792268, guid: 86060acf1c7c847428b7cd92d463cd67,
         type: 3}
@@ -1837,7 +1849,7 @@ PrefabInstance:
         type: 3}
       propertyPath: gameManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1105289350}
     - target: {fileID: 2523496650101792267, guid: 86060acf1c7c847428b7cd92d463cd67,
         type: 3}
       propertyPath: m_Size.y
@@ -11620,11 +11632,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 3160233111993677588, guid: 7fe931b35c6d7354a925875dbd009818,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3961860535697707467, guid: 7fe931b35c6d7354a925875dbd009818,
         type: 3}
       propertyPath: m_RootOrder
@@ -11704,6 +11711,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: "\u7A7A"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3160233111993677588, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fe931b35c6d7354a925875dbd009818, type: 3}
@@ -12523,7 +12535,7 @@ PrefabInstance:
     - target: {fileID: 602400736561843212, guid: 464605cc0f4ef364c826dcee91937db5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 602400736561843212, guid: 464605cc0f4ef364c826dcee91937db5,
         type: 3}
@@ -18574,11 +18586,11 @@ PrefabInstance:
         type: 3}
       propertyPath: stats
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1771493454}
     - target: {fileID: 7865647514765629791, guid: d8359573e349a784cb6f9220208592e1,
         type: 3}
       propertyPath: rpgTalkHolder
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 175456169}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8359573e349a784cb6f9220208592e1, type: 3}
