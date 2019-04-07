@@ -3,36 +3,36 @@
 	[
 		{
 			"id": 1,
-			"skillName": "¹¥»÷",
+			"skillName": "æ”»å‡»",
 			"spritePath": "Skills/Icon_skill1",
-			"introduce": "¶Ôµ¥ÌåµĞÈËÔì³ÉÉËº¦¡£",
+			"introduce": "å¯¹å•ä½“æ•Œäººé€ æˆä¼¤å®³ã€‚",
 			"mpCost": 0,
 			"accuracy": 0.95,
 			"formula": "a.atk * 4 - b.def * 2 , 20"
 		},
 		{
 			"id": 2,
-			"skillName": "·ÀÓù",
+			"skillName": "é˜²å¾¡",
 			"spritePath": "Skills/Icon_skill2",
-			"introduce": "ÔÚ±¾»ØºÏÖĞ¼õÉÙÊÜµ½µÄÉËº¦¡£",
+			"introduce": "åœ¨æœ¬å›åˆä¸­å‡å°‘å—åˆ°çš„ä¼¤å®³ã€‚",
 			"mpCost": 0,
 			"accuracy": 0,
 			"formula": "None"
 		},
 		{
 			"id": 3,
-			"skillName": "Ç¿»÷",
+			"skillName": "å¼ºå‡»",
 			"spritePath": "Skills/Icon_skill3",
-			"introduce": "¶Ôµ¥ÌåµĞÈËÔì³É´óÁ¿ÉËº¦¡£",
+			"introduce": "å¯¹å•ä½“æ•Œäººé€ æˆå¤§é‡ä¼¤å®³ã€‚",
 			"mpCost": 15,
 			"accuracy": 1,
 			"formula": "a.atk * 5 - b.def * 2 , 20"
 		},
 		{
 			"id": 4,
-			"skillName": "ÓúºÏ",
+			"skillName": "æ„ˆåˆ",
 			"spritePath": "Skills/Icon_skill4",
-			"introduce": "Ê¹ÓÃÕß»Ö¸´Ò»¶¨Á¿µÄHP¡£",
+			"introduce": "ä½¿ç”¨è€…æ¢å¤ä¸€å®šé‡çš„HPã€‚",
 			"mpCost": 20,
 			"accuracy": 0,
 			"formula": "250 + a.mat , 20"

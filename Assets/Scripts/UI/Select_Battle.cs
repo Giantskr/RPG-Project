@@ -26,13 +26,14 @@ public class Select_Battle : Select
 					gameObject.SetActive(false);
 					Characters.SetActive(false);
 					monsterSelection.SetActive(true);
-					//Player_Stats.
+					Player_Stats.skillIdToUse = 1;
 					break;
 				case 2:
 					
 					break;
 				case 3:
-					
+
+					Player_Stats.skillIdToUse = 2;
 					break;
 				case 4:
 					
