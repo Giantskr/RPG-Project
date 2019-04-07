@@ -7,7 +7,7 @@ public class Select_Main : Select
 {
     public GameObject Options;
     public GameObject Menu;
-
+    public GameManager gameManager;
     void Start()
     {
         transform.localPosition = new Vector3(0, -77.5f, 0);
@@ -21,14 +21,14 @@ public class Select_Main : Select
 			switch (states)
 			{
 				case 1:
-					SceneManager.LoadScene("PalaceOut");
-					break;
+                    gameManager.StartCoroutine("ChangeScene", "PalaceOut");
+                    break;
 				case 2: break;
 				case 3:
 					if (Input.GetButtonDown("Submit"))
 					Options.SetActive(true);
 					Menu.SetActive(false);
-					audioSource.Play();
+					//audioSource.Play();
 					break;
 			}
 		}
