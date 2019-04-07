@@ -8,6 +8,7 @@ public class Select_Monster : Select
 	public GameObject monsterSelection;
 	public GameObject Characters;
 	public GameObject ActionSelection;
+	public GameObject BattleCommands;
 
 	int[] indexes;
 
@@ -32,18 +33,24 @@ public class Select_Monster : Select
 		
 		if (Input.GetButtonDown("Submit"))
 		{
-			//foreach (GameObject monster in BattleActions.monsterInBattle)
-			//{
-			//	if (BattleActions.monsterInBattle.IndexOf(monster) == indexes[states])
-				
-
-			//}
+			foreach (GameObject monster in BattleActions.monsterInBattle)
+			{
+				BattleCommands.SetActive(false);
+				if (BattleActions.monsterInBattle.IndexOf(monster) == indexes[states])
+				{
+					monster.transform.GetChild(0).gameObject.SetActive(false);
+					BattleActions.player.GetComponent<BattleActions>().UseSkill(Player_Stats.skillIdToUse, BattleActions.player, monster);
+					Characters.SetActive(true);
+					monsterSelection.SetActive(false);
+				}
+			}
 		}
 		else if (Input.GetButtonDown("Cancel"))
 		{
 			monsterSelection.SetActive(false);
 			ActionSelection.SetActive(true);
 			Characters.SetActive(true);
+			Player_Stats.skillIdToUse = 1;
 		}
 	}
 	void DisplayMonsterList()

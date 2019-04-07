@@ -11838,6 +11838,7 @@ MonoBehaviour:
   monsterSelection: {fileID: 742421641}
   Characters: {fileID: 691293402}
   ActionSelection: {fileID: 369317764}
+  BattleCommands: {fileID: 908879852}
 --- !u!212 &1618961589
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12029,6 +12030,8 @@ MonoBehaviour:
   - {fileID: 0}
   text1: {fileID: 376474005}
   text2: {fileID: 476203190}
+  Message: {fileID: 1449226360}
+  BattleOrRun: {fileID: 1529189173}
 --- !u!1 &1648934256 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5140743055445509099, guid: 8bc90fdcad06a7c428b641306202de8c,
@@ -27253,7 +27256,7 @@ PrefabInstance:
     - target: {fileID: 2872459357553870486, guid: c495e0bbd0615c34bb0e434d117b3378,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2872459357553870481, guid: c495e0bbd0615c34bb0e434d117b3378,
         type: 3}

@@ -26,6 +26,7 @@ public class Player_Stats : BattleActions
 	public static Player_Stats instance = null;
 
 	SkillData Skill;
+	public static byte skillIdToUse = 0;
 
 	void Awake()
 	{
