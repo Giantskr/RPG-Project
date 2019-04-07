@@ -16,8 +16,7 @@ public class Monster : BattleActions
 
 	public void MonsterUsingSkill()
 	{
-		if(HP>0)
-		UseSkill(1, gameObject, player);
+		if (HP > 0) UseSkill(1, gameObject, player);
 	} 
 }
 //[System.Serializable]

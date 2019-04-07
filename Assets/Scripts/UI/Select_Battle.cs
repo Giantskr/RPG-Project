@@ -19,22 +19,22 @@ public class Select_Battle : Select
         Selection();
 		if (Input.GetButtonDown("Submit"))
 		{
+			gameObject.SetActive(false);
 			switch (states)
 			{
 				case 1:
-					gameObject.SetActive(false);
 					Characters.SetActive(false);
 					monsterSelection.SetActive(true);
 					Player_Stats.skillIdToUse = 1;
 					break;
 				case 2:
-					
+					gameObject.SetActive(true);
 					break;
 				case 3:
-					BattleActions.player.GetComponent<BattleActions>().UseSkill(2, BattleActions.player, null);
+					BattleActions.player.GetComponent<BattleActions>().UseSkill(2, BattleActions.player, BattleActions.monsterInBattle[0]);
 					break;
 				case 4:
-					
+					gameObject.SetActive(true);
 					break;
 			}
 		}

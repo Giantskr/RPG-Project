@@ -1902,6 +1902,7 @@ MonoBehaviour:
   BattleOrRun: {fileID: 1529189173}
   L: {fileID: 908879852}
   Characters: {fileID: 691293402}
+  Message: {fileID: 1449226360}
   text1: {fileID: 376474005}
   text2: {fileID: 476203190}
 --- !u!212 &569003199
@@ -27209,6 +27210,22 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 4494901822562534365}
+    - target: {fileID: 602400736561843208, guid: 464605cc0f4ef364c826dcee91937db5,
+        type: 3}
+      propertyPath: faceOrientation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 602400736561843208, guid: 464605cc0f4ef364c826dcee91937db5,
+        type: 3}
+      propertyPath: faceOrientation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 602400736561843211, guid: 464605cc0f4ef364c826dcee91937db5,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300002, guid: 916a8135e0e48a14d917b09d4f0bff4f,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 464605cc0f4ef364c826dcee91937db5, type: 3}
 --- !u!1001 &1046509846991771789

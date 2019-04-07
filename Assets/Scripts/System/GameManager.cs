@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
 	AudioSource au;
 
-	GameObject[] allMonsters;
+	public static GameObject[] allMonsters;
 	public static List<GameObject> monstersJoining;
 
 
@@ -31,8 +31,8 @@ public class GameManager : MonoBehaviour
     {
         if (cam.GetComponent<MapCamera>().sceneType == MapCamera.SceneType.GamePlay)
         {
-			allMonsters = UI_Battle.GetComponent<BattleActions>().allmonsters;
-			monstersJoining = new List<GameObject>();
+			if (allMonsters == null) allMonsters = UI_Battle.GetComponent<BattleActions>().allmonsters;
+			if (monstersJoining == null) monstersJoining = new List<GameObject>();
 			fading = true;
             inScene = true;
         }
@@ -44,11 +44,6 @@ public class GameManager : MonoBehaviour
         inBattle = false;
         SceneManager.sceneLoaded += OnSceneChange;
         au = GetComponent<AudioSource>();
-
-
-		if (monstersJoining != null) monstersJoining.Clear();
-		monstersJoining.Add(allMonsters[0]);
-		StartBattle(monstersJoining);
 	}
 
     void Update()
@@ -60,10 +55,13 @@ public class GameManager : MonoBehaviour
 			UI_Esc.SetActive(true);
 		}
 		if (!inBattle && monstersJoining != null) monstersJoining = null;
-		if (inBattle&&BattleActions.battleState!=BattleActions.BattleState.battling)
+		if (inBattle && BattleActions.battleState != BattleActions.BattleState.battling) 
 		{
 			if (BattleActions.battleState == BattleActions.BattleState.lose)
+			{
 				fadingScreen.GetComponent<Animator>().Play("FadeToBlack");
+				ChangeScene("Start");
+			}
 			else if (BattleActions.battleState == BattleActions.BattleState.win)
 			{
 				inBattle = false;inScene = true;
@@ -161,7 +159,7 @@ public class GameManager : MonoBehaviour
 	{
 		inScene = false;
 		inBattle = true;
-		Vector2 startPos = Vector2.left * 100 * (monsters.Count - 1);
+		Vector2 startPos = (Vector2)UI_Battle.transform.position + Vector2.left * 100 * (monsters.Count - 1);
 		foreach(GameObject monster in monsters)
 		{
 			Instantiate(monster, startPos, Quaternion.identity, UI_Battle.transform.GetChild(0));
