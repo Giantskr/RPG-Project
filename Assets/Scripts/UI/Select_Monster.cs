@@ -48,7 +48,9 @@ public class Select_Monster : Select
 		}
 		else if (Input.GetButtonDown("Cancel"))
 		{
-			monsterSelection.SetActive(false);
+            foreach (GameObject monster in BattleActions.monsterInBattle)
+                monster.transform.GetChild(0).gameObject.SetActive(false);               
+            monsterSelection.SetActive(false);
 			ActionSelection.SetActive(true);
 			Characters.SetActive(true);
 			Player_Stats.skillIdToUse = 1;

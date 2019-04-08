@@ -959,6 +959,11 @@ PrefabInstance:
       propertyPath: fadingScreen
       value: 
       objectReference: {fileID: 741334334}
+    - target: {fileID: 4494901824249771423, guid: 092d70234f4e2844b8ee46dbdbbf646b,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1266258655}
     - target: {fileID: 4494901824249771416, guid: 092d70234f4e2844b8ee46dbdbbf646b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1569,7 +1574,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816151798}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: e40db43437315a445b90126085610f66, type: 2}
   m_CullingMode: 0
@@ -1587,7 +1592,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816151798}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1659,11 +1664,6 @@ MonoBehaviour:
   - {fileID: 1228164689}
   - {fileID: 2013809509}
   OptionNum: 3
-  UI_Sounds:
-  - {fileID: 8300000, guid: 7ced1f4fb94c370439a28e920ae7560a, type: 3}
-  - {fileID: 8300000, guid: 3c04ccfb80ed53d4daaa7770f5343693, type: 3}
-  - {fileID: 8300000, guid: 5eadee6ab416b5b4c94f7c0638b0e5d6, type: 3}
-  - {fileID: 8300000, guid: f7d65b93fb61e5742817afff623d81cf, type: 3}
   Options: {fileID: 1608339896}
   Menu: {fileID: 1493674810}
   gameManager: {fileID: 766785721}
@@ -1814,11 +1814,6 @@ MonoBehaviour:
   - {fileID: 262165603}
   - {fileID: 408547634}
   OptionNum: 3
-  UI_Sounds:
-  - {fileID: 8300000, guid: 7ced1f4fb94c370439a28e920ae7560a, type: 3}
-  - {fileID: 8300000, guid: 3c04ccfb80ed53d4daaa7770f5343693, type: 3}
-  - {fileID: 8300000, guid: 5eadee6ab416b5b4c94f7c0638b0e5d6, type: 3}
-  - {fileID: 8300000, guid: f7d65b93fb61e5742817afff623d81cf, type: 3}
   Options: {fileID: 1608339896}
   Menu: {fileID: 1493674810}
 --- !u!82 &872559977

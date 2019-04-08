@@ -105,6 +105,9 @@ public class Events : MonoBehaviour
             case "TreasureBox":
                 rpgTalkHolder.NewTalk("7", "8");
                 break;
+            case "Dragon":
+                rpgTalkHolder.NewTalk("21", "25");
+                break;
             case "Notice":
                 rpgTalkHolder.NewTalk("3", "3");
                 break;
@@ -234,6 +237,17 @@ public class Events : MonoBehaviour
 						gameObject.SetActive(false);
 					}
 					break;
+                case "Dragon":
+                    if (Player_Stats.switchListInt[20] == 0)
+                    {
+                        if (GameManager.monstersJoining != null) GameManager.monstersJoining.Clear();
+                        if (GameManager.monstersJoining == null) GameManager.monstersJoining = new List<GameObject>();
+                        GameManager.monstersJoining.Add(GameManager.allMonsters[1]);
+                        gameManager.StartBattle(GameManager.monstersJoining);
+                        Player_Stats.switchListInt[20] = 1;
+                        Destroy(gameObject);
+                    }
+                    break;
                 case "BestHelmet":
                     Object_WeaponBag.helmetsize += 1;
                     Object_WeaponBag.Helmets.Add(new Item("最好的头", Resources.Load<Sprite>("04"), 1));

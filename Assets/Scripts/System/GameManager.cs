@@ -29,16 +29,16 @@ public class GameManager : MonoBehaviour
 
     void OnEnable()
     {
+        fading = true;
         if (cam.GetComponent<MapCamera>().sceneType == MapCamera.SceneType.GamePlay)
         {
 			if (allMonsters == null) allMonsters = UI_Battle.GetComponent<BattleActions>().allmonsters;
 			if (monstersJoining == null) monstersJoining = new List<GameObject>();
-			fading = true;
+			
             inScene = true;
         }
         else
         {
-            fading = false;
             inScene = false;
         }
         inBattle = false;
@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
                     }
                     if (Player_Stats.lastScene == "PalaceIn")
                     {
-                        vector = Vector2.down; pos = new Vector2(-22f,25.5f);
+                        vector = Vector2.down; pos = new Vector2(-21.5f,25.5f);
                     }
                        
                     break;
@@ -140,11 +140,12 @@ public class GameManager : MonoBehaviour
                     break;
                 case "Cave":
                     if (Player_Stats.lastScene == "SnowMountain")
+                    {
                         vector = Vector2.right; pos = new Vector2(-42f, 1f);
+                    }
                     break;
             }
 			SetPlayerOrientationAndPos(vector, pos);
-			Resources.UnloadUnusedAssets();
 		}
 		Player_Stats.lastScene = next.name;
 	}

@@ -38,7 +38,7 @@ namespace RPGTALK.Snippets
             }
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             rpgTalk.OnMadeChoice -= SaveData;
         }
