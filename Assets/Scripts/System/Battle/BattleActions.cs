@@ -11,8 +11,8 @@ public class BattleActions : MonoBehaviour
 	public static GameObject player;
 	public GameObject[] allmonsters;
 	[Space]
-	public Text text1;
-	public Text text2;
+	public Text messageLine1;
+	public Text messageLine2;
 	public Text HPText;
 	public Text MPText;
 	public static BattleActions battleAction;
@@ -43,20 +43,19 @@ public class BattleActions : MonoBehaviour
 		if (monsterInBattle == null) monsterInBattle = new List<GameObject>();
 		if (gameObject.name == "Battle")
 		{
-			if (battleAction == null) battleAction = GetComponent<BattleActions>();
+			battleAction = GetComponent<BattleActions>();
 			Transform monsterParentObject = transform.GetChild(0);
 			for (int i = 0; i < monsterParentObject.childCount; i++)
 				monsterInBattle.Add(monsterParentObject.GetChild(i).gameObject);
-			battleAction.text1.text = "";
-			battleAction.text2.text = "";
+			battleAction.messageLine1.text = "";
+			battleAction.messageLine2.text = "";
 		}
-		skills = LoadJson<SkillData>.LoadJsonFromFile("Skills");	
+		skills = LoadJson<SkillData>.LoadJsonFromFile("Skills");
 	}
 
 
 	void Update()
 	{
-		
 		battleAction.MPText.text = Player_Stats.MP.ToString() + "/" + Player_Stats.maxMP.ToString();
 	}
 
@@ -80,8 +79,8 @@ public class BattleActions : MonoBehaviour
 				string aName;
 				if (aPositive == player) aName = "达拉崩吧";
 				else aName = aPositive.GetComponent<Monster>().info.monsterName;
-				battleAction.text1.text = aName + "使用了" + data.skillName + "！";
-				battleAction.text2.text = null;
+				battleAction.messageLine1.text = aName + "使用了" + data.skillName + "！";
+				battleAction.messageLine2.text = null;
 				float rand = Random.Range(0, 1);
 				if (data.accuracy != 0)
 				{
@@ -118,7 +117,7 @@ public class BattleActions : MonoBehaviour
 	IEnumerator DisplayMessage2(string message)
 	{
 		yield return new WaitForSeconds(0.75f);
-		battleAction.text2.text = message;
+		battleAction.messageLine2.text = message;
 		battleAction.HPText.text = Player_Stats.HP.ToString() + "/" + Player_Stats.maxHP.ToString();
 		yield return new WaitForSeconds(1f);
 	}
@@ -150,8 +149,8 @@ public class BattleActions : MonoBehaviour
 		{
 			if (Player_Stats.HP <= 0)
 			{
-				battleAction.text1.text = "达拉崩吧倒下了！";
-				battleAction.text2.text = "";
+				battleAction.messageLine1.text = "达拉崩吧倒下了！";
+				battleAction.messageLine2.text = "";
 				battleState = BattleState.lose;
 			}
 		}
@@ -159,8 +158,8 @@ public class BattleActions : MonoBehaviour
 		{
 			if (GetComponent<Monster>().HP <= 0) 
 			{
-				battleAction.text1.text = GetComponent<Monster>().info.monsterName + "倒下了！";
-				battleAction.text2.text = "";
+				battleAction.messageLine1.text = GetComponent<Monster>().info.monsterName + "倒下了！";
+				battleAction.messageLine2.text = "";
 				getExp += gameObject.GetComponent<Monster>().info.getExp;
 				getMoney += gameObject.GetComponent<Monster>().info.getMoney;
 				monsterInBattle.Remove(gameObject);
@@ -170,11 +169,11 @@ public class BattleActions : MonoBehaviour
 				if (monsterInBattle.Count == 0)
 				{
 					yield return new WaitForSeconds(1);
-					battleAction.text1.text =  "战斗胜利！";
+					battleAction.messageLine1.text =  "战斗胜利！";
 					yield return new WaitForSeconds(0.75f);
 					Player_Stats.EXP += getExp;
-					Player_Stats.Money += getMoney;
-					battleAction.text2.text = "获得了" + getExp.ToString() + "经验值与" + getMoney.ToString() + "金钱！";
+					Player_Stats.money += getMoney;
+					battleAction.messageLine2.text = "获得了" + getExp.ToString() + "经验值与" + getMoney.ToString() + "金钱！";
 					yield return new WaitForSeconds(2);
 
 					battleState = BattleState.win;

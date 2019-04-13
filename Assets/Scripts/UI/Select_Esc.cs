@@ -55,7 +55,7 @@ public class Select_Esc :Select
 					break;
 				case 6:
                     Object_WeaponBag.save = true;
-                    PlayerPrefs.Save();
+					Player_Stats.Save();
                     break;
 				case 7:
 					SceneManager.LoadScene("Start");

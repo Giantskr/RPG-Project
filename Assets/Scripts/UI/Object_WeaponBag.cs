@@ -9,7 +9,7 @@ public class Object_WeaponBag : MonoBehaviour
     //public GameObject WeaponLaid;
     public List<GameObject> weapon,prop,armor;
     public static List<Item> Weapons,Props,Helmets,Armors,Skills;
-    public static  int weaponsize,propsize,helmetsize,armorsize,skillsize = 0;
+    public static int weaponsize,propsize,helmetsize,armorsize,skillsize = 0;
     public static bool save = false;
 
     private void Awake()

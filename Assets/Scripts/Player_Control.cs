@@ -97,7 +97,7 @@ public class Player_Control : Events
 			//if (hit && hit.collider.tag == "Accessible" && !hit.collider.isTrigger)
    //             hit.collider.GetComponent<Events>().OnCall(gameObject);
 			RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, faceOrientation, 1.1f, mask);
-			if (hit!=null)
+			if (hit != null) 
 			{
 				for (int i = 0; i < hit.Length; i++)
 				{
