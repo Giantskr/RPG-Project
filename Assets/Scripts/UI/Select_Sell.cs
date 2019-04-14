@@ -81,9 +81,9 @@ public class Select_Sell : Select
             Object_WeaponBag.Props[states].num -= 1;
             switch (Object_WeaponBag.Props[states].name)
             {
-                case "小瓶生命药剂": Player_Stats.Money += 15; break;
-                case "中瓶生命药剂": Player_Stats.Money += 25; break;
-                case "大瓶生命药剂": Player_Stats.Money += 35; break;
+                case "小瓶生命药剂": Player_Stats.money += 15; break;
+                case "中瓶生命药剂": Player_Stats.money += 25; break;
+                case "大瓶生命药剂": Player_Stats.money += 35; break;
             }
         }
         else
@@ -92,9 +92,9 @@ public class Select_Sell : Select
             {
                 switch (Object_WeaponBag.Props[states].name)
                 {
-                    case "小瓶生命药剂": Player_Stats.Money += 15; break;
-                    case "中瓶生命药剂": Player_Stats.Money += 25; break;
-                    case "大瓶生命药剂": Player_Stats.Money += 35; break;
+                    case "小瓶生命药剂": Player_Stats.money += 15; break;
+                    case "中瓶生命药剂": Player_Stats.money += 25; break;
+                    case "大瓶生命药剂": Player_Stats.money += 35; break;
                 }
             }
             //Object_WeaponBag.Props[states].img= Resources.Load<Sprite>("00");

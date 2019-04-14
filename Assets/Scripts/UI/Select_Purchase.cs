@@ -82,9 +82,9 @@ public class Select_Purchase : Select
     }
     public bool PayMoney(int i,int price,string name,string spritename,bool isbought)
     {
-        if (Player_Stats.Money - price >= 0)
+        if (Player_Stats.money - price >= 0)
         {
-            Player_Stats.Money -= price;
+            Player_Stats.money -= price;
             if (!isbought)
             {
                 Object_WeaponBag.Props.Add(new Item(name, Resources.Load<Sprite>(spritename), 1));

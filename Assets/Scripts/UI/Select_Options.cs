@@ -17,22 +17,22 @@ public class Select_Options : Select
     void Update()
     {
         Selection();
-        vol = (int)(Player_Stats.volumn * 100f);
+        vol = (int)(Player_Stats.volume * 100f);
         Selections[0].transform.GetChild(0).GetComponent<Text>().text = "音量  < " +vol + " > ";
 
         switch (states)
         {
             case 1:
-                //if (Input.GetButtonDown("Return") && Player_Stats.volumn >= 0.1f)
+                //if (Input.GetButtonDown("Return") && Player_Stats.volume >= 0.1f)
                 //{
-                //    Player_Stats.volumn = 0f;
+                //    Player_Stats.volume = 0f;
                 //}
-                if (Input.GetButtonDown("Submit") && Player_Stats.volumn <= 1.01f)
+                if (Input.GetButtonDown("Submit") && Player_Stats.volume <= 1.01f)
                 {
-                    Player_Stats.volumn += 0.1f;
-                    if (Player_Stats.volumn > 1.01f)
+                    Player_Stats.volume += 0.1f;
+                    if (Player_Stats.volume > 1.01f)
                     {
-                        Player_Stats.volumn = 0f;
+                        Player_Stats.volume = 0f;
                     }
                 }
                

@@ -82,7 +82,13 @@ public class GameManager : MonoBehaviour
 	}
 	void OnSceneChange(Scene next, LoadSceneMode mode)
 	{
-		if (Player_Stats.lastScene != null)
+		if (Player_Stats.lastScene == "Start" && next.name != "OpenAni") 
+		{
+			Vector2 vector = new Vector2(PlayerPrefs.GetInt("PlayerOrientationX"), PlayerPrefs.GetInt("PlayerOrientationY"));
+			Vector2 pos = new Vector2(PlayerPrefs.GetFloat("PlayerPosX"), PlayerPrefs.GetFloat("PlayerPosY"));
+			SetPlayerOrientationAndPos(vector, pos);
+		}
+		else if (Player_Stats.lastScene != null)
 		{
 			Vector2 vector = Vector2.up, pos = Vector2.zero;
 			switch (next.name)
@@ -92,12 +98,10 @@ public class GameManager : MonoBehaviour
                     {
                         vector = Vector2.right; pos = new Vector2(-10.5f, -1.5f);
                     }
-						
                     if (Player_Stats.lastScene == "SnowMountain")
                     {
                         vector = Vector2.left; pos = new Vector2(11.5f, -0.5f);
-                    }
-                       
+                    }   
                     break;
 				case "GrassLand":
 					if (Player_Stats.lastScene == "Store")
@@ -107,8 +111,7 @@ public class GameManager : MonoBehaviour
                     if (Player_Stats.lastScene == "PalaceIn")
                     {
                         vector = Vector2.down; pos = new Vector2(-21.5f,25.5f);
-                    }
-                       
+                    } 
                     break;
                 case "Town":
                     if (Player_Stats.lastScene == "PalaceOut")
@@ -135,7 +138,7 @@ public class GameManager : MonoBehaviour
                     }
                     if (Player_Stats.lastScene == "Cave")
                     {
-                        vector = Vector2.left; pos = new Vector2(16f, -7f);
+                        vector = Vector2.left; pos = new Vector2(15f, -7f);
                     }
                     break;
                 case "Cave":

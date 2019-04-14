@@ -157,6 +157,9 @@ public class Events : MonoBehaviour
                     case "SnowMountain":
                         gameManager.StartCoroutine("ChangeScene", "Store");
                         break;
+					case "Cave":
+                        gameManager.StartCoroutine("ChangeScene", "SnowMountain");
+                        break;
                 }
                 Object_WeaponBag.save = true;
                 break;
@@ -168,10 +171,9 @@ public class Events : MonoBehaviour
                         gameManager.StartCoroutine("ChangeScene", "SnowMountain");
                         Object_WeaponBag.save = true;
                         break;
-                    case "SnowMountain":
-                        gameManager.StartCoroutine("ChangeScene", "Cave");
-                        Object_WeaponBag.save = true;
-                        break;
+					case "SnowMountain":
+						gameManager.StartCoroutine("ChangeScene", "Cave");
+						break;
 
                 }
                 break;
@@ -277,7 +279,7 @@ public class Events : MonoBehaviour
                         Object_WeaponBag.helmetsize += 1;
                         Object_WeaponBag.Helmets.Add(new Item("更好的头", Resources.Load<Sprite>("05"), 1));
 						Player_Stats.switchListInt[5] = 1;
-
+						Destroy(gameObject);
 					}
                     break;
             }
@@ -333,15 +335,16 @@ public class Events : MonoBehaviour
 	protected bool FaceObstacle()
 	{
 		LayerMask mask = LayerMask.GetMask("Obstacle");
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, faceOrientation, 1.4f, mask);
-		if (hit && !hit.collider.isTrigger) return true;
-		else
+		RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, faceOrientation, 1.4f, mask);
+		LayerMask maskEdge = LayerMask.GetMask("Edge");
+		RaycastHit2D hitEdge = Physics2D.Raycast(transform.position, faceOrientation, 1.1f, maskEdge);
+		if (hit != null || hitEdge)
 		{
-			LayerMask maskEdge = LayerMask.GetMask("Edge");
-			RaycastHit2D hitEdge = Physics2D.Raycast(transform.position, faceOrientation, 1.1f, maskEdge);
+			for (int i = 0; i < hit.Length; i++)
+				if (hit[i] && !hit[i].collider.isTrigger) return true;
 			if (hitEdge && !hitEdge.collider.isTrigger) return true;
-			else return false;
 		}
+		return false;
 	}
 	public void EndEvent()
 	{

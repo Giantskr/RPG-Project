@@ -10,6 +10,7 @@ public class Select_Main : Select
     public GameManager gameManager;
     void Start()
     {
+		Player_Stats.lastScene = SceneManager.GetActiveScene().name;
         transform.localPosition = new Vector3(0, -77.5f, 0);
     }
 
@@ -28,14 +29,15 @@ public class Select_Main : Select
                         gameManager.StartCoroutine("ChangeScene", "OpenAni");
                         break;
                     case 2:
-                        if (PlayerPrefs.GetString("LastScene") != null) 
-                        gameManager.StartCoroutine("ChangeScene", PlayerPrefs.GetString("LastScene"));
+                        if (PlayerPrefs.GetString("PlayerInScene") != "")
+						{
+							Player_Stats.Load();
+							gameManager.StartCoroutine("ChangeScene", PlayerPrefs.GetString("LastScene"));
+						}
                         break;
                     case 3:
-                        if (Input.GetButtonDown("Submit"))
-                            Options.SetActive(true);
+                        Options.SetActive(true);
                         Menu.SetActive(false);
-                        //audioSource.Play();
                         break;
                 }
             }

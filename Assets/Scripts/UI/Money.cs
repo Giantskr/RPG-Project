@@ -15,6 +15,6 @@ public class Money : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Text>().text =""+ Player_Stats.Money;
+        GetComponent<Text>().text =""+ Player_Stats.money;
     }
 }
