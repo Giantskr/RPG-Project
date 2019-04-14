@@ -15665,6 +15665,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fe931b35c6d7354a925875dbd009818, type: 3}
+--- !u!1 &1272355648 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7476853245800822805, guid: 7fe931b35c6d7354a925875dbd009818,
+    type: 3}
+  m_PrefabInstance: {fileID: 1272355647}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1285359966 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 216407953521276828, guid: 7fe931b35c6d7354a925875dbd009818,
@@ -16483,6 +16489,7 @@ MonoBehaviour:
   - {fileID: 47432557}
   - {fileID: 1748483280}
   - {fileID: 1592945662}
+  - {fileID: 1272355648}
   armor:
   - {fileID: 1271447009}
   - {fileID: 328060767}

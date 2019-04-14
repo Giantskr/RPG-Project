@@ -7916,6 +7916,7 @@ MonoBehaviour:
   - {fileID: 743289623}
   - {fileID: 5971466184269184182}
   - {fileID: 5971466184269184181}
+  - {fileID: 5971466184269184183}
   armor:
   - {fileID: 369636397}
   - {fileID: 58323516}
@@ -8896,11 +8897,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2807091690108005150, guid: 7fe931b35c6d7354a925875dbd009818,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5971466183620310968, guid: 7fe931b35c6d7354a925875dbd009818,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9096,6 +9092,11 @@ PrefabInstance:
       propertyPath: body.Array.data[3]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2807091690108005150, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6888707992325013241, guid: 7fe931b35c6d7354a925875dbd009818,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9152,6 +9153,12 @@ GameObject:
 --- !u!1 &5971466184269184182 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5819438094849291979, guid: 7fe931b35c6d7354a925875dbd009818,
+    type: 3}
+  m_PrefabInstance: {fileID: 5971466184269184180}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5971466184269184183 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7476853245800822805, guid: 7fe931b35c6d7354a925875dbd009818,
     type: 3}
   m_PrefabInstance: {fileID: 5971466184269184180}
   m_PrefabAsset: {fileID: 0}

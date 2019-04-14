@@ -17,7 +17,7 @@ public class DragonAppear : MonoBehaviour
     void Start()
     {
         if (Player_Stats.switchListInt[6] != 0)
-        {
+        {          
             Player.SetActive(true);
             Destroy(gameObject);
         }
@@ -26,6 +26,12 @@ public class DragonAppear : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (Input.GetButtonDown("Submit"))
+        {
+            Player_Stats.switchListInt[6] = 1;
+            Player_Stats.lastScene = "PalaceOut";
+            gameManager.StartCoroutine("ChangeScene", "Town");
+        }
         time += 1;
         if (time == 225)
         {

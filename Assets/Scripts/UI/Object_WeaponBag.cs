@@ -68,8 +68,9 @@ public class Object_WeaponBag : MonoBehaviour
         //sprites = new Sprite[size];
         for (int i = 0; i < weaponsize; i++)
         {
-            weapon[i].transform.GetChild(0).GetComponent<Image>().sprite = Weapons[i].img;
-            weapon[i].transform.GetChild(1).GetComponent<Text>().text = Weapons[i].name;
+            Debug.Log(weaponsize);
+                weapon[i].transform.GetChild(0).GetComponent<Image>().sprite = Weapons[i].img;
+                weapon[i].transform.GetChild(1).GetComponent<Text>().text = Weapons[i].name;
             //.Log("233");
             //FindChild(weapon[0].transform, "icon").GetComponent<image>()
         }
@@ -124,10 +125,10 @@ public class Object_WeaponBag : MonoBehaviour
     }
     public void readObjectInformation()
     {
-        weaponsize = PlayerPrefs.GetInt("weaponsize");
-        propsize = PlayerPrefs.GetInt("propsize");
-        helmetsize = PlayerPrefs.GetInt("helmetsize");
-        armorsize = PlayerPrefs.GetInt("armorsize");
+        //weaponsize = PlayerPrefs.GetInt("weaponsize");
+        //propsize = PlayerPrefs.GetInt("propsize");
+        //helmetsize = PlayerPrefs.GetInt("helmetsize");
+        //armorsize = PlayerPrefs.GetInt("armorsize");
         for (int i = 0; i < weaponsize; i++)
         {
             Weapons[i].name = PlayerPrefs.GetString("Weapon" + i.ToString());witchWeapon(i,Weapons[i].name);

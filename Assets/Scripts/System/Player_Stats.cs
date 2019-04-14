@@ -29,9 +29,22 @@ public class Player_Stats : BattleActions
 	SkillData Skill;
 	public static byte skillIdToUse = 0;
 
+
 	void Awake()
 	{
-		DontDestroyOnLoad(gameObject);
+        //if (PlayerPrefs.GetString("PlayerInScene") != "")
+        //{
+        //    PlayerPrefs.SetInt("weaponsize", 0);
+        //    PlayerPrefs.SetInt("propsize", 0);
+        //    PlayerPrefs.SetInt("helmetsize", 0);
+        //    PlayerPrefs.SetInt("armorsize", 0);
+        //    weaponsize = PlayerPrefs.GetInt("weaponsize");
+        //    propsize = PlayerPrefs.GetInt("propsize");
+        //    helmetsize = PlayerPrefs.GetInt("helmetsize");
+        //    armorsize = PlayerPrefs.GetInt("armorsize");
+        //}
+
+        DontDestroyOnLoad(gameObject);
 		if (instance == null)
 			instance = this;
 		else if (instance != this)
@@ -88,7 +101,11 @@ public class Player_Stats : BattleActions
         EXP= PlayerPrefs.GetInt("EXP" );
         money= PlayerPrefs.GetInt("money");
 		volume = PlayerPrefs.GetFloat("Volume");
-		for (int i = 0; i < switchListInt.Length; i++)
+        Object_WeaponBag.weaponsize = PlayerPrefs.GetInt("weaponsize");
+        Object_WeaponBag.propsize = PlayerPrefs.GetInt("propsize");
+        Object_WeaponBag.helmetsize = PlayerPrefs.GetInt("helmetsize");
+        Object_WeaponBag.armorsize = PlayerPrefs.GetInt("armorsize");
+        for (int i = 0; i < switchListInt.Length; i++)
 			switchListInt[i] = PlayerPrefs.GetInt("switchListInt" + i.ToString());
     }
 
