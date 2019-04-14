@@ -56,6 +56,24 @@ public class Events : MonoBehaviour
 			case "TestArea":
 				if (Player_Stats.switchListInt[40] != 0) Destroy(gameObject);
 				break;
+			case "BestArmor":
+				if (Player_Stats.switchListInt[2] != 0) gameObject.SetActive(false);
+				break;
+			case "BestSword":
+				if (Player_Stats.switchListInt[3] != 0) gameObject.SetActive(false);
+				break;
+			case "BestHelmet":
+				if (Player_Stats.switchListInt[4] != 0) gameObject.SetActive(false);
+				break;
+			case "Dragon":
+				if (Player_Stats.switchListInt[20] != 0) Destroy(gameObject);
+				break;
+			case "TreasureBox":
+				if (Player_Stats.switchListInt[5] != 0) Destroy(gameObject);
+				break;
+			case "Tutorial":
+				if (Player_Stats.switchListInt[6] != 0) Destroy(gameObject);
+				break;
 		}
 		if (rpgTalkHolder != null)
 		{
@@ -127,7 +145,6 @@ public class Events : MonoBehaviour
                     rpgTalkHolder.NewTalk("10", "20");
                     CreateTemporaryNPC(temporaryNPC, "国王", eventSprites[0]);
 					Player_Stats.switchListInt[1] = 1;
-
 				}
                 break;
             case "Gate":
@@ -138,7 +155,10 @@ public class Events : MonoBehaviour
             case "StoreSign":
                 gameManager.OpenStore();
                 break;
-            case "SceneMove01":
+			case "Tutorial":
+				rpgTalkHolder.NewTalk("9", "12");
+				break;
+			case "SceneMove01":
 				au.PlayOneShot(sceneChangeSound);
 				switch (SceneManager.GetActiveScene().name)
 				{
@@ -174,7 +194,6 @@ public class Events : MonoBehaviour
 					case "SnowMountain":
 						gameManager.StartCoroutine("ChangeScene", "Cave");
 						break;
-
                 }
                 break;
         }
@@ -243,17 +262,6 @@ public class Events : MonoBehaviour
 						gameObject.SetActive(false);
 					}
 					break;
-                case "Dragon":
-                    if (Player_Stats.switchListInt[20] == 0)
-                    {
-                        if (GameManager.monstersJoining != null) GameManager.monstersJoining.Clear();
-                        if (GameManager.monstersJoining == null) GameManager.monstersJoining = new List<GameObject>();
-                        GameManager.monstersJoining.Add(GameManager.allMonsters[1]);
-                        gameManager.StartBattle(GameManager.monstersJoining);
-                        Player_Stats.switchListInt[20] = 1;
-                        Destroy(gameObject);
-                    }
-                    break;
                 case "BestHelmet":
                     Object_WeaponBag.helmetsize += 1;
                     Object_WeaponBag.Helmets.Add(new Item("最好的头", Resources.Load<Sprite>("04"), 1));
@@ -261,11 +269,29 @@ public class Events : MonoBehaviour
                     if (Player_Stats.switchListInt[4] == 0)
                     {
 						Player_Stats.switchListInt[4] = 1;
-
 						gameObject.SetActive(false);
-                    }
+					}
                     break;
-                case "King":
+				case "Dragon":
+					if (Player_Stats.switchListInt[20] == 0)
+					{
+						if (GameManager.monstersJoining != null) GameManager.monstersJoining.Clear();
+						if (GameManager.monstersJoining == null) GameManager.monstersJoining = new List<GameObject>();
+						GameManager.monstersJoining.Add(GameManager.allMonsters[1]);
+						gameManager.StartBattle(GameManager.monstersJoining);
+						Player_Stats.switchListInt[20] = 1;
+						if (Player_Stats.HP > 0)
+						{
+							GetComponent<SpriteRenderer>().enabled = false;
+							GetComponent<Animator>().enabled = false;
+							GameManager.fading = true;
+							GameObject.Find("Fading").GetComponent<Animator>().Play("FadeToBlack");
+							rpgTalkHolder.NewTalk("13", "16");
+						}
+					}
+					else gameManager.StartCoroutine("ChangeScene", "Start");
+					break;
+				case "King":
                     GameObject.Find("Accessible").transform.Find("Weapons").gameObject.SetActive(true);
                     Invoke("LoadGrassLand", 15f);
                     break;
@@ -279,6 +305,13 @@ public class Events : MonoBehaviour
                         Object_WeaponBag.helmetsize += 1;
                         Object_WeaponBag.Helmets.Add(new Item("更好的头", Resources.Load<Sprite>("05"), 1));
 						Player_Stats.switchListInt[5] = 1;
+						Destroy(gameObject);
+					}
+                    break;
+				case "Tutorial":
+                    if (Player_Stats.switchListInt[6] == 0)
+                    {
+						Player_Stats.switchListInt[6] = 1;
 						Destroy(gameObject);
 					}
                     break;

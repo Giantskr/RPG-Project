@@ -32,7 +32,7 @@ public class Select_Main : Select
                         if (PlayerPrefs.GetString("PlayerInScene") != "")
 						{
 							Player_Stats.Load();
-							gameManager.StartCoroutine("ChangeScene", PlayerPrefs.GetString("LastScene"));
+							gameManager.StartCoroutine("ChangeScene", PlayerPrefs.GetString("PlayerInScene"));
 						}
                         break;
                     case 3:
