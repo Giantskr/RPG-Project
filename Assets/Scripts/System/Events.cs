@@ -168,6 +168,10 @@ public class Events : MonoBehaviour
                         gameManager.StartCoroutine("ChangeScene", "SnowMountain");
                         Object_WeaponBag.save = true;
                         break;
+                    case "SnowMountain":
+                        gameManager.StartCoroutine("ChangeScene", "Cave");
+                        Object_WeaponBag.save = true;
+                        break;
 
                 }
                 break;
