@@ -75,9 +75,12 @@ public class GameManager : MonoBehaviour
 	}
 	public IEnumerator ChangeScene(string scene)
 	{
-		fading = true;
-		fadingScreen.GetComponent<Animator>().Play("FadeToBlack");
-		yield return new WaitForSeconds(0.8f);
+		if (!fading)
+		{
+			fading = true;
+			fadingScreen.GetComponent<Animator>().Play("FadeToBlack");
+			yield return new WaitForSeconds(0.8f);
+		}
 		loading = SceneManager.LoadSceneAsync(scene);
 	}
 	void OnSceneChange(Scene next, LoadSceneMode mode)

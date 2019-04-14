@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 public class Select_Esc :Select
 {
 	public GameObject UI_Esc;
@@ -54,9 +53,11 @@ public class Select_Esc :Select
 					gameObject.SetActive(false);
 					break;
 				case 6:
-                    Object_WeaponBag.save = true;
+					Object_WeaponBag.save = true;
 					Player_Stats.Save();
-                    break;
+					GameManager.inScene = true;
+					UI_Esc.SetActive(false);
+					break;
 				case 7:
 					SceneManager.LoadScene("Start");
 					break;

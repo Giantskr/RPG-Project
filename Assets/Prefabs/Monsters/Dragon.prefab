@@ -175,7 +175,7 @@ Transform:
   m_GameObject: {fileID: 6971781583854335241}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -4502.149}
-  m_LocalScale: {x: 50.023876, y: 50.023876, z: 50.023876}
+  m_LocalScale: {x: 75, y: 75, z: 1}
   m_Children:
   - {fileID: 1735402157384309198}
   m_Father: {fileID: 0}
@@ -242,8 +242,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allmonsters: []
-  text1: {fileID: 0}
-  text2: {fileID: 0}
+  messageLine1: {fileID: 0}
+  messageLine2: {fileID: 0}
   HPText: {fileID: 0}
   MPText: {fileID: 0}
   Message: {fileID: 0}
