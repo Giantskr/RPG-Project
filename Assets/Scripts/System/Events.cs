@@ -81,11 +81,22 @@ public class Events : MonoBehaviour
 			rpgTalkHolder.OnEndTalk += OnEndTalk;
 		}
 	}
-	/// <summary>
-	/// 交互时被动方使用的方法
-	/// </summary>
-	/// <param name="calling">调用事件时的主动方</param>
-	public void OnCall(GameObject calling)
+    private void Update()
+    {
+        switch (gameObject.name)
+        {
+            case "AfterDragonBattle":
+                if (Player_Stats.switchListInt[7] == 1) gameObject.SetActive(true);
+                else gameObject.SetActive(false);
+                break;
+            
+        }
+    }
+    /// <summary>
+    /// 交互时被动方使用的方法
+    /// </summary>
+    /// <param name="calling">调用事件时的主动方</param>
+    public void OnCall(GameObject calling)
 	{
 		inEvent = true;
 		Events callingEvent = calling.GetComponent<Events>();
@@ -136,7 +147,6 @@ public class Events : MonoBehaviour
                     rpgTalkHolder.NewTalk("5", "9");
                     CreateTemporaryNPC(temporaryNPC, "守卫", eventSprites[0]);
 					Player_Stats.switchListInt[0] = 1;
-
 				}
                 break;
             case "King":
@@ -158,7 +168,18 @@ public class Events : MonoBehaviour
 			case "Tutorial":
 				rpgTalkHolder.NewTalk("9", "12");
 				break;
-			case "SceneMove01":
+            case "AfterDragonBattle":
+                if (Player_Stats.switchListInt[7] == 1 && !GameManager.inBattle) 
+                {
+                    if (Player_Stats.HP > 0)
+                    {
+                        GameManager.fading = true;
+                        GameObject.Find("Fading").GetComponent<Animator>().Play("FadeToBlack");
+                        rpgTalkHolder.NewTalk("13", "16");
+                    }
+                }
+                break;
+            case "SceneMove01":
 				au.PlayOneShot(sceneChangeSound);
 				switch (SceneManager.GetActiveScene().name)
 				{
@@ -280,16 +301,9 @@ public class Events : MonoBehaviour
 						GameManager.monstersJoining.Add(GameManager.allMonsters[1]);
 						gameManager.StartBattle(GameManager.monstersJoining);
 						Player_Stats.switchListInt[20] = 1;
-						if (Player_Stats.HP > 0)
-						{
-							GetComponent<SpriteRenderer>().enabled = false;
-							GetComponent<Animator>().enabled = false;
-							GameManager.fading = true;
-							GameObject.Find("Fading").GetComponent<Animator>().Play("FadeToBlack");
-							rpgTalkHolder.NewTalk("13", "16");
-						}
+                        Player_Stats.switchListInt[7] = 1;
+                        Destroy(gameObject);
 					}
-					else gameManager.StartCoroutine("ChangeScene", "Start");
 					break;
 				case "King":
                     GameObject.Find("Accessible").transform.Find("Weapons").gameObject.SetActive(true);
@@ -314,6 +328,13 @@ public class Events : MonoBehaviour
 						Player_Stats.switchListInt[6] = 1;
 						Destroy(gameObject);
 					}
+                    break;
+                case "AfterDragonBattle":
+                    if (Player_Stats.switchListInt[7] == 1)
+                    {
+                        Player_Stats.switchListInt[7] = 2;
+                        gameManager.StartCoroutine("ChangeScene", "Start");
+                    }
                     break;
             }
 			Input.ResetInputAxes();

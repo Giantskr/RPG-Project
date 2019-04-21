@@ -21,7 +21,7 @@ public class Select_Equip : Select
     {
         
         Selection();
-       
+        OptionNum = weapon.Length;
         if (Input.GetButtonDown("Cancel"))
         {
             UI_Weapons.SetActive(true);

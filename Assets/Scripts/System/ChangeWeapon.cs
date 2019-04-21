@@ -25,32 +25,42 @@ public class ChangeWeapon : MonoBehaviour
    
     private void Awake()
     {
-         weaponchange = 0;
-         helmetchange = 0;
-         armorchange = 0;
-         weaponchangeWhich=0;
+        weaponchange = 0;
+        helmetchange = 0;
+        armorchange = 0;
+        weaponchangeWhich=0;
         armorchangeWhich=0;
         helmetchangeWhich=0;
 }
 
     void Update()
     {
-      
-           
-        
-        //    if (save)
-        //    {
-        //        SavePlacedObjs();
-        //        weaponchange = 2;
-        //        helmetchange = 2;
-        //        armorchange = 2;
-        ////0 for not equip;
-        //save = false;
-        //    }
-       
-        
+        if (Laidweapon.transform.GetChild(1).GetComponent<Text>().text != "空")
+        {
+            foreach(Item item in Object_WeaponBag.Weapons)
+            {
+                if(item.name== Laidweapon.transform.GetChild(1).GetComponent<Text>().text)
+                {
+                    Player_Stats.ATK = 16 + item.num;
+                }
+            }
+            
+        }
+
+
+            //    if (save)
+            //    {
+            //        SavePlacedObjs();
+            //        weaponchange = 2;
+            //        helmetchange = 2;
+            //        armorchange = 2;
+            ////0 for not equip;
+            //save = false;
+            //    }
+
+
             weaponchange = Equip(weaponchange, weaponchangeWhich, Object_WeaponBag.weaponsize, weapon, Object_WeaponBag.Weapons, Object_WeaponBag.Weapons[weaponchangeWhich].name, 30, Laidweapon);
-       armorchange = Equip(armorchange, armorchangeWhich, Object_WeaponBag.armorsize, body, Object_WeaponBag.Armors, Object_WeaponBag.Armors[armorchangeWhich].name, 0, Laidbody);
+            armorchange = Equip(armorchange, armorchangeWhich, Object_WeaponBag.armorsize, body, Object_WeaponBag.Armors, Object_WeaponBag.Armors[armorchangeWhich].name, 0, Laidbody);
             helmetchange = Equip(helmetchange, helmetchangeWhich, Object_WeaponBag.helmetsize, head, Object_WeaponBag.Helmets, Object_WeaponBag.Helmets[helmetchangeWhich].name, 0, Laidhead);
         
         //Debug.Log(timeToLoad);
