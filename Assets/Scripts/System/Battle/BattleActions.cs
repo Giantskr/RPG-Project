@@ -174,12 +174,13 @@ public class BattleActions : MonoBehaviour
 					Player_Stats.EXP += getExp;
 					Player_Stats.money += getMoney;
 					battleAction.messageLine2.text = "获得了" + getExp.ToString() + "经验值与" + getMoney.ToString() + "金钱！";
+
 					yield return new WaitForSeconds(2);
 
 					battleState = BattleState.win;
 				}
 				yield return new WaitForSeconds(1);
-				Destroy(gameObject);
+                gameObject.SetActive(false);
 			}
 		}
 		yield return null;

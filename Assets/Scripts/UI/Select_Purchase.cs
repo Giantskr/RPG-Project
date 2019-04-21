@@ -8,16 +8,16 @@ public class Select_Purchase : Select
     public GameObject Select_Store;
     public GameObject goods;
     public Text Describe;
-    public static  bool isBought1 = false;
-    public static  bool isBought2 = false;
-    public static  bool isBought3 = false;
-    public static bool isBought4 = false;
-    public static bool isBought5 = false;
-    public static bool isBought6 = false;
+    public static bool[] isBought;
+    //public static  bool isBought2 = false;
+    //public static  bool isBought3 = false;
+    //public static bool isBought4 = false;
+    //public static bool isBought5 = false;
+    //public static bool isBought6 = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        isBought = new bool[6];
     }
 
     // Update is called once per frame
@@ -57,23 +57,23 @@ public class Select_Purchase : Select
             {
                 case 1:
 
-                    isBought1 = PayMoney(0, 30, "小瓶生命药剂", "07", isBought1);                   
+                    isBought[0] = PayMoney(0, 30, "小瓶生命药剂", "07", isBought[0]);                   
                     break;
                 case 2:
 
-                    isBought2=PayMoney(1, 50, "中瓶生命药剂", "08", isBought2);
+                    isBought[1] = PayMoney(1, 50, "中瓶生命药剂", "08", isBought[1]);
                     break;
                 case 3:
-                    isBought3=PayMoney(2, 70, "大瓶生命药剂", "09", isBought3);
+                    isBought[2] = PayMoney(2, 70, "大瓶生命药剂", "09", isBought[2]);
                     break;
                 case 4:
-                    isBought4 = PayMoney(3, 40, "小瓶魔力药剂", "12", isBought4);
+                    isBought[3] = PayMoney(3, 40, "小瓶魔力药剂", "12", isBought[3]);
                     break;
                 case 5:
-                    isBought5 = PayMoney(4, 60, "中瓶魔力药剂", "13", isBought5);
+                    isBought[4] = PayMoney(4, 60, "中瓶魔力药剂", "13", isBought[4]);
                     break;
                 case 6:
-                    isBought6 = PayMoney(5, 80, "大瓶魔力药剂", "14", isBought6);
+                    isBought[5] = PayMoney(5, 80, "大瓶魔力药剂", "14", isBought[5]);
                     break;
             }
            

@@ -11,7 +11,7 @@ public class Item
 {
     public string name; // 物品名称
     public Sprite img;  // 物品图片
-    public int num;
+    public int num; //对于药品 num表示数量，对于武器 num表示属性
     // 构造器
     public Item(string name, Sprite img, int num)
     {
@@ -19,11 +19,4 @@ public class Item
         this.img = img;
         this.num = num;
     }
-    //public Item(string name, int num)
-    //{
-    //    this.name = name;
-    //    this.num= num;
-
-    //}
-    //public static Item Item1 = new Item("a",1);
 }
