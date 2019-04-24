@@ -72,7 +72,7 @@ public class Events : MonoBehaviour
 				if (Player_Stats.switchListInt[5] != 0) Destroy(gameObject);
 				break;
 			case "Tutorial":
-				if (Player_Stats.switchListInt[6] != 0) Destroy(gameObject);
+				if (Player_Stats.switchListInt[9] != 0) Destroy(gameObject);
 				break;
 		}
 		if (rpgTalkHolder != null)
@@ -120,7 +120,6 @@ public class Events : MonoBehaviour
 					Player_Stats.switchListInt[40] = 1;
 					Destroy(gameObject);
 				}
-				//rpgTalkHolder.NewTalk("2", "2");
 				break;
             case "BestArmor":
                 rpgTalkHolder.NewTalk("5", "5");
@@ -323,9 +322,9 @@ public class Events : MonoBehaviour
 					}
                     break;
 				case "Tutorial":
-                    if (Player_Stats.switchListInt[6] == 0)
+                    if (Player_Stats.switchListInt[9] == 0)
                     {
-						Player_Stats.switchListInt[6] = 1;
+						Player_Stats.switchListInt[9] = 1;
 						Destroy(gameObject);
 					}
                     break;
