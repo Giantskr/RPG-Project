@@ -25,3 +25,15 @@ public class SkillData
 	}
 	public SkillInfo[] Skills;
 }
+public class ObjectData
+{
+
+    public class ObjectInfo
+    {
+        public byte id;
+        public string ObjectName;
+        public string spritePath;
+
+    }
+    public ObjectInfo[] Objects;
+}

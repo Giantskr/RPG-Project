@@ -31,7 +31,7 @@ public class ChangeWeapon : MonoBehaviour
         weaponchangeWhich=0;
         armorchangeWhich=0;
         helmetchangeWhich=0;
-}
+    }
 
     void Update()
     {
@@ -81,19 +81,6 @@ public class ChangeWeapon : MonoBehaviour
 
             case 1://收到放入武器位的指令
                 ChangeWeapons(laid,sorts,size,changeWhich,item);
-                //if (laid.transform.GetChild(1).GetComponent<Text>().text == name)
-                //{
-                //    Player_Stats.ATK = stastic ;
-                //}
-                //switch (name)
-                //{
-                //    case "最好的剑": Player_Stats.ATK = 20 ; break;
-                //    case "更好的剑": Player_Stats.ATK = 20; break;
-                //    case "最好的甲": Player_Stats.ATK = 20; break;
-                //    case "更好的甲": Player_Stats.ATK = 20; break;
-                //    case "最好的头": Player_Stats.ATK = 20; break;
-                //    case "更好的头": Player_Stats.ATK = 20; break;
-                //}
                 change = 2;
                 break;
 

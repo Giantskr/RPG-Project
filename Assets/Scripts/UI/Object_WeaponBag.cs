@@ -11,9 +11,19 @@ public class Object_WeaponBag : MonoBehaviour
     public static List<Item> Weapons,Props,Helmets,Armors,Skills;
     public static int weaponsize,propsize,helmetsize,armorsize,skillsize = 0;
     public static bool save = false;
+    public static Object_WeaponBag instance = null;
+
+    ObjectData objects;
 
     private void Awake()
     {
+        objects = LoadJson<ObjectData>.LoadJsonFromFile("Objects");
+        //DontDestroyOnLoad(gameObject);
+        //if (instance == null)
+        //    instance = this;
+        //else if (instance != this)
+        //    Destroy(gameObject);
+
         if (Weapons == null)
         {
             Weapons = new List<Item>(); // 初始化List<Item>
@@ -149,13 +159,18 @@ public class Object_WeaponBag : MonoBehaviour
     public void witchWeapon(int i,string WeaponName)
     {
         Weapons[i].num = 1;
-        switch (WeaponName)
-        {
-            case "最好的剑": Weapons[i].img = Resources.Load<Sprite>("01");break;           
+        foreach (var data in objects.Objects)
+            if (data.ObjectName == WeaponName)
+            {
+                Weapons[i].img = Resources.Load<Sprite>(data.spritePath);
+            }
+        //        switch (WeaponName)
+        //{
+        //    case "最好的剑": Weapons[i].img = Resources.Load<Sprite>("01");break;           
             
-            case "更好的剑": Weapons[i].img = Resources.Load<Sprite>("02"); break;            
-           
-        }
+        //    case "更好的剑": Weapons[i].img = Resources.Load<Sprite>("02"); break;            
+        //   //修改这里
+        //}
     }
     public void witchArmor(int i,string ArmorName)
     {

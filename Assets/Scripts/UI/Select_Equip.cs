@@ -18,8 +18,7 @@ public class Select_Equip : Select
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {       
         Selection();
         OptionNum = weapon.Length;
         if (Input.GetButtonDown("Cancel"))
