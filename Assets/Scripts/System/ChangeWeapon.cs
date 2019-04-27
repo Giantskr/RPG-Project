@@ -22,19 +22,62 @@ public class ChangeWeapon : MonoBehaviour
     public static int armorchangeWhich;
     public static int helmetchangeWhich;
     public static bool save = false;
-   
+    int i2 = 0;
+
     private void Awake()
     {
         weaponchange = 0;
         helmetchange = 0;
         armorchange = 0;
-        weaponchangeWhich=0;
-        armorchangeWhich=0;
-        helmetchangeWhich=0;
-    }
+        weaponchangeWhich = 0;
+        armorchangeWhich = 0;
+        helmetchangeWhich = 0;
 
+    }
+    void Start()
+    {
+        Invoke("Read", 0.04f);
+    }
+    public void Read()
+    {
+        int i1 = 0;
+        int i2 = 0;
+        int i3 = 0;
+        foreach (var data in weapon)
+        {
+            Debug.Log(data.transform.GetChild(1).GetComponent<Text>().text);
+            if (data.transform.GetChild(1).GetComponent<Text>().text == PlayerPrefs.GetString("PlacedWeapon"))
+            {
+                weaponchangeWhich = i1;
+                weaponchange = 1; 
+            }
+            i1++;
+        }
+        foreach (var data in body)
+        {
+            Debug.Log(data.transform.GetChild(1).GetComponent<Text>().text);
+            if (data.transform.GetChild(1).GetComponent<Text>().text == PlayerPrefs.GetString("PlacedArmor"))
+            {
+                armorchangeWhich = i2;
+                armorchange = 1;
+            }
+            i2++;
+        }
+        foreach (var data in head)
+        {
+            Debug.Log(data.transform.GetChild(1).GetComponent<Text>().text);
+            if (data.transform.GetChild(1).GetComponent<Text>().text == PlayerPrefs.GetString("PlacedHelmet"))
+            {
+                helmetchangeWhich = i3;
+                helmetchange = 1;
+            }
+            i3++;
+        }
+    }
     void Update()
     {
+       
+
         if (Laidweapon.transform.GetChild(1).GetComponent<Text>().text != "空")
         {
             foreach(Item item in Object_WeaponBag.Weapons)
@@ -46,8 +89,7 @@ public class ChangeWeapon : MonoBehaviour
             }
             
         }
-
-
+       
             //    if (save)
             //    {
             //        SavePlacedObjs();
@@ -62,8 +104,11 @@ public class ChangeWeapon : MonoBehaviour
             weaponchange = Equip(weaponchange, weaponchangeWhich, Object_WeaponBag.weaponsize, weapon, Object_WeaponBag.Weapons, Object_WeaponBag.Weapons[weaponchangeWhich].name, 30, Laidweapon);
             armorchange = Equip(armorchange, armorchangeWhich, Object_WeaponBag.armorsize, body, Object_WeaponBag.Armors, Object_WeaponBag.Armors[armorchangeWhich].name, 0, Laidbody);
             helmetchange = Equip(helmetchange, helmetchangeWhich, Object_WeaponBag.helmetsize, head, Object_WeaponBag.Helmets, Object_WeaponBag.Helmets[helmetchangeWhich].name, 0, Laidhead);
-        
-        //Debug.Log(timeToLoad);
+        if (Laidweapon.transform.GetChild(1).GetComponent<Text>().text != "空")
+        {
+            SavePlacedObjs();
+            //Debug.Log(PlayerPrefs.GetString("PlacedWeapon"));
+        }
     }
     protected int Equip(int change,int changeWhich,int size,List<GameObject> sorts ,List<Item> item,string name,int stastic,GameObject laid)
     {
@@ -134,12 +179,12 @@ public class ChangeWeapon : MonoBehaviour
         }
 
     }
-    //public void SavePlacedObjs()
-    //{
-    //    PlayerPrefs.SetString("PlacedWeapon", Laidweapon.transform.GetChild(1).GetComponent<Text>().text);
-    //    PlayerPrefs.SetString("PlacedArmor", Laidbody.transform.GetChild(1).GetComponent<Text>().text);
-    //    PlayerPrefs.SetString("PlacedHelmet", Laidhead.transform.GetChild(1).GetComponent<Text>().text);
-    //}
+    public void SavePlacedObjs()
+    {
+        PlayerPrefs.SetString("PlacedWeapon", Laidweapon.transform.GetChild(1).GetComponent<Text>().text);
+        PlayerPrefs.SetString("PlacedArmor", Laidbody.transform.GetChild(1).GetComponent<Text>().text);
+        PlayerPrefs.SetString("PlacedHelmet", Laidhead.transform.GetChild(1).GetComponent<Text>().text);
+    }
     //public void ReadPlacedObjs()
     //{
     //    Laidweapon.transform.GetChild(1).GetComponent<Text>().text = PlayerPrefs.GetString("PlacedWeapon");

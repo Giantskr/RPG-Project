@@ -32,6 +32,7 @@ public class Player_Stats : BattleActions
 
 	void Awake()
 	{
+        //PlayerPrefs.SetString("PlacedWeapon", "空");
         //if (PlayerPrefs.GetString("PlayerInScene") != "")
         //{
         //    PlayerPrefs.SetInt("weaponsize", 0);

@@ -3,14 +3,68 @@
 	[
 		{
 			"id": 1,
-			"Name": "最好的剑",
-			"spritePath": "Resources/01",
+			"objectName": "最好的剑",
+			"spritePath": "01"
 		},
 		{
 			"id": 2,
-			"Name": "更好的剑",
-			"spritePath": "Resources/02",
+			"objectName": "更好的剑",
+			"spritePath": "02"
 		},
+		{
+			"id": 3,
+			"objectName": "最好的甲",
+			"spritePath": "06"
+		},
+		{
+			"id": 4,
+			"objectName": "更好的甲",
+			"spritePath": "15"
+		},
+		{
+			"id": 5,
+			"objectName": "最好的头",
+			"spritePath": "04"
+		},
+		{
+			"id": 6,
+			"objectName": "更好的头",
+			"spritePath": "05"
+		},
+		{
+			"id": 7,
+			"objectName": "小瓶生命药剂",
+			"spritePath": "07"
+		},
+		{
+			"id": 8,
+			"objectName": "中瓶生命药剂",
+			"spritePath": "08"
+		},
+		{
+			"id": 9,
+			"objectName": "大瓶生命药剂",
+			"spritePath": "09"
+
+		},
+		{
+			"id": 10,
+			"objectName": "小瓶魔力药剂",
+			"spritePath": "10"
+
+		},
+		{
+			"id": 11,
+			"objectName": "中瓶魔力药剂",
+			"spritePath": "11"
+
+		},
+		{
+			"id": 12,
+			"objectName": "大瓶魔力药剂",
+			"spritePath": "12"
+
+		}
 	]
 
 }

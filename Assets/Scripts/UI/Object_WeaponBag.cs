@@ -160,7 +160,7 @@ public class Object_WeaponBag : MonoBehaviour
     {
         Weapons[i].num = 1;
         foreach (var data in objects.Objects)
-            if (data.ObjectName == WeaponName)
+            if (data.objectName == WeaponName)
             {
                 Weapons[i].img = Resources.Load<Sprite>(data.spritePath);
             }
@@ -175,31 +175,27 @@ public class Object_WeaponBag : MonoBehaviour
     public void witchArmor(int i,string ArmorName)
     {
         Armors[i].num = 1;
-        switch (ArmorName)
-        {
-            case "最好的甲": Armors[i].img = Resources.Load<Sprite>("06"); break;
-            case "更好的甲": Armors[i].img = Resources.Load<Sprite>("15"); break;
-        }
+        foreach (var data in objects.Objects)
+            if (data.objectName == ArmorName)
+            {
+                Armors[i].img = Resources.Load<Sprite>(data.spritePath);
+            }
     }
     public void witchHelmet(int i, string HelmetName)
     {
         Helmets[i].num = 1;
-        switch (HelmetName)
-        {
-            case "最好的头":Helmets[i].img = Resources.Load<Sprite>("04"); break;
-            case "更好的头":Helmets[i].img = Resources.Load<Sprite>("05"); break;
-        }
+        foreach (var data in objects.Objects)
+            if (data.objectName == HelmetName)
+            {
+                Helmets[i].img = Resources.Load<Sprite>(data.spritePath);
+            }
     }
     public void witchProp(int i,string PropName)
     {
-        switch (PropName)
-        {
-            case "小瓶生命药剂": Props[i].img= Resources.Load<Sprite>("07");break;
-            case "中瓶生命药剂": Props[i].img = Resources.Load<Sprite>("08");break;
-            case  "大瓶生命药剂": Props[i].img = Resources.Load<Sprite>("09"); break;
-            case "小瓶魔力药剂": Props[i].img = Resources.Load<Sprite>("12"); break;
-            case "中瓶魔力药剂": Props[i].img = Resources.Load<Sprite>("13"); break;
-            case "大瓶魔力药剂": Props[i].img = Resources.Load<Sprite>("14"); break;
-        }
+        foreach (var data in objects.Objects)
+            if (data.objectName == PropName)
+            {
+                Props[i].img = Resources.Load<Sprite>(data.spritePath);
+            }
     }
 }

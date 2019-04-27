@@ -22,7 +22,12 @@ public class Select_Esc :Select
     
     void Start()
     {
-        
+       
+    }
+
+    public void CloseSaveWindow()
+    {
+        UI_Save.SetActive(false);
     }
 
     void Update()
@@ -55,8 +60,10 @@ public class Select_Esc :Select
 				case 6:
 					Object_WeaponBag.save = true;
 					Player_Stats.Save();
-					GameManager.inScene = true;
-					UI_Esc.SetActive(false);
+                    UI_Save.SetActive(true);
+                    GameManager.inScene = true;
+                    Invoke("CloseSaveWindow", 1.2f);
+					//UI_Esc.SetActive(false);
 					break;
 				case 7:
 					SceneManager.LoadScene("Start");

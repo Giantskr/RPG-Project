@@ -8830,7 +8830,7 @@ PrefabInstance:
     - target: {fileID: 9117625101700009057, guid: 53533797018620e498a2d34de7cdc093,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9117625101700009057, guid: 53533797018620e498a2d34de7cdc093,
         type: 3}
@@ -9141,6 +9141,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: "\u7A7A"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5971466184330563778, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fe931b35c6d7354a925875dbd009818, type: 3}

@@ -25,13 +25,14 @@ public class SkillData
 	}
 	public SkillInfo[] Skills;
 }
+[System.Serializable]
 public class ObjectData
 {
-
+    [System.Serializable]
     public class ObjectInfo
     {
         public byte id;
-        public string ObjectName;
+        public string objectName;
         public string spritePath;
 
     }
