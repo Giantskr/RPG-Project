@@ -242,8 +242,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allmonsters: []
-  text1: {fileID: 0}
-  text2: {fileID: 0}
+  messageLine1: {fileID: 0}
+  messageLine2: {fileID: 0}
+  HPText: {fileID: 0}
+  MPText: {fileID: 0}
   Message: {fileID: 0}
   BattleOrRun: {fileID: 0}
   info:
@@ -251,6 +253,8 @@ MonoBehaviour:
     monsterName: "\u53F2\u83B1\u59C6"
     maxHP: 100
     maxMP: 10
+    HP: 100
+    MP: 10
     ATK: 12
     DEF: 4
     MAT: 8
@@ -259,8 +263,6 @@ MonoBehaviour:
     dodgeRate: 0.95
     getExp: 10
     getMoney: 20
-  HP: 0
-  MP: 0
 --- !u!95 &3254910346550039408
 Animator:
   serializedVersion: 3

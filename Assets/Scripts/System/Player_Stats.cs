@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player_Stats : BattleActions
+public class Player_Stats : MonoBehaviour
 {
 	public static int maxHP = 450;
 	public static int maxMP = 90;
@@ -28,7 +28,7 @@ public class Player_Stats : BattleActions
 
 	SkillData Skill;
 	public static byte skillIdToUse = 0;
-
+	public static GameObject target = null;
 
 	void Awake()
 	{
@@ -124,9 +124,5 @@ public class Player_Stats : BattleActions
     {
         AudioListener.volume = volume;
     }
-	public void PlayerUseSkill(GameObject monster)
-	{
-		GetComponent<BattleActions>().UseSkill(skillIdToUse, player, monster);
-	}
     
 }

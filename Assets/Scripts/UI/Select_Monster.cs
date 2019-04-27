@@ -26,8 +26,11 @@ public class Select_Monster : Select
 		Selection();
 		foreach (GameObject monster in BattleActions.monsterInBattle)
 		{
-			if (BattleActions.monsterInBattle.IndexOf(monster) == indexes[states-1])
+			if (BattleActions.monsterInBattle.IndexOf(monster) == indexes[states - 1])
+			{
 				monster.transform.GetChild(0).gameObject.SetActive(true);
+				monster.transform.GetChild(0).gameObject.GetComponent<Animator>().Play("Selected");
+			}
 			else monster.transform.GetChild(0).gameObject.SetActive(false);
 		}
 		
@@ -40,9 +43,10 @@ public class Select_Monster : Select
 				{
 					monster.transform.GetChild(0).gameObject.SetActive(false);
 					ActionSelection.SetActive(true);
-					BattleActions.player.GetComponent<BattleActions>().UseSkill(Player_Stats.skillIdToUse, BattleActions.player, monster);
 					Characters.SetActive(true);
 					monsterSelection.SetActive(false);
+					Player_Stats.target = monster;
+					BattleActions.endTurn = true;
 				}
 			}
 		}

@@ -1,5 +1,76 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4552832095143619401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1666345383100322135}
+  - component: {fileID: 6209215811768617012}
+  m_Layer: 5
+  m_Name: PlayerInBattle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1666345383100322135
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4552832095143619401}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6305370157675159706}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6209215811768617012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4552832095143619401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7195dccdabf2e24997378ef0fdc1f91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allmonsters: []
+  messageLine1: {fileID: 0}
+  messageLine2: {fileID: 0}
+  HPText: {fileID: 0}
+  MPText: {fileID: 0}
+  Message: {fileID: 0}
+  BattleOrRun: {fileID: 0}
+  info:
+    id: 99
+    monsterName: "\u8FBE\u62C9\u5D29\u5427"
+    maxHP: 450
+    maxMP: 90
+    HP: 450
+    MP: 90
+    ATK: 16
+    DEF: 18
+    MAT: 16
+    MDF: 14
+    AGI: 32
+    dodgeRate: 0.95
+    getExp: 0
+    getMoney: 0
+  ifGuard: 0
 --- !u!1 &6305370156462974538
 GameObject:
   m_ObjectHideFlags: 0
@@ -2378,6 +2449,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6305370157816155360}
+  - {fileID: 1666345383100322135}
   - {fileID: 6305370158246292213}
   - {fileID: 6305370158324655709}
   m_Father: {fileID: 0}
@@ -2937,7 +3009,7 @@ RectTransform:
   - {fileID: 6305370157524709800}
   - {fileID: 6305370156462974539}
   m_Father: {fileID: 6305370157675159706}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3173,7 +3245,7 @@ RectTransform:
   - {fileID: 6305370156943981023}
   - {fileID: 6305370158307230187}
   m_Father: {fileID: 6305370157675159706}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

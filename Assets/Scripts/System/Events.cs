@@ -116,6 +116,7 @@ public class Events : MonoBehaviour
 					if (GameManager.monstersJoining != null) GameManager.monstersJoining.Clear();
 					if (GameManager.monstersJoining == null) GameManager.monstersJoining = new List<GameObject>();
 					GameManager.monstersJoining.Add(GameManager.allMonsters[0]);
+					GameManager.monstersJoining.Add(GameManager.allMonsters[0]);
 					gameManager.StartBattle(GameManager.monstersJoining);
 					Player_Stats.switchListInt[40] = 1;
 					Destroy(gameObject);

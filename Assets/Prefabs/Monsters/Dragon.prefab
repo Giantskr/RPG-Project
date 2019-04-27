@@ -252,7 +252,9 @@ MonoBehaviour:
     id: 2
     monsterName: "\u5DE8\u9F99"
     maxHP: 500
-    maxMP: 10
+    maxMP: 50
+    HP: 500
+    MP: 50
     ATK: 14
     DEF: 8
     MAT: 8
@@ -261,8 +263,6 @@ MonoBehaviour:
     dodgeRate: 0.95
     getExp: 500
     getMoney: 2000
-  HP: 0
-  MP: 0
 --- !u!95 &3254910346550039408
 Animator:
   serializedVersion: 3
