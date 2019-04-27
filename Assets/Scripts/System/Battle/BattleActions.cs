@@ -106,6 +106,8 @@ public class BattleActions : MonoBehaviour
 					}
 				break;
 			}
+
+
 		if (aPositive == player && bNegative != null) bNegative.GetComponent<BattleActions>().Invoke("MonsterUsingSkill", 2f);
 		//if (aPositive == player && bNegative != null) bNegative.GetComponent<BattleActions>().StartCoroutine("MonsterUsingSkill");
 		else
