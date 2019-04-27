@@ -76,12 +76,17 @@ public class Object_WeaponBag : MonoBehaviour
             save = false;
         }
         //sprites = new Sprite[size];
+        if (weaponsize == 0)
+        {
+            weapon[0].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
+            weapon[0].transform.GetChild(1).GetComponent<Text>().text = "空";
+        }
         for (int i = 0; i < weaponsize; i++)
         {
             Debug.Log(weaponsize);
                 weapon[i].transform.GetChild(0).GetComponent<Image>().sprite = Weapons[i].img;
                 weapon[i].transform.GetChild(1).GetComponent<Text>().text = Weapons[i].name;
-            //.Log("233");
+            Debug.Log("233");
             //FindChild(weapon[0].transform, "icon").GetComponent<image>()
         }
         for (int i = 0; i < propsize; i++)
