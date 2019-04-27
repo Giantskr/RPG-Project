@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
@@ -28,25 +29,31 @@ public class BattleActions : MonoBehaviour
 	public static BattleState battleState;
 
 	public static List<GameObject> monsterInBattle;
-	public static List<GameObject> Turn;
+	public static List<GameObject> turn;
 
-	public static int round = 0;
-	bool ifGuard = false;
+	public static int turnNum = -1;
+	public static bool endTurn = false;
 
 	SkillData skills;
 
 	private void Start()
 	{
-		player = GameObject.Find("Player_Stats");
+		player = GameObject.Find("PlayerInBattle");
 		battleState = BattleState.battling;
 
 		if (monsterInBattle == null) monsterInBattle = new List<GameObject>();
+		if (turn == null) turn = new List<GameObject>();
 		if (gameObject.name == "Battle")
 		{
 			battleAction = GetComponent<BattleActions>();
 			Transform monsterParentObject = transform.GetChild(0);
 			for (int i = 0; i < monsterParentObject.childCount; i++)
+			{
 				monsterInBattle.Add(monsterParentObject.GetChild(i).gameObject);
+				turn.Add(monsterParentObject.GetChild(i).gameObject);
+			}
+			turn.Add(player);
+			turn = turn.OrderByDescending(turn => turn.GetComponent<Monster>().info.AGI).ToList();
 			battleAction.messageLine1.text = "";
 			battleAction.messageLine2.text = "";
 		}
@@ -56,9 +63,34 @@ public class BattleActions : MonoBehaviour
 
 	void Update()
 	{
-		battleAction.MPText.text = Player_Stats.MP.ToString() + "/" + Player_Stats.maxMP.ToString();
+		Player_Stats.HP = player.GetComponent<Monster>().info.HP;
+		Player_Stats.MP = player.GetComponent<Monster>().info.MP;
+		//battleAction.HPText.text = Player_Stats.HP + "/" + Player_Stats.maxHP;
+		battleAction.MPText.text = Player_Stats.MP + "/" + Player_Stats.maxMP;
+		if (gameObject.name == "Battle" && endTurn) NextTurn();
 	}
 
+	public void NextTurn()
+	{
+		endTurn = false;
+		turnNum++;
+		if (turnNum < turn.Count)
+		{
+			if (turn[turnNum] != null)
+			{
+				if (turn[turnNum] == player) PlayerUseSkill();
+				else turn[turnNum].GetComponent<Monster>().MonsterUsingSkill();
+			}
+			else NextTurn();
+		}
+		else if (battleState == BattleState.battling) 
+		{
+			battleAction.BattleOrRun.SetActive(true);
+			Message.SetActive(false);
+			turn = turn.OrderByDescending(turn => turn.GetComponent<Monster>().info.AGI).ToList();
+			turnNum = -1;
+		}
+	}
 
 	/// <summary>
 	/// 使用技能
@@ -75,12 +107,11 @@ public class BattleActions : MonoBehaviour
 		foreach (var data in skills.Skills)
 			if (data.id == id)
 			{
-				ifGuard = false;
+				aPositive.GetComponent<Monster>().ifGuard = false;
 				string aName;
-				if (aPositive == player) aName = "达拉崩吧";
-				else aName = aPositive.GetComponent<Monster>().info.monsterName;
+				aName = aPositive.GetComponent<Monster>().info.monsterName;
 				battleAction.messageLine1.text = aName + "使用了" + data.skillName + "！";
-				battleAction.messageLine2.text = null;
+				battleAction.messageLine2.text = "";
 				float rand = Random.Range(0, 1);
 				if (data.accuracy != 0)
 				{
@@ -91,29 +122,22 @@ public class BattleActions : MonoBehaviour
 				if (miss)
 				{
 					StartCoroutine("DisplayMessage2", "然而没有命中对方！");
+					endTurn = true;
 				}
 				else
 					switch (data.id)
 					{
 						case 1:
-							//bAction.TakeDamage(ReadFormula(data, aPositive, bNegative));
 							bAction.StartCoroutine("TakeDamage", ReadFormula(data, aPositive, bNegative));
 							break;
 						case 2:
 							StartCoroutine("DisplayMessage2", "本回合受到的伤害减少了！");
-							ifGuard = true;
+							aPositive.GetComponent<Monster>().ifGuard = true;
+							endTurn = true;
 							break;
 					}
 				break;
 			}
-
-
-		if (aPositive == player && bNegative != null) bNegative.GetComponent<BattleActions>().Invoke("MonsterUsingSkill", 2f);
-		//if (aPositive == player && bNegative != null) bNegative.GetComponent<BattleActions>().StartCoroutine("MonsterUsingSkill");
-		else
-		{
-			battleAction.BattleOrRun.SetActive(true);
-		}
 	}
 	
 	IEnumerator DisplayMessage2(string message)
@@ -128,18 +152,10 @@ public class BattleActions : MonoBehaviour
 	/// </summary>
 	IEnumerator TakeDamage(int dmg)
 	{
-		if (ifGuard) dmg /= 2;
+		if (GetComponent<Monster>().ifGuard) dmg /= 2;
+		GetComponent<Monster>().info.HP -= dmg;
 		string message;
-		if (gameObject == player)
-		{
-			Player_Stats.HP -= dmg;
-			message = "达拉崩吧";
-		}
-		else
-		{
-			GetComponent<Monster>().HP -= dmg;
-			message = GetComponent<Monster>().info.monsterName;
-		}
+		message = GetComponent<Monster>().info.monsterName;
 		message += "受到了" + dmg + "点伤害！";
 		StartCoroutine("DisplayMessage2", message);
 		yield return new WaitForSeconds(1f);
@@ -151,6 +167,7 @@ public class BattleActions : MonoBehaviour
 		{
 			if (Player_Stats.HP <= 0)
 			{
+				yield return new WaitForSeconds(0.5f);
 				battleAction.messageLine1.text = "达拉崩吧倒下了！";
 				battleAction.messageLine2.text = "";
 				battleState = BattleState.lose;
@@ -158,16 +175,16 @@ public class BattleActions : MonoBehaviour
 		}
 		else
 		{
-			if (GetComponent<Monster>().HP <= 0) 
+			if (GetComponent<Monster>().info.HP <= 0) 
 			{
+				yield return new WaitForSeconds(0.5f);
 				battleAction.messageLine1.text = GetComponent<Monster>().info.monsterName + "倒下了！";
 				battleAction.messageLine2.text = "";
 				getExp += gameObject.GetComponent<Monster>().info.getExp;
 				getMoney += gameObject.GetComponent<Monster>().info.getMoney;
 				monsterInBattle.Remove(gameObject);
+				turn.Remove(gameObject);
 				GetComponent<Animator>().enabled = true;
-				gameObject.transform.GetChild(0).gameObject.SetActive(true);
-				gameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().Play("Death");
 				if (monsterInBattle.Count == 0)
 				{
 					yield return new WaitForSeconds(1);
@@ -176,16 +193,16 @@ public class BattleActions : MonoBehaviour
 					Player_Stats.EXP += getExp;
 					Player_Stats.money += getMoney;
 					battleAction.messageLine2.text = "获得了" + getExp.ToString() + "经验值与" + getMoney.ToString() + "金钱！";
-
-					yield return new WaitForSeconds(2);
-
+					yield return new WaitForSeconds(1);
 					battleState = BattleState.win;
 				}
-				yield return new WaitForSeconds(1);
+				yield return new WaitForSeconds(0.75f);
+				endTurn = true;
                 gameObject.SetActive(false);
 			}
 		}
-		yield return null;
+		yield return new WaitForSeconds(1);
+		endTurn = true;
 	}
 	/// <summary>
 	/// 读取技能伤害公式
@@ -204,76 +221,58 @@ public class BattleActions : MonoBehaviour
 			switch (i)
 			{
 				case "a.atk":
-					if (aPositive == player) changedArray += Player_Stats.ATK.ToString();
-					else changedArray += aPositive.GetComponent<Monster>().info.ATK.ToString();
+					changedArray += aPositive.GetComponent<Monster>().info.ATK.ToString();
 					break;
 				case "a.def":
-					if (aPositive == player) changedArray += Player_Stats.DEF.ToString();
-					else changedArray += aPositive.GetComponent<Monster>().info.DEF.ToString();
+					changedArray += aPositive.GetComponent<Monster>().info.DEF.ToString();
 					break;
 				case "a.mat":
-					if (aPositive == player) changedArray += Player_Stats.MAT.ToString();
-					else changedArray += aPositive.GetComponent<Monster>().info.MAT.ToString();
+					changedArray += aPositive.GetComponent<Monster>().info.MAT.ToString();
 					break;
 				case "a.mdf":
-					if (aPositive == player) changedArray += Player_Stats.MDF.ToString();
-					else changedArray += aPositive.GetComponent<Monster>().info.MDF.ToString();
+					changedArray += aPositive.GetComponent<Monster>().info.MDF.ToString();
 					break;
 				case "a.agi":
-					if (aPositive == player) changedArray += Player_Stats.AGI.ToString();
-					else changedArray += aPositive.GetComponent<Monster>().info.AGI.ToString();
+					changedArray += aPositive.GetComponent<Monster>().info.AGI.ToString();
 					break;
 				case "a.mhp":
-					if (aPositive == player) changedArray += Player_Stats.maxHP.ToString();
-					else changedArray += aPositive.GetComponent<Monster>().info.maxHP.ToString();
+					changedArray += aPositive.GetComponent<Monster>().info.maxHP.ToString();
 					break;
 				case "a.mmp":
-					if (aPositive == player) changedArray += Player_Stats.maxMP.ToString();
-					else changedArray += aPositive.GetComponent<Monster>().info.maxMP.ToString();
+					changedArray += aPositive.GetComponent<Monster>().info.maxMP.ToString();
 					break;
 				case "a.hp":
-					if (aPositive == player) changedArray += Player_Stats.HP.ToString();
-					else changedArray += aPositive.GetComponent<Monster>().HP.ToString();
+					changedArray += aPositive.GetComponent<Monster>().info.HP.ToString();
 					break;
 				case "a.mp":
-					if (aPositive == player) changedArray += Player_Stats.MP.ToString();
-					else changedArray += aPositive.GetComponent<Monster>().MP.ToString();
+					changedArray += aPositive.GetComponent<Monster>().info.MP.ToString();
 					break;
 				case "b.atk":
-					if (bNegative == player) changedArray += Player_Stats.ATK.ToString();
-					else changedArray += bNegative.GetComponent<Monster>().info.ATK.ToString();
+					changedArray += bNegative.GetComponent<Monster>().info.ATK.ToString();
 					break;
 				case "b.def":
-					if (bNegative == player) changedArray += Player_Stats.DEF.ToString();
-					else changedArray += bNegative.GetComponent<Monster>().info.DEF.ToString();
+					changedArray += bNegative.GetComponent<Monster>().info.DEF.ToString();
 					break;
 				case "b.mat":
-					if (bNegative == player) changedArray += Player_Stats.MAT.ToString();
-					else changedArray += bNegative.GetComponent<Monster>().info.MAT.ToString();
+					changedArray += bNegative.GetComponent<Monster>().info.MAT.ToString();
 					break;
 				case "b.mdf":
-					if (bNegative == player) changedArray += Player_Stats.MDF.ToString();
-					else changedArray += bNegative.GetComponent<Monster>().info.MDF.ToString();
+					changedArray += bNegative.GetComponent<Monster>().info.MDF.ToString();
 					break;
 				case "b.agi":
-					if (bNegative == player) changedArray += Player_Stats.AGI.ToString();
-					else changedArray += bNegative.GetComponent<Monster>().info.AGI.ToString();
+					changedArray += bNegative.GetComponent<Monster>().info.AGI.ToString();
 					break;
 				case "b.mhp":
-					if (bNegative == player) changedArray += Player_Stats.maxHP.ToString();
-					else changedArray += bNegative.GetComponent<Monster>().info.maxHP.ToString();
+					changedArray += bNegative.GetComponent<Monster>().info.maxHP.ToString();
 					break;
 				case "b.mmp":
-					if (bNegative == player) changedArray += Player_Stats.maxMP.ToString();
-					else changedArray += bNegative.GetComponent<Monster>().info.maxMP.ToString();
+					changedArray += bNegative.GetComponent<Monster>().info.maxMP.ToString();
 					break;
 				case "b.hp":
-					if (bNegative == player) changedArray += Player_Stats.HP.ToString();
-					else changedArray += bNegative.GetComponent<Monster>().HP.ToString();
+					changedArray += bNegative.GetComponent<Monster>().info.HP.ToString();
 					break;
 				case "b.mp":
-					if (bNegative == player) changedArray += Player_Stats.MP.ToString();
-					else changedArray += bNegative.GetComponent<Monster>().MP.ToString();
+					changedArray += bNegative.GetComponent<Monster>().info.MP.ToString();
 					break;
 				default:
 					changedArray += i;
@@ -285,5 +284,9 @@ public class BattleActions : MonoBehaviour
 		float dispersion = float.Parse(sArray[sArray.Length - 1]) / 100;
 		float rate = 1 + Random.Range(-dispersion, dispersion);
 		return System.Math.Max(0, (int)(result * rate));
-	}	
+	}
+	public void PlayerUseSkill()
+	{
+		GetComponent<BattleActions>().UseSkill(Player_Stats.skillIdToUse, player, Player_Stats.target);
+	}
 }

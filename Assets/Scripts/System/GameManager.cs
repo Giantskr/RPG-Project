@@ -172,11 +172,11 @@ public class GameManager : MonoBehaviour
 	{
 		inScene = false;
 		inBattle = true;
-		Vector2 startPos = (Vector2)UI_Battle.transform.position + Vector2.left * 100 * (monsters.Count - 1);
+		Vector2 startPos = (Vector2)UI_Battle.transform.position + Vector2.left * 2 * (monsters.Count - 1);
 		foreach(GameObject monster in monsters)
 		{
 			Instantiate(monster, startPos, Quaternion.identity, UI_Battle.transform.GetChild(0));
-			startPos += Vector2.right * 200;
+			startPos += Vector2.right * 4;
 		}
 		UI_Battle.SetActive(true);
 	}
