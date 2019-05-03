@@ -19,7 +19,6 @@ public class Select_Main : Select
         if (!GameManager.fading)
         {
             GetComponent<SpriteRenderer>().enabled = true;
-            GetComponent<Animator>().enabled = true;
             Selection();
             if (Input.GetButtonDown("Submit"))
             {
@@ -42,11 +41,7 @@ public class Select_Main : Select
                 }
             }
         }
-        else
-        {
-            GetComponent<SpriteRenderer>().enabled = false;
-            GetComponent<Animator>().enabled = false;
-        }
-	
-    }
+		else GetComponent<SpriteRenderer>().enabled = false;
+
+	}
 }
