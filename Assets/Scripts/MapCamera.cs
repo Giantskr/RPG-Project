@@ -6,7 +6,7 @@ public class MapCamera : MonoBehaviour
 {
 	public enum SceneType
 	{
-		GamePlay, Title
+		GamePlay, Title, ExtraGame
 	}
 	public SceneType sceneType;
 }

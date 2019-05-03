@@ -12,6 +12,7 @@ public abstract class Select : MonoBehaviour
 
     void OnEnable()
 	{
+		OptionNum = Selections.Count;
 		transform.position = Selections[0].transform.position;
 	}
 

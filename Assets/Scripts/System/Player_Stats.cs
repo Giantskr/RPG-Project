@@ -32,30 +32,33 @@ public class Player_Stats : MonoBehaviour
 
 	void Awake()
 	{
-        //PlayerPrefs.SetString("PlacedWeapon", "空");
-        //if (PlayerPrefs.GetString("PlayerInScene") != "")
-        //{
-        //    PlayerPrefs.SetInt("weaponsize", 0);
-        //    PlayerPrefs.SetInt("propsize", 0);
-        //    PlayerPrefs.SetInt("helmetsize", 0);
-        //    PlayerPrefs.SetInt("armorsize", 0);
-        //    weaponsize = PlayerPrefs.GetInt("weaponsize");
-        //    propsize = PlayerPrefs.GetInt("propsize");
-        //    helmetsize = PlayerPrefs.GetInt("helmetsize");
-        //    armorsize = PlayerPrefs.GetInt("armorsize");
-        //}
+		//PlayerPrefs.SetString("PlacedWeapon", "空");
+		//if (PlayerPrefs.GetString("PlayerInScene") != "")
+		//{
+		//    PlayerPrefs.SetInt("weaponsize", 0);
+		//    PlayerPrefs.SetInt("propsize", 0);
+		//    PlayerPrefs.SetInt("helmetsize", 0);
+		//    PlayerPrefs.SetInt("armorsize", 0);
+		//    weaponsize = PlayerPrefs.GetInt("weaponsize");
+		//    propsize = PlayerPrefs.GetInt("propsize");
+		//    helmetsize = PlayerPrefs.GetInt("helmetsize");
+		//    armorsize = PlayerPrefs.GetInt("armorsize");
+		//}
+		AudioListener.volume = volume;
+		SceneManager.sceneLoaded += OnSceneChange;
+		GameObject cam = GameObject.Find("Main Camera");
+		if (cam.GetComponent<MapCamera>().sceneType != MapCamera.SceneType.ExtraGame)
+		{
+			DontDestroyOnLoad(gameObject);
+			if (instance == null)
+				instance = this;
+			else if (instance != this)
+				Destroy(gameObject);
 
-        DontDestroyOnLoad(gameObject);
-		if (instance == null)
-			instance = this;
-		else if (instance != this)
-			Destroy(gameObject);
-
-        AudioListener.volume = volume;
-
-        if (switchListInt == null) switchListInt = new int[50];
-
-		if (Skill == null) Skill = LoadJson<SkillData>.LoadJsonFromFile("Skills");
+			if (switchListInt == null) switchListInt = new int[50];
+			if (Skill == null) Skill = LoadJson<SkillData>.LoadJsonFromFile("Skills");
+		}
+		else Destroy(gameObject);
 	}
     public static void Save()
     {
@@ -124,5 +127,10 @@ public class Player_Stats : MonoBehaviour
     {
         AudioListener.volume = volume;
     }
-    
+
+	void OnSceneChange(Scene scene, LoadSceneMode mode)
+	{
+		if (GameObject.Find("Main Camera").GetComponent<MapCamera>().sceneType == MapCamera.SceneType.ExtraGame)
+			Destroy(gameObject);
+	}
 }
