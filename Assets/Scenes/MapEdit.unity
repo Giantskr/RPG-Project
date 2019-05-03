@@ -1354,7 +1354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36daab44cc724ef4b9e61943b5d62a4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2117421520}
+  sceneTypeInInspector: 2
   UI_Esc: {fileID: 0}
   UI_Battle: {fileID: 0}
   UI_Store: {fileID: 0}

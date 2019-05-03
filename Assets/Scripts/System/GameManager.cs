@@ -10,9 +10,8 @@ public class GameManager : MonoBehaviour
 		GamePlay, Title, ExtraGame
 	}
 	public SceneType sceneTypeInInspector;
-	public static SceneType scenetype;
+	public static SceneType sceneType;
 
-	public GameObject cam;
 	public GameObject UI_Esc;
 	public GameObject UI_Battle;
 	public GameObject UI_Store;
@@ -36,8 +35,9 @@ public class GameManager : MonoBehaviour
 
     void OnEnable()
     {
+		sceneType = sceneTypeInInspector;
         fading = true;
-        if (cam.GetComponent<MapCamera>().sceneType == MapCamera.SceneType.GamePlay)
+        if (sceneType == SceneType.GamePlay)
         {
 			if (allMonsters == null) allMonsters = UI_Battle.GetComponent<BattleActions>().allmonsters;
 			if (monstersJoining == null) monstersJoining = new List<GameObject>();

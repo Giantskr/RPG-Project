@@ -46,8 +46,7 @@ public class Player_Stats : MonoBehaviour
 		//}
 		AudioListener.volume = volume;
 		SceneManager.sceneLoaded += OnSceneChange;
-		GameObject cam = GameObject.Find("Main Camera");
-		if (cam.GetComponent<MapCamera>().sceneType != MapCamera.SceneType.ExtraGame)
+		if (GameManager.sceneType != GameManager.SceneType.ExtraGame)
 		{
 			DontDestroyOnLoad(gameObject);
 			if (instance == null)
@@ -130,7 +129,7 @@ public class Player_Stats : MonoBehaviour
 
 	void OnSceneChange(Scene scene, LoadSceneMode mode)
 	{
-		if (GameObject.Find("Main Camera").GetComponent<MapCamera>().sceneType == MapCamera.SceneType.ExtraGame)
+		if (GameManager.sceneType == GameManager.SceneType.ExtraGame)
 			Destroy(gameObject);
 	}
 }

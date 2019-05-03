@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2047177440511758907}
   - component: {fileID: 2047177440511758906}
   - component: {fileID: 2047177440511758905}
-  - component: {fileID: 5606475637234992122}
   - component: {fileID: 2047177440511758900}
   - component: {fileID: 7773261536235508292}
   m_Layer: 9
@@ -85,19 +84,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047177440511758904}
   m_Enabled: 1
---- !u!114 &5606475637234992122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2047177440511758904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a9d551299ce0d84da3ae5653dbb9748, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneType: 0
 --- !u!50 &2047177440511758900
 Rigidbody2D:
   serializedVersion: 4
