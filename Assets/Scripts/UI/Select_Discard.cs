@@ -35,19 +35,15 @@ public class Select_Discard : Select
         switch (sort)
         {
             case "Weapon":
-                for (int i = 0; i < Object_WeaponBag.weaponsize; i++)
+                for (int i = whichObj; i < Object_WeaponBag.weaponsize-1; i++)
                 {
-                    //if(i==Object_WeaponBag.weaponsize)
-                    //{
-                    //    Object_WeaponBag.Weapons[i] = Object_WeaponBag.Weapons[i + 1];
-                    //}
-                    //else
-                   
-                        Object_WeaponBag.Weapons[i] = null;
-                        Object_WeaponBag.weaponsize -= 1;
-                                 
-                }
+                    Object_WeaponBag.Weapons[i].name = Object_WeaponBag.Weapons[i + 1].name;
+                    Object_WeaponBag.Weapons[i].img= Object_WeaponBag.Weapons[i + 1].img;
 
+                }
+                Object_WeaponBag.Weapons[Object_WeaponBag.weaponsize-1].name="";
+                Object_WeaponBag.Weapons[Object_WeaponBag.weaponsize-1].img= Resources.Load<Sprite>("00");
+                Object_WeaponBag.weaponsize -= 1;
                 break;
         }
     }

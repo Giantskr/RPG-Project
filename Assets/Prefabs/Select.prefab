@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5694435967524271931}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.0015078, y: 101.28248, z: 0}
-  m_LocalScale: {x: 545.89667, y: 65.23695, z: 59.988003}
+  m_LocalPosition: {x: 43.16, y: 100.9, z: 0}
+  m_LocalScale: {x: 455.4097, y: 65.23695, z: 59.988003}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -48,6 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Selections: []
   OptionNum: 0
+  higerSelect: {fileID: 0}
+  ThisSelect: {fileID: 0}
+  sort: 
 --- !u!212 &5694435967524271878
 SpriteRenderer:
   m_ObjectHideFlags: 0

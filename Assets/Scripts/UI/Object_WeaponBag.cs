@@ -89,6 +89,8 @@ public class Object_WeaponBag : MonoBehaviour
             Debug.Log("233");
             //FindChild(weapon[0].transform, "icon").GetComponent<image>()
         }
+        weapon[weaponsize+1].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
+        weapon[weaponsize + 1].transform.GetChild(1).GetComponent<Text>().text = "空";
         for (int i = 0; i < propsize; i++)
         {
             prop[i].transform.GetChild(0).GetComponent<Image>().sprite = Props[i].img;

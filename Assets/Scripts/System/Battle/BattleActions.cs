@@ -133,7 +133,7 @@ public class BattleActions : MonoBehaviour
 						case 2:
 							StartCoroutine("DisplayMessage2", "本回合受到的伤害减少了！");
 							aPositive.GetComponent<Monster>().ifGuard = true;
-							endTurn = true;
+                            StartCoroutine("EndTurn");
 							break;
 					}
 				break;
@@ -289,4 +289,9 @@ public class BattleActions : MonoBehaviour
 	{
 		GetComponent<BattleActions>().UseSkill(Player_Stats.skillIdToUse, player, Player_Stats.target);
 	}
+    IEnumerator EndTurn()
+    {
+        yield return new WaitForSeconds(2f);
+        endTurn = true;
+    }
 }

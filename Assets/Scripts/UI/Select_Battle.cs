@@ -32,8 +32,10 @@ public class Select_Battle : Select
 					gameObject.SetActive(true);
 					break;
 				case 3:
-					BattleActions.player.GetComponent<BattleActions>().UseSkill(2, BattleActions.player, BattleActions.monsterInBattle[0]);
+                    Player_Stats.skillIdToUse = 2;
+                    Player_Stats.target = BattleActions.player;
                     BattleCommands.SetActive(false);
+                    BattleActions.endTurn = true;
                     break;
 				case 4:
 					gameObject.SetActive(true);

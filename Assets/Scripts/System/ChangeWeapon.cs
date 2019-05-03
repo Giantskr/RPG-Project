@@ -36,7 +36,7 @@ public class ChangeWeapon : MonoBehaviour
     }
     void Start()
     {
-        Invoke("Read", 0.04f);
+        Invoke("Read", 0.1f);
     }
     public void Read()
     {
