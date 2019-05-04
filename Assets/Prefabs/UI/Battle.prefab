@@ -53,6 +53,7 @@ MonoBehaviour:
   messageLine2: {fileID: 0}
   HPText: {fileID: 0}
   MPText: {fileID: 0}
+  BattleUI: {fileID: 0}
   Message: {fileID: 0}
   BattleOrRun: {fileID: 0}
   info:
@@ -2487,6 +2488,7 @@ MonoBehaviour:
   messageLine2: {fileID: 6305370157375067780}
   HPText: {fileID: 6305370156606536459}
   MPText: {fileID: 6305370157166657008}
+  BattleUI: {fileID: 6305370158324655708}
   Message: {fileID: 6305370158549675594}
   BattleOrRun: {fileID: 6305370158336003335}
 --- !u!1 &6305370157695946641

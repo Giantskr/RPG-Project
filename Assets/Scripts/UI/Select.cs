@@ -16,7 +16,7 @@ public abstract class Select : MonoBehaviour
 		transform.position = Selections[0].transform.position;
 	}
 
-	protected void Selection()
+	protected virtual void Selection()
 	{
 		//audioSource = GetComponent<AudioSource>();
 		if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))   //要用GetButtonDown而非GetButton，防止按键持续生效

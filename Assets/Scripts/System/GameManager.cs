@@ -66,8 +66,7 @@ public class GameManager : MonoBehaviour
 		{
 			if (BattleActions.battleState == BattleActions.BattleState.lose)
 			{
-				fadingScreen.GetComponent<Animator>().Play("FadeToBlack");
-				ChangeScene("Start");
+				StartCoroutine("ChangeScene", "Start");
 			}
 			else if (BattleActions.battleState == BattleActions.BattleState.win)
 			{

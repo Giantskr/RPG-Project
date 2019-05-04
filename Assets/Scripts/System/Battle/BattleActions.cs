@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
+using RPGTALK.Helper;
 
 public class BattleActions : MonoBehaviour
 {
@@ -17,10 +17,12 @@ public class BattleActions : MonoBehaviour
 	public Text HPText;
 	public Text MPText;
 	public static BattleActions battleAction;
+	public GameObject BattleUI;
 	public GameObject Message;
 	public GameObject BattleOrRun;
 
-	int getExp = 0, getMoney = 0;
+	RPGTalk rpgTalkHolder;
+	public static int getExp = 0, getMoney = 0;
 
 	public enum BattleState
 	{
@@ -33,19 +35,22 @@ public class BattleActions : MonoBehaviour
 
 	public static int turnNum = -1;
 	public static bool endTurn = false;
+	bool settlementEnded = false;
 
 	SkillData skills;
 
 	private void Start()
 	{
 		player = GameObject.Find("PlayerInBattle");
+		rpgTalkHolder = GameObject.Find("RPGTalk VoiceOver").GetComponent<RPGTalk>();
 		battleState = BattleState.battling;
-
+		getExp = 0; getMoney = 0;
 		if (monsterInBattle == null) monsterInBattle = new List<GameObject>();
 		if (turn == null) turn = new List<GameObject>();
 		if (gameObject.name == "Battle")
 		{
 			battleAction = GetComponent<BattleActions>();
+			BattleUI.SetActive(true);
 			Transform monsterParentObject = transform.GetChild(0);
 			for (int i = 0; i < monsterParentObject.childCount; i++)
 			{
@@ -56,6 +61,11 @@ public class BattleActions : MonoBehaviour
 			turn = turn.OrderByDescending(turn => turn.GetComponent<Monster>().info.AGI).ToList();
 			battleAction.messageLine1.text = "";
 			battleAction.messageLine2.text = "";
+			if (rpgTalkHolder != null)
+			{
+				rpgTalkHolder.OnNewTalk += OnNewTalk;
+				rpgTalkHolder.OnEndTalk += OnEndTalk;
+			}
 		}
 		skills = LoadJson<SkillData>.LoadJsonFromFile("Skills");
 	}
@@ -188,21 +198,39 @@ public class BattleActions : MonoBehaviour
 				if (monsterInBattle.Count == 0)
 				{
 					yield return new WaitForSeconds(1);
-					battleAction.messageLine1.text =  "战斗胜利！";
-					yield return new WaitForSeconds(0.75f);
 					Player_Stats.EXP += getExp;
 					Player_Stats.money += getMoney;
-					battleAction.messageLine2.text = "获得了" + getExp.ToString() + "经验值与" + getMoney.ToString() + "金钱！";
-					yield return new WaitForSeconds(1);
-					battleState = BattleState.win;
+					battleAction.GetComponent<BattleActions>().rpgTalkHolder.NewTalk("WinStart","WinEnd");
+					//battleAction.messageLine1.text =  "战斗胜利！";
+					//yield return new WaitForSeconds(0.75f);
+					//battleAction.messageLine2.text = "获得了" + getExp.ToString() + "经验值与" + getMoney.ToString() + "金钱！";
+					//yield return new WaitForSeconds(1);
+					//battleState = BattleState.win;
 				}
 				yield return new WaitForSeconds(0.75f);
-				endTurn = true;
-                gameObject.SetActive(false);
+				if(monsterInBattle.Count > 0) endTurn = true;
+				gameObject.SetActive(false);
 			}
 		}
 		yield return new WaitForSeconds(1);
-		endTurn = true;
+		if (battleState == BattleState.battling) endTurn = true;
+	}
+	void OnNewTalk()
+	{
+		if (gameObject.name == "Battle")
+		{
+			rpgTalkHolder.variables[0].variableValue = getExp.ToString();
+			rpgTalkHolder.variables[1].variableValue = getMoney.ToString();
+			Message.SetActive(false);
+			BattleUI.SetActive(false);
+		}
+	}
+	void OnEndTalk()
+	{
+		if (gameObject.name == "Battle")
+		{
+			battleState = BattleState.win;
+		}
 	}
 	/// <summary>
 	/// 读取技能伤害公式

@@ -14,12 +14,11 @@ public class Player_Stats : MonoBehaviour
 	public static int MAT = 16;
 	public static int MDF = 14;
 	public static int AGI = 32;
-	public static int LUC = 5;
 	public static int level = 1;
 	public static int EXP = 0;
 	public static int EXPToNextLevel = 50;
 	public static int money = 1000;
-    public static float volume=0.5f;
+	public static float volume = 1;
 
 	public static string lastScene;
 
@@ -73,7 +72,6 @@ public class Player_Stats : MonoBehaviour
         PlayerPrefs.SetInt("MAT", MAT);
         PlayerPrefs.SetInt("MDF", MDF);
         PlayerPrefs.SetInt("AGI", AGI);
-        PlayerPrefs.SetInt("LUC", LUC);
         PlayerPrefs.SetInt("level", level);
         PlayerPrefs.SetInt("EXP", EXP);
         PlayerPrefs.SetInt("money", money);
@@ -99,7 +97,6 @@ public class Player_Stats : MonoBehaviour
         MAT= PlayerPrefs.GetInt("MAT");
         MDF =PlayerPrefs.GetInt("MDF");
         AGI= PlayerPrefs.GetInt("AGI");
-        LUC= PlayerPrefs.GetInt("LUC" );
         level= PlayerPrefs.GetInt("level");
         EXP= PlayerPrefs.GetInt("EXP" );
         money= PlayerPrefs.GetInt("money");
@@ -124,8 +121,14 @@ public class Player_Stats : MonoBehaviour
 
     void Update()
     {
-        AudioListener.volume = volume;
+		if (volume < 0) volume = 0;
+		else if (volume > 1) volume = 1;
+		AudioListener.volume = volume * 0.5f;
     }
+	public void LevelUp()
+	{
+
+	}
 
 	void OnSceneChange(Scene scene, LoadSceneMode mode)
 	{
