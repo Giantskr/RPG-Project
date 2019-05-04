@@ -10,7 +10,7 @@ public class MapEdit_Select_Tile : Select
 	public GameObject tileSetArea;
 	public GameObject mapEditManager;
 
-    void OnEnable()
+	void Start()
     {
 		states = 2;
     }
@@ -39,6 +39,7 @@ public class MapEdit_Select_Tile : Select
 					default:
 						tileSetArea.SetActive(true);
 						MapEdit_SetTile.tileMode = MapEdit_SetTile.TileMode.Tile;
+						MapEdit_Manager.holdingTile = states - 4;
 						break;
 				}
 				tileWindow.SetActive(false);
