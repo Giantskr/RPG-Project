@@ -70,7 +70,17 @@ MonoBehaviour:
   cutscenePosition: 0
   textSpeed: 3000
   currentChar: 0
-  variables: []
+  variables:
+  - variableName: '"Exp"'
+    variableValue: 
+  - variableName: '"Money"'
+    variableValue: 
+  - variableName: '"Lv"'
+    variableValue: 
+  - variableName: '"Item"'
+    variableValue: 
+  - variableName: '"Skill"'
+    variableValue: 
   shouldUsePhotos: 0
   characters:
   - character: {fileID: 11400000, guid: b90f3fd440dee314f9f5b57cfbb1e0a7, type: 2}

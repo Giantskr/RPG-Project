@@ -42,6 +42,6 @@ public class UI_Stats : MonoBehaviour
         elements[7].GetComponent<Text>().text = "" + Player_Stats.MAT;
         elements[8].GetComponent<Text>().text = "" + Player_Stats.MDF;
         elements[9].GetComponent<Text>().text = "" + Player_Stats.AGI;
-        elements[10].GetComponent<Text>().text = "" + Player_Stats.LUC;
+        elements[10].GetComponent<Text>().text = "" + 5;
     }
 }

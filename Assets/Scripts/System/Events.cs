@@ -158,7 +158,8 @@ public class Events : MonoBehaviour
 				}
                 break;
             case "Gate":
-                an.Play("GateOpen");
+				au.PlayOneShot(sceneChangeSound);
+				an.Play("GateOpen");
                 gameManager.StartCoroutine("ChangeScene", "PalaceIn");
                 Object_WeaponBag.save = true;
                 break;
