@@ -24,6 +24,10 @@ public class ChangeWeapon : MonoBehaviour
     public static bool save = false;
     int i2 = 0;
 
+    ArmorsData armors;
+    WeaponsData weapons;
+    HelmetsData helmets;
+
     private void Awake()
     {
         weaponchange = 0;
@@ -80,28 +84,65 @@ public class ChangeWeapon : MonoBehaviour
 
         if (Laidweapon.transform.GetChild(1).GetComponent<Text>().text != "空")
         {
-            foreach(Item item in Object_WeaponBag.Weapons)
+            foreach (var data in weapons.Weapons)
             {
-                if(item.name== Laidweapon.transform.GetChild(1).GetComponent<Text>().text)
+                if(data.objectName == Laidweapon.transform.GetChild(1).GetComponent<Text>().text)
                 {
-                    Player_Stats.ATK = 16 + item.num;
+                    Player_Stats.ATK = 16 + data.ATK;
+                    Player_Stats.DEF = 18 + data.DEF;
+                    Player_Stats.MAT = 16 + data.MAT;
+                    Player_Stats.MDF = 14 + data.MDF;
+                    Player_Stats.AGI = 32 + data.AGI;
+                    //Player_Stats.maxHP = + data.maxHP;
+                    //Player_Stats.maxMP = + data.maxMP;
+                    //尚未找到解决方案
+
                 }
             }
             
         }
-       
-            //    if (save)
-            //    {
-            //        SavePlacedObjs();
-            //        weaponchange = 2;
-            //        helmetchange = 2;
-            //        armorchange = 2;
-            ////0 for not equip;
-            //save = false;
-            //    }
+        if (Laidbody.transform.GetChild(1).GetComponent<Text>().text != "空")
+        {
+            foreach (var data in armors.Armors)
+            {
+                if (data.objectName == Laidbody.transform.GetChild(1).GetComponent<Text>().text)
+                {
+                    Player_Stats.ATK = 16 + data.ATK;
+                    Player_Stats.DEF = 18 + data.DEF;
+                    Player_Stats.MAT = 16 + data.MAT;
+                    Player_Stats.MDF = 14 + data.MDF;
+                    Player_Stats.AGI = 32 + data.AGI;
+
+                }
+            }
+        }
+        if (Laidhead.transform.GetChild(1).GetComponent<Text>().text != "空")
+        {
+            foreach (var data in helmets.Helmets)
+            {
+                if (data.objectName == Laidhead.transform.GetChild(1).GetComponent<Text>().text)
+                {
+                    Player_Stats.ATK = 16 + data.ATK;
+                    Player_Stats.DEF = 18 + data.DEF;
+                    Player_Stats.MAT = 16 + data.MAT;
+                    Player_Stats.MDF = 14 + data.MDF;
+                    Player_Stats.AGI = 32 + data.AGI;
+
+                }
+            }
+        }
+        //    if (save)
+        //    {
+        //        SavePlacedObjs();
+        //        weaponchange = 2;
+        //        helmetchange = 2;
+        //        armorchange = 2;
+        ////0 for not equip;
+        //save = false;
+        //    }
 
 
-            weaponchange = Equip(weaponchange, weaponchangeWhich, Object_WeaponBag.weaponsize, weapon, Object_WeaponBag.Weapons, Object_WeaponBag.Weapons[weaponchangeWhich].name, 30, Laidweapon);
+        weaponchange = Equip(weaponchange, weaponchangeWhich, Object_WeaponBag.weaponsize, weapon, Object_WeaponBag.Weapons, Object_WeaponBag.Weapons[weaponchangeWhich].name, 30, Laidweapon);
             armorchange = Equip(armorchange, armorchangeWhich, Object_WeaponBag.armorsize, body, Object_WeaponBag.Armors, Object_WeaponBag.Armors[armorchangeWhich].name, 0, Laidbody);
             helmetchange = Equip(helmetchange, helmetchangeWhich, Object_WeaponBag.helmetsize, head, Object_WeaponBag.Helmets, Object_WeaponBag.Helmets[helmetchangeWhich].name, 0, Laidhead);
         if (Laidweapon.transform.GetChild(1).GetComponent<Text>().text != "空")
