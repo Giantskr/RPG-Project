@@ -738,7 +738,7 @@ PrefabInstance:
     - target: {fileID: 5971466183620310975, guid: 7fe931b35c6d7354a925875dbd009818,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2807091690108005150, guid: 7fe931b35c6d7354a925875dbd009818,
         type: 3}
@@ -860,6 +860,11 @@ PrefabInstance:
       propertyPath: Weapons
       value: 
       objectReference: {fileID: 1552088250}
+    - target: {fileID: 5971466184962551203, guid: 7fe931b35c6d7354a925875dbd009818,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fe931b35c6d7354a925875dbd009818, type: 3}
 --- !u!224 &450468017 stripped

@@ -144,16 +144,16 @@ public class Events : MonoBehaviour
                 if (Player_Stats.switchListInt[0] == 0)
                 {
                     SetFaceOrientation(-callingEvent.faceOrientation);
-                    rpgTalkHolder.NewTalk("5", "9");
-                    CreateTemporaryNPC(temporaryNPC, "守卫", eventSprites[0]);
+					CreateTemporaryNPC(temporaryNPC, "守卫", eventSprites[0]);
+					rpgTalkHolder.NewTalk("5", "9");
 					Player_Stats.switchListInt[0] = 1;
 				}
                 break;
             case "King":
                 if (Player_Stats.switchListInt[1] == 0)
                 {
-                    rpgTalkHolder.NewTalk("10", "20");
-                    CreateTemporaryNPC(temporaryNPC, "国王", eventSprites[0]);
+					CreateTemporaryNPC(temporaryNPC, "国王", eventSprites[0]);
+					rpgTalkHolder.NewTalk("10", "20");
 					Player_Stats.switchListInt[1] = 1;
 				}
                 break;
