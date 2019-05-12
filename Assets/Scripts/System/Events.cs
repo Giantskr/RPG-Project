@@ -387,7 +387,7 @@ public class Events : MonoBehaviour
 	/// 检测角色面前是否存在障碍物
 	/// </summary>
 	/// <returns>角色面前是否存在障碍物</returns>
-	protected bool FaceObstacle()
+	protected virtual bool FaceObstacle()
 	{
 		LayerMask mask = LayerMask.GetMask("Obstacle");
 		RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, faceOrientation, 1.4f, mask);
@@ -396,7 +396,11 @@ public class Events : MonoBehaviour
 		if (hit != null || hitEdge)
 		{
 			for (int i = 0; i < hit.Length; i++)
-				if (hit[i] && !hit[i].collider.isTrigger) return true;
+				if (hit[i] && !hit[i].collider.isTrigger)
+				{
+					if (hit[i].collider.tag == "Player") return false;
+					else return true;
+				}
 			if (hitEdge && !hitEdge.collider.isTrigger) return true;
 		}
 		return false;

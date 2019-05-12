@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Accessible
   - Edge
+  - Breakable
+  - Item
+  - DamageZone
+  - Unbreakable
   layers:
   - Default
   - TransparentFX
@@ -18,7 +22,7 @@ TagManager:
   - Obstacle
   - Camera
   - Edge
-  - 
+  - Zone
   - 
   - 
   - 
