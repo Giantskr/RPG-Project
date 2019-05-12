@@ -14,10 +14,16 @@ public class Object_WeaponBag : MonoBehaviour
     public static Object_WeaponBag instance = null;
 
     ObjectData objects;
+    ArmorsData armors;
+    WeaponsData weapons;
+    HelmetsData helmets;
 
     private void Awake()
     {
         objects = LoadJson<ObjectData>.LoadJsonFromFile("Objects");
+        armors = LoadJson<ArmorsData>.LoadJsonFromFile("Armor");
+        weapons = LoadJson<WeaponsData>.LoadJsonFromFile("Weapons");
+        helmets = LoadJson<HelmetsData>.LoadJsonFromFile("Helmet");
         //DontDestroyOnLoad(gameObject);
         //if (instance == null)
         //    instance = this;
@@ -166,7 +172,7 @@ public class Object_WeaponBag : MonoBehaviour
     public void witchWeapon(int i,string WeaponName)
     {
         Weapons[i].num = 1;
-        foreach (var data in objects.Objects)
+        foreach (var data in weapons.Weapons)
             if (data.objectName == WeaponName)
             {
                 Weapons[i].img = Resources.Load<Sprite>(data.spritePath);
@@ -182,7 +188,7 @@ public class Object_WeaponBag : MonoBehaviour
     public void witchArmor(int i,string ArmorName)
     {
         Armors[i].num = 1;
-        foreach (var data in objects.Objects)
+        foreach (var data in armors.Armors)
             if (data.objectName == ArmorName)
             {
                 Armors[i].img = Resources.Load<Sprite>(data.spritePath);
@@ -191,7 +197,7 @@ public class Object_WeaponBag : MonoBehaviour
     public void witchHelmet(int i, string HelmetName)
     {
         Helmets[i].num = 1;
-        foreach (var data in objects.Objects)
+        foreach (var data in helmets.Helmets)
             if (data.objectName == HelmetName)
             {
                 Helmets[i].img = Resources.Load<Sprite>(data.spritePath);

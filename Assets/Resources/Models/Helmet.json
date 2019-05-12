@@ -1,0 +1,69 @@
+{
+	"Helmet":
+	[
+		{
+			"id": 1,
+			"objectName": "最好的头",
+			"spritePath": "04",
+			"introduction":"",
+			"price":100,
+			"level":1,
+			"ATK":0,
+			"DEF":5,
+			"MAT":0,
+			"MDF":0,
+			"AGI":0,
+			"maxHP":0,
+			"maxMP":0,
+			"resistance":0
+		},
+		{
+			"id": 2,
+			"objectName": "更好的头",
+			"spritePath": "05",
+			"introduction":"",
+			"level":2,
+			"price":100,
+			"ATK":12,
+			"DEF":0,
+			"MAT":0,
+			"MDF":0,
+			"AGI":0,
+			"maxHP":0,
+			"maxMP":0,
+			"resistance":0
+		},
+		{
+			"id": 3,
+			"objectName": "超好的头",
+			"spritePath": "02",
+			"introduction":"",
+			"level":3,
+			"price":100,
+			"ATK":12,
+			"DEF":0,
+			"MAT":0,
+			"MDF":0,
+			"AGI":0,
+			"maxHP":0,
+			"maxMP":0,
+			"resistance":0
+		},
+		{
+			"id": 4,
+			"objectName": "巨好的头",
+			"spritePath": "02",
+			"introduction":"",
+			"level":4,
+			"price":100,
+			"ATK":12,
+			"DEF":0,
+			"MAT":0,
+			"MDF":0,
+			"AGI":0,
+			"maxHP":0,
+			"maxMP":0,
+			"resistance":0
+		}
+	]
+}
