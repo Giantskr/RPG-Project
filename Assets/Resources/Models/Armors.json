@@ -1,13 +1,13 @@
 {
-	"Armor":
+	"Armors":
 	[
 		{
 			"id": 1,
 			"objectName": "最好的甲",
 			"spritePath": "06",
 			"introduction":"",
-			"level":1,
 			"price":100,
+			"level":1,
 			"ATK":0,
 			"DEF":5,
 			"MAT":0,

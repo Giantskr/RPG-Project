@@ -17,10 +17,21 @@ public class Select_Sell : Select
     void Update()
     {
         Selection();
+        if (Input.GetButtonDown("Cancel"))
+        {
+            Describe.text = null;
+            Select_Store.SetActive(true); Debug.Log("123");
+            objects.SetActive(false); Debug.Log("233");
+        }
+        if (Input.GetButtonDown("Submit"))
+        {
+            SellObjects(states - 1);
+        }
+
         //switch (states)
         //{
         //    case 1:
-                if (Object_WeaponBag.Props[states-1] != null)
+        if (Object_WeaponBag.Props[states-1] != null)
                 {
                     switch (Object_WeaponBag.Props[states-1].name)
                     {
@@ -61,16 +72,6 @@ public class Select_Sell : Select
         {
             Selections[i].transform.GetChild(0).GetComponent<Image>().sprite = Object_WeaponBag.Props[i].img;
             Selections[i].transform.GetChild(1).GetComponent<Text>().text = Object_WeaponBag.Props[i].name + "X" + Object_WeaponBag.Props[i].num;
-        }
-        if (Input.GetButtonDown("Cancel"))
-        {
-            Describe.text = null;
-            Select_Store.SetActive(true);
-            objects.SetActive(false);
-        }
-        if (Input.GetButtonDown("Submit"))
-        {
-            SellObjects(states-1);
         }
 
     }

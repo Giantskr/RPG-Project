@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Select_Store : Select
 {
-    public GameObject Store;
-    public GameObject Goods;
-    public GameObject Sell;
+    [Tooltip("放入的第一个obj为整个UI,其余为选项")]
+    public GameObject[] elements;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,16 +19,20 @@ public class Select_Store : Select
         Selection();
         if (Input.GetButtonDown("Cancel"))
         {
-            Store.SetActive(false);
+            elements[0].SetActive(false);
             GameManager.inScene = true;
         }
         if (Input.GetButtonDown("Submit"))
         {
-            switch (states)
+            Debug.Log("?????????????");
+            if(states == elements.Length)
             {
-                case 1: Goods.SetActive(true);gameObject.SetActive(false); break;
-                case 2: Sell.SetActive(true); gameObject.SetActive(false); break;
-                case 3: Store.SetActive(false); GameManager.inScene = true; break;
+                elements[0].SetActive(false); GameManager.inScene = true;
+            }
+            else
+            {
+                elements[states].SetActive(true);
+                gameObject.SetActive(false);
             }
         }
     }
