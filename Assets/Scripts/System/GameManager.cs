@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
 	public GameObject UI_Esc;
 	public GameObject UI_Battle;
 	public GameObject UI_Store;
-	public GameObject fadingScreen;
+    public GameObject UI_Forge;
+    public GameObject UI_Synthesis;
+    public GameObject fadingScreen;
 	public GameObject player;
 
     public static int whichSound=5;
@@ -171,6 +173,16 @@ public class GameManager : MonoBehaviour
 		inScene = false;
 		UI_Store.SetActive(true);
 	}
+    public void OpenForge()
+    {
+        inScene = false;
+        UI_Forge.SetActive(true);
+    }
+    public void OpenSynthesis()
+    {
+        inScene = false;
+        UI_Synthesis.SetActive(true);
+    }
     public void SoundPlay()
     {
 		if (whichSound != 5)

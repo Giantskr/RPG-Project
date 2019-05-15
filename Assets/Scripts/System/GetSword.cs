@@ -16,7 +16,7 @@ public class GetSword : MonoBehaviour
             if (isGet == false)
             {
                 Object_WeaponBag.weaponsize += 1;
-                Object_WeaponBag.Weapons.Add(new Item("最好的剑X" + num, Resources.Load<Sprite>("01"), 0));
+                Object_WeaponBag.Weapons.Add(new Item("最好的剑", Resources.Load<Sprite>("01"), 0));
             }
 
             //if (Object_WeaponBag.Weapons != null)
@@ -26,7 +26,7 @@ public class GetSword : MonoBehaviour
             //if (isGet == false)
             isGet = true;
             Object_WeaponBag.Weapons[0].num+=1;
-            Object_WeaponBag.Weapons[0].name = "最好的剑X" + num;
+            Object_WeaponBag.Weapons[0].name = "最好的剑";
             //Object_WeaponBag.Weapons.Add(Item.Item1);
             // Debug.Log("emmm");
 

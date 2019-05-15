@@ -164,9 +164,15 @@ public class Events : MonoBehaviour
                 Object_WeaponBag.save = true;
                 break;
             case "StoreSign":
-                gameManager.OpenStore();
+                gameManager.OpenStore();Input.ResetInputAxes();
                 break;
-			case "Tutorial":
+            case "FogreSign":
+                gameManager.OpenForge(); Input.ResetInputAxes();
+                break;
+            case "SynthesiSign":
+                gameManager.OpenSynthesis(); Input.ResetInputAxes();
+                break;
+            case "Tutorial":
 				rpgTalkHolder.NewTalk("9", "12");
 				break;
             case "AfterDragonBattle":

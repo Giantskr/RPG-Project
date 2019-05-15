@@ -177,13 +177,7 @@ public class Object_WeaponBag : MonoBehaviour
             {
                 Weapons[i].img = Resources.Load<Sprite>(data.spritePath);
             }
-        //        switch (WeaponName)
-        //{
-        //    case "最好的剑": Weapons[i].img = Resources.Load<Sprite>("01");break;           
-            
-        //    case "更好的剑": Weapons[i].img = Resources.Load<Sprite>("02"); break;            
-        //   //修改这里
-        //}
+
     }
     public void witchArmor(int i,string ArmorName)
     {
