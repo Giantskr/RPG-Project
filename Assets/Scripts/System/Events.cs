@@ -272,7 +272,7 @@ public class Events : MonoBehaviour
 					break;
 				case "BestArmor":
 					Object_WeaponBag.armorsize += 1;
-					Object_WeaponBag.Armors.Add(new Item("最好的甲", Resources.Load<Sprite>("06"), 1));
+					Object_WeaponBag.Armors.Add(new Item("最好的甲", Resources.Load<Sprite>("06"), 0));
 					Debug.Log("已经获取防具");
 					if (Player_Stats.switchListInt[2] == 0)
 					{
@@ -282,7 +282,7 @@ public class Events : MonoBehaviour
 					break;
 				case "BestSword":
 					Object_WeaponBag.weaponsize += 1;
-					Object_WeaponBag.Weapons.Add(new Item("最好的剑", Resources.Load<Sprite>("01"), 1));
+					Object_WeaponBag.Weapons.Add(new Item("最好的剑", Resources.Load<Sprite>("01"), 0));
 					Debug.Log("已经获取武器");
 					if (Player_Stats.switchListInt[3] == 0)
 					{
@@ -292,7 +292,7 @@ public class Events : MonoBehaviour
 					break;
                 case "BestHelmet":
                     Object_WeaponBag.helmetsize += 1;
-                    Object_WeaponBag.Helmets.Add(new Item("最好的头", Resources.Load<Sprite>("04"), 1));
+                    Object_WeaponBag.Helmets.Add(new Item("最好的头", Resources.Load<Sprite>("04"), 0));
                     Debug.Log("已经获取头盔");
                     if (Player_Stats.switchListInt[4] == 0)
                     {

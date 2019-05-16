@@ -24,8 +24,8 @@ public class Select_Store : Select
         }
         if (Input.GetButtonDown("Submit"))
         {
-            Debug.Log("?????????????");
-            if(states == elements.Length)
+            Input.ResetInputAxes();
+            if (states == elements.Length)
             {
                 elements[0].SetActive(false); GameManager.inScene = true;
             }

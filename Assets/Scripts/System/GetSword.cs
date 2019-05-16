@@ -24,9 +24,7 @@ public class GetSword : MonoBehaviour
             //    Debug.Log(Object_WeaponBag.Weapons.Count);
             //}
             //if (isGet == false)
-            isGet = true;
-            Object_WeaponBag.Weapons[0].num+=1;
-            Object_WeaponBag.Weapons[0].name = "最好的剑";
+//
             //Object_WeaponBag.Weapons.Add(Item.Item1);
             // Debug.Log("emmm");
 

@@ -14,16 +14,18 @@ public class Object_WeaponBag : MonoBehaviour
     public static Object_WeaponBag instance = null;
 
     ObjectData objects;
-    ArmorsData armors;
+    
     WeaponsData weapons;
     HelmetsData helmets;
+    ArmorsData armors;
 
     private void Awake()
     {
         objects = LoadJson<ObjectData>.LoadJsonFromFile("Objects");
         armors = LoadJson<ArmorsData>.LoadJsonFromFile("Armors");
-        weapons = LoadJson<WeaponsData>.LoadJsonFromFile("Weapons");
         helmets = LoadJson<HelmetsData>.LoadJsonFromFile("Helmets");
+        weapons = LoadJson<WeaponsData>.LoadJsonFromFile("Weapons");
+ 
         //DontDestroyOnLoad(gameObject);
         //if (instance == null)
         //    instance = this;
