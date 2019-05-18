@@ -30,6 +30,7 @@ public class Select_Forge :Select
         //显示是否已经锻造过
         foreach (var data in Object_WeaponBag.Weapons)
         {
+           
             if (data.name == Selections[states - 1].transform.GetChild(1).GetComponent<Text>().text && data.num != 0)
             {
                 Describe.text = "[已锻造]";
@@ -45,6 +46,42 @@ public class Select_Forge :Select
                 AfterForgeStates.text = "?" + "\n" + "?" + "\n" + "?" + "\n" + "?" + "\n" + "?";
             }
         }
+        foreach (var data in Object_WeaponBag.Helmets)
+        {
+            Debug.Log("武器现在的数据是:" + data.num + data.name + Selections[states - 1].transform.GetChild(1).GetComponent<Text>().text);
+            if (data.name == Selections[states - 1].transform.GetChild(1).GetComponent<Text>().text && data.num != 0)
+            {
+                Describe.text = "[已锻造]";
+                foreach (var Data in helmets.Helmets)
+                    if (Data.objectName == Selections[states - 1].transform.GetChild(1).GetComponent<Text>().text)
+                    {
+                        AfterForgeStates.text = Data.ATK  + "\n" + Data.DEF + data.num + "\n" + Data.MAT + "\n" + Data.MDF + "\n" + Data.AGI;
+                    }
+            }
+            if (data.name == Selections[states - 1].transform.GetChild(1).GetComponent<Text>().text && data.num == 0)
+            {
+                Describe.text = "锻造费用：$500" + "\n" + "按回车键锻造";
+                AfterForgeStates.text = "?" + "\n" + "?" + "\n" + "?" + "\n" + "?" + "\n" + "?";
+            }
+        }
+        foreach (var data in Object_WeaponBag.Armors)
+        {
+            if (data.name == Selections[states - 1].transform.GetChild(1).GetComponent<Text>().text && data.num != 0)
+            {
+                Describe.text = "[已锻造]";
+                foreach (var Data in armors.Armors)
+                    if (Data.objectName == Selections[states - 1].transform.GetChild(1).GetComponent<Text>().text)
+                    {
+                        AfterForgeStates.text = Data.ATK + "\n" + Data.DEF + "\n" + Data.MAT + "\n" + Data.MDF + data.num + "\n" + Data.AGI;
+                    }
+            }
+            if (data.name == Selections[states - 1].transform.GetChild(1).GetComponent<Text>().text && data.num == 0)
+            {
+                Describe.text = "锻造费用：$500" + "\n" + "按回车键锻造";
+                AfterForgeStates.text = "?" + "\n" + "?" + "\n" + "?" + "\n" + "?" + "\n" + "?";
+            }
+        }
+        //取消键返回
         if (Input.GetButtonDown("Cancel"))
         {
             SelectForge.SetActive(true);
@@ -55,13 +92,38 @@ public class Select_Forge :Select
         {
             foreach(var data in Object_WeaponBag.Weapons)
             {
+                int i = 0;
                 if (data.name== Selections[states - 1].transform.GetChild(1).GetComponent<Text>().text&&data.num==0)
                 {
                     Player_Stats.money -= 500;
                     data.num += 5;
+                    PlayerPrefs.SetInt("Weapon" + i, data.num); 
                 }
+                i++;
             }
-               
+            foreach (var data in Object_WeaponBag.Helmets)
+            {
+                int j=0;
+                if (data.name == Selections[states - 1].transform.GetChild(1).GetComponent<Text>().text && data.num == 0)
+                {
+                    Player_Stats.money -= 500;
+                    data.num += 5;
+                    PlayerPrefs.SetInt("Helmet" + j, data.num);
+                }
+                j++;
+            }
+            foreach (var data in Object_WeaponBag.Armors)
+            {
+                int k=0;
+                if (data.name == Selections[states - 1].transform.GetChild(1).GetComponent<Text>().text && data.num == 0)
+                {
+                    Player_Stats.money -= 500;
+                    data.num += 5;
+                    PlayerPrefs.SetInt("Armor" + k, data.num);
+                }
+                k++;
+            }
+
         }
         //以下为在UI中显示所有 武器 头盔 盔甲 的代码
         for (int i = 0; i < Object_WeaponBag.weaponsize + 1; i++)
