@@ -49,6 +49,12 @@ public class Bomber_Player : Player_Control
 	}
 	void Control()
 	{
+		if (Input.GetButtonDown("Submit") && bombCount > 0)
+		{
+			Vector2 bombPos = target;
+			if (moving) bombPos = target - faceOrientation;
+			bomberManager.GetComponent<Bomber_Manager>().PlaceBomb(bombPos, bombRange, self);
+		}
 		if ((Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) && !moving)
 		{
 			if (Input.GetButton("Horizontal") && !Input.GetButton("Vertical"))
@@ -69,7 +75,10 @@ public class Bomber_Player : Player_Control
 				SetWalkAnimation();
 			}
 		}
-		if (moving) rb.position = Vector2.MoveTowards(transform.position, target, Time.deltaTime * 5 * an.speed * speed);
+		if (moving)
+		{
+			rb.position = Vector2.MoveTowards(transform.position, target, Time.deltaTime * 5 * an.speed * speed);
+		}
 		if (Vector2.Distance(rb.position, target) <= 0.001f)
 		{
 			moving = false;
@@ -79,12 +88,6 @@ public class Bomber_Player : Player_Control
 				an.enabled = false;
 				SetSprite();
 			}
-		}
-		if (Input.GetButtonDown("Submit") && bombCount > 0)
-		{
-			Vector2 bombPos = target;
-			if (moving) bombPos = target - faceOrientation;
-			bomberManager.GetComponent<Bomber_Manager>().PlaceBomb(bombPos, bombRange, self);
 		}
 	}
 	void GetItem(GameObject item)

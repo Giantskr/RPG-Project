@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bomber_Bomb : MonoBehaviour
 {
-	float timeToExplode = 4f;
+	float timeToExplode = 3f;
 	float explodeDuration = 0.6f;
 	public int range = 1;
 	bool exploded = false;
