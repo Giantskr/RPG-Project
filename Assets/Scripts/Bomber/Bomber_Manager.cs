@@ -61,7 +61,10 @@ public class Bomber_Manager : MonoBehaviour
 				if (remainingTime <= 0 || !playerAlive || !enemyAlive) bomberState = BomberState.End;
 				break;
 			case BomberState.End:
-
+				if (remainingTime <= 0) GameTipText.text = "时间到！";
+				else if (!playerAlive && !enemyAlive) GameTipText.text = "同归于尽！";
+				else if (!playerAlive && enemyAlive) GameTipText.text = "失败！";
+				else if (!enemyAlive && playerAlive) GameTipText.text = "胜利！";
 				break;
 		}
 	}
