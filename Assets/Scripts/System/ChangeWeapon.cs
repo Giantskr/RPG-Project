@@ -23,7 +23,9 @@ public class ChangeWeapon : MonoBehaviour
     public static int helmetchangeWhich;
     public static bool save = false;
     int i2 = 0;
-
+    int tempDataW1, tempDataW2, tempDataW3, tempDataW4, tempDataW5;
+    int tempDataA1, tempDataA2, tempDataA3, tempDataA4, tempDataA5;
+    int tempDataH1, tempDataH2, tempDataH3, tempDataH4, tempDataH5;
     ArmorsData armors;
     WeaponsData weapons;
     HelmetsData helmets;
@@ -40,6 +42,9 @@ public class ChangeWeapon : MonoBehaviour
     }
     void Start()
     {
+        armors = LoadJson<ArmorsData>.LoadJsonFromFile("Armors");
+        weapons = LoadJson<WeaponsData>.LoadJsonFromFile("Weapons");
+        helmets = LoadJson<HelmetsData>.LoadJsonFromFile("Helmets");
         Invoke("Read", 0.1f);
     }
     public void Read()
@@ -80,19 +85,17 @@ public class ChangeWeapon : MonoBehaviour
     }
     void Update()
     {
-       
-
         if (Laidweapon.transform.GetChild(1).GetComponent<Text>().text != "空")
         {
             foreach (var data in weapons.Weapons)
             {
-                if(data.objectName == Laidweapon.transform.GetChild(1).GetComponent<Text>().text)
+                if (data.objectName == Laidweapon.transform.GetChild(1).GetComponent<Text>().text)
                 {
-                    Player_Stats.ATK = 16 + data.ATK;
-                    Player_Stats.DEF = 18 + data.DEF;
-                    Player_Stats.MAT = 16 + data.MAT;
-                    Player_Stats.MDF = 14 + data.MDF;
-                    Player_Stats.AGI = 32 + data.AGI;
+                    tempDataW1 = data.ATK;
+                    tempDataW2 =data.DEF;
+                    tempDataW3 =data.MAT;
+                    tempDataW4 =data.MDF;
+                    tempDataW5= data.AGI;
                     //Player_Stats.maxHP = + data.maxHP;
                     //Player_Stats.maxMP = + data.maxMP;
                     //尚未找到解决方案
@@ -101,36 +104,43 @@ public class ChangeWeapon : MonoBehaviour
             }
             
         }
-        if (Laidbody.transform.GetChild(1).GetComponent<Text>().text != "空")
-        {
-            foreach (var data in armors.Armors)
-            {
-                if (data.objectName == Laidbody.transform.GetChild(1).GetComponent<Text>().text)
-                {
-                    Player_Stats.ATK = 16 + data.ATK;
-                    Player_Stats.DEF = 18 + data.DEF;
-                    Player_Stats.MAT = 16 + data.MAT;
-                    Player_Stats.MDF = 14 + data.MDF;
-                    Player_Stats.AGI = 32 + data.AGI;
-
-                }
-            }
-        }
+       
         if (Laidhead.transform.GetChild(1).GetComponent<Text>().text != "空")
         {
             foreach (var data in helmets.Helmets)
             {
                 if (data.objectName == Laidhead.transform.GetChild(1).GetComponent<Text>().text)
                 {
-                    Player_Stats.ATK = 16 + data.ATK;
-                    Player_Stats.DEF = 18 + data.DEF;
-                    Player_Stats.MAT = 16 + data.MAT;
-                    Player_Stats.MDF = 14 + data.MDF;
-                    Player_Stats.AGI = 32 + data.AGI;
+                    tempDataH1 = data.ATK;
+                    tempDataH2 = data.DEF;
+                    tempDataH3 = data.MAT;
+                    tempDataH4 = data.MDF;
+                    tempDataH5 = data.AGI;
 
                 }
             }
         }
+        if (Laidbody.transform.GetChild(1).GetComponent<Text>().text != "空")
+        {
+            foreach (var data in armors.Armors)
+            {
+                if (data.objectName == Laidbody.transform.GetChild(1).GetComponent<Text>().text)
+                {
+                    tempDataA1 = data.ATK;
+                    tempDataA2 = data.DEF;
+                    tempDataA3 = data.MAT;
+                    tempDataA4 = data.MDF;
+                    tempDataA5 = data.AGI;
+                }
+            }
+        }
+
+        Player_Stats.ATK = 16 + tempDataW1 + tempDataH1 + tempDataA1;
+        Player_Stats.DEF = 18 + tempDataW2 + tempDataH2 + tempDataA2;
+        Player_Stats.MAT = 16 + tempDataW3 + tempDataH3 + tempDataA3;
+        Player_Stats.MDF = 14 + tempDataW4 + tempDataH4 + tempDataA4;
+        Player_Stats.AGI = 32 + tempDataW5 + tempDataH5 + tempDataA5;
+
         //    if (save)
         //    {
         //        SavePlacedObjs();

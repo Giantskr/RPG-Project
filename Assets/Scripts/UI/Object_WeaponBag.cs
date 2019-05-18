@@ -14,16 +14,18 @@ public class Object_WeaponBag : MonoBehaviour
     public static Object_WeaponBag instance = null;
 
     ObjectData objects;
-    ArmorsData armors;
+    
     WeaponsData weapons;
     HelmetsData helmets;
+    ArmorsData armors;
 
     private void Awake()
     {
         objects = LoadJson<ObjectData>.LoadJsonFromFile("Objects");
-        armors = LoadJson<ArmorsData>.LoadJsonFromFile("Armor");
+        armors = LoadJson<ArmorsData>.LoadJsonFromFile("Armors");
+        helmets = LoadJson<HelmetsData>.LoadJsonFromFile("Helmets");
         weapons = LoadJson<WeaponsData>.LoadJsonFromFile("Weapons");
-        helmets = LoadJson<HelmetsData>.LoadJsonFromFile("Helmet");
+ 
         //DontDestroyOnLoad(gameObject);
         //if (instance == null)
         //    instance = this;
@@ -177,13 +179,7 @@ public class Object_WeaponBag : MonoBehaviour
             {
                 Weapons[i].img = Resources.Load<Sprite>(data.spritePath);
             }
-        //        switch (WeaponName)
-        //{
-        //    case "最好的剑": Weapons[i].img = Resources.Load<Sprite>("01");break;           
-            
-        //    case "更好的剑": Weapons[i].img = Resources.Load<Sprite>("02"); break;            
-        //   //修改这里
-        //}
+
     }
     public void witchArmor(int i,string ArmorName)
     {
