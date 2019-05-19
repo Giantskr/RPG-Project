@@ -21,9 +21,9 @@ public abstract class Select : MonoBehaviour
 		//audioSource = GetComponent<AudioSource>();
 		if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))   //要用GetButtonDown而非GetButton，防止按键持续生效
 		{
-			//GetAxisRaw与GetKey(Down)对照：横坐标大于0为d，小于0为a；纵坐标大于0为w，小于0为s
-			if ((Input.GetAxisRaw("Vertical") < 0 || Input.GetAxisRaw("Horizontal") > 0) && states < OptionNum) states++;
-			else if ((Input.GetAxisRaw("Vertical") > 0 || Input.GetAxisRaw("Horizontal") < 0) && states > 1) states--;
+            //GetAxisRaw与GetKey(Down)对照：横坐标大于0为d，小于0为a；纵坐标大于0为w，小于0为s
+            if ((Input.GetAxisRaw("Vertical") < 0 || Input.GetAxisRaw("Horizontal") > 0) && states < OptionNum) { states++; Input.ResetInputAxes(); }
+            else if ((Input.GetAxisRaw("Vertical") > 0 || Input.GetAxisRaw("Horizontal") < 0) && states > 1) { states--; Input.ResetInputAxes(); } 
             GameManager.whichSound = 0;
         }
 		else if (Input.GetButtonDown("Cancel")) GameManager.whichSound=3;

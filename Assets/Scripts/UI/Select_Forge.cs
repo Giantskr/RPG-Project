@@ -88,7 +88,7 @@ public class Select_Forge :Select
             objects.SetActive(false);
         }
         //submit功能 花掉钱然后锻造装备
-        if (Input.GetButtonDown("Submit"))
+        if (Input.GetButtonDown("Submit")&&Player_Stats.money-500>=0)
         {
             foreach(var data in Object_WeaponBag.Weapons)
             {
