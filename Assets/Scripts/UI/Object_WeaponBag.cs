@@ -173,7 +173,7 @@ public class Object_WeaponBag : MonoBehaviour
     }
     public void witchWeapon(int i,string WeaponName)
     {
-        Weapons[i].num = 1;
+        Weapons[i].num = PlayerPrefs.GetInt("Weapon" + i);
         foreach (var data in weapons.Weapons)
             if (data.objectName == WeaponName)
             {
@@ -183,7 +183,7 @@ public class Object_WeaponBag : MonoBehaviour
     }
     public void witchArmor(int i,string ArmorName)
     {
-        Armors[i].num = 1;
+        Armors[i].num = PlayerPrefs.GetInt("Armor" + i);
         foreach (var data in armors.Armors)
             if (data.objectName == ArmorName)
             {
@@ -192,7 +192,7 @@ public class Object_WeaponBag : MonoBehaviour
     }
     public void witchHelmet(int i, string HelmetName)
     {
-        Helmets[i].num = 1;
+        Helmets[i].num = PlayerPrefs.GetInt("Helmet" + i);
         foreach (var data in helmets.Helmets)
             if (data.objectName == HelmetName)
             {

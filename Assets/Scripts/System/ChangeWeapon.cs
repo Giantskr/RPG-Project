@@ -99,13 +99,27 @@ public class ChangeWeapon : MonoBehaviour
                     //Player_Stats.maxHP = + data.maxHP;
                     //Player_Stats.maxMP = + data.maxMP;
                     //尚未找到解决方案
-
+                    foreach (var Data in Object_WeaponBag.Weapons)
+                    {
+                        if (Data.name == Laidweapon.transform.GetChild(1).GetComponent<Text>().text)
+                        {
+                            tempDataW1 = Data.num+ data.ATK;
+                        }
+                    }
                 }
             }
             
         }
-       
-        if (Laidhead.transform.GetChild(1).GetComponent<Text>().text != "空")
+        if (Laidweapon.transform.GetChild(1).GetComponent<Text>().text == "空")
+        {
+            tempDataW1 = 0;
+            tempDataW2 = 0;
+            tempDataW3 = 0;
+            tempDataW4 = 0;
+            tempDataW5 = 0;
+        }
+
+            if (Laidhead.transform.GetChild(1).GetComponent<Text>().text != "空")
         {
             foreach (var data in helmets.Helmets)
             {

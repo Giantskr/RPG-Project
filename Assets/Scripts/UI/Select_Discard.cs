@@ -44,6 +44,7 @@ public class Select_Discard : Select
                 Object_WeaponBag.Weapons[Object_WeaponBag.weaponsize-1].name="";
                 Object_WeaponBag.Weapons[Object_WeaponBag.weaponsize-1].img= Resources.Load<Sprite>("00");
                 Object_WeaponBag.weaponsize -= 1;
+                Object_WeaponBag.save = true;
                 break;
         }
     }
