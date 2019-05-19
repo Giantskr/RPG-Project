@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Bomber_Player : Player_Control
 {
@@ -12,6 +10,7 @@ public class Bomber_Player : Player_Control
 	float speed = 1;
 	public bool self;
 
+
     void FixedUpdate()
     {
 		if (self)
@@ -20,7 +19,7 @@ public class Bomber_Player : Player_Control
 			{
 				bombCount = bombMaxCount - bomberManager.GetComponent<Bomber_Manager>().playerBombParent.childCount;
 				if (an.speed == 0) an.speed = animationSpeed;
-				if (!GameManager.fading && Bomber_Manager.playerAlive) Control();
+				if (!GameManager.fading && Bomber_Manager.playerAlive && !Bomber_Manager.chatting) Control();
 			}
 			else if (an.speed != 0)
 			{
@@ -49,7 +48,7 @@ public class Bomber_Player : Player_Control
 	}
 	void Control()
 	{
-		if (Input.GetButtonDown("Submit") && bombCount > 0)
+		if (!Input.GetKeyDown(KeyCode.Return) && Input.GetButtonDown("Submit") && bombCount > 0) 
 		{
 			Vector2 bombPos = target;
 			if (moving) bombPos = target - faceOrientation;

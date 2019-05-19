@@ -132,7 +132,7 @@ public class Player_Stats : MonoBehaviour
 
 	void OnSceneChange(Scene scene, LoadSceneMode mode)
 	{
-		if (GameManager.sceneType == GameManager.SceneType.ExtraGame)
-			Destroy(gameObject);
+		//if (GameManager.sceneType == GameManager.SceneType.ExtraGame)
+		//	Destroy(gameObject);
 	}
 }

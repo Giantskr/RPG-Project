@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Fading : MonoBehaviour
 {
     void SetFading()
 	{
 		GameManager.fading = false;
+		gameObject.SetActive(false);
 	}
 }
