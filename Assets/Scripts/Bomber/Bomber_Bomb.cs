@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Bomber_Bomb : MonoBehaviour
 {
 	float timeToExplode = 3f;
-	float explodeDuration = 0.6f;
+	float explodeDuration = 0.5f;
 	public int range = 1;
 	bool exploded = false;
 	GameObject damageZone;

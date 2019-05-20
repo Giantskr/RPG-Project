@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class Select_ExtraGame : Select
 {
@@ -26,7 +23,7 @@ public class Select_ExtraGame : Select
 					gameManager.StartCoroutine("ChangeScene", "MapEdit");
 					break;
 				case 2:
-					//gameManager.StartCoroutine("ChangeScene", "MapEdit");
+					gameManager.StartCoroutine("ChangeScene", "Bomber_Matchmaking");
 					break;
 				case 3:
 					Menu.SetActive(true);

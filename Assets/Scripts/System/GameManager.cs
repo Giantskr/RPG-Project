@@ -34,10 +34,13 @@ public class GameManager : MonoBehaviour
 	public static GameObject[] allMonsters;
 	public static List<GameObject> monstersJoining;
 
-
-    void OnEnable()
-    {
+	void Awake()
+	{
 		sceneType = sceneTypeInInspector;
+	}
+
+	void OnEnable()
+    {
         fading = true;
         if (sceneType == SceneType.GamePlay)
         {
@@ -58,22 +61,25 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         SoundPlay();
-		if (Input.GetButtonDown("Cancel") && inScene && !fading)
+		if (sceneType == SceneType.GamePlay)
 		{
-			inScene = false;
-			UI_Esc.SetActive(true);
-		}
-		if (!inBattle && monstersJoining != null) monstersJoining = null;
-		if (inBattle && BattleActions.battleState != BattleActions.BattleState.battling) 
-		{
-			if (BattleActions.battleState == BattleActions.BattleState.lose)
+			if (Input.GetButtonDown("Cancel") && inScene && !fading)
 			{
-				StartCoroutine("ChangeScene", "Start");
+				inScene = false;
+				UI_Esc.SetActive(true);
 			}
-			else if (BattleActions.battleState == BattleActions.BattleState.win)
+			if (!inBattle && monstersJoining != null) monstersJoining = null;
+			if (inBattle && BattleActions.battleState != BattleActions.BattleState.battling)
 			{
-				inBattle = false;inScene = true;
-				UI_Battle.SetActive(false);
+				if (BattleActions.battleState == BattleActions.BattleState.lose)
+				{
+					StartCoroutine("ChangeScene", "Start");
+				}
+				else if (BattleActions.battleState == BattleActions.BattleState.win)
+				{
+					inBattle = false; inScene = true;
+					UI_Battle.SetActive(false);
+				}
 			}
 		}
     }
@@ -83,6 +89,7 @@ public class GameManager : MonoBehaviour
 	}
 	public IEnumerator ChangeScene(string scene)
 	{
+		fadingScreen.SetActive(true);
 		if (!fading)
 		{
 			fading = true;
