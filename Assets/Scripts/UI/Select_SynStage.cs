@@ -10,16 +10,32 @@ public class Select_SynStage : Select
     public GameObject ThisSelect;//用于关闭本级菜单
     public GameObject LowerSelect;
 
+    public Text Describe;
+
+    private bool isSyn = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Describe.text = "选择想要合成的两件物品()";
+        states = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Selection();
+        if(Selections[0].transform.GetChild(0).GetComponent<Image>().sprite != Resources.Load<Sprite>("00")&& Selections[1].transform.GetChild(0).GetComponent<Image>().sprite == Resources.Load<Sprite>("00"))
+        {
+            states = 2;
+        }
+        if (Selections[0].transform.GetChild(0).GetComponent<Image>().sprite != Resources.Load<Sprite>("00") && Selections[1].transform.GetChild(0).GetComponent<Image>().sprite != Resources.Load<Sprite>("00"))
+        {
+            states = 3;
+        }
+        if (isSyn)
+        {
+            states = 4;
+        }
+        transform.position = Selections[states-1].transform.position;
         if (Input.GetButtonDown("Cancel"))
         {
             higerSelect.SetActive(true);
@@ -31,6 +47,7 @@ public class Select_SynStage : Select
             switch (states)
             {
                 case 1: case 2:
+                    Select_Syn.OneOrTwo = states;
                     ThisSelect.SetActive(false);
                     LowerSelect.SetActive(true);
                     break;
@@ -38,12 +55,16 @@ public class Select_SynStage : Select
                     if(Selections[0].transform.GetChild(0).GetComponent<Image>().sprite != Resources.Load<Sprite>("00")&& Selections[1].transform.GetChild(0).GetComponent<Image>().sprite != Resources.Load<Sprite>("00"))
                     {
                         Syn();
+                        Selections[0].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
+                        Selections[1].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
                     }
                     break;
                 case 4:
                     if (Selections[0].transform.GetChild(0).GetComponent<Image>().sprite != Resources.Load<Sprite>("00"))
                     {
                         GetSyn();
+                        Selections[3].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
+                        isSyn = false;states = 1;
                     }
                     break;
             }

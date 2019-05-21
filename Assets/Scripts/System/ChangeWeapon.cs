@@ -175,7 +175,7 @@ public class ChangeWeapon : MonoBehaviour
             //Debug.Log(PlayerPrefs.GetString("PlacedWeapon"));
         }
     }
-    protected int Equip(int change,int changeWhich,int size,List<GameObject> sorts ,List<Item> item,string name,int stastic,GameObject laid)
+    public int Equip(int change,int changeWhich,int size,List<GameObject> sorts ,List<Item> item,string name,int stastic,GameObject laid)
     {
         switch (change)
         {
