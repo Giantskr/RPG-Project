@@ -18,18 +18,31 @@ public class Select_Syn : Select
     ArmorsData armors;
  
     public static int OneOrTwo;//当前在选择第一个物品还是第二个物品
-    //public int change1;//记录两个栏的状态
-    //public int change2;
 
+    public static bool returnn=false;
+    
     void Start()
     {
         ShowObj();
+        weapons = LoadJson<WeaponsData>.LoadJsonFromFile("Weapons");
+        armors = LoadJson<ArmorsData>.LoadJsonFromFile("Armors");
+        helmets = LoadJson<HelmetsData>.LoadJsonFromFile("Helmets");
     }
 
     // Update is called once per frame
     void Update()
     {
         Selection();
+        ShowObjState();
+        if (returnn == true)
+        {
+            ShowObj();
+            for (int i = 0; i < 6; i++)
+            {
+                Selections[i].transform.GetChild(2).gameObject.SetActive(false);
+            }
+            returnn = false;
+        }
         if (Input.GetButtonDown("Cancel"))
         {
             SelectSyn.SetActive(true);
@@ -42,7 +55,7 @@ public class Select_Syn : Select
                 GameManager.whichSound=2;
                 Describe.text = "请选择同种类的不同装备。";
             }
-            if((OneOrTwo ==1)||(OneOrTwo == 2 && syn[0].GetComponent<Image>().sprite != Selections[states - 1].transform.GetChild(0).GetComponent<Image>().sprite))
+            if((OneOrTwo ==1&& Selections[states - 1].transform.GetChild(0).GetComponent<Image>().sprite != Resources.Load<Sprite>("00")) || (OneOrTwo == 2 && syn[0].GetComponent<Image>().sprite != Selections[states - 1].transform.GetChild(0).GetComponent<Image>().sprite&& Selections[states - 1].transform.GetChild(0).GetComponent<Image>().sprite != Resources.Load<Sprite>("00")))
             {
                 ChangeObj(syn[OneOrTwo - 1], Selections);
                 SelectSyn.SetActive(true);
@@ -89,5 +102,22 @@ public class Select_Syn : Select
             }
         }
     }
-   
+    public void ShowObjState()
+    {
+        foreach (var data in weapons.Weapons)
+            if (data.objectName == Selections[states - 1].transform.GetChild(1).GetComponent<Text>().text)
+            {
+                EquipmentStates.text = data.ATK + "\n" + data.DEF + "\n" + data.MAT + "\n" + data.MDF + "\n" + data.AGI;
+            }
+        foreach (var data in helmets.Helmets)
+            if (data.objectName == Selections[states - 1].transform.GetChild(1).GetComponent<Text>().text)
+            {
+                EquipmentStates.text = data.ATK + "\n" + data.DEF + "\n" + data.MAT + "\n" + data.MDF + "\n" + data.AGI;
+            }
+        foreach (var data in armors.Armors)
+            if (data.objectName == Selections[states - 1].transform.GetChild(1).GetComponent<Text>().text)
+            {
+                EquipmentStates.text = data.ATK + "\n" + data.DEF + "\n" + data.MAT + "\n" + data.MDF + "\n" + data.AGI;
+            }
+    }
 }

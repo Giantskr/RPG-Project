@@ -54,7 +54,7 @@ public class ChangeWeapon : MonoBehaviour
         int i3 = 0;
         foreach (var data in weapon)
         {
-            Debug.Log(data.transform.GetChild(1).GetComponent<Text>().text);
+            //Debug.Log(data.transform.GetChild(1).GetComponent<Text>().text);
             if (data.transform.GetChild(1).GetComponent<Text>().text == PlayerPrefs.GetString("PlacedWeapon"))
             {
                 weaponchangeWhich = i1;
@@ -64,7 +64,7 @@ public class ChangeWeapon : MonoBehaviour
         }
         foreach (var data in body)
         {
-            Debug.Log(data.transform.GetChild(1).GetComponent<Text>().text);
+            //Debug.Log(data.transform.GetChild(1).GetComponent<Text>().text);
             if (data.transform.GetChild(1).GetComponent<Text>().text == PlayerPrefs.GetString("PlacedArmor"))
             {
                 armorchangeWhich = i2;
@@ -74,7 +74,7 @@ public class ChangeWeapon : MonoBehaviour
         }
         foreach (var data in head)
         {
-            Debug.Log(data.transform.GetChild(1).GetComponent<Text>().text);
+            //Debug.Log(data.transform.GetChild(1).GetComponent<Text>().text);
             if (data.transform.GetChild(1).GetComponent<Text>().text == PlayerPrefs.GetString("PlacedHelmet"))
             {
                 helmetchangeWhich = i3;

@@ -16,7 +16,7 @@ public class Select_SynStage : Select
     // Start is called before the first frame update
     void Start()
     {
-        Describe.text = "选择想要合成的两件物品()";
+        Describe.text = "选择想要合成的两件物品(同种类)，花费：500G";
         states = 1;
     }
 
@@ -36,8 +36,12 @@ public class Select_SynStage : Select
             states = 4;
         }
         transform.position = Selections[states-1].transform.position;
-        if (Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Cancel"))//按退出键后 一切复位
         {
+            Select_Syn.returnn = true;
+            Selections[0].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
+            Selections[1].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
+            states = 1;
             higerSelect.SetActive(true);
             ThisSelect.SetActive(false);
         }
