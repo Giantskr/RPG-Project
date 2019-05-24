@@ -54,7 +54,7 @@ public class ChangeWeapon : MonoBehaviour
         int i3 = 0;
         foreach (var data in weapon)
         {
-            Debug.Log(data.transform.GetChild(1).GetComponent<Text>().text);
+            //Debug.Log(data.transform.GetChild(1).GetComponent<Text>().text);
             if (data.transform.GetChild(1).GetComponent<Text>().text == PlayerPrefs.GetString("PlacedWeapon"))
             {
                 weaponchangeWhich = i1;
@@ -64,7 +64,7 @@ public class ChangeWeapon : MonoBehaviour
         }
         foreach (var data in body)
         {
-            Debug.Log(data.transform.GetChild(1).GetComponent<Text>().text);
+            //Debug.Log(data.transform.GetChild(1).GetComponent<Text>().text);
             if (data.transform.GetChild(1).GetComponent<Text>().text == PlayerPrefs.GetString("PlacedArmor"))
             {
                 armorchangeWhich = i2;
@@ -74,7 +74,7 @@ public class ChangeWeapon : MonoBehaviour
         }
         foreach (var data in head)
         {
-            Debug.Log(data.transform.GetChild(1).GetComponent<Text>().text);
+            //Debug.Log(data.transform.GetChild(1).GetComponent<Text>().text);
             if (data.transform.GetChild(1).GetComponent<Text>().text == PlayerPrefs.GetString("PlacedHelmet"))
             {
                 helmetchangeWhich = i3;
@@ -175,7 +175,7 @@ public class ChangeWeapon : MonoBehaviour
             //Debug.Log(PlayerPrefs.GetString("PlacedWeapon"));
         }
     }
-    protected int Equip(int change,int changeWhich,int size,List<GameObject> sorts ,List<Item> item,string name,int stastic,GameObject laid)
+    public int Equip(int change,int changeWhich,int size,List<GameObject> sorts ,List<Item> item,string name,int stastic,GameObject laid)
     {
         switch (change)
         {
@@ -250,33 +250,6 @@ public class ChangeWeapon : MonoBehaviour
         PlayerPrefs.SetString("PlacedArmor", Laidbody.transform.GetChild(1).GetComponent<Text>().text);
         PlayerPrefs.SetString("PlacedHelmet", Laidhead.transform.GetChild(1).GetComponent<Text>().text);
     }
-    //public void ReadPlacedObjs()
-    //{
-    //    Laidweapon.transform.GetChild(1).GetComponent<Text>().text = PlayerPrefs.GetString("PlacedWeapon");
-    //    Laidbody.transform.GetChild(1).GetComponent<Text>().text = PlayerPrefs.GetString("PlacedArmor");
-    //    Laidhead.transform.GetChild(1).GetComponent<Text>().text = PlayerPrefs.GetString("PlacedHelmet");
-    //    switch (Laidweapon.transform.GetChild(1).GetComponent<Text>().text)
-    //    {
-    //        case "最好的剑":
-    //            Laidweapon.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("01"); break;
-    //        case "更好的剑":
-    //            Laidweapon.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("02"); break;
-    //    }
-    //    switch (Laidbody.transform.GetChild(1).GetComponent<Text>().text)
-    //    {
-    //        case "最好的剑":
-    //            Laidbody.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("01"); break;
-    //        case "更好的剑":
-    //            Laidbody.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("02"); break;
-    //    }
-    //    switch (Laidhead.transform.GetChild(1).GetComponent<Text>().text)
-    //    {
-    //        case "最好的剑":
-    //            Laidhead.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("04"); break;
-    //        case "更好的剑":
-    //            Laidhead.transform.GetChild(1).GetComponent<Image>().sprite = Resources.Load<Sprite>("05"); break;
-    //    }
-    //}
 }
 
 
