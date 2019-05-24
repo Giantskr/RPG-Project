@@ -21,13 +21,12 @@ public class Socket_Client : MonoBehaviour
 	public static Socket_Client instance = null;
 	enum ActionType
 	{
-		None, Match, Action
+		None, Match, Action, Item
 	}
 
 	SqlAccess sqlAce;   //引用封装类
 	MySqlConnection con;
-
-	public static string enemyAddress;
+	public static string userName, enemyName;
 
 	void Awake()
 	{
@@ -135,28 +134,31 @@ public class Socket_Client : MonoBehaviour
 				case ActionType.None:
 					switch (i)
 					{
-						case "Match":
-							type = ActionType.Match;
-							break;
-						case "Action":
-							type = ActionType.Action;
-							break;
+						case "Match": type = ActionType.Match; break;
+						case "Action": type = ActionType.Action; break;
+						case "Item": type = ActionType.Item; break;
 					}
 					break;
 				case ActionType.Match:
 					Bomber_MatchManager match = FindObjectOfType<Bomber_MatchManager>();
-					if (i.StartsWith("IP"))
-					{
-						enemyAddress = i.Remove(1);
-					}
+					if (i.StartsWith("Name")) enemyName = i.Remove(0, 4);
 					else
 					switch (i)
 					{
-						case "Failed":
-							match.FailMatch();
+						case "Failed": match.FailMatch(); break;
+						case "Success": match.StartGame(); break;
+					}
+					break;
+				case ActionType.Action:
+					if (FindObjectOfType<Bomber_Manager>())
+						FindObjectOfType<Bomber_Manager>().EnemyAction(i);
+					break;
+				case ActionType.Item:
+					switch (i)
+					{
+						case "Spawn":
 							break;
-						case "Success":
-							match.StartGame();
+						case "Destroy":
 							break;
 					}
 					break;
@@ -171,7 +173,6 @@ public class Socket_Client : MonoBehaviour
 			Debug.Log("与服务器断开连接");
 			clientSocket = null;
 			connected = false;
-
 			ConnectToServer();
 		}
 	}
@@ -184,13 +185,11 @@ public class Socket_Client : MonoBehaviour
 				clientSocket.Shutdown(SocketShutdown.Both);
 				clientSocket.Close();//关闭连接
 			}
-
 			if (receiveT != null)
 			{
 				receiveT.Interrupt();
 				receiveT.Abort();
 			}
-
 		}
 		catch (Exception ex)
 		{
@@ -206,13 +205,11 @@ public class Socket_Client : MonoBehaviour
 				clientSocket.Shutdown(SocketShutdown.Both);
 				clientSocket.Close();//关闭连接
 			}
-
 			if (receiveT != null)
 			{
 				receiveT.Interrupt();
 				receiveT.Abort();
 			}
-
 		}
 		catch (Exception ex)
 		{

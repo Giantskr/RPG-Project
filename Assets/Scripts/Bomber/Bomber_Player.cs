@@ -3,15 +3,23 @@
 public class Bomber_Player : Player_Control
 {
 	public GameObject bomberManager;
+	Socket_Client socket;
 
 	int bombMaxCount = 1;
 	int bombCount = 1;
-	int bombRange = 1;
+	[HideInInspector]
+	public int bombRange = 1;
 	float speed = 1;
 	public bool self;
 
 
-    void FixedUpdate()
+
+	void OnEnable()
+	{
+		socket = FindObjectOfType<Socket_Client>();
+	}
+
+	void FixedUpdate()
     {
 		if (self)
 		{
@@ -53,18 +61,35 @@ public class Bomber_Player : Player_Control
 			Vector2 bombPos = target;
 			if (moving) bombPos = target - faceOrientation;
 			bomberManager.GetComponent<Bomber_Manager>().PlaceBomb(bombPos, bombRange, self);
+			socket.SendData("Action,PlaceBomb,");
 		}
 		if ((Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) && !moving)
 		{
 			if (Input.GetButton("Horizontal") && !Input.GetButton("Vertical"))
 			{
-				if (Input.GetAxisRaw("Horizontal") > 0) faceOrientation = Vector2.right;
-				else faceOrientation = Vector2.left;
+				if (Input.GetAxisRaw("Horizontal") > 0)
+				{
+					faceOrientation = Vector2.right;
+					socket.SendData("Action,Moveright,");
+				}
+				else 
+				{
+					faceOrientation = Vector2.left;
+					socket.SendData("Action,Moveleft,");
+				}
 			}
 			if (Input.GetButton("Vertical") && !Input.GetButton("Horizontal"))
 			{
-				if (Input.GetAxisRaw("Vertical") > 0) faceOrientation = Vector2.up;
-				else faceOrientation = Vector2.down;
+				if (Input.GetAxisRaw("Vertical") > 0)
+				{
+					faceOrientation = Vector2.up;
+					socket.SendData("Action,Moveup,");
+				}
+				else
+				{
+					faceOrientation = Vector2.down;
+					socket.SendData("Action,Movedown,");
+				}
 			}
 			if (!FaceObstacle())
 			{
@@ -89,6 +114,28 @@ public class Bomber_Player : Player_Control
 			}
 		}
 	}
+	public void EnemyControl(string action)
+	{
+		switch (action)
+		{
+			case "Right":
+				break;
+			case "Left":
+				break;
+			case "Up":
+				break;
+			case "Down":
+				break;
+			case "Bomb":
+				break;
+		}
+	}
+	void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (Bomber_Manager.playerAlive || Bomber_Manager.enemyAlive) 
+			if (collision.tag == "Item") GetItem(collision.gameObject);
+	}
+
 	void GetItem(GameObject item)
 	{
 		Bomber_Item _Item = item.GetComponent<Bomber_Item>();
@@ -98,18 +145,16 @@ public class Bomber_Player : Player_Control
 			case Bomber_Item.ItemType.range: if (bombRange < 8) bombRange++; break;
 			case Bomber_Item.ItemType.speed: if (speed < 2) speed +=0.2f; break;
 		}
+		socket.SendData("Item,Destroy," + item.transform.position.x + " " + item.transform.position.y + ",");
 		Destroy(item);
 	}
-	void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (Bomber_Manager.playerAlive)
-			if (collision.tag == "Item") GetItem(collision.gameObject);
-	}
+
 	public void Die()
 	{
 		if (self) Bomber_Manager.playerAlive = false;
 		else Bomber_Manager.enemyAlive = false;
 		an.enabled = true;
 		an.Play("Death");
+		socket.SendData("Action,Death,");
 	}
 }

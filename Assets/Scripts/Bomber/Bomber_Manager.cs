@@ -113,11 +113,25 @@ public class Bomber_Manager : MonoBehaviour
 	{
 
 	}
-	void SetPlayerPos()
+	public void EnemyAction(string ms)
 	{
-
+		switch (ms)
+		{
+			case "PlaceBomb":
+				//PlaceBomb(otherPlayer.transform.position, otherPlayer.GetComponent<Bomber_Player>().bombRange, false);
+				break;
+			case "Moveright":
+				break;
+			case "Moveleft":
+				break;
+			case "Moveup":
+				break;
+			case "Movedown":
+				break;
+			case "Death": otherPlayer.GetComponent<Bomber_Player>().Die(); break;
+		}
 	}
-	void GetPlayerPos()
+	void InstantiateItem()
 	{
 
 	}

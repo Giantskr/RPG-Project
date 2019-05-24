@@ -186,6 +186,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97097193}
   m_CullTransparentMesh: 0
+--- !u!1 &183396336 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5307574481910302083, guid: 707163c7579e8594f93ba1cd8587febc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1035094424}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &265380999
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,6 +867,16 @@ PrefabInstance:
       propertyPath: sceneTypeInInspector
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4494901824249771423, guid: 092d70234f4e2844b8ee46dbdbbf646b,
+        type: 3}
+      propertyPath: fadingScreen
+      value: 
+      objectReference: {fileID: 183396336}
+    - target: {fileID: 4494901824249771423, guid: 092d70234f4e2844b8ee46dbdbbf646b,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4494901824249771416, guid: 092d70234f4e2844b8ee46dbdbbf646b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1259,6 +1275,7 @@ MonoBehaviour:
   OptionNum: 2
   gameManager: {fileID: 703869494}
   matchManager: {fileID: 702616241}
+  findMatchText: {fileID: 1339951687}
 --- !u!1001 &1035094424
 PrefabInstance:
   m_ObjectHideFlags: 0

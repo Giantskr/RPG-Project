@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public class Bomber_Select_MatchMaking : Select
 {
 	public GameManager gameManager;
-	public GameObject socket;
 	public Bomber_MatchManager matchManager;
+	public Text findMatchText;
 
 	void OnEnable()
     {
@@ -20,12 +20,19 @@ public class Bomber_Select_MatchMaking : Select
 			switch (states)
 			{
 				case 1:
-					if (!Bomber_MatchManager.matching) matchManager.FindMatch();
-					else GameManager.whichSound = 2;
+					if (!Bomber_MatchManager.matching)
+					{
+						findMatchText.text = "取消匹配";
+						matchManager.FindMatch();
+					}
+					else
+					{
+						findMatchText.text = "开始匹配";
+						matchManager.CancelMatch();
+					}
 					break;
 				case 2:
 					Bomber_MatchManager.matching = false;
-					Destroy(socket);
 					gameManager.StartCoroutine("ChangeScene", "Start");
 					break;
 				

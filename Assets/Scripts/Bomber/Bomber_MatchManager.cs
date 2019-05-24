@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Net;
-using System.Net.Sockets;
+using System.Collections;
+
 
 public class Bomber_MatchManager : MonoBehaviour
 {
@@ -25,34 +25,34 @@ public class Bomber_MatchManager : MonoBehaviour
 	{
 		matching = true;
 		findingText.text = "正在寻找游戏......";
-		//		string hostName = Dns.GetHostName();   //获取本机名
-		//#pragma warning disable CS0618 // 类型或成员已过时
-		//		IPHostEntry localhost = Dns.GetHostByName(hostName);    //方法已过期，可以获取IPv4的地址
-		//#pragma warning restore CS0618 // 类型或成员已过时
-		//		//IPAddress[] localhost = Dns.GetHostAddresses(Dns.GetHostName());
-		//		//IPHostEntry localhost = Dns.GetHostEntry(hostName);   //获取IPv6地址
-		//		IPAddress localaddr = localhost.AddressList[0];
+		socket.SendData("Match,Find,");
 
-		string hostname = Dns.GetHostName();
-		IPAddress[] ipadrlist = Dns.GetHostAddresses(hostname);
-		foreach (IPAddress ipadr in ipadrlist)
-		{
-			if (ipadr.AddressFamily == AddressFamily.InterNetwork)
-			{//判断是否IPv4
-				socket.SendData("Match,IP"+ipadr.ToString());
-				break;
-			}
-		}
-		//socket.SendData(localaddr.ToString());
+		//string hostname = Dns.GetHostName();
+		//IPAddress[] ipadrlist = Dns.GetHostAddresses(hostname);
+		//foreach (IPAddress ipadr in ipadrlist)
+		//{
+		//	if (ipadr.AddressFamily == AddressFamily.InterNetwork)
+		//	{//判断是否IPv4
+		//		socket.SendData(ipadr.ToString());
+		//		break;
+		//	}
+		//}
+	}
+	public void CancelMatch()
+	{
+		findingText.text = "已取消匹配！";
+		matching = false;
+		socket.SendData("Match,Cancel,");
 	}
 	public void FailMatch()
 	{
-		findingText.text = "匹配失败，请重试";
+		findingText.text = "匹配失败，请重试！";
 		matching = false;
 	}
-	public void StartGame()
+	public IEnumerator StartGame()
 	{
-		findingText.text = "你匹配到了" + Socket_Client.enemyAddress + "！";
-		//gameManager.StartCoroutine("ChangeScene", "Bomber_Game");
+		findingText.text = "你匹配到了" + Socket_Client.enemyName + "！";
+		yield return new WaitForSeconds(1.5f);
+		gameManager.StartCoroutine("ChangeScene", "Bomber_Game");
 	}
 }
