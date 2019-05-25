@@ -36,7 +36,7 @@ public class Select_SynStage : Select
             states = 4;
         }
         transform.position = Selections[states-1].transform.position;
-        if (Input.GetButtonDown("Cancel"))//按退出键后 一切复位
+        if (Input.GetButtonDown("Cancel")&&states!=3)//按退出键后 一切复位
         {
             Select_Syn.returnn = true;
             Selections[0].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
@@ -58,17 +58,17 @@ public class Select_SynStage : Select
                 case 3:
                     if(Selections[0].transform.GetChild(0).GetComponent<Image>().sprite != Resources.Load<Sprite>("00")&& Selections[1].transform.GetChild(0).GetComponent<Image>().sprite != Resources.Load<Sprite>("00"))
                     {
-                        Syn();
-                        Selections[0].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
-                        Selections[1].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
+                        Syn();                      
                     }
                     break;
                 case 4:
-                    if (Selections[0].transform.GetChild(0).GetComponent<Image>().sprite != Resources.Load<Sprite>("00"))
+                    if (Selections[3].transform.GetChild(0).GetComponent<Image>().sprite != Resources.Load<Sprite>("00"))
                     {
                         GetSyn();
                         Selections[3].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
-                        isSyn = false;states = 1;
+                        isSyn = false;
+                        Describe.text = "选择想要合成的两件物品(同种类)，花费：500G";
+                        states = 1;
                     }
                     break;
             }
@@ -76,10 +76,62 @@ public class Select_SynStage : Select
     }
     public void Syn()
     {
+        bool SameSort=false;
+        foreach (var data in Object_WeaponBag.Weapons)
+        {
+           
+            int i = 0;
+            if (data.img == Selections[0].transform.GetChild(0).GetComponent<Image>().sprite && data.num == 0)
+            {
 
+                Player_Stats.money -= 500;
+                data.num += 5;
+                SameSort = true;
+                PlayerPrefs.SetInt("Weapon" + i, data.num);
+            }
+            i++;
+        }
+        foreach (var data in Object_WeaponBag.Weapons)
+        {
+            int i = 0;
+            if (data.img == Selections[1].transform.GetChild(0).GetComponent<Image>().sprite && data.num == 0)
+            {
+                for (int j = i; j < Object_WeaponBag.weaponsize - 1; j++)
+                {
+                    Debug.Log(j);
+                    Object_WeaponBag.Weapons[j].name = Object_WeaponBag.Weapons[j + 1].name;
+                    Object_WeaponBag.Weapons[j].img = Object_WeaponBag.Weapons[j + 1].img;
+
+                }
+                Object_WeaponBag.Weapons[Object_WeaponBag.weaponsize - 1].name = "";
+                Object_WeaponBag.Weapons[Object_WeaponBag.weaponsize - 1].img = Resources.Load<Sprite>("00");
+                Object_WeaponBag.weaponsize -= 1;
+                Object_WeaponBag.save = true;
+            }
+            else
+            {
+                i++;
+            }
+        }
+        if (SameSort)
+        {
+            Selections[3].transform.GetChild(0).GetComponent<Image>().sprite = Selections[0].transform.GetChild(0).GetComponent<Image>().sprite;           
+            SameSort = false;
+            isSyn = true;
+        }
+        else
+        {
+            GameManager.whichSound = 2;
+            Describe.text = "请选择同种类的不同装备。";
+            Select_Syn.returnn = true;
+            states = 1;
+        }
+        Selections[0].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
+        Selections[1].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
     }
     public void GetSyn()
     {
-
+        Describe.text = "请取走锻造好的装备。";
+        Selections[3].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
     }
 }

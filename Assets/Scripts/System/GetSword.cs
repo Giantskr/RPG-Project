@@ -17,6 +17,8 @@ public class GetSword : MonoBehaviour
             {
                 Object_WeaponBag.weaponsize += 1;
                 Object_WeaponBag.Weapons.Add(new Item("最好的剑", Resources.Load<Sprite>("01"), 0));
+                Object_WeaponBag.weaponsize += 1;
+                Object_WeaponBag.Weapons.Add(new Item("更好的剑", Resources.Load<Sprite>("02"), 0));
             }
 
             //if (Object_WeaponBag.Weapons != null)
