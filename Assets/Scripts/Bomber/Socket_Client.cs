@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Security.Cryptography;
@@ -21,13 +22,12 @@ public class Socket_Client : MonoBehaviour
 	public static Socket_Client instance = null;
 	enum ActionType
 	{
-		None, Match, Action
+		None, Match, Action, Item, Chat
 	}
 
 	SqlAccess sqlAce;   //引用封装类
 	MySqlConnection con;
-
-	public static string enemyAddress;
+	public static string userName, enemyName;
 
 	void Awake()
 	{
@@ -84,15 +84,76 @@ public class Socket_Client : MonoBehaviour
 
 	public void Register(string name, string pw)
 	{
-		pw = Encypt(pw);
+		Bomber_MatchManager match = FindObjectOfType<Bomber_MatchManager>();
+		pw = Encrypt(pw);
+		bool fail = false;
+		try
+		{
+			sqlAce = new SqlAccess();
+			con = SqlAccess.con;
+			string sql = ("select username from user ");
+			Dictionary<int, List<string>> dic = sqlAce.QueryInfo(sql, con);             //字典在封装类中
+			for (int i = 0; i < dic.Count; i++)             //用户名查重
+			{
+				if (dic[i][0] == name)
+				{
+					match.failText.text = "用户名已经存在，请更换新的用户名！";
+					fail = true;
+					break;
+				}
+			}
+			sqlAce.CloseMySQL();
+			if (!fail)                                      //查重通过后添加用户
+			{
+				sqlAce = new SqlAccess();
+				con = SqlAccess.con;
+				sql = string.Format("insert into user(username,password) values('{0}','{1}')", name, Encrypt(pw));
+				sqlAce.InsertInfo(sql, con);
+				match.failText.text = "注册成功！请返回登录界面。";
+				match.username.text = "";
+				match.password.text = "";
+			}
+		}
+		catch (Exception e)
+		{
+			match.failText.text = "未知错误，可能是因为未连接到服务器。";
+			Debug.Log(e.ToString()); return;
+		}
+		finally { sqlAce.CloseMySQL(); }
 	}
 
 	public void Login(string name, string pw)
 	{
-		pw = Encypt(pw);
+		Bomber_MatchManager match = FindObjectOfType<Bomber_MatchManager>();
+		pw = Encrypt(pw);
+		bool fail = true;
+		try
+		{
+			sqlAce = new SqlAccess();
+			con = SqlAccess.con;
+			string sql = ("select username,password from user ");
+			Dictionary<int, List<string>> dic = sqlAce.QueryInfo(sql, con);
+			for (int i = 0; i < dic.Count; i++)
+			{
+				if (dic[i][0] == name && dic[i][1] == Encrypt(pw))
+				{
+					fail = false;
+					userName = name;
+					match.ChangeMode();
+					break;
+				}
+			}
+			if (fail) match.failText.text = "用户名或密码错误！";
+		}
+		catch (Exception e)
+		{
+			match.failText.text = "未知错误，可能是因为未连接到服务器。";
+			Debug.Log(e.ToString()); return;
+		}
+		finally { sqlAce.CloseMySQL(); }
 	}
 
-	string Encypt(string pw)
+	string Encrypt(string pw)
 	{
 		var bytes = Encoding.Default.GetBytes(pw);
 		var SHA = new SHA1CryptoServiceProvider();
@@ -128,6 +189,8 @@ public class Socket_Client : MonoBehaviour
 	{
 		ActionType type = ActionType.None;
 		string[] sArray = Regex.Split(ms, ",", RegexOptions.IgnoreCase);
+		Bomber_Manager manager = FindObjectOfType<Bomber_Manager>();
+		Bomber_MatchManager match = FindObjectOfType<Bomber_MatchManager>();
 		foreach (string i in sArray)
 		{
 			switch (type)
@@ -135,29 +198,35 @@ public class Socket_Client : MonoBehaviour
 				case ActionType.None:
 					switch (i)
 					{
-						case "Match":
-							type = ActionType.Match;
-							break;
-						case "Action":
-							type = ActionType.Action;
-							break;
+						case "Match": type = ActionType.Match; break;
+						case "Action": type = ActionType.Action; break;
+						case "Item": type = ActionType.Item; break;
+						case "Chat": type = ActionType.Chat; manager.DisplayChat(false, ms); break; 
 					}
 					break;
 				case ActionType.Match:
-					Bomber_MatchManager match = FindObjectOfType<Bomber_MatchManager>();
-					if (i.StartsWith("IP"))
-					{
-						enemyAddress = i.Remove(1);
-					}
+					if (i.StartsWith("Name")) enemyName = i.Remove(0, 4);
 					else
 					switch (i)
 					{
-						case "Failed":
-							match.FailMatch();
-							break;
-						case "Success":
-							match.StartGame();
-							break;
+						case "Player1":
+								Bomber_Manager.playerPos = new Vector2(-7.5f, 4.5f);
+								Bomber_Manager.enemyPos = new Vector2(8.5f, -5.5f);
+								break;
+						case "Player2":
+								Bomber_Manager.playerPos = new Vector2(8.5f, -5.5f);
+								Bomber_Manager.enemyPos = new Vector2(-7.5f, 4.5f);
+								break;
+						case "Failed": match.FailMatch(); break;
+						case "Success": match.StartGame(); break;
+					}
+					break;
+				case ActionType.Action: manager.EnemyAction(i); break;
+				case ActionType.Item:
+					switch (i)
+					{
+						case "Spawn": manager.ChangeItemState(true, ms); break;
+						case "Destroy": manager.ChangeItemState(false, ms); break;
 					}
 					break;
 			}
@@ -171,7 +240,6 @@ public class Socket_Client : MonoBehaviour
 			Debug.Log("与服务器断开连接");
 			clientSocket = null;
 			connected = false;
-
 			ConnectToServer();
 		}
 	}
@@ -184,18 +252,13 @@ public class Socket_Client : MonoBehaviour
 				clientSocket.Shutdown(SocketShutdown.Both);
 				clientSocket.Close();//关闭连接
 			}
-
 			if (receiveT != null)
 			{
 				receiveT.Interrupt();
 				receiveT.Abort();
 			}
-
 		}
-		catch (Exception ex)
-		{
-			Debug.Log(ex.Message);
-		}
+		catch (Exception ex) { Debug.Log(ex.Message); }
 	}
 	void OnApplicationQuit()
 	{
@@ -206,17 +269,12 @@ public class Socket_Client : MonoBehaviour
 				clientSocket.Shutdown(SocketShutdown.Both);
 				clientSocket.Close();//关闭连接
 			}
-
 			if (receiveT != null)
 			{
 				receiveT.Interrupt();
 				receiveT.Abort();
 			}
-
 		}
-		catch (Exception ex)
-		{
-			Debug.Log(ex.Message);
-		}
+		catch (Exception ex) { Debug.Log(ex.Message); }
 	}
 }

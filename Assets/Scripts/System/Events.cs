@@ -46,8 +46,7 @@ public class Events : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();
 		au = GetComponent<AudioSource>();
 		an = GetComponent<Animator>();
-		target = rb.position;
-		
+		target = rb.position;	
 	}
 	void Start()
 	{

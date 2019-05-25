@@ -8,14 +8,16 @@ public class Bomber_Item : MonoBehaviour
 	}
 	public ItemType type;
 	public Sprite[] itemSprites;
+	[HideInInspector] public int spriteNum;
 
-    void OnEnable()
+    void Start()
     {
-		int rand = Random.Range(0, 100);
-		int spriteNum = 0;
-		if (rand <= 35) type = ItemType.bomb;
-		else if (rand <= 70) { type = ItemType.range; spriteNum = 1; }
-		else { type = ItemType.speed; spriteNum = 2; }
+		switch (spriteNum)
+		{
+			case 0: type = ItemType.bomb; break;
+			case 1: type = ItemType.range; break;
+			case 2: type = ItemType.speed; break;
+		}
 		GetComponent<SpriteRenderer>().sprite = itemSprites[spriteNum];
 	}
 }

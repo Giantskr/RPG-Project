@@ -9,13 +9,13 @@ public class SqlAccess
 
 	public static MySqlConnection mySqlConnection;
 	//数据库名称
-	public static string database = "Cloud_Save";
+	public static string database = "users";
 	//数据库IP
-	private static string host = "106.13.88.104";
+	private static string host = "39.105.93.244";
 	//用户名
-	private static string username = "client";
+	private static string username = "newuser";
 	//用户密码
-	private static string password = "client";
+	private static string password = "Newuser1";
 
 	public static string sql = string.Format("database={0};server={1};user={2};password={3};port={4}",
 	database, host, username, password, "3306");
