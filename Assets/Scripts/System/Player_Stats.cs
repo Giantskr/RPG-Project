@@ -43,7 +43,6 @@ public class Player_Stats : MonoBehaviour
 		//    helmetsize = PlayerPrefs.GetInt("helmetsize");
 		//    armorsize = PlayerPrefs.GetInt("armorsize");
 		//}
-		AudioListener.volume = volume;
 		SceneManager.sceneLoaded += OnSceneChange;
 		if (GameManager.sceneType != GameManager.SceneType.ExtraGame)
 		{

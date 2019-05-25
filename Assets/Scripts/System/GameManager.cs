@@ -37,8 +37,8 @@ public class GameManager : MonoBehaviour
 	void Awake()
 	{
 		sceneType = sceneTypeInInspector;
+		AudioListener.volume = Player_Stats.volume * 0.5f;
 	}
-
 	void OnEnable()
     {
         fading = true;

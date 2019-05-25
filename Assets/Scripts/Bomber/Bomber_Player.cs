@@ -12,11 +12,13 @@ public class Bomber_Player : Player_Control
 	float speed = 1;
 	public bool self;
 
-
-
 	void OnEnable()
 	{
 		socket = FindObjectOfType<Socket_Client>();
+		rb = GetComponent<Rigidbody2D>();
+		au = GetComponent<AudioSource>();
+		an = GetComponent<Animator>();
+		target = rb.position;
 	}
 
 	void FixedUpdate()
@@ -34,7 +36,20 @@ public class Bomber_Player : Player_Control
 				animationSpeed = an.speed;
 				an.speed = 0;
 			}
-		}	
+		}
+		else
+		{
+			if (GameManager.inScene)
+			{
+				if (an.speed == 0) an.speed = animationSpeed;
+				if (Bomber_Manager.enemyAlive) EnemyMove();
+			}
+			else if (an.speed != 0)
+			{
+				animationSpeed = an.speed;
+				an.speed = 0;
+			}
+		}
 	}
 	protected override bool FaceObstacle()
 	{
@@ -114,22 +129,52 @@ public class Bomber_Player : Player_Control
 			}
 		}
 	}
-	public void EnemyControl(string action)
+
+	public void EnemyMove()
 	{
-		switch (action)
+		if (moving)
 		{
-			case "Right":
-				break;
-			case "Left":
-				break;
-			case "Up":
-				break;
-			case "Down":
-				break;
-			case "Bomb":
-				break;
+			rb.position = Vector2.MoveTowards(transform.position, target, Time.deltaTime * 5 * an.speed * speed);
+		}
+		if (Vector2.Distance(rb.position, target) <= 0.001f)
+		{
+			moving = false;
+			rb.position = target;
+			//if ((!Input.GetButton("Horizontal") && !Input.GetButton("Vertical")) || FaceObstacle())
+			{
+				an.enabled = false;
+				SetSprite();
+			}
 		}
 	}
+
+	public void EnemyControl(string action)
+	{
+		if (action == "PlaceBomb")
+		{
+			Vector2 bombPos = target;
+			if (moving) bombPos = target - faceOrientation;
+			bomberManager.GetComponent<Bomber_Manager>().PlaceBomb(bombPos, bombRange, self);
+		}
+		else if (!moving) 
+		{
+			switch (action)
+			{
+				case "Moveright": faceOrientation = Vector2.right; break;
+				case "Moveleft": faceOrientation = Vector2.left; break;
+				case "Moveup": faceOrientation = Vector2.up; break;
+				case "Movedown": faceOrientation = Vector2.down; break;
+			}
+			if (!FaceObstacle())
+			{
+				an.enabled = true;
+				moving = true;
+				target = rb.position + faceOrientation;
+				SetWalkAnimation();
+			}
+		}
+	}
+
 	void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (Bomber_Manager.playerAlive || Bomber_Manager.enemyAlive) 
@@ -145,7 +190,7 @@ public class Bomber_Player : Player_Control
 			case Bomber_Item.ItemType.range: if (bombRange < 8) bombRange++; break;
 			case Bomber_Item.ItemType.speed: if (speed < 2) speed +=0.2f; break;
 		}
-		socket.SendData("Item,Destroy," + item.transform.position.x + " " + item.transform.position.y + ",");
+		socket.SendData("Item," + item.transform.position.x + "," + item.transform.position.y + ",Destroy,");
 		Destroy(item);
 	}
 
@@ -155,6 +200,5 @@ public class Bomber_Player : Player_Control
 		else Bomber_Manager.enemyAlive = false;
 		an.enabled = true;
 		an.Play("Death");
-		socket.SendData("Action,Death,");
 	}
 }

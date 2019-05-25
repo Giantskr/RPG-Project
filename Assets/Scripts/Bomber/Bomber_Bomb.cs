@@ -3,7 +3,7 @@
 public class Bomber_Bomb : MonoBehaviour
 {
 	float timeToExplode = 3f;
-	float explodeDuration = 0.5f;
+	float explodeDuration = 0.33f;
 	public int range = 1;
 	bool exploded = false;
 	GameObject damageZone;
