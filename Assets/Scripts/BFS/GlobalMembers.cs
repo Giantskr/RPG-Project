@@ -28,17 +28,17 @@ public class GlobalMembers : Events
     public Vector2 bottomRightPos;
     Vector2 firstPoint;
 
-    Vector2 direction;
+    Vector2 direction=Vector2.right;
     float speed = 1;
 
     void Start()
     {
-        Map = new int[(int)(topLeftPos.y - bottomRightPos.y + 1), (int)(bottomRightPos.x - topLeftPos.x + 1)];
+        Map = new int[(int)(bottomRightPos.x - topLeftPos.x + 1), (int)(topLeftPos.y - bottomRightPos.y + 1)];
         //visit = new int[(int)(topLeftPos.y - bottomRightPos.y + 1), (int)(bottomRightPos.x - topLeftPos.x + 1)];
         //pre = new node[(int)(topLeftPos.y - bottomRightPos.y + 1), (int)(bottomRightPos.x - topLeftPos.x + 1)];
-        for (float y = topLeftPos.y; y <= bottomRightPos.y; y++)
+        for (float y = topLeftPos.y; y >= bottomRightPos.y; y--)
         {
-            int i = (int)(y - topLeftPos.y);
+            int i = (int)(topLeftPos.y - y);
             for (float x = topLeftPos.x; x <= bottomRightPos.x; x++)
             {
                 int j = (int)(x - topLeftPos.x);
@@ -52,8 +52,13 @@ public class GlobalMembers : Events
 
     private void Update()
     {
+        Debug.Log(moving);
         if (moving) EnemyMove();
-        else EnemyControl(FindRoute(transform.position, player.GetComponent<Events>().target, Map));
+        else
+        {
+            FindRoute(transform.position, player.GetComponent<Events>().target, Map);
+            EnemyControl(direction);
+        }
     }
     public class MyPoint
     {
@@ -76,7 +81,6 @@ public class GlobalMembers : Events
             if (p.parent.parent == null)
             {
                 firstPoint = new Vector2(p.X, p.Y);
-                Debug.Log(p.X);
             }
                 
             //Console.Write("(" + p.X + "," + p.Y + ")-->");
@@ -104,7 +108,7 @@ public class GlobalMembers : Events
 
     //}
 
-    Vector2 FindRoute(Vector2 start, Vector2 end, int[,] data)
+    void FindRoute(Vector2 start, Vector2 end, int[,] data)
     {
         start = new Vector2(start.x - topLeftPos.x, topLeftPos.y - start.y);
         end = new Vector2(end.x - topLeftPos.x, topLeftPos.y - end.y);
@@ -116,27 +120,34 @@ public class GlobalMembers : Events
         q.Enqueue(p);
         while (q.Count > 0)
         {
+            Debug.Log("f");
             MyPoint qp = (MyPoint)q.Dequeue();
             for (int i = -1; i < 2; i++) //遍历可以到达的节点
             {
+                Debug.Log("a");
                 for (int j = -1; j < 2; j++)
                 {
-                    if ((qp.X + i >= 0) && (qp.X + i <= (int)bottomRightPos.x) && (qp.Y + j >= 0) && (qp.Y + j <= (int)bottomRightPos.y) && (qp.X + i == qp.X || qp.Y == qp.Y + j)) //是否越界 只遍历上下左右
+                    Debug.Log("b");
+                    if ((qp.X + i >= 0) && (qp.X + i <= (int)(bottomRightPos.x - topLeftPos.x)) && (qp.Y + j >= 0) && (qp.Y + j <= (int)(topLeftPos.y - bottomRightPos.y)) && (qp.X + i == qp.X || qp.Y == qp.Y + j)) //是否越界 只遍历上下左右
                     {
+                        Debug.Log("c");
+                        
                         if (data[qp.X + i, qp.Y + j] == 1)
                         {
+                            Debug.Log("d");
                             if (qp.X + i == (int)end.x && qp.Y + j == (int)end.y)  //是否为终点
                             {
+                                Debug.Log("gg");
                                 //Console.Write("BFS:(0,0)-->");
                                 WritePath(qp); //递归输出路径
                                 //Console.Write("(5,4)");
                                 //Console.WriteLine("");
                                 direction = firstPoint - start;
                                 Debug.Log(direction);
-                                return direction;
                             }
                             else
                             {
+                                Debug.Log("e");
                                 MyPoint temp = new MyPoint(qp.X + i, qp.Y + j);   //加入队列
                                 data[qp.X + i, qp.Y + j] = -1;
                                 temp.parent = qp;
@@ -147,7 +158,6 @@ public class GlobalMembers : Events
                 }
             }
         }
-        return Vector2.zero;
     }
     //   public static int inborad(int x,int y)
     //{
@@ -235,26 +245,26 @@ public class GlobalMembers : Events
 
     public void EnemyMove()
     {
-        if (moving)
+        if (direction!=Vector2.zero)
         {
             rb.position = Vector2.MoveTowards(transform.position, target, Time.deltaTime * 5 * an.speed * speed);
-            if (Vector2.Distance(rb.position, target) <= 0.001f)
+            if (Vector2.Distance(rb.position, target) <= 0.01f)
             {
                 moving = false;
                 rb.position = target;
                 ////if ((!Input.GetButton("Horizontal") && !Input.GetButton("Vertical")) || FaceObstacle())
-                //{
-                //    an.enabled = false;
-                //    SetSprite();
-                //}
+                
+                    an.enabled = false;
+                    SetSprite();
+
             }
         }
     }
 
     public void EnemyControl(Vector2 direction)
     {
-        //Debug.Log(direction);
-        if (!moving)
+        Debug.Log(direction);
+        if (direction!=Vector2.zero)
         {
             faceOrientation = direction;
             if (!FaceObstacle())
