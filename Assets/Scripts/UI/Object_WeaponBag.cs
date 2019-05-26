@@ -111,6 +111,11 @@ public class Object_WeaponBag : MonoBehaviour
             //    prop[i].transform.GetChild(1).GetComponent<Text>().text = null;
             //}
         }
+        for (int i = 0; i < 4; i++)
+        {
+            armor[i].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
+            armor[i].transform.GetChild(1).GetComponent<Text>().text = "空";
+        }
         for (int i = 0; i <armorsize+1; i++)
         {
             //Debug.Log(i);

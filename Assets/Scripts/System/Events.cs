@@ -12,6 +12,7 @@ public class Events : MonoBehaviour
 	[Space]
 	public GameManager gameManager;
 	public GameObject player;
+    public GameObject scenechange1;
 	public Player_Stats stats;
 	public RPGTalk rpgTalkHolder;
 	public RPGTalkCharacter temporaryNPC;
@@ -40,7 +41,6 @@ public class Events : MonoBehaviour
 	protected Rigidbody2D rb;
 	protected AudioSource au;
 	protected Animator an;
-
 	void OnEnable()
 	{
 		rb = GetComponent<Rigidbody2D>();
@@ -82,6 +82,10 @@ public class Events : MonoBehaviour
 	}
     private void Update()
     {
+        if (Player_Stats.switchListInt[10] == 1)
+        {
+            scenechange1.SetActive(true);
+        }
         switch (gameObject.name)
         {
             case "AfterDragonBattle":
@@ -162,6 +166,11 @@ public class Events : MonoBehaviour
                 gameManager.StartCoroutine("ChangeScene", "PalaceIn");
                 Object_WeaponBag.save = true;
                 break;
+           case "Do♂or":
+                au.PlayOneShot(sceneChangeSound);
+                gameManager.StartCoroutine("ChangeScene", "GrassLand");
+                Object_WeaponBag.save = true;
+                break;
             case "StoreSign":
                 gameManager.OpenStore();Input.ResetInputAxes();
                 break;
@@ -200,6 +209,12 @@ public class Events : MonoBehaviour
                         break;
                     case "PalaceOut":
                         gameManager.StartCoroutine("ChangeScene", "Town");
+                        break;
+                    case "PalaceIn":
+                        if (Player_Stats.switchListInt[10]==1)
+                        {
+                            gameManager.StartCoroutine("ChangeScene", "GrassLand");
+                        }
                         break;
                     case "SnowMountain":
                         gameManager.StartCoroutine("ChangeScene", "Store");
@@ -313,7 +328,8 @@ public class Events : MonoBehaviour
 					break;
 				case "King":
                     GameObject.Find("Accessible").transform.Find("Weapons").gameObject.SetActive(true);
-                    Invoke("LoadGrassLand", 15f);
+                    Player_Stats.switchListInt[10] = 1;
+                    //Invoke("LoadGrassLand", 15f); 沙雕剧情
                     break;
                 case "TreasureBox":
                     if (Player_Stats.switchListInt[5] == 0)

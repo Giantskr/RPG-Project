@@ -31,7 +31,9 @@ public class Select_Main : Select
                 {
                     case 1:
 						GameManager.whichSound = 5;
-						gameManager.GetComponent<AudioSource>().PlayOneShot(loadSound);
+                        for (int i = 0; i < Player_Stats.switchListInt.Length; i++)
+                            Player_Stats.switchListInt[i] = 0;
+                        gameManager.GetComponent<AudioSource>().PlayOneShot(loadSound);
                         gameManager.StartCoroutine("ChangeScene", "OpenAni");
                         break;
                     case 2:

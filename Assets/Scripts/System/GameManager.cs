@@ -104,14 +104,6 @@ public class GameManager : MonoBehaviour
 		{
 			switch (next.name)
 			{
-				case "OpenAni":
-					if (Player_Stats.lastScene == "Start")
-					{
-						Vector2 vector = new Vector2(PlayerPrefs.GetInt("PlayerOrientationX"), PlayerPrefs.GetInt("PlayerOrientationY"));
-						Vector2 pos = new Vector2(PlayerPrefs.GetFloat("PlayerPosX"), PlayerPrefs.GetFloat("PlayerPosY"));
-						SetPlayerOrientationAndPos(vector, pos);
-					}
-					break;
 				case "Store":
 					if (Player_Stats.lastScene == "GrassLand")
 						SetPlayerOrientationAndPos(Vector2.right, new Vector2(-10.5f, -1.5f));
@@ -134,20 +126,26 @@ public class GameManager : MonoBehaviour
                     break;
                 case "PalaceIn":
                     if (Player_Stats.lastScene == "PalaceOut")
-						SetPlayerOrientationAndPos(Vector2.up, new Vector2(0, -18.5f));
+						SetPlayerOrientationAndPos(Vector2.up, new Vector2(1, -17.5f));
                     break;
                 case "SnowMountain":
                     if (Player_Stats.lastScene == "Store")
-						SetPlayerOrientationAndPos(Vector2.right, new Vector2(-16f, -2f));
+						SetPlayerOrientationAndPos(Vector2.right, new Vector2(-15.5f, -2.5f));
                     else if (Player_Stats.lastScene == "Cave")
-						SetPlayerOrientationAndPos(Vector2.left, new Vector2(15f, -7f));
+						SetPlayerOrientationAndPos(Vector2.left, new Vector2(15.5f, -7.5f));
                     break;
                 case "Cave":
                     if (Player_Stats.lastScene == "SnowMountain")
 						SetPlayerOrientationAndPos(Vector2.right, new Vector2(-42f, 1f));
                     break;
             }
-		}
+            if (Player_Stats.lastScene == "Start")
+            {
+                Vector2 vector = new Vector2(PlayerPrefs.GetInt("PlayerOrientationX"), PlayerPrefs.GetInt("PlayerOrientationY"));
+                Vector2 pos = new Vector2(PlayerPrefs.GetFloat("PlayerPosX"), PlayerPrefs.GetFloat("PlayerPosY"));
+                SetPlayerOrientationAndPos(vector, pos);
+            }
+        }
 		Player_Stats.lastScene = next.name;
 	}
 	/// <summary>

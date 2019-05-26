@@ -6,7 +6,6 @@ public static class GlobalMembers
 	public static int n;
 	public static int m;
 	public static int[,] Map = new int[15, 15];
-
 	public static node[,] pre = new node[15, 15];
 	public static int[,] visit = new int[15, 15];
 	public static int[,] dir =

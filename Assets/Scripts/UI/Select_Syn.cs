@@ -70,6 +70,11 @@ public class Select_Syn : Select
     }
     public void ShowObj()
     {
+        for (int i = 0; i < 4; i++)
+        {
+            Selections[i].transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("00");
+            Selections[i].transform.GetChild(1).GetComponent<Text>().text = "空";
+        }
         for (int i = 0; i < Object_WeaponBag.weaponsize + 1; i++)
         {
             //Debug.Log(i);
