@@ -313,7 +313,7 @@ public class Events : MonoBehaviour
 					break;
 				case "King":
                     GameObject.Find("Accessible").transform.Find("Weapons").gameObject.SetActive(true);
-                    Invoke("LoadGrassLand", 15f);
+                    
                     break;
                 case "TreasureBox":
                     if (Player_Stats.switchListInt[5] == 0)

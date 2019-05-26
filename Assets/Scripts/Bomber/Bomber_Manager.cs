@@ -151,6 +151,7 @@ public class Bomber_Manager : MonoBehaviour
 
 	public void EnemyAction(string ms)
 	{
+		Debug.Log("EnemyAction: " + ms);
 		otherPlayer.GetComponent<Bomber_Player>().EnemyControl(ms);
 	}
 
