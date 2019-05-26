@@ -24,7 +24,6 @@ public class Bomber_MatchManager : MonoBehaviour
     {
 		matching = 0;
 		socket = FindObjectOfType<Socket_Client>();
-		if (!socket.connected) socket.ConnectToServer();
 		matchUI.SetActive(match);
 		loginUI.SetActive(!match);
 		username.text = "";

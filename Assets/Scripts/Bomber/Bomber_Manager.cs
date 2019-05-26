@@ -173,4 +173,11 @@ public class Bomber_Manager : MonoBehaviour
 					if (i.tag == "Item") Destroy(i);
 		}
 	}
+	public void DestroyBrick(bool self, string ms)
+	{
+		string[] sArray = Regex.Split(ms, ",", RegexOptions.IgnoreCase);
+		Vector2 pos = new Vector2(float.Parse(sArray[1]), float.Parse(sArray[2]));
+		if (FindObjectOfType<Bomber_Brick>() != null)
+			FindObjectOfType<Bomber_Brick>().DestroyBrick(self, pos);
+	}
 }

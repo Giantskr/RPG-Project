@@ -10,7 +10,7 @@ public class Bomber_DmgZone : MonoBehaviour
 		{
 			switch (hit.tag)
 			{
-				case "Breakable": hit.GetComponent<Bomber_Brick>().DestroyBrick(transform.position); break;
+				case "Breakable": hit.GetComponent<Bomber_Brick>().DestroyBrick(true,transform.position); break;
 				case "Bomb":hit.GetComponent<Bomber_Bomb>().Explode();break;
 				case "Player":hit.GetComponent<Bomber_Player>().Die();break;
 			}

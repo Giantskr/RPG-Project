@@ -72,6 +72,7 @@ public class Socket_Client : MonoBehaviour
 				case "Moveup": manager.EnemyAction(functionToCall); break;
 				case "Movedown": manager.EnemyAction(functionToCall); break;
 				case "Spawn": manager.ChangeItemState(true, message); break;
+				case "Block": manager.ChangeItemState(false, message); break;
 				case "Destroy": manager.ChangeItemState(false, message); break;
 				case "Chat": manager.DisplayChat(false, message); break;
 			}
@@ -300,6 +301,7 @@ public class Socket_Client : MonoBehaviour
 					switch (i)
 					{
 						case "Spawn": message = ms;functionToCall = i; break;
+						case "Block": message = ms;functionToCall = i; break;
 						case "Destroy": message = ms; functionToCall = i; break;
 					}
 					break;
@@ -313,6 +315,8 @@ public class Socket_Client : MonoBehaviour
 			manager = FindObjectOfType<Bomber_Manager>();
 		if (FindObjectOfType<Bomber_MatchManager>() != null)
 			match = FindObjectOfType<Bomber_MatchManager>();
+		connectCount = 0;
+		if (!connected) ConnectToServer();
 	}
 
 	void OnDestroy()
