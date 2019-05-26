@@ -146,6 +146,13 @@ public class Events : MonoBehaviour
 				CreateTemporaryNPC(temporaryNPC, "巨龙", eventSprites[0]);
 				rpgTalkHolder.NewTalk("21", "25");
                 break;
+			case "Slime":
+				GameManager.monstersJoining.Add(GameManager.allMonsters[0]);
+				GameManager.monstersJoining.Add(GameManager.allMonsters[0]);
+				GameManager.monstersJoining.Add(GameManager.allMonsters[0]);
+				gameManager.StartBattle(GameManager.monstersJoining);
+				Destroy(gameObject);
+				break;
             case "Notice":
                 rpgTalkHolder.NewTalk("3", "3");
                 break;
