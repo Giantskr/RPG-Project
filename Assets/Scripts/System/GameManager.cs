@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         SoundPlay();
 		if (sceneType == SceneType.GamePlay)
 		{
-			if (Input.GetButtonDown("Cancel") && inScene && !fading)
+			if (Input.GetButtonDown("Cancel") && inScene && !fading && !inBattle) 
 			{
 				inScene = false;
 				UI_Esc.SetActive(true);
@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
 						SetPlayerOrientationAndPos(Vector2.right, new Vector2(-42f, 1f));
                     break;
             }
-            if (Player_Stats.lastScene == "Start")
+			if (Player_Stats.lastScene == "Start" && sceneType == SceneType.GamePlay) 
             {
                 Vector2 vector = new Vector2(PlayerPrefs.GetInt("PlayerOrientationX"), PlayerPrefs.GetInt("PlayerOrientationY"));
                 Vector2 pos = new Vector2(PlayerPrefs.GetFloat("PlayerPosX"), PlayerPrefs.GetFloat("PlayerPosY"));
