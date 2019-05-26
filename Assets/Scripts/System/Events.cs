@@ -82,15 +82,20 @@ public class Events : MonoBehaviour
 	}
     private void Update()
     {
-        if (Player_Stats.switchListInt[10] == 1)
-        {
-            scenechange1.SetActive(true);
-        }
+		if (scenechange1 != null && Player_Stats.switchListInt[10] == 1) scenechange1.SetActive(true);
         switch (gameObject.name)
         {
             case "AfterDragonBattle":
-                if (Player_Stats.switchListInt[7] == 1) gameObject.SetActive(true);
-                else gameObject.SetActive(false);
+                if (Player_Stats.switchListInt[7] == 1)
+				{
+					gameObject.GetComponent<SpriteRenderer>().enabled = true;
+					gameObject.GetComponent<Collider2D>().enabled = true;
+				}
+                else
+				{
+					gameObject.GetComponent<SpriteRenderer>().enabled = false;
+					gameObject.GetComponent<Collider2D>().enabled = false;
+				}
                 break;
             
         }
@@ -138,7 +143,8 @@ public class Events : MonoBehaviour
                 rpgTalkHolder.NewTalk("7", "8");
                 break;
             case "Dragon":
-                rpgTalkHolder.NewTalk("21", "25");
+				CreateTemporaryNPC(temporaryNPC, "巨龙", eventSprites[0]);
+				rpgTalkHolder.NewTalk("21", "25");
                 break;
             case "Notice":
                 rpgTalkHolder.NewTalk("3", "3");
@@ -184,15 +190,13 @@ public class Events : MonoBehaviour
 				rpgTalkHolder.NewTalk("9", "12");
 				break;
             case "AfterDragonBattle":
-                if (Player_Stats.switchListInt[7] == 1 && !GameManager.inBattle) 
+                if (Player_Stats.switchListInt[7] == 1) 
                 {
-                    if (Player_Stats.HP > 0)
-                    {
-                        GameManager.fading = true;
-                        GameObject.Find("Fading").GetComponent<Animator>().Play("FadeToBlack");
-                        rpgTalkHolder.NewTalk("13", "16");
-                    }
-                }
+					GameManager.fading = true;
+					gameManager.fadingScreen.SetActive(true);
+					gameManager.fadingScreen.GetComponent<Animator>().Play("FadeToBlack");
+					rpgTalkHolder.NewTalk("13", "16");
+				}
                 break;
             case "SceneMove01":
 				au.PlayOneShot(sceneChangeSound);
