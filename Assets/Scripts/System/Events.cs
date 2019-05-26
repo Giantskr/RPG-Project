@@ -34,7 +34,7 @@ public class Events : MonoBehaviour
 	/// <summary>
 	/// 角色每次移动的目标
 	/// </summary>
-	protected Vector2 target;
+	[HideInInspector] public Vector2 target;
 	protected bool moving = false;
 	bool inEvent = false;
 
