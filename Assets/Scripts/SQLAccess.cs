@@ -13,7 +13,7 @@ public class SqlAccess
 	//数据库IP
 	private static string host = "39.105.93.244";
 	//用户名
-	private static string username = "newuser";
+	private static string username = "newuser1";
 	//用户密码
 	private static string password = "Newuser1";
 

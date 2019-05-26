@@ -18,11 +18,15 @@ public class Bomber_MatchManager : MonoBehaviour
 	public Text[] buttonText; 
 	public static short matching = 0;
 	bool login = true;
+	static bool match = false;
 
 	void OnEnable()
     {
 		matching = 0;
 		socket = FindObjectOfType<Socket_Client>();
+		if (!socket.connected) socket.ConnectToServer();
+		matchUI.SetActive(match);
+		loginUI.SetActive(!match);
 		username.text = "";
 		password.text = "";
 		failText.text = "";
@@ -91,16 +95,16 @@ public class Bomber_MatchManager : MonoBehaviour
 		findingText.text = "已取消匹配！";
 		socket.SendData("Match,Cancel,");
 	}
-	public void FailMatch()
+	public void MatchFail()
 	{
 		matching = 0;
 		findingText.text = "匹配失败，请重试！";
 	}
-	public IEnumerator StartGame()
+	public IEnumerator MatchSuccess()
 	{
 		matching = 2;
-		findingText.text = "你匹配到了" + Socket_Client.enemyName + "！";
-		yield return new WaitForSeconds(1.5f);
+		findingText.text = "成功匹配！";
+		yield return new WaitForSeconds(2);
 		gameManager.StartCoroutine("ChangeScene", "Bomber_Game");
 	}
 }

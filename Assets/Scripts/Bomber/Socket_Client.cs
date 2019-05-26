@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
@@ -8,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using MySql.Data.MySqlClient;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Socket_Client : MonoBehaviour
 {
@@ -15,7 +17,7 @@ public class Socket_Client : MonoBehaviour
 	int port = 10001;
 	public bool connected = false;                  //在线状态
 
-	byte[] data = new byte[1024];
+	byte[] data = new byte[64];
 	Socket clientSocket;                            //客户端Socket
 	int connectCount;                           //连接次数
 	Thread receiveT;
@@ -28,19 +30,54 @@ public class Socket_Client : MonoBehaviour
 	SqlAccess sqlAce;   //引用封装类
 	MySqlConnection con;
 	public static string userName, enemyName;
+	Bomber_Manager manager = null;
+	Bomber_MatchManager match = null;
+
+	string functionToCall = "";
+	string message = "";
 
 	void Awake()
 	{
 		DontDestroyOnLoad(gameObject);
 		if (instance == null) instance = this;
 		else if (instance != this) Destroy(gameObject);
-	} 
+	}
 
 	void Start()
 	{
-		
+		SceneManager.sceneLoaded += ChangeScene;
+		if (FindObjectOfType<Bomber_Manager>() != null)
+			manager = FindObjectOfType<Bomber_Manager>();
+		if (FindObjectOfType<Bomber_MatchManager>() != null)
+			match = FindObjectOfType<Bomber_MatchManager>();
 		connectCount = 0;
-		ConnectToServer();
+		if (!connected) ConnectToServer();
+	}
+
+	void Update()
+	{
+		if (functionToCall != "")
+		{
+			if (FindObjectOfType<Bomber_Manager>() != null)
+				manager = FindObjectOfType<Bomber_Manager>();
+			if (FindObjectOfType<Bomber_MatchManager>() != null)
+				match = FindObjectOfType<Bomber_MatchManager>();
+			switch (functionToCall)
+			{
+				case "Failed": match.MatchFail(); break;
+				case "Success": if (match != null) match.StartCoroutine("MatchSuccess"); break;
+				case "PlaceBomb": manager.EnemyAction(functionToCall); break;
+				case "Moveright": manager.EnemyAction(functionToCall); break;
+				case "Moveleft": manager.EnemyAction(functionToCall); break;
+				case "Moveup": manager.EnemyAction(functionToCall); break;
+				case "Movedown": manager.EnemyAction(functionToCall); break;
+				case "Spawn": manager.ChangeItemState(true, message); break;
+				case "Destroy": manager.ChangeItemState(false, message); break;
+				case "Chat": manager.DisplayChat(false, message); break;
+			}
+			functionToCall = "";
+			message = "";
+		}
 	}
 
 	//连接到服务器
@@ -54,6 +91,24 @@ public class Socket_Client : MonoBehaviour
 		EndPoint endPoint = new IPEndPoint(IPAddress.Parse(ipAddress), port);
 		//发起连接
 		clientSocket.BeginConnect(endPoint, OnConnectCallBack, "");
+		//try
+		//{
+		//	connectCount++;
+		//	Debug.Log("这是第" + connectCount + "次连接");
+		//	clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+		//	clientSocket.Connect(IPAddress.Parse(ipAddress), port);
+		//	Debug.Log("连接服务器成功");
+		//	StartCoroutine("ReceiveData");
+		//	receiveT = new Thread(ReceiveData);
+		//	receiveT.Start();
+		//}
+		//catch (Exception ex)
+		//{
+		//	Debug.Log("连接服务器失败！");
+		//	Debug.Log(ex.Message);
+		//	clientSocket = null;
+		//	ConnectToServer();
+		//}
 	}
 
 	//连接的回调
@@ -66,6 +121,7 @@ public class Socket_Client : MonoBehaviour
 			connectCount = 0;
 			receiveT = new Thread(ReceiveData);
 			receiveT.Start();
+			//StartCoroutine("ReceiveData");
 		}
 		else
 		{
@@ -74,12 +130,7 @@ public class Socket_Client : MonoBehaviour
 			ConnectToServer();
 		}
 		//结束连接
-		//clientSocket.EndConnect(ar);
-	}
-
-	void Update()
-	{
-		CheckConnection();
+		clientSocket.EndConnect(ar);
 	}
 
 	public void Register(string name, string pw)
@@ -163,34 +214,48 @@ public class Socket_Client : MonoBehaviour
 
 	public void SendData(string ms)
 	{
-		byte[] data = new byte[1024];
+		ms = ms.PadRight(64, ' ');
+		byte[] data = new byte[64];
 		data = Encoding.UTF8.GetBytes(ms);
 		clientSocket.Send(data);
 		Debug.Log("Send: " + Encoding.UTF8.GetString(data, 0, data.Length));
 	}
 
-	public void ReceiveData()
-	{
+	void ReceiveData()
+	{	
 		while (true)
 		{
-			if (clientSocket.Connected == false)
+			//yield return new WaitForEndOfFrame();
+			try
 			{
-				Debug.Log("与服务器断开了连接");
-				break;
+				int length = 0;
+				length = clientSocket.Receive(data);
+				if (connected && (!clientSocket.Connected || length == 0))
+				{
+					Debug.Log("与服务器断开连接");
+					clientSocket = null;
+					connected = false;
+					ConnectToServer();
+					break;
+				}
+				string str = Encoding.UTF8.GetString(data, 0, data.Length);
+				Debug.Log("Receive: " + str);
+				AnalizeData(str);
 			}
-			int length = 0;
-			length = clientSocket.Receive(data);
-			string str = Encoding.UTF8.GetString(data, 0, data.Length);
-			Debug.Log("Receive: "+str);
-			AnalizeData(str);
+			catch (Exception ex)
+			{
+				Debug.Log("连接服务器失败！");
+				Debug.Log(ex.Message);
+				clientSocket = null;
+				ConnectToServer();
+			}
 		}
 	}
 	void AnalizeData(string ms)
 	{
 		ActionType type = ActionType.None;
 		string[] sArray = Regex.Split(ms, ",", RegexOptions.IgnoreCase);
-		Bomber_Manager manager = FindObjectOfType<Bomber_Manager>();
-		Bomber_MatchManager match = FindObjectOfType<Bomber_MatchManager>();
+		
 		foreach (string i in sArray)
 		{
 			switch (type)
@@ -201,7 +266,7 @@ public class Socket_Client : MonoBehaviour
 						case "Match": type = ActionType.Match; break;
 						case "Action": type = ActionType.Action; break;
 						case "Item": type = ActionType.Item; break;
-						case "Chat": type = ActionType.Chat; manager.DisplayChat(false, ms); break; 
+						case "Chat": type = ActionType.Chat; message = ms;functionToCall = i; break; 
 					}
 					break;
 				case ActionType.Match:
@@ -217,32 +282,39 @@ public class Socket_Client : MonoBehaviour
 								Bomber_Manager.playerPos = new Vector2(8.5f, -5.5f);
 								Bomber_Manager.enemyPos = new Vector2(-7.5f, 4.5f);
 								break;
-						case "Failed": match.FailMatch(); break;
-						case "Success": match.StartGame(); break;
+						case "Failed": functionToCall = i; break;
+						case "Success": functionToCall = i; break;
 					}
 					break;
-				case ActionType.Action: manager.EnemyAction(i); break;
+				case ActionType.Action:
+					switch (i)
+					{
+						case "PlaceBomb": functionToCall = i; break;
+						case "Moveright": functionToCall = i; break;
+						case "Moveleft": functionToCall = i; break;
+						case "Moveup": functionToCall = i; break;
+						case "Movedown": functionToCall = i; break;
+					}
+					break;
 				case ActionType.Item:
 					switch (i)
 					{
-						case "Spawn": manager.ChangeItemState(true, ms); break;
-						case "Destroy": manager.ChangeItemState(false, ms); break;
+						case "Spawn": message = ms;functionToCall = i; break;
+						case "Destroy": message = ms; functionToCall = i; break;
 					}
 					break;
 			}
 		}
 	}
 
-	void CheckConnection()
+	void ChangeScene(Scene scene, LoadSceneMode mode)
 	{
-		if (connected && !clientSocket.Connected)
-		{
-			Debug.Log("与服务器断开连接");
-			clientSocket = null;
-			connected = false;
-			ConnectToServer();
-		}
+		if (FindObjectOfType<Bomber_Manager>() != null)
+			manager = FindObjectOfType<Bomber_Manager>();
+		if (FindObjectOfType<Bomber_MatchManager>() != null)
+			match = FindObjectOfType<Bomber_MatchManager>();
 	}
+
 	void OnDestroy()
 	{
 		try
